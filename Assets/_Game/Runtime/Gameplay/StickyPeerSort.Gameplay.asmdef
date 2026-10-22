@@ -1,0 +1,8 @@
+{
+  "name": "StickyPeerSort.Gameplay",
+  "references": [
+    "StickyPeerSort.Data",
+    "StickyPeerSort.Core",
+    "StickyPeerSort.Services"
+  ]
+}

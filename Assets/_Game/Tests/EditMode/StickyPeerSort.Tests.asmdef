@@ -1,0 +1,17 @@
+{
+  "name": "StickyPeerSort.Tests",
+  "references": [
+    "StickyPeerSort.Runtime",
+    "StickyPeerSort.Data",
+    "StickyPeerSort.Core",
+    "StickyPeerSort.Services",
+    "StickyPeerSort.Gameplay",
+    "StickyPeerSort.Editor"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}

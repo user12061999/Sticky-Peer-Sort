@@ -1,0 +1,15 @@
+{
+  "name": "StickyPeerSort.PlayTests",
+  "references": [
+    "StickyPeerSort.Runtime",
+    "Unity.TextMeshPro",
+    "Unity.ugui",
+    "StickyPeerSort.Data",
+    "StickyPeerSort.Core",
+    "StickyPeerSort.Services",
+    "StickyPeerSort.Gameplay"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}

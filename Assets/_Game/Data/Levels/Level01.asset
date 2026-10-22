@@ -1,0 +1,174 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68e389f2ea0404479ff4e8be1aff4af, type: 3}
+  m_Name: Level01
+  m_EditorClassIdentifier: StickyPeerSort.Runtime::StickyPeerSort.LevelDefinition
+  levelNumber: 1
+  activeCategoryCount: 1
+  bufferCapacity: 4
+  failOnOverflow: 1
+  coinReward: 25
+  difficulty: Easy
+  tutorial: Pick the top stickers. Collect all four to finish a set!
+  objectives:
+  - category: {fileID: 11400000, guid: fde673cc8f427204aa8aefd6f33803c8, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 69050702e875b40488fe9271b0a0645a, type: 2}
+    - {fileID: 11400000, guid: 4054d41dba4c13d429baeda94b8b6851, type: 2}
+    - {fileID: 11400000, guid: adc83f6f0b146b940becd3c9771e03f0, type: 2}
+    - {fileID: 11400000, guid: 9894ab36768f3e3479a28559739cfdde, type: 2}
+  - category: {fileID: 11400000, guid: b905b9a7d6bc29c4b88b921b4b462bc9, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 43681c5f6cb8db6438d236b941807ef0, type: 2}
+    - {fileID: 11400000, guid: dae5cba4a88ad0b41b2d31bb87db3384, type: 2}
+    - {fileID: 11400000, guid: ce727dbe8d5ecfc47b5cc65d63d076e9, type: 2}
+    - {fileID: 11400000, guid: 7d239a341b2e5b3408568f7dcb61afbc, type: 2}
+  stickers:
+  - instanceId: L1_0
+    definition: {fileID: 11400000, guid: 69050702e875b40488fe9271b0a0645a, type: 2}
+    position: {x: -303.76486, y: 139.25319}
+    size: {x: 162, y: 146}
+    rotation: -30
+    scale: 1
+    sortingOrder: 8
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L1_1
+    definition: {fileID: 11400000, guid: 4054d41dba4c13d429baeda94b8b6851, type: 2}
+    position: {x: 156.92319, y: 75.13034}
+    size: {x: 162, y: 146}
+    rotation: 28
+    scale: 1
+    sortingOrder: 7
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L1_2
+    definition: {fileID: 11400000, guid: adc83f6f0b146b940becd3c9771e03f0, type: 2}
+    position: {x: -102.90418, y: -243.33908}
+    size: {x: 162, y: 146}
+    rotation: -16
+    scale: 1
+    sortingOrder: 6
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L1_3
+    definition: {fileID: 11400000, guid: 9894ab36768f3e3479a28559739cfdde, type: 2}
+    position: {x: -163.23438, y: 125.820625}
+    size: {x: 162, y: 146}
+    rotation: 12
+    scale: 1
+    sortingOrder: 5
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L1_4
+    definition: {fileID: 11400000, guid: 43681c5f6cb8db6438d236b941807ef0, type: 2}
+    position: {x: 295.17224, y: 104.36328}
+    size: {x: 162, y: 146}
+    rotation: -3
+    scale: 1
+    sortingOrder: 4
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L1_5
+    definition: {fileID: 11400000, guid: dae5cba4a88ad0b41b2d31bb87db3384, type: 2}
+    position: {x: 38.731472, y: -240.89311}
+    size: {x: 162, y: 146}
+    rotation: 23
+    scale: 1
+    sortingOrder: 3
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L1_6
+    definition: {fileID: 11400000, guid: ce727dbe8d5ecfc47b5cc65d63d076e9, type: 2}
+    position: {x: -267.22495, y: 216.28256}
+    size: {x: 162, y: 146}
+    rotation: -19
+    scale: 1
+    sortingOrder: 2
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L1_7
+    definition: {fileID: 11400000, guid: 7d239a341b2e5b3408568f7dcb61afbc, type: 2}
+    position: {x: 172.39835, y: 149.25317}
+    size: {x: 162, y: 146}
+    rotation: 36
+    scale: 1
+    sortingOrder: 1
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  piles:
+  - id: tray_0
+    position: {x: -225, y: 165}
+    size: {x: 390, y: 300}
+    rotation: -7
+    color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
+  - id: tray_1
+    position: {x: 225, y: 125}
+    size: {x: 390, y: 300}
+    rotation: 9
+    color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
+  - id: tray_2
+    position: {x: -25, y: -205}
+    size: {x: 390, y: 300}
+    rotation: -4
+    color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
+  solutionTrace:
+  - L1_0
+  - L1_1
+  - L1_2
+  - L1_3
+  - L1_4
+  - L1_5
+  - L1_6
+  - L1_7

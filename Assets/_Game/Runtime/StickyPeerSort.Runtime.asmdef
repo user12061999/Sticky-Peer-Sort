@@ -1,0 +1,11 @@
+{
+  "name": "StickyPeerSort.Runtime",
+  "references": [
+    "StickyPeerSort.Data",
+    "StickyPeerSort.Core",
+    "StickyPeerSort.Services",
+    "StickyPeerSort.Gameplay",
+    "Unity.TextMeshPro",
+    "Unity.ugui"
+  ]
+}

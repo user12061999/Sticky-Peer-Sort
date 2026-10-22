@@ -1,0 +1,367 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68e389f2ea0404479ff4e8be1aff4af, type: 3}
+  m_Name: Level07
+  m_EditorClassIdentifier: StickyPeerSort.Runtime::StickyPeerSort.LevelDefinition
+  levelNumber: 7
+  activeCategoryCount: 3
+  bufferCapacity: 4
+  failOnOverflow: 1
+  coinReward: 55
+  difficulty: Learning
+  tutorial: ICE needs two taps to break, then one tap to collect.
+  objectives:
+  - category: {fileID: 11400000, guid: fde673cc8f427204aa8aefd6f33803c8, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 69050702e875b40488fe9271b0a0645a, type: 2}
+    - {fileID: 11400000, guid: 4054d41dba4c13d429baeda94b8b6851, type: 2}
+    - {fileID: 11400000, guid: adc83f6f0b146b940becd3c9771e03f0, type: 2}
+    - {fileID: 11400000, guid: 9894ab36768f3e3479a28559739cfdde, type: 2}
+  - category: {fileID: 11400000, guid: b905b9a7d6bc29c4b88b921b4b462bc9, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 43681c5f6cb8db6438d236b941807ef0, type: 2}
+    - {fileID: 11400000, guid: dae5cba4a88ad0b41b2d31bb87db3384, type: 2}
+    - {fileID: 11400000, guid: ce727dbe8d5ecfc47b5cc65d63d076e9, type: 2}
+    - {fileID: 11400000, guid: 7d239a341b2e5b3408568f7dcb61afbc, type: 2}
+  - category: {fileID: 11400000, guid: b5a0d7eb20a55734a9e692ac691ea643, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: a8517876fd542004a9cfe8a814a16b86, type: 2}
+    - {fileID: 11400000, guid: 10e1055a14b5d334e91b2956a66c81e6, type: 2}
+    - {fileID: 11400000, guid: 24e9fc156afc0ee4d90d571424b1900d, type: 2}
+    - {fileID: 11400000, guid: 40f04ccd6381b39419aee078f82a9e7e, type: 2}
+  - category: {fileID: 11400000, guid: 4fe48d2ace9afa74baa53f0bc2f83e43, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: a86e61a8a28962c4b9514c27c0fe3864, type: 2}
+    - {fileID: 11400000, guid: 332205d4bd4a7404a841bd637d8483ab, type: 2}
+    - {fileID: 11400000, guid: fa3714958595c9342aff171c2325619f, type: 2}
+    - {fileID: 11400000, guid: 329bcd69fb778fd4e8ddf9f9768f3674, type: 2}
+  - category: {fileID: 11400000, guid: 980535b9abec135449be2e93f22dd4d1, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 66531caccead1234898917507fc367cb, type: 2}
+    - {fileID: 11400000, guid: b488cba432939c0489f6f0fdab7f3514, type: 2}
+    - {fileID: 11400000, guid: a1e39b16cb64e9147b1ce507f63169f9, type: 2}
+    - {fileID: 11400000, guid: 73925dfb3e3febb41afe494b4185f11a, type: 2}
+  stickers:
+  - instanceId: L7_0
+    definition: {fileID: 11400000, guid: 69050702e875b40488fe9271b0a0645a, type: 2}
+    position: {x: -267.31, y: 123.729996}
+    size: {x: 162, y: 146}
+    rotation: -23
+    scale: 1
+    sortingOrder: 18
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_1
+    definition: {fileID: 11400000, guid: 4054d41dba4c13d429baeda94b8b6851, type: 2}
+    position: {x: 260, y: 123.729996}
+    size: {x: 162, y: 146}
+    rotation: 19
+    scale: 1
+    sortingOrder: 17
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_2
+    definition: {fileID: 11400000, guid: adc83f6f0b146b940becd3c9771e03f0, type: 2}
+    position: {x: -267.31, y: -196.27}
+    size: {x: 162, y: 146}
+    rotation: -12
+    scale: 1
+    sortingOrder: 16
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_3
+    definition: {fileID: 11400000, guid: 9894ab36768f3e3479a28559739cfdde, type: 2}
+    position: {x: 260, y: -196.27}
+    size: {x: 162, y: 146}
+    rotation: 27
+    scale: 1
+    sortingOrder: 15
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_4
+    definition: {fileID: 11400000, guid: 43681c5f6cb8db6438d236b941807ef0, type: 2}
+    position: {x: -260, y: 133.95999}
+    size: {x: 162, y: 146}
+    rotation: 19
+    scale: 1
+    sortingOrder: 14
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_5
+    definition: {fileID: 11400000, guid: dae5cba4a88ad0b41b2d31bb87db3384, type: 2}
+    position: {x: 259.87, y: 133.95999}
+    size: {x: 162, y: 146}
+    rotation: -12
+    scale: 1
+    sortingOrder: 13
+    pileId: tray_0
+    special:
+      kind: 2
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_6
+    definition: {fileID: 11400000, guid: ce727dbe8d5ecfc47b5cc65d63d076e9, type: 2}
+    position: {x: -260, y: -186.04001}
+    size: {x: 162, y: 146}
+    rotation: 27
+    scale: 1
+    sortingOrder: 12
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_7
+    definition: {fileID: 11400000, guid: 7d239a341b2e5b3408568f7dcb61afbc, type: 2}
+    position: {x: 0, y: -20}
+    size: {x: 162, y: 146}
+    rotation: 0
+    scale: 1
+    sortingOrder: 21
+    pileId: tray_0
+    special:
+      kind: 1
+      unlockCondition: 1
+      dependencyId: fruit
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_8
+    definition: {fileID: 11400000, guid: a8517876fd542004a9cfe8a814a16b86, type: 2}
+    position: {x: -244.99, y: 203.70999}
+    size: {x: 162, y: 146}
+    rotation: -12
+    scale: 1
+    sortingOrder: 10
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_9
+    definition: {fileID: 11400000, guid: 10e1055a14b5d334e91b2956a66c81e6, type: 2}
+    position: {x: 165.01, y: 203.70999}
+    size: {x: 162, y: 146}
+    rotation: 27
+    scale: 1
+    sortingOrder: 9
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_10
+    definition: {fileID: 11400000, guid: 24e9fc156afc0ee4d90d571424b1900d, type: 2}
+    position: {x: -244.99, y: -116.29}
+    size: {x: 162, y: 146}
+    rotation: 9
+    scale: 1
+    sortingOrder: 8
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_11
+    definition: {fileID: 11400000, guid: 40f04ccd6381b39419aee078f82a9e7e, type: 2}
+    position: {x: 260, y: -116.29}
+    size: {x: 162, y: 146}
+    rotation: -28
+    scale: 1
+    sortingOrder: 7
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_12
+    definition: {fileID: 11400000, guid: a86e61a8a28962c4b9514c27c0fe3864, type: 2}
+    position: {x: -151.98999, y: 201.85}
+    size: {x: 162, y: 146}
+    rotation: 27
+    scale: 1
+    sortingOrder: 6
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_13
+    definition: {fileID: 11400000, guid: 332205d4bd4a7404a841bd637d8483ab, type: 2}
+    position: {x: 258.01, y: 201.85}
+    size: {x: 162, y: 146}
+    rotation: 9
+    scale: 1
+    sortingOrder: 5
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_14
+    definition: {fileID: 11400000, guid: fa3714958595c9342aff171c2325619f, type: 2}
+    position: {x: -260, y: -118.15}
+    size: {x: 162, y: 146}
+    rotation: -28
+    scale: 1
+    sortingOrder: 4
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_15
+    definition: {fileID: 11400000, guid: 329bcd69fb778fd4e8ddf9f9768f3674, type: 2}
+    position: {x: 258.01, y: -118.15}
+    size: {x: 162, y: 146}
+    rotation: 14
+    scale: 1
+    sortingOrder: 3
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_16
+    definition: {fileID: 11400000, guid: 66531caccead1234898917507fc367cb, type: 2}
+    position: {x: -267.31, y: 123.729996}
+    size: {x: 162, y: 146}
+    rotation: -23
+    scale: 1
+    sortingOrder: 20
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_17
+    definition: {fileID: 11400000, guid: b488cba432939c0489f6f0fdab7f3514, type: 2}
+    position: {x: 260, y: 123.729996}
+    size: {x: 162, y: 146}
+    rotation: 19
+    scale: 1
+    sortingOrder: 19
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_18
+    definition: {fileID: 11400000, guid: a1e39b16cb64e9147b1ce507f63169f9, type: 2}
+    position: {x: -272.89, y: -158.14}
+    size: {x: 162, y: 146}
+    rotation: 14
+    scale: 1
+    sortingOrder: 2
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L7_19
+    definition: {fileID: 11400000, guid: 73925dfb3e3febb41afe494b4185f11a, type: 2}
+    position: {x: 260, y: -158.14}
+    size: {x: 162, y: 146}
+    rotation: -7
+    scale: 1
+    sortingOrder: 1
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  piles:
+  - id: tray_0
+    position: {x: 0, y: 0}
+    size: {x: 860, y: 680}
+    rotation: 0
+    color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
+  solutionTrace:
+  - L7_2
+  - L7_3
+  - L7_6
+  - L7_10
+  - L7_11
+  - L7_14
+  - L7_15
+  - L7_16
+  - L7_0
+  - L7_4
+  - L7_8
+  - L7_17
+  - L7_1
+  - L7_5
+  - L7_5
+  - L7_5
+  - L7_7
+  - L7_9
+  - L7_12
+  - L7_13
+  - L7_18
+  - L7_19

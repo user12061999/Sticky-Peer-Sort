@@ -1,0 +1,7 @@
+{
+  "name": "StickyPeerSort.Services",
+  "references": [
+    "StickyPeerSort.Data",
+    "StickyPeerSort.Core"
+  ]
+}

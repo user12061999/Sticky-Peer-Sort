@@ -1,0 +1,246 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68e389f2ea0404479ff4e8be1aff4af, type: 3}
+  m_Name: Level02
+  m_EditorClassIdentifier: StickyPeerSort.Runtime::StickyPeerSort.LevelDefinition
+  levelNumber: 2
+  activeCategoryCount: 2
+  bufferCapacity: 4
+  failOnOverflow: 1
+  coinReward: 30
+  difficulty: Easy
+  tutorial: Two sets are open. Match colors and clear a set to open the next.
+  objectives:
+  - category: {fileID: 11400000, guid: fde673cc8f427204aa8aefd6f33803c8, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 69050702e875b40488fe9271b0a0645a, type: 2}
+    - {fileID: 11400000, guid: 4054d41dba4c13d429baeda94b8b6851, type: 2}
+    - {fileID: 11400000, guid: adc83f6f0b146b940becd3c9771e03f0, type: 2}
+    - {fileID: 11400000, guid: 9894ab36768f3e3479a28559739cfdde, type: 2}
+  - category: {fileID: 11400000, guid: b905b9a7d6bc29c4b88b921b4b462bc9, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 43681c5f6cb8db6438d236b941807ef0, type: 2}
+    - {fileID: 11400000, guid: dae5cba4a88ad0b41b2d31bb87db3384, type: 2}
+    - {fileID: 11400000, guid: ce727dbe8d5ecfc47b5cc65d63d076e9, type: 2}
+    - {fileID: 11400000, guid: 7d239a341b2e5b3408568f7dcb61afbc, type: 2}
+  - category: {fileID: 11400000, guid: b5a0d7eb20a55734a9e692ac691ea643, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: a8517876fd542004a9cfe8a814a16b86, type: 2}
+    - {fileID: 11400000, guid: 10e1055a14b5d334e91b2956a66c81e6, type: 2}
+    - {fileID: 11400000, guid: 24e9fc156afc0ee4d90d571424b1900d, type: 2}
+    - {fileID: 11400000, guid: 40f04ccd6381b39419aee078f82a9e7e, type: 2}
+  stickers:
+  - instanceId: L2_0
+    definition: {fileID: 11400000, guid: 69050702e875b40488fe9271b0a0645a, type: 2}
+    position: {x: -292.36, y: 134.84607}
+    size: {x: 162, y: 146}
+    rotation: -23
+    scale: 1
+    sortingOrder: 12
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L2_1
+    definition: {fileID: 11400000, guid: 4054d41dba4c13d429baeda94b8b6851, type: 2}
+    position: {x: 147.64, y: 132.88}
+    size: {x: 162, y: 146}
+    rotation: 19
+    scale: 1
+    sortingOrder: 11
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L2_2
+    definition: {fileID: 11400000, guid: adc83f6f0b146b940becd3c9771e03f0, type: 2}
+    position: {x: -292.36, y: -217.12}
+    size: {x: 162, y: 146}
+    rotation: -12
+    scale: 1
+    sortingOrder: 10
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L2_3
+    definition: {fileID: 11400000, guid: 9894ab36768f3e3479a28559739cfdde, type: 2}
+    position: {x: 147.64, y: -212.18329}
+    size: {x: 162, y: 146}
+    rotation: 27
+    scale: 1
+    sortingOrder: 9
+    pileId: tray_3
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L2_4
+    definition: {fileID: 11400000, guid: 43681c5f6cb8db6438d236b941807ef0, type: 2}
+    position: {x: -156.28, y: 144.76}
+    size: {x: 162, y: 146}
+    rotation: 19
+    scale: 1
+    sortingOrder: 8
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L2_5
+    definition: {fileID: 11400000, guid: dae5cba4a88ad0b41b2d31bb87db3384, type: 2}
+    position: {x: 283.72, y: 144.76}
+    size: {x: 162, y: 146}
+    rotation: -12
+    scale: 1
+    sortingOrder: 7
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L2_6
+    definition: {fileID: 11400000, guid: ce727dbe8d5ecfc47b5cc65d63d076e9, type: 2}
+    position: {x: -156.28, y: -205.24}
+    size: {x: 162, y: 146}
+    rotation: 27
+    scale: 1
+    sortingOrder: 6
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L2_7
+    definition: {fileID: 11400000, guid: 7d239a341b2e5b3408568f7dcb61afbc, type: 2}
+    position: {x: 283.72, y: -205.24}
+    size: {x: 162, y: 146}
+    rotation: 9
+    scale: 1
+    sortingOrder: 5
+    pileId: tray_3
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L2_8
+    definition: {fileID: 11400000, guid: a8517876fd542004a9cfe8a814a16b86, type: 2}
+    position: {x: -266.44, y: 225.75438}
+    size: {x: 162, y: 146}
+    rotation: -12
+    scale: 1
+    sortingOrder: 4
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L2_9
+    definition: {fileID: 11400000, guid: 10e1055a14b5d334e91b2956a66c81e6, type: 2}
+    position: {x: 173.56, y: 212.18329}
+    size: {x: 162, y: 146}
+    rotation: 27
+    scale: 1
+    sortingOrder: 3
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L2_10
+    definition: {fileID: 11400000, guid: 24e9fc156afc0ee4d90d571424b1900d, type: 2}
+    position: {x: -266.44, y: -124.24}
+    size: {x: 162, y: 146}
+    rotation: 9
+    scale: 1
+    sortingOrder: 2
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L2_11
+    definition: {fileID: 11400000, guid: 40f04ccd6381b39419aee078f82a9e7e, type: 2}
+    position: {x: 173.56, y: -138.48236}
+    size: {x: 162, y: 146}
+    rotation: -28
+    scale: 1
+    sortingOrder: 1
+    pileId: tray_3
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  piles:
+  - id: tray_0
+    position: {x: -220, y: 175}
+    size: {x: 400, y: 310}
+    rotation: 0
+    color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
+  - id: tray_1
+    position: {x: 220, y: 175}
+    size: {x: 400, y: 310}
+    rotation: 0
+    color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
+  - id: tray_2
+    position: {x: -220, y: -175}
+    size: {x: 400, y: 310}
+    rotation: 0
+    color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
+  - id: tray_3
+    position: {x: 220, y: -175}
+    size: {x: 400, y: 310}
+    rotation: 0
+    color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
+  solutionTrace:
+  - L2_0
+  - L2_1
+  - L2_2
+  - L2_3
+  - L2_4
+  - L2_5
+  - L2_6
+  - L2_7
+  - L2_8
+  - L2_9
+  - L2_10
+  - L2_11
