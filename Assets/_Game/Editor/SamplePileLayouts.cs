@@ -130,7 +130,7 @@ namespace StickyPeerSort.Editor
                     if (other != hidden && other.pileId == hidden.pileId && other.special.kind == SpecialKind.None && Mathf.Abs(other.position.y - y) < 100)
                     { cover = other; break; }
                 if (cover == null) continue;
-                hidden.position = new Vector2(tray.position.x - 105, y); hidden.rotation = 0;
+                hidden.position = new Vector2(tray.position.x - 70, y); hidden.rotation = 0;
                 foreach (var other in level.stickers)
                     if (other != hidden && other.pileId == hidden.pileId && Mathf.Abs(other.position.y - y) < 130)
                     { other.position = new Vector2(tray.position.x + 75, other.position.y); other.rotation = 0; }

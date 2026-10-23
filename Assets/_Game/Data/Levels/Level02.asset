@@ -18,32 +18,32 @@ MonoBehaviour:
   failOnOverflow: 1
   coinReward: 30
   difficulty: Easy
-  tutorial: Two sets are open. Match colors and clear a set to open the next.
+  tutorial: Two collections are open. Match stickers by category.
   objectives:
-  - category: {fileID: 11400000, guid: fde673cc8f427204aa8aefd6f33803c8, type: 2}
+  - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
     targetCount: 4
     exactTargets:
-    - {fileID: 11400000, guid: 69050702e875b40488fe9271b0a0645a, type: 2}
-    - {fileID: 11400000, guid: 4054d41dba4c13d429baeda94b8b6851, type: 2}
-    - {fileID: 11400000, guid: adc83f6f0b146b940becd3c9771e03f0, type: 2}
-    - {fileID: 11400000, guid: 9894ab36768f3e3479a28559739cfdde, type: 2}
-  - category: {fileID: 11400000, guid: b905b9a7d6bc29c4b88b921b4b462bc9, type: 2}
+    - {fileID: 11400000, guid: 4632109b54d71aa4bb707443c8c0c859, type: 2}
+    - {fileID: 11400000, guid: 1c44c4a6a5115c045b2cc595bf95f1de, type: 2}
+    - {fileID: 11400000, guid: 65630b503a0225346a1d1f66d1b8c04e, type: 2}
+    - {fileID: 11400000, guid: c4ff76fda6c2a944a96e000123f21467, type: 2}
+  - category: {fileID: 11400000, guid: 9ef2c9fd403efa24aa48f168c2be209c, type: 2}
     targetCount: 4
     exactTargets:
-    - {fileID: 11400000, guid: 43681c5f6cb8db6438d236b941807ef0, type: 2}
-    - {fileID: 11400000, guid: dae5cba4a88ad0b41b2d31bb87db3384, type: 2}
-    - {fileID: 11400000, guid: ce727dbe8d5ecfc47b5cc65d63d076e9, type: 2}
-    - {fileID: 11400000, guid: 7d239a341b2e5b3408568f7dcb61afbc, type: 2}
-  - category: {fileID: 11400000, guid: b5a0d7eb20a55734a9e692ac691ea643, type: 2}
+    - {fileID: 11400000, guid: 7da0cd0a4ba46994ca8f5582379a3cd2, type: 2}
+    - {fileID: 11400000, guid: 911ce87bbb4aabc4dba3fbe4ea37457b, type: 2}
+    - {fileID: 11400000, guid: 80afffc4a13edb64aa75c91992a68f56, type: 2}
+    - {fileID: 11400000, guid: dc403d39717283543bce25387c0da460, type: 2}
+  - category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
     targetCount: 4
     exactTargets:
-    - {fileID: 11400000, guid: a8517876fd542004a9cfe8a814a16b86, type: 2}
-    - {fileID: 11400000, guid: 10e1055a14b5d334e91b2956a66c81e6, type: 2}
-    - {fileID: 11400000, guid: 24e9fc156afc0ee4d90d571424b1900d, type: 2}
-    - {fileID: 11400000, guid: 40f04ccd6381b39419aee078f82a9e7e, type: 2}
+    - {fileID: 11400000, guid: f102b3d0700660b45844bcf9fdf78862, type: 2}
+    - {fileID: 11400000, guid: 94573a07e8fe13043813cc15b0d391fb, type: 2}
+    - {fileID: 11400000, guid: 3f69abf0458958648804cfa694f0ed09, type: 2}
+    - {fileID: 11400000, guid: bf4cabd38a3e98f43bd6e55b4744cb3c, type: 2}
   stickers:
   - instanceId: L2_0
-    definition: {fileID: 11400000, guid: 69050702e875b40488fe9271b0a0645a, type: 2}
+    definition: {fileID: 11400000, guid: 4632109b54d71aa4bb707443c8c0c859, type: 2}
     position: {x: -292.36, y: 134.84607}
     size: {x: 162, y: 146}
     rotation: -23
@@ -57,7 +57,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L2_1
-    definition: {fileID: 11400000, guid: 4054d41dba4c13d429baeda94b8b6851, type: 2}
+    definition: {fileID: 11400000, guid: 1c44c4a6a5115c045b2cc595bf95f1de, type: 2}
     position: {x: 147.64, y: 132.88}
     size: {x: 162, y: 146}
     rotation: 19
@@ -71,7 +71,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L2_2
-    definition: {fileID: 11400000, guid: adc83f6f0b146b940becd3c9771e03f0, type: 2}
+    definition: {fileID: 11400000, guid: 65630b503a0225346a1d1f66d1b8c04e, type: 2}
     position: {x: -292.36, y: -217.12}
     size: {x: 162, y: 146}
     rotation: -12
@@ -85,7 +85,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L2_3
-    definition: {fileID: 11400000, guid: 9894ab36768f3e3479a28559739cfdde, type: 2}
+    definition: {fileID: 11400000, guid: c4ff76fda6c2a944a96e000123f21467, type: 2}
     position: {x: 147.64, y: -212.18329}
     size: {x: 162, y: 146}
     rotation: 27
@@ -99,7 +99,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L2_4
-    definition: {fileID: 11400000, guid: 43681c5f6cb8db6438d236b941807ef0, type: 2}
+    definition: {fileID: 11400000, guid: 7da0cd0a4ba46994ca8f5582379a3cd2, type: 2}
     position: {x: -156.28, y: 144.76}
     size: {x: 162, y: 146}
     rotation: 19
@@ -113,7 +113,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L2_5
-    definition: {fileID: 11400000, guid: dae5cba4a88ad0b41b2d31bb87db3384, type: 2}
+    definition: {fileID: 11400000, guid: 911ce87bbb4aabc4dba3fbe4ea37457b, type: 2}
     position: {x: 283.72, y: 144.76}
     size: {x: 162, y: 146}
     rotation: -12
@@ -127,7 +127,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L2_6
-    definition: {fileID: 11400000, guid: ce727dbe8d5ecfc47b5cc65d63d076e9, type: 2}
+    definition: {fileID: 11400000, guid: 80afffc4a13edb64aa75c91992a68f56, type: 2}
     position: {x: -156.28, y: -205.24}
     size: {x: 162, y: 146}
     rotation: 27
@@ -141,7 +141,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L2_7
-    definition: {fileID: 11400000, guid: 7d239a341b2e5b3408568f7dcb61afbc, type: 2}
+    definition: {fileID: 11400000, guid: dc403d39717283543bce25387c0da460, type: 2}
     position: {x: 283.72, y: -205.24}
     size: {x: 162, y: 146}
     rotation: 9
@@ -155,7 +155,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L2_8
-    definition: {fileID: 11400000, guid: a8517876fd542004a9cfe8a814a16b86, type: 2}
+    definition: {fileID: 11400000, guid: f102b3d0700660b45844bcf9fdf78862, type: 2}
     position: {x: -266.44, y: 225.75438}
     size: {x: 162, y: 146}
     rotation: -12
@@ -169,7 +169,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L2_9
-    definition: {fileID: 11400000, guid: 10e1055a14b5d334e91b2956a66c81e6, type: 2}
+    definition: {fileID: 11400000, guid: 94573a07e8fe13043813cc15b0d391fb, type: 2}
     position: {x: 173.56, y: 212.18329}
     size: {x: 162, y: 146}
     rotation: 27
@@ -183,7 +183,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L2_10
-    definition: {fileID: 11400000, guid: 24e9fc156afc0ee4d90d571424b1900d, type: 2}
+    definition: {fileID: 11400000, guid: 3f69abf0458958648804cfa694f0ed09, type: 2}
     position: {x: -266.44, y: -124.24}
     size: {x: 162, y: 146}
     rotation: 9
@@ -197,7 +197,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L2_11
-    definition: {fileID: 11400000, guid: 40f04ccd6381b39419aee078f82a9e7e, type: 2}
+    definition: {fileID: 11400000, guid: bf4cabd38a3e98f43bd6e55b4744cb3c, type: 2}
     position: {x: 173.56, y: -138.48236}
     size: {x: 162, y: 146}
     rotation: -28

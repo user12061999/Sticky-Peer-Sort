@@ -18,105 +18,42 @@ MonoBehaviour:
   failOnOverflow: 1
   coinReward: 45
   difficulty: Learning
-  tutorial: Plan two waiting stickers ahead. Keep a route to an open set.
+  tutorial: 'Plan ahead: only four stickers fit in the waiting tray.'
   objectives:
-  - category: {fileID: 11400000, guid: fde673cc8f427204aa8aefd6f33803c8, type: 2}
+  - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
     targetCount: 4
     exactTargets:
-    - {fileID: 11400000, guid: 69050702e875b40488fe9271b0a0645a, type: 2}
-    - {fileID: 11400000, guid: 4054d41dba4c13d429baeda94b8b6851, type: 2}
-    - {fileID: 11400000, guid: adc83f6f0b146b940becd3c9771e03f0, type: 2}
-    - {fileID: 11400000, guid: 9894ab36768f3e3479a28559739cfdde, type: 2}
-  - category: {fileID: 11400000, guid: b905b9a7d6bc29c4b88b921b4b462bc9, type: 2}
+    - {fileID: 11400000, guid: 4632109b54d71aa4bb707443c8c0c859, type: 2}
+    - {fileID: 11400000, guid: 1c44c4a6a5115c045b2cc595bf95f1de, type: 2}
+    - {fileID: 11400000, guid: 65630b503a0225346a1d1f66d1b8c04e, type: 2}
+    - {fileID: 11400000, guid: c4ff76fda6c2a944a96e000123f21467, type: 2}
+  - category: {fileID: 11400000, guid: 9ef2c9fd403efa24aa48f168c2be209c, type: 2}
     targetCount: 4
     exactTargets:
-    - {fileID: 11400000, guid: 43681c5f6cb8db6438d236b941807ef0, type: 2}
-    - {fileID: 11400000, guid: dae5cba4a88ad0b41b2d31bb87db3384, type: 2}
-    - {fileID: 11400000, guid: ce727dbe8d5ecfc47b5cc65d63d076e9, type: 2}
-    - {fileID: 11400000, guid: 7d239a341b2e5b3408568f7dcb61afbc, type: 2}
-  - category: {fileID: 11400000, guid: b5a0d7eb20a55734a9e692ac691ea643, type: 2}
+    - {fileID: 11400000, guid: 7da0cd0a4ba46994ca8f5582379a3cd2, type: 2}
+    - {fileID: 11400000, guid: 911ce87bbb4aabc4dba3fbe4ea37457b, type: 2}
+    - {fileID: 11400000, guid: 80afffc4a13edb64aa75c91992a68f56, type: 2}
+    - {fileID: 11400000, guid: dc403d39717283543bce25387c0da460, type: 2}
+  - category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
     targetCount: 4
     exactTargets:
-    - {fileID: 11400000, guid: a8517876fd542004a9cfe8a814a16b86, type: 2}
-    - {fileID: 11400000, guid: 10e1055a14b5d334e91b2956a66c81e6, type: 2}
-    - {fileID: 11400000, guid: 24e9fc156afc0ee4d90d571424b1900d, type: 2}
-    - {fileID: 11400000, guid: 40f04ccd6381b39419aee078f82a9e7e, type: 2}
-  - category: {fileID: 11400000, guid: 4fe48d2ace9afa74baa53f0bc2f83e43, type: 2}
+    - {fileID: 11400000, guid: f102b3d0700660b45844bcf9fdf78862, type: 2}
+    - {fileID: 11400000, guid: 94573a07e8fe13043813cc15b0d391fb, type: 2}
+    - {fileID: 11400000, guid: 3f69abf0458958648804cfa694f0ed09, type: 2}
+    - {fileID: 11400000, guid: bf4cabd38a3e98f43bd6e55b4744cb3c, type: 2}
+  - category: {fileID: 11400000, guid: 41418998f18eb1e4d8032af8bfad3d2f, type: 2}
     targetCount: 4
     exactTargets:
-    - {fileID: 11400000, guid: a86e61a8a28962c4b9514c27c0fe3864, type: 2}
-    - {fileID: 11400000, guid: 332205d4bd4a7404a841bd637d8483ab, type: 2}
-    - {fileID: 11400000, guid: fa3714958595c9342aff171c2325619f, type: 2}
-    - {fileID: 11400000, guid: 329bcd69fb778fd4e8ddf9f9768f3674, type: 2}
-  - category: {fileID: 11400000, guid: 980535b9abec135449be2e93f22dd4d1, type: 2}
-    targetCount: 4
-    exactTargets:
-    - {fileID: 11400000, guid: 66531caccead1234898917507fc367cb, type: 2}
-    - {fileID: 11400000, guid: b488cba432939c0489f6f0fdab7f3514, type: 2}
-    - {fileID: 11400000, guid: a1e39b16cb64e9147b1ce507f63169f9, type: 2}
-    - {fileID: 11400000, guid: 73925dfb3e3febb41afe494b4185f11a, type: 2}
+    - {fileID: 11400000, guid: 369f66cec0c8ae94eb10d5669197d495, type: 2}
+    - {fileID: 11400000, guid: 26cbe770ae46e3841950dc78ed328425, type: 2}
+    - {fileID: 11400000, guid: cbe62f61d1c25de49b87f71555874f98, type: 2}
+    - {fileID: 11400000, guid: 66f9b04eeff4aca499b496c975841529, type: 2}
   stickers:
   - instanceId: L5_0
-    definition: {fileID: 11400000, guid: 69050702e875b40488fe9271b0a0645a, type: 2}
+    definition: {fileID: 11400000, guid: 4632109b54d71aa4bb707443c8c0c859, type: 2}
     position: {x: -281.48825, y: 142.02582}
     size: {x: 162, y: 146}
     rotation: -25
-    scale: 1
-    sortingOrder: 18
-    pileId: tray_0
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: L5_1
-    definition: {fileID: 11400000, guid: 4054d41dba4c13d429baeda94b8b6851, type: 2}
-    position: {x: 160.9617, y: 137.81694}
-    size: {x: 162, y: 146}
-    rotation: 21
-    scale: 1
-    sortingOrder: 17
-    pileId: tray_1
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: L5_2
-    definition: {fileID: 11400000, guid: adc83f6f0b146b940becd3c9771e03f0, type: 2}
-    position: {x: -281.48825, y: -207.97418}
-    size: {x: 162, y: 146}
-    rotation: -14
-    scale: 1
-    sortingOrder: 16
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: L5_3
-    definition: {fileID: 11400000, guid: 9894ab36768f3e3479a28559739cfdde, type: 2}
-    position: {x: 160.9617, y: -212.18306}
-    size: {x: 162, y: 146}
-    rotation: 29
-    scale: 1
-    sortingOrder: 15
-    pileId: tray_3
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: L5_4
-    definition: {fileID: 11400000, guid: 43681c5f6cb8db6438d236b941807ef0, type: 2}
-    position: {x: -167.81181, y: 147.96219}
-    size: {x: 162, y: 146}
-    rotation: 17
     scale: 1
     sortingOrder: 14
     pileId: tray_0
@@ -126,11 +63,11 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_5
-    definition: {fileID: 11400000, guid: dae5cba4a88ad0b41b2d31bb87db3384, type: 2}
-    position: {x: 273.9471, y: 151.66852}
+  - instanceId: L5_1
+    definition: {fileID: 11400000, guid: 1c44c4a6a5115c045b2cc595bf95f1de, type: 2}
+    position: {x: 160.9617, y: 137.81694}
     size: {x: 162, y: 146}
-    rotation: -10
+    rotation: 21
     scale: 1
     sortingOrder: 13
     pileId: tray_1
@@ -140,11 +77,11 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_6
-    definition: {fileID: 11400000, guid: ce727dbe8d5ecfc47b5cc65d63d076e9, type: 2}
-    position: {x: -167.81181, y: -202.03781}
+  - instanceId: L5_2
+    definition: {fileID: 11400000, guid: 65630b503a0225346a1d1f66d1b8c04e, type: 2}
+    position: {x: -281.48825, y: -207.97418}
     size: {x: 162, y: 146}
-    rotation: 25
+    rotation: -14
     scale: 1
     sortingOrder: 12
     pileId: tray_2
@@ -154,11 +91,11 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_7
-    definition: {fileID: 11400000, guid: 7d239a341b2e5b3408568f7dcb61afbc, type: 2}
-    position: {x: 273.9471, y: -198.33148}
+  - instanceId: L5_3
+    definition: {fileID: 11400000, guid: c4ff76fda6c2a944a96e000123f21467, type: 2}
+    position: {x: 160.9617, y: -212.18306}
     size: {x: 162, y: 146}
-    rotation: 11
+    rotation: 29
     scale: 1
     sortingOrder: 11
     pileId: tray_3
@@ -168,11 +105,11 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_8
-    definition: {fileID: 11400000, guid: a8517876fd542004a9cfe8a814a16b86, type: 2}
-    position: {x: -257.20016, y: 218.62485}
+  - instanceId: L5_4
+    definition: {fileID: 11400000, guid: 7da0cd0a4ba46994ca8f5582379a3cd2, type: 2}
+    position: {x: -167.81181, y: 147.96219}
     size: {x: 162, y: 146}
-    rotation: -14
+    rotation: 17
     scale: 1
     sortingOrder: 10
     pileId: tray_0
@@ -182,11 +119,11 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_9
-    definition: {fileID: 11400000, guid: 10e1055a14b5d334e91b2956a66c81e6, type: 2}
-    position: {x: 180.02588, y: 210.81003}
+  - instanceId: L5_5
+    definition: {fileID: 11400000, guid: 911ce87bbb4aabc4dba3fbe4ea37457b, type: 2}
+    position: {x: 273.9471, y: 151.66852}
     size: {x: 162, y: 146}
-    rotation: 29
+    rotation: -10
     scale: 1
     sortingOrder: 9
     pileId: tray_1
@@ -196,11 +133,11 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_10
-    definition: {fileID: 11400000, guid: 24e9fc156afc0ee4d90d571424b1900d, type: 2}
-    position: {x: -257.20016, y: -131.37515}
+  - instanceId: L5_6
+    definition: {fileID: 11400000, guid: 80afffc4a13edb64aa75c91992a68f56, type: 2}
+    position: {x: -167.81181, y: -202.03781}
     size: {x: 162, y: 146}
-    rotation: 7
+    rotation: 25
     scale: 1
     sortingOrder: 8
     pileId: tray_2
@@ -210,11 +147,11 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_11
-    definition: {fileID: 11400000, guid: 40f04ccd6381b39419aee078f82a9e7e, type: 2}
-    position: {x: 180.04912, y: -139.85522}
+  - instanceId: L5_7
+    definition: {fileID: 11400000, guid: dc403d39717283543bce25387c0da460, type: 2}
+    position: {x: 273.9471, y: -198.33148}
     size: {x: 162, y: 146}
-    rotation: -26
+    rotation: 11
     scale: 1
     sortingOrder: 7
     pileId: tray_3
@@ -224,11 +161,11 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_12
-    definition: {fileID: 11400000, guid: a86e61a8a28962c4b9514c27c0fe3864, type: 2}
-    position: {x: -167.43358, y: 210.3703}
+  - instanceId: L5_8
+    definition: {fileID: 11400000, guid: f102b3d0700660b45844bcf9fdf78862, type: 2}
+    position: {x: -257.20016, y: 218.62485}
     size: {x: 162, y: 146}
-    rotation: 25
+    rotation: -14
     scale: 1
     sortingOrder: 6
     pileId: tray_0
@@ -238,11 +175,11 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_13
-    definition: {fileID: 11400000, guid: 332205d4bd4a7404a841bd637d8483ab, type: 2}
-    position: {x: 269.85532, y: 217.26567}
+  - instanceId: L5_9
+    definition: {fileID: 11400000, guid: 94573a07e8fe13043813cc15b0d391fb, type: 2}
+    position: {x: 180.02588, y: 210.81003}
     size: {x: 162, y: 146}
-    rotation: 11
+    rotation: 29
     scale: 1
     sortingOrder: 5
     pileId: tray_1
@@ -252,11 +189,11 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_14
-    definition: {fileID: 11400000, guid: fa3714958595c9342aff171c2325619f, type: 2}
-    position: {x: -167.4568, y: -140.29495}
+  - instanceId: L5_10
+    definition: {fileID: 11400000, guid: 3f69abf0458958648804cfa694f0ed09, type: 2}
+    position: {x: -257.20016, y: -131.37515}
     size: {x: 162, y: 146}
-    rotation: -30
+    rotation: 7
     scale: 1
     sortingOrder: 4
     pileId: tray_2
@@ -266,11 +203,11 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_15
-    definition: {fileID: 11400000, guid: 329bcd69fb778fd4e8ddf9f9768f3674, type: 2}
-    position: {x: 269.85532, y: -132.73433}
+  - instanceId: L5_11
+    definition: {fileID: 11400000, guid: bf4cabd38a3e98f43bd6e55b4744cb3c, type: 2}
+    position: {x: 180.04912, y: -139.85522}
     size: {x: 162, y: 146}
-    rotation: 16
+    rotation: -26
     scale: 1
     sortingOrder: 3
     pileId: tray_3
@@ -280,13 +217,13 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_16
-    definition: {fileID: 11400000, guid: 66531caccead1234898917507fc367cb, type: 2}
+  - instanceId: L5_12
+    definition: {fileID: 11400000, guid: 369f66cec0c8ae94eb10d5669197d495, type: 2}
     position: {x: -281.48825, y: 142.02582}
     size: {x: 162, y: 146}
     rotation: -25
     scale: 1
-    sortingOrder: 20
+    sortingOrder: 16
     pileId: tray_0
     special:
       kind: 0
@@ -294,13 +231,13 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_17
-    definition: {fileID: 11400000, guid: b488cba432939c0489f6f0fdab7f3514, type: 2}
+  - instanceId: L5_13
+    definition: {fileID: 11400000, guid: 26cbe770ae46e3841950dc78ed328425, type: 2}
     position: {x: 160.9617, y: 137.81694}
     size: {x: 162, y: 146}
     rotation: 21
     scale: 1
-    sortingOrder: 19
+    sortingOrder: 15
     pileId: tray_1
     special:
       kind: 0
@@ -308,11 +245,11 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_18
-    definition: {fileID: 11400000, guid: a1e39b16cb64e9147b1ce507f63169f9, type: 2}
-    position: {x: -285.59717, y: -170.9082}
+  - instanceId: L5_14
+    definition: {fileID: 11400000, guid: cbe62f61d1c25de49b87f71555874f98, type: 2}
+    position: {x: -167.4568, y: -140.29495}
     size: {x: 162, y: 146}
-    rotation: 12
+    rotation: -30
     scale: 1
     sortingOrder: 2
     pileId: tray_2
@@ -322,11 +259,11 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: L5_19
-    definition: {fileID: 11400000, guid: 73925dfb3e3febb41afe494b4185f11a, type: 2}
-    position: {x: 154.2772, y: -175.49399}
+  - instanceId: L5_15
+    definition: {fileID: 11400000, guid: 66f9b04eeff4aca499b496c975841529, type: 2}
+    position: {x: 269.85532, y: -132.73433}
     size: {x: 162, y: 146}
-    rotation: -5
+    rotation: 16
     scale: 1
     sortingOrder: 1
     pileId: tray_3
@@ -364,17 +301,13 @@ MonoBehaviour:
   - L5_7
   - L5_10
   - L5_11
-  - L5_14
-  - L5_15
-  - L5_16
+  - L5_12
   - L5_0
   - L5_4
   - L5_8
-  - L5_17
+  - L5_13
   - L5_1
   - L5_5
   - L5_9
-  - L5_12
-  - L5_13
-  - L5_18
-  - L5_19
+  - L5_14
+  - L5_15

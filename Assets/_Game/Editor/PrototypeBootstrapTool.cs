@@ -8,6 +8,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+
 namespace StickyPeerSort.Editor
 {
     public static class PrototypeBootstrapTool
@@ -15,6 +16,7 @@ namespace StickyPeerSort.Editor
         public const string Root = "Assets/_Game";
         public const string ScenePath = Root + "/Scenes/StickerCategoryPrototype.unity";
         static readonly Color Cream = new Color(.99f, .96f, .89f);
+
         [MenuItem("Tools/Sticker Category Game/Build Prototype")]
         public static void Build()
         {
@@ -24,23 +26,41 @@ namespace StickyPeerSort.Editor
             var square = Placeholder("whiteSquareCurved", "RoundedSquare");
             var panel = Placeholder("whiteSquareCurved02", "Panel");
             var balance = Asset<GameBalanceConfig>(Root + "/Data/Balance.asset");
-            string[] names = { "FRUIT", "GARDEN", "SPACE", "SWEETS", "OCEAN", "MUSIC" };
+            string[] names = { "FOOD", "ANIMALS", "PLANTS", "VEHICLES" };
             string[][] labels = {
-                new[] { "APPLE", "PEAR", "LEMON", "CHERRY" }, new[] { "LEAF", "BLOOM", "CACTUS", "SEED" },
-                new[] { "STAR", "MOON", "COMET", "SUN" }, new[] { "CAKE", "CANDY", "DONUT", "COOKIE" },
-                new[] { "FISH", "SHELL", "CRAB", "WHALE" }, new[] { "NOTE", "DRUM", "PIANO", "BELL" }
+                new[] { "food_01", "food_02", "food_03", "food_04" },
+                new[] { "animal_01", "animal_02", "animal_03", "animal_04" },
+                new[] { "plant_01", "plant_02", "plant_03", "plant_04" },
+                new[] { "vehicle_01", "vehicle_02", "vehicle_03", "vehicle_04" }
             };
-            Color[] colors = { Hex("FFBA88"), Hex("A8D7A4"), Hex("B8B0E9"), Hex("F4AFC6"), Hex("92D5E3"), Hex("E6CD7A") };
-            var categories = new CategoryDefinition[6]; var definitions = new StickerDefinition[24];
-            for (int c = 0; c < 6; c++)
+            string[][] displayNames = {
+                new[] { "BURGER", "PIZZA", "FRIES", "DONUT" },
+                new[] { "CAT", "PENGUIN", "ELEPHANT", "TURTLE" },
+                new[] { "SUNFLOWER", "CACTUS", "TULIP", "TREE" },
+                new[] { "CAR", "AIRPLANE", "BOAT", "HELICOPTER" }
+            };
+            Color[] colors = { Hex("FFA858"), Hex("7CB9E8"), Hex("7CCD7C"), Hex("F48FB1") };
+            var categories = new CategoryDefinition[4]; var definitions = new StickerDefinition[16];
+            for (int c = 0; c < 4; c++)
             {
                 var cat = Asset<CategoryDefinition>(Root + "/Data/Categories/" + names[c] + ".asset");
                 cat.id = names[c].ToLowerInvariant(); cat.title = names[c]; cat.color = colors[c]; categories[c] = cat; EditorUtility.SetDirty(cat);
                 for (int t = 0; t < 4; t++)
                 {
                     var d = Asset<StickerDefinition>(Root + "/Data/Stickers/" + labels[c][t] + ".asset");
-                    d.id = labels[c][t].ToLowerInvariant(); d.displayName = labels[c][t]; d.category = cat;
-                    if (!d.HasArtwork) { d.sprite = t % 2 == 0 ? round : square; d.tint = Color.Lerp(colors[c], Color.white, t * .065f); }
+                    d.id = labels[c][t]; d.displayName = displayNames[c][t]; d.category = cat;
+                    string artPath = Root + "/Art/StickyPeerSort_Stickers16/stickers/" + labels[c][t] + ".png";
+                    var tex = AssetDatabase.LoadAssetAtPath<Texture2D>(artPath);
+                    var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(artPath);
+                    if (tex != null)
+                    {
+                        d.texture = tex; d.sprite = sprite;
+                        d.tint = Color.white; d.showLabel = false; d.preserveAspect = true;
+                    }
+                    else if (!d.HasArtwork)
+                    {
+                        d.sprite = t % 2 == 0 ? round : square; d.tint = Color.Lerp(colors[c], Color.white, t * .065f);
+                    }
                     StickerArtworkBaker.Bake(d);
                     definitions[c * 4 + t] = d; EditorUtility.SetDirty(d);
                 }
@@ -61,9 +81,9 @@ namespace StickyPeerSort.Editor
                 if (level == null)
                 {
                     level = Asset<LevelDefinition>(path); level.levelNumber = l;
-                    int count = l == 1 ? 2 : l == 2 ? 3 : l <= 4 ? 4 : l <= 8 ? 5 : 6;
-                    level.activeCategoryCount = l == 1 ? 1 : l <= 3 ? 2 : 3;
-                    level.difficulty = l < 4 ? "Easy" : l < 8 ? "Thoughtful" : "Challenge";
+                    int count = l == 1 ? 2 : l == 2 ? 3 : 4;
+                    level.activeCategoryCount = l == 1 ? 1 : l <= 4 ? 2 : 3;
+                    level.difficulty = l <= 2 ? "Easy" : l <= 4 ? "Planning" : l <= 7 ? "Learning" : "Challenge";
                     level.coinReward = 20 + l * 5; level.tutorial = tutorials[l - 1];
                     for (int c = 0; c < count; c++) level.objectives.Add(new CategoryObjective { category = categories[c], targetCount = 4 });
                     for (int c = 0; c < count; c++) for (int t = 0; t < 4; t++)
@@ -73,11 +93,11 @@ namespace StickyPeerSort.Editor
                         var p = new StickerPlacement { instanceId = "L" + l + "_" + i, definition = definitions[i],
                             position = new Vector2((col - 1.5f) * 210, (c - (count - 1) * .5f) * (l >= 4 ? 126 : 180)),
                             rotation = l >= 4 ? (i % 3 - 1) * 11 : (i % 3 - 1) * 4, sortingOrder = i,
-                            pileId = "pile_" + col };
+                            pileId = "tray_" + col };
                         if (l >= 6 && i == 3) { p.special.kind = SpecialKind.Locked; p.special.unlockCondition = UnlockCondition.KeyCollected; p.special.dependencyId = "L" + l + "_0"; }
                         if (l >= 7 && i == 5) { p.special.kind = SpecialKind.Frozen; p.special.iceLayers = 2; }
                         if (l >= 8 && (i == 8 || i == 9)) { p.special.kind = SpecialKind.Linked; p.special.linkId = "A"; }
-                        if (l >= 9 && (i == 12 || i == 16)) p.special.kind = SpecialKind.Mystery;
+                        if (l >= 9 && (i == 12 || i == 14)) p.special.kind = SpecialKind.Mystery;
                         level.stickers.Add(p);
                     }
                     // Later boards force future-category stickers into the tray before early targets can be reached.

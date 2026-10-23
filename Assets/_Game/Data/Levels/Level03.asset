@@ -18,39 +18,39 @@ MonoBehaviour:
   failOnOverflow: 1
   coinReward: 35
   difficulty: Planning
-  tutorial: A sticker from a future set is on top. Use the waiting tray!
+  tutorial: Future categories wait in the tray. Leave yourself space!
   objectives:
-  - category: {fileID: 11400000, guid: fde673cc8f427204aa8aefd6f33803c8, type: 2}
+  - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
     targetCount: 4
     exactTargets:
-    - {fileID: 11400000, guid: 69050702e875b40488fe9271b0a0645a, type: 2}
-    - {fileID: 11400000, guid: 4054d41dba4c13d429baeda94b8b6851, type: 2}
-    - {fileID: 11400000, guid: adc83f6f0b146b940becd3c9771e03f0, type: 2}
-    - {fileID: 11400000, guid: 9894ab36768f3e3479a28559739cfdde, type: 2}
-  - category: {fileID: 11400000, guid: b905b9a7d6bc29c4b88b921b4b462bc9, type: 2}
+    - {fileID: 11400000, guid: 4632109b54d71aa4bb707443c8c0c859, type: 2}
+    - {fileID: 11400000, guid: 1c44c4a6a5115c045b2cc595bf95f1de, type: 2}
+    - {fileID: 11400000, guid: 65630b503a0225346a1d1f66d1b8c04e, type: 2}
+    - {fileID: 11400000, guid: c4ff76fda6c2a944a96e000123f21467, type: 2}
+  - category: {fileID: 11400000, guid: 9ef2c9fd403efa24aa48f168c2be209c, type: 2}
     targetCount: 4
     exactTargets:
-    - {fileID: 11400000, guid: 43681c5f6cb8db6438d236b941807ef0, type: 2}
-    - {fileID: 11400000, guid: dae5cba4a88ad0b41b2d31bb87db3384, type: 2}
-    - {fileID: 11400000, guid: ce727dbe8d5ecfc47b5cc65d63d076e9, type: 2}
-    - {fileID: 11400000, guid: 7d239a341b2e5b3408568f7dcb61afbc, type: 2}
-  - category: {fileID: 11400000, guid: b5a0d7eb20a55734a9e692ac691ea643, type: 2}
+    - {fileID: 11400000, guid: 7da0cd0a4ba46994ca8f5582379a3cd2, type: 2}
+    - {fileID: 11400000, guid: 911ce87bbb4aabc4dba3fbe4ea37457b, type: 2}
+    - {fileID: 11400000, guid: 80afffc4a13edb64aa75c91992a68f56, type: 2}
+    - {fileID: 11400000, guid: dc403d39717283543bce25387c0da460, type: 2}
+  - category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
     targetCount: 4
     exactTargets:
-    - {fileID: 11400000, guid: a8517876fd542004a9cfe8a814a16b86, type: 2}
-    - {fileID: 11400000, guid: 10e1055a14b5d334e91b2956a66c81e6, type: 2}
-    - {fileID: 11400000, guid: 24e9fc156afc0ee4d90d571424b1900d, type: 2}
-    - {fileID: 11400000, guid: 40f04ccd6381b39419aee078f82a9e7e, type: 2}
-  - category: {fileID: 11400000, guid: 4fe48d2ace9afa74baa53f0bc2f83e43, type: 2}
+    - {fileID: 11400000, guid: f102b3d0700660b45844bcf9fdf78862, type: 2}
+    - {fileID: 11400000, guid: 94573a07e8fe13043813cc15b0d391fb, type: 2}
+    - {fileID: 11400000, guid: 3f69abf0458958648804cfa694f0ed09, type: 2}
+    - {fileID: 11400000, guid: bf4cabd38a3e98f43bd6e55b4744cb3c, type: 2}
+  - category: {fileID: 11400000, guid: 41418998f18eb1e4d8032af8bfad3d2f, type: 2}
     targetCount: 4
     exactTargets:
-    - {fileID: 11400000, guid: a86e61a8a28962c4b9514c27c0fe3864, type: 2}
-    - {fileID: 11400000, guid: 332205d4bd4a7404a841bd637d8483ab, type: 2}
-    - {fileID: 11400000, guid: fa3714958595c9342aff171c2325619f, type: 2}
-    - {fileID: 11400000, guid: 329bcd69fb778fd4e8ddf9f9768f3674, type: 2}
+    - {fileID: 11400000, guid: 369f66cec0c8ae94eb10d5669197d495, type: 2}
+    - {fileID: 11400000, guid: 26cbe770ae46e3841950dc78ed328425, type: 2}
+    - {fileID: 11400000, guid: cbe62f61d1c25de49b87f71555874f98, type: 2}
+    - {fileID: 11400000, guid: 66f9b04eeff4aca499b496c975841529, type: 2}
   stickers:
   - instanceId: L3_0
-    definition: {fileID: 11400000, guid: 69050702e875b40488fe9271b0a0645a, type: 2}
+    definition: {fileID: 11400000, guid: 4632109b54d71aa4bb707443c8c0c859, type: 2}
     position: {x: -297.77982, y: 138.51831}
     size: {x: 162, y: 146}
     rotation: -30
@@ -64,7 +64,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_1
-    definition: {fileID: 11400000, guid: 4054d41dba4c13d429baeda94b8b6851, type: 2}
+    definition: {fileID: 11400000, guid: 1c44c4a6a5115c045b2cc595bf95f1de, type: 2}
     position: {x: 162.87895, y: 76.07364}
     size: {x: 162, y: 146}
     rotation: 28
@@ -78,7 +78,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_2
-    definition: {fileID: 11400000, guid: adc83f6f0b146b940becd3c9771e03f0, type: 2}
+    definition: {fileID: 11400000, guid: 65630b503a0225346a1d1f66d1b8c04e, type: 2}
     position: {x: -96.64402, y: -240.25826}
     size: {x: 162, y: 146}
     rotation: -16
@@ -92,7 +92,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_3
-    definition: {fileID: 11400000, guid: 9894ab36768f3e3479a28559739cfdde, type: 2}
+    definition: {fileID: 11400000, guid: c4ff76fda6c2a944a96e000123f21467, type: 2}
     position: {x: -168.1977, y: 128.96896}
     size: {x: 162, y: 146}
     rotation: 12
@@ -106,7 +106,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_4
-    definition: {fileID: 11400000, guid: 43681c5f6cb8db6438d236b941807ef0, type: 2}
+    definition: {fileID: 11400000, guid: 7da0cd0a4ba46994ca8f5582379a3cd2, type: 2}
     position: {x: 289.5334, y: 106.02159}
     size: {x: 162, y: 146}
     rotation: -3
@@ -120,7 +120,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_5
-    definition: {fileID: 11400000, guid: dae5cba4a88ad0b41b2d31bb87db3384, type: 2}
+    definition: {fileID: 11400000, guid: 911ce87bbb4aabc4dba3fbe4ea37457b, type: 2}
     position: {x: 33.610188, y: -238.00885}
     size: {x: 162, y: 146}
     rotation: 23
@@ -134,7 +134,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_6
-    definition: {fileID: 11400000, guid: ce727dbe8d5ecfc47b5cc65d63d076e9, type: 2}
+    definition: {fileID: 11400000, guid: 80afffc4a13edb64aa75c91992a68f56, type: 2}
     position: {x: -263.38382, y: 215.81093}
     size: {x: 162, y: 146}
     rotation: -19
@@ -148,7 +148,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_7
-    definition: {fileID: 11400000, guid: 7d239a341b2e5b3408568f7dcb61afbc, type: 2}
+    definition: {fileID: 11400000, guid: dc403d39717283543bce25387c0da460, type: 2}
     position: {x: 176.2207, y: 149.85858}
     size: {x: 162, y: 146}
     rotation: 36
@@ -162,7 +162,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_8
-    definition: {fileID: 11400000, guid: a8517876fd542004a9cfe8a814a16b86, type: 2}
+    definition: {fileID: 11400000, guid: f102b3d0700660b45844bcf9fdf78862, type: 2}
     position: {x: -65.8052, y: -153.61841}
     size: {x: 162, y: 146}
     rotation: 5
@@ -176,7 +176,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_9
-    definition: {fileID: 11400000, guid: 10e1055a14b5d334e91b2956a66c81e6, type: 2}
+    definition: {fileID: 11400000, guid: 94573a07e8fe13043813cc15b0d391fb, type: 2}
     position: {x: -162.80547, y: 189.78845}
     size: {x: 162, y: 146}
     rotation: 20
@@ -190,7 +190,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_10
-    definition: {fileID: 11400000, guid: 24e9fc156afc0ee4d90d571424b1900d, type: 2}
+    definition: {fileID: 11400000, guid: 3f69abf0458958648804cfa694f0ed09, type: 2}
     position: {x: 275.73645, y: 179.96362}
     size: {x: 162, y: 146}
     rotation: 18
@@ -204,7 +204,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_11
-    definition: {fileID: 11400000, guid: 40f04ccd6381b39419aee078f82a9e7e, type: 2}
+    definition: {fileID: 11400000, guid: bf4cabd38a3e98f43bd6e55b4744cb3c, type: 2}
     position: {x: 35.76555, y: -177.65454}
     size: {x: 162, y: 146}
     rotation: -32
@@ -218,7 +218,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_12
-    definition: {fileID: 11400000, guid: a86e61a8a28962c4b9514c27c0fe3864, type: 2}
+    definition: {fileID: 11400000, guid: 369f66cec0c8ae94eb10d5669197d495, type: 2}
     position: {x: -297.77982, y: 138.51831}
     size: {x: 162, y: 146}
     rotation: -30
@@ -232,7 +232,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_13
-    definition: {fileID: 11400000, guid: 332205d4bd4a7404a841bd637d8483ab, type: 2}
+    definition: {fileID: 11400000, guid: 26cbe770ae46e3841950dc78ed328425, type: 2}
     position: {x: 152.36926, y: 115.5821}
     size: {x: 162, y: 146}
     rotation: -19
@@ -246,7 +246,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_14
-    definition: {fileID: 11400000, guid: fa3714958595c9342aff171c2325619f, type: 2}
+    definition: {fileID: 11400000, guid: cbe62f61d1c25de49b87f71555874f98, type: 2}
     position: {x: -99.86314, y: -197.70003}
     size: {x: 162, y: 146}
     rotation: 10
@@ -260,7 +260,7 @@ MonoBehaviour:
       iceLayers: 2
       linkId: 
   - instanceId: L3_15
-    definition: {fileID: 11400000, guid: 329bcd69fb778fd4e8ddf9f9768f3674, type: 2}
+    definition: {fileID: 11400000, guid: 66f9b04eeff4aca499b496c975841529, type: 2}
     position: {x: -215.55084, y: 132.08546}
     size: {x: 162, y: 146}
     rotation: -35
@@ -292,6 +292,7 @@ MonoBehaviour:
   solutionTrace:
   - L3_1
   - L3_2
+  - L3_3
   - L3_4
   - L3_5
   - L3_7
@@ -300,7 +301,6 @@ MonoBehaviour:
   - L3_11
   - L3_12
   - L3_0
-  - L3_3
   - L3_6
   - L3_9
   - L3_13
