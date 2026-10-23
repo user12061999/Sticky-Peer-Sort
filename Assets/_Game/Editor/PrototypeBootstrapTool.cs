@@ -81,24 +81,32 @@ namespace StickyPeerSort.Editor
                 if (level == null)
                 {
                     level = Asset<LevelDefinition>(path); level.levelNumber = l;
-                    int count = l == 1 ? 2 : l == 2 ? 3 : 4;
-                    level.activeCategoryCount = l == 1 ? 1 : l <= 4 ? 2 : 3;
+                    int count = l == 1 ? 2 : l == 2 ? 3 : l <= 4 ? 4 : l <= 8 ? 5 : 6;
+                    level.activeCategoryCount = l == 1 ? 1 : l <= 5 ? 2 : 3;
                     level.difficulty = l <= 2 ? "Easy" : l <= 4 ? "Planning" : l <= 7 ? "Learning" : "Challenge";
                     level.coinReward = 20 + l * 5; level.tutorial = tutorials[l - 1];
-                    for (int c = 0; c < count; c++) level.objectives.Add(new CategoryObjective { category = categories[c], targetCount = 4 });
-                    for (int c = 0; c < count; c++) for (int t = 0; t < 4; t++)
+                    for (int c = 0; c < count; c++)
                     {
-                        int i = c * 4 + t;
-                        int col = l >= 4 ? (t + c) % 4 : t;
-                        var p = new StickerPlacement { instanceId = "L" + l + "_" + i, definition = definitions[i],
-                            position = new Vector2((col - 1.5f) * 210, (c - (count - 1) * .5f) * (l >= 4 ? 126 : 180)),
-                            rotation = l >= 4 ? (i % 3 - 1) * 11 : (i % 3 - 1) * 4, sortingOrder = i,
-                            pileId = "tray_" + col };
-                        if (l >= 6 && i == 3) { p.special.kind = SpecialKind.Locked; p.special.unlockCondition = UnlockCondition.KeyCollected; p.special.dependencyId = "L" + l + "_0"; }
-                        if (l >= 7 && i == 5) { p.special.kind = SpecialKind.Frozen; p.special.iceLayers = 2; }
-                        if (l >= 8 && (i == 8 || i == 9)) { p.special.kind = SpecialKind.Linked; p.special.linkId = "A"; }
-                        if (l >= 9 && (i == 12 || i == 14)) p.special.kind = SpecialKind.Mystery;
-                        level.stickers.Add(p);
+                        int catIdx = c < 4 ? c : (c == 4 ? 2 : 3);
+                        level.objectives.Add(new CategoryObjective { category = categories[catIdx], targetCount = 4 });
+                    }
+                    for (int c = 0; c < count; c++)
+                    {
+                        int catIdx = c < 4 ? c : (c == 4 ? 2 : 3);
+                        for (int t = 0; t < 4; t++)
+                        {
+                            int i = c * 4 + t;
+                            int col = l >= 4 ? (t + c) % 4 : t;
+                            var p = new StickerPlacement { instanceId = "L" + l + "_" + i, definition = definitions[catIdx * 4 + t],
+                                position = new Vector2((col - 1.5f) * 210, (c - (count - 1) * .5f) * (l >= 4 ? 126 : 180)),
+                                rotation = l >= 4 ? (i % 3 - 1) * 11 : (i % 3 - 1) * 4, sortingOrder = i,
+                                pileId = "tray_" + col };
+                            if (l >= 6 && i == 3) { p.special.kind = SpecialKind.Locked; p.special.unlockCondition = UnlockCondition.KeyCollected; p.special.dependencyId = "L" + l + "_0"; }
+                            if (l >= 7 && i == 5) { p.special.kind = SpecialKind.Frozen; p.special.iceLayers = 2; }
+                            if (l >= 8 && (i == 8 || i == 9)) { p.special.kind = SpecialKind.Linked; p.special.linkId = "A"; }
+                            if (l >= 9 && (i == 12 || i == 14)) p.special.kind = SpecialKind.Mystery;
+                            level.stickers.Add(p);
+                        }
                     }
                     // Later boards force future-category stickers into the tray before early targets can be reached.
                     if (l >= 5)

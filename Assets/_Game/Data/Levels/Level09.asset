@@ -48,14 +48,28 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 26cbe770ae46e3841950dc78ed328425, type: 2}
     - {fileID: 11400000, guid: cbe62f61d1c25de49b87f71555874f98, type: 2}
     - {fileID: 11400000, guid: 66f9b04eeff4aca499b496c975841529, type: 2}
+  - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 4632109b54d71aa4bb707443c8c0c859, type: 2}
+    - {fileID: 11400000, guid: 1c44c4a6a5115c045b2cc595bf95f1de, type: 2}
+    - {fileID: 11400000, guid: 65630b503a0225346a1d1f66d1b8c04e, type: 2}
+    - {fileID: 11400000, guid: c4ff76fda6c2a944a96e000123f21467, type: 2}
+  - category: {fileID: 11400000, guid: 9ef2c9fd403efa24aa48f168c2be209c, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 7da0cd0a4ba46994ca8f5582379a3cd2, type: 2}
+    - {fileID: 11400000, guid: 911ce87bbb4aabc4dba3fbe4ea37457b, type: 2}
+    - {fileID: 11400000, guid: 80afffc4a13edb64aa75c91992a68f56, type: 2}
+    - {fileID: 11400000, guid: dc403d39717283543bce25387c0da460, type: 2}
   stickers:
   - instanceId: L9_0
     definition: {fileID: 11400000, guid: 4632109b54d71aa4bb707443c8c0c859, type: 2}
-    position: {x: -210, y: 225.6905}
-    size: {x: 142, y: 120}
+    position: {x: -185, y: 235.1935}
+    size: {x: 210, y: 172}
     rotation: 0
     scale: 1
-    sortingOrder: 19
+    sortingOrder: 27
     pileId: tray_0
     special:
       kind: 0
@@ -65,11 +79,11 @@ MonoBehaviour:
       linkId: 
   - instanceId: L9_1
     definition: {fileID: 11400000, guid: 1c44c4a6a5115c045b2cc595bf95f1de, type: 2}
-    position: {x: 163.05, y: 225.6905}
-    size: {x: 142, y: 120}
-    rotation: 8.55
+    position: {x: 163.05, y: 226.42468}
+    size: {x: 210, y: 172}
+    rotation: 4.18
     scale: 1
-    sortingOrder: 12
+    sortingOrder: 20
     pileId: tray_1
     special:
       kind: 0
@@ -79,11 +93,11 @@ MonoBehaviour:
       linkId: 
   - instanceId: L9_2
     definition: {fileID: 11400000, guid: 65630b503a0225346a1d1f66d1b8c04e, type: 2}
-    position: {x: -210, y: -4.3095}
-    size: {x: 142, y: 120}
+    position: {x: -185, y: 5.1935}
+    size: {x: 210, y: 172}
     rotation: 0
     scale: 1
-    sortingOrder: 19
+    sortingOrder: 27
     pileId: tray_2
     special:
       kind: 0
@@ -93,11 +107,11 @@ MonoBehaviour:
       linkId: 
   - instanceId: L9_3
     definition: {fileID: 11400000, guid: c4ff76fda6c2a944a96e000123f21467, type: 2}
-    position: {x: 163.05, y: -4.3095}
-    size: {x: 142, y: 120}
-    rotation: 12.15
+    position: {x: 163.05, y: -0.5956192}
+    size: {x: 210, y: 172}
+    rotation: 5.94
     scale: 1
-    sortingOrder: 10
+    sortingOrder: 18
     pileId: tray_3
     special:
       kind: 0
@@ -108,10 +122,10 @@ MonoBehaviour:
   - instanceId: L9_4
     definition: {fileID: 11400000, guid: 7da0cd0a4ba46994ca8f5582379a3cd2, type: 2}
     position: {x: -276.95, y: -234.3095}
-    size: {x: 142, y: 120}
-    rotation: 4.0499997
+    size: {x: 210, y: 172}
+    rotation: 1.98
     scale: 1
-    sortingOrder: 9
+    sortingOrder: 17
     pileId: tray_4
     special:
       kind: 0
@@ -121,11 +135,11 @@ MonoBehaviour:
       linkId: 
   - instanceId: L9_5
     definition: {fileID: 11400000, guid: 911ce87bbb4aabc4dba3fbe4ea37457b, type: 2}
-    position: {x: 163.05, y: -234.3095}
-    size: {x: 142, y: 120}
-    rotation: -12.599999
+    position: {x: 163.05, y: -230.22949}
+    size: {x: 210, y: 172}
+    rotation: -6.16
     scale: 1
-    sortingOrder: 8
+    sortingOrder: 16
     pileId: tray_5
     special:
       kind: 2
@@ -135,11 +149,11 @@ MonoBehaviour:
       linkId: 
   - instanceId: L9_6
     definition: {fileID: 11400000, guid: 80afffc4a13edb64aa75c91992a68f56, type: 2}
-    position: {x: -145, y: 226.906}
-    size: {x: 142, y: 120}
+    position: {x: -140, y: 226.906}
+    size: {x: 210, y: 172}
     rotation: 0
     scale: 1
-    sortingOrder: 7
+    sortingOrder: 15
     pileId: tray_0
     special:
       kind: 0
@@ -149,11 +163,11 @@ MonoBehaviour:
       linkId: 
   - instanceId: L9_7
     definition: {fileID: 11400000, guid: dc403d39717283543bce25387c0da460, type: 2}
-    position: {x: 320, y: 230}
-    size: {x: 142, y: 120}
+    position: {x: 285, y: 230}
+    size: {x: 210, y: 172}
     rotation: 0
     scale: 1
-    sortingOrder: 17
+    sortingOrder: 25
     pileId: tray_1
     special:
       kind: 1
@@ -163,11 +177,11 @@ MonoBehaviour:
       linkId: 
   - instanceId: L9_8
     definition: {fileID: 11400000, guid: f102b3d0700660b45844bcf9fdf78862, type: 2}
-    position: {x: -145, y: -3.094}
-    size: {x: 142, y: 120}
+    position: {x: -140, y: -0.5956192}
+    size: {x: 210, y: 172}
     rotation: 0
     scale: 1
-    sortingOrder: 5
+    sortingOrder: 13
     pileId: tray_2
     special:
       kind: 3
@@ -178,10 +192,10 @@ MonoBehaviour:
   - instanceId: L9_9
     definition: {fileID: 11400000, guid: 94573a07e8fe13043813cc15b0d391fb, type: 2}
     position: {x: 270.15, y: -3.094}
-    size: {x: 142, y: 120}
-    rotation: 4.0499997
+    size: {x: 210, y: 172}
+    rotation: 1.98
     scale: 1
-    sortingOrder: 4
+    sortingOrder: 12
     pileId: tray_3
     special:
       kind: 3
@@ -191,11 +205,11 @@ MonoBehaviour:
       linkId: A
   - instanceId: L9_10
     definition: {fileID: 11400000, guid: 3f69abf0458958648804cfa694f0ed09, type: 2}
-    position: {x: -169.85, y: -233.094}
-    size: {x: 142, y: 120}
-    rotation: -12.599999
+    position: {x: -169.85, y: -230.22949}
+    size: {x: 210, y: 172}
+    rotation: -6.16
     scale: 1
-    sortingOrder: 3
+    sortingOrder: 11
     pileId: tray_4
     special:
       kind: 0
@@ -206,10 +220,10 @@ MonoBehaviour:
   - instanceId: L9_11
     definition: {fileID: 11400000, guid: bf4cabd38a3e98f43bd6e55b4744cb3c, type: 2}
     position: {x: 270.15, y: -233.094}
-    size: {x: 142, y: 120}
-    rotation: 6.2999997
+    size: {x: 210, y: 172}
+    rotation: 3.08
     scale: 1
-    sortingOrder: 2
+    sortingOrder: 10
     pileId: tray_5
     special:
       kind: 0
@@ -219,11 +233,11 @@ MonoBehaviour:
       linkId: 
   - instanceId: L9_12
     definition: {fileID: 11400000, guid: 369f66cec0c8ae94eb10d5669197d495, type: 2}
-    position: {x: -290, y: 225.6905}
-    size: {x: 142, y: 120}
+    position: {x: -290, y: 235.1935}
+    size: {x: 210, y: 172}
     rotation: 0
     scale: 1
-    sortingOrder: 16
+    sortingOrder: 9
     pileId: tray_0
     special:
       kind: 4
@@ -233,11 +247,11 @@ MonoBehaviour:
       linkId: 
   - instanceId: L9_13
     definition: {fileID: 11400000, guid: 26cbe770ae46e3841950dc78ed328425, type: 2}
-    position: {x: 163.05, y: 225.6905}
-    size: {x: 142, y: 120}
-    rotation: 8.55
+    position: {x: 183.45, y: 230.59561}
+    size: {x: 210, y: 172}
+    rotation: 5.94
     scale: 1
-    sortingOrder: 15
+    sortingOrder: 8
     pileId: tray_1
     special:
       kind: 0
@@ -247,11 +261,11 @@ MonoBehaviour:
       linkId: 
   - instanceId: L9_14
     definition: {fileID: 11400000, guid: cbe62f61d1c25de49b87f71555874f98, type: 2}
-    position: {x: -290, y: -4.3095}
-    size: {x: 142, y: 120}
+    position: {x: -290, y: 5.1935}
+    size: {x: 210, y: 172}
     rotation: 0
     scale: 1
-    sortingOrder: 14
+    sortingOrder: 7
     pileId: tray_2
     special:
       kind: 4
@@ -261,12 +275,124 @@ MonoBehaviour:
       linkId: 
   - instanceId: L9_15
     definition: {fileID: 11400000, guid: 66f9b04eeff4aca499b496c975841529, type: 2}
-    position: {x: 183.45, y: 5.1935}
-    size: {x: 142, y: 120}
-    rotation: -12.599999
+    position: {x: 183.45, y: 0.22949982}
+    size: {x: 210, y: 172}
+    rotation: -6.16
+    scale: 1
+    sortingOrder: 6
+    pileId: tray_3
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L9_16
+    definition: {fileID: 11400000, guid: 4632109b54d71aa4bb707443c8c0c859, type: 2}
+    position: {x: -256.55, y: -224.8065}
+    size: {x: 210, y: 172}
+    rotation: 3.08
+    scale: 1
+    sortingOrder: 5
+    pileId: tray_4
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L9_17
+    definition: {fileID: 11400000, guid: 1c44c4a6a5115c045b2cc595bf95f1de, type: 2}
+    position: {x: 183.45, y: -224.8065}
+    size: {x: 210, y: 172}
+    rotation: -1.54
+    scale: 1
+    sortingOrder: 4
+    pileId: tray_5
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L9_18
+    definition: {fileID: 11400000, guid: 65630b503a0225346a1d1f66d1b8c04e, type: 2}
+    position: {x: -140, y: 230.59561}
+    size: {x: 210, y: 172}
+    rotation: 0
+    scale: 1
+    sortingOrder: 3
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L9_19
+    definition: {fileID: 11400000, guid: c4ff76fda6c2a944a96e000123f21467, type: 2}
+    position: {x: 268.45, y: 234.9725}
+    size: {x: 210, y: 172}
+    rotation: 1.98
+    scale: 1
+    sortingOrder: 2
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L9_20
+    definition: {fileID: 11400000, guid: 7da0cd0a4ba46994ca8f5582379a3cd2, type: 2}
+    position: {x: -140, y: 227.92574}
+    size: {x: 210, y: 172}
+    rotation: 0
+    scale: 1
+    sortingOrder: 24
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L9_21
+    definition: {fileID: 11400000, guid: 911ce87bbb4aabc4dba3fbe4ea37457b, type: 2}
+    position: {x: 163.05, y: 226.42468}
+    size: {x: 210, y: 172}
+    rotation: 4.18
+    scale: 1
+    sortingOrder: 23
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L9_22
+    definition: {fileID: 11400000, guid: 80afffc4a13edb64aa75c91992a68f56, type: 2}
+    position: {x: -140, y: -4.3095}
+    size: {x: 210, y: 172}
+    rotation: 0
+    scale: 1
+    sortingOrder: 22
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: L9_23
+    definition: {fileID: 11400000, guid: dc403d39717283543bce25387c0da460, type: 2}
+    position: {x: 268.45, y: -227.92574}
+    size: {x: 210, y: 172}
+    rotation: -5.06
     scale: 1
     sortingOrder: 1
-    pileId: tray_3
+    pileId: tray_5
     special:
       kind: 0
       unlockCondition: 0
@@ -276,32 +402,32 @@ MonoBehaviour:
   piles:
   - id: tray_0
     position: {x: -220, y: 230}
-    size: {x: 400, y: 205}
+    size: {x: 420, y: 226}
     rotation: 0
     color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
   - id: tray_1
     position: {x: 220, y: 230}
-    size: {x: 400, y: 205}
+    size: {x: 420, y: 226}
     rotation: 0
     color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
   - id: tray_2
     position: {x: -220, y: 0}
-    size: {x: 400, y: 205}
+    size: {x: 420, y: 226}
     rotation: 0
     color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
   - id: tray_3
     position: {x: 220, y: 0}
-    size: {x: 400, y: 205}
+    size: {x: 420, y: 226}
     rotation: 0
     color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
   - id: tray_4
     position: {x: -220, y: -230}
-    size: {x: 400, y: 205}
+    size: {x: 420, y: 226}
     rotation: 0
     color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
   - id: tray_5
     position: {x: 220, y: -230}
-    size: {x: 400, y: 205}
+    size: {x: 420, y: 226}
     rotation: 0
     color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
   solutionTrace:
@@ -312,14 +438,22 @@ MonoBehaviour:
   - L9_5
   - L9_5
   - L9_5
-  - L9_6
-  - L9_8
-  - L9_9
   - L9_10
   - L9_11
-  - L9_12
-  - L9_13
-  - L9_1
+  - L9_17
   - L9_7
+  - L9_12
   - L9_14
+  - L9_22
+  - L9_8
+  - L9_9
   - L9_15
+  - L9_16
+  - L9_20
+  - L9_6
+  - L9_18
+  - L9_21
+  - L9_1
+  - L9_13
+  - L9_19
+  - L9_23

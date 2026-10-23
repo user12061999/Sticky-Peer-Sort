@@ -51,8 +51,8 @@ MonoBehaviour:
   stickers:
   - instanceId: L3_0
     definition: {fileID: 11400000, guid: 4632109b54d71aa4bb707443c8c0c859, type: 2}
-    position: {x: -297.77982, y: 138.51831}
-    size: {x: 162, y: 146}
+    position: {x: -266.72668, y: 159.38286}
+    size: {x: 240, y: 216}
     rotation: -30
     scale: 1
     sortingOrder: 15
@@ -65,8 +65,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_1
     definition: {fileID: 11400000, guid: 1c44c4a6a5115c045b2cc595bf95f1de, type: 2}
-    position: {x: 162.87895, y: 76.07364}
-    size: {x: 162, y: 146}
+    position: {x: 181.8742, y: 102.218895}
+    size: {x: 240, y: 216}
     rotation: 28
     scale: 1
     sortingOrder: 14
@@ -79,8 +79,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_2
     definition: {fileID: 11400000, guid: 65630b503a0225346a1d1f66d1b8c04e, type: 2}
-    position: {x: -96.64402, y: -240.25826}
-    size: {x: 162, y: 146}
+    position: {x: -80.5294, y: -217.57996}
+    size: {x: 240, y: 216}
     rotation: -16
     scale: 1
     sortingOrder: 13
@@ -93,8 +93,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_3
     definition: {fileID: 11400000, guid: c4ff76fda6c2a944a96e000123f21467, type: 2}
-    position: {x: -168.1977, y: 128.96896}
-    size: {x: 162, y: 146}
+    position: {x: -181.27992, y: 143.7348}
+    size: {x: 240, y: 216}
     rotation: 12
     scale: 1
     sortingOrder: 12
@@ -107,8 +107,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_4
     definition: {fileID: 11400000, guid: 7da0cd0a4ba46994ca8f5582379a3cd2, type: 2}
-    position: {x: 289.5334, y: 106.02159}
-    size: {x: 162, y: 146}
+    position: {x: 281.85028, y: 107.32665}
+    size: {x: 240, y: 216}
     rotation: -3
     scale: 1
     sortingOrder: 11
@@ -121,8 +121,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_5
     definition: {fileID: 11400000, guid: 911ce87bbb4aabc4dba3fbe4ea37457b, type: 2}
-    position: {x: 33.610188, y: -238.00885}
-    size: {x: 162, y: 146}
+    position: {x: 12.86541, y: -203.9434}
+    size: {x: 240, y: 216}
     rotation: 23
     scale: 1
     sortingOrder: 10
@@ -135,8 +135,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_6
     definition: {fileID: 11400000, guid: 80afffc4a13edb64aa75c91992a68f56, type: 2}
-    position: {x: -263.38382, y: 215.81093}
-    size: {x: 162, y: 146}
+    position: {x: -266.3506, y: 186.64867}
+    size: {x: 240, y: 216}
     rotation: -19
     scale: 1
     sortingOrder: 9
@@ -149,8 +149,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_7
     definition: {fileID: 11400000, guid: dc403d39717283543bce25387c0da460, type: 2}
-    position: {x: 176.2207, y: 149.85858}
-    size: {x: 162, y: 146}
+    position: {x: 187.218, y: 115.32446}
+    size: {x: 240, y: 216}
     rotation: 36
     scale: 1
     sortingOrder: 8
@@ -163,8 +163,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_8
     definition: {fileID: 11400000, guid: f102b3d0700660b45844bcf9fdf78862, type: 2}
-    position: {x: -65.8052, y: -153.61841}
-    size: {x: 162, y: 146}
+    position: {x: -67.32955, y: -170.41766}
+    size: {x: 240, y: 216}
     rotation: 5
     scale: 1
     sortingOrder: 7
@@ -177,8 +177,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_9
     definition: {fileID: 11400000, guid: 94573a07e8fe13043813cc15b0d391fb, type: 2}
-    position: {x: -162.80547, y: 189.78845}
-    size: {x: 162, y: 146}
+    position: {x: -187.07785, y: 156.64589}
+    size: {x: 240, y: 216}
     rotation: 20
     scale: 1
     sortingOrder: 6
@@ -191,8 +191,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_10
     definition: {fileID: 11400000, guid: 3f69abf0458958648804cfa694f0ed09, type: 2}
-    position: {x: 275.73645, y: 179.96362}
-    size: {x: 162, y: 146}
+    position: {x: 278.70673, y: 155.39487}
+    size: {x: 240, y: 216}
     rotation: 18
     scale: 1
     sortingOrder: 5
@@ -205,8 +205,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_11
     definition: {fileID: 11400000, guid: bf4cabd38a3e98f43bd6e55b4744cb3c, type: 2}
-    position: {x: 35.76555, y: -177.65454}
-    size: {x: 162, y: 146}
+    position: {x: 12.273682, y: -202.30061}
+    size: {x: 240, y: 216}
     rotation: -32
     scale: 1
     sortingOrder: 4
@@ -219,8 +219,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_12
     definition: {fileID: 11400000, guid: 369f66cec0c8ae94eb10d5669197d495, type: 2}
-    position: {x: -297.77982, y: 138.51831}
-    size: {x: 162, y: 146}
+    position: {x: -266.72668, y: 159.38286}
+    size: {x: 240, y: 216}
     rotation: -30
     scale: 1
     sortingOrder: 16
@@ -233,8 +233,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_13
     definition: {fileID: 11400000, guid: 26cbe770ae46e3841950dc78ed328425, type: 2}
-    position: {x: 152.36926, y: 115.5821}
-    size: {x: 162, y: 146}
+    position: {x: 188.06866, y: 114.459526}
+    size: {x: 240, y: 216}
     rotation: -19
     scale: 1
     sortingOrder: 3
@@ -247,8 +247,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_14
     definition: {fileID: 11400000, guid: cbe62f61d1c25de49b87f71555874f98, type: 2}
-    position: {x: -99.86314, y: -197.70003}
-    size: {x: 162, y: 146}
+    position: {x: -76.16795, y: -194.35695}
+    size: {x: 240, y: 216}
     rotation: 10
     scale: 1
     sortingOrder: 2
@@ -261,8 +261,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L3_15
     definition: {fileID: 11400000, guid: 66f9b04eeff4aca499b496c975841529, type: 2}
-    position: {x: -215.55084, y: 132.08546}
-    size: {x: 162, y: 146}
+    position: {x: -211.747, y: 158.06537}
+    size: {x: 240, y: 216}
     rotation: -35
     scale: 1
     sortingOrder: 1
@@ -275,24 +275,23 @@ MonoBehaviour:
       linkId: 
   piles:
   - id: tray_0
-    position: {x: -225, y: 165}
-    size: {x: 390, y: 300}
+    position: {x: -225, y: 160}
+    size: {x: 420, y: 336}
     rotation: -7
     color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
   - id: tray_1
-    position: {x: 225, y: 125}
-    size: {x: 390, y: 300}
+    position: {x: 225, y: 120}
+    size: {x: 420, y: 336}
     rotation: 9
     color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
   - id: tray_2
-    position: {x: -25, y: -205}
-    size: {x: 390, y: 300}
+    position: {x: -25, y: -200}
+    size: {x: 420, y: 336}
     rotation: -4
     color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
   solutionTrace:
   - L3_1
   - L3_2
-  - L3_3
   - L3_4
   - L3_5
   - L3_7
@@ -301,6 +300,7 @@ MonoBehaviour:
   - L3_11
   - L3_12
   - L3_0
+  - L3_3
   - L3_6
   - L3_9
   - L3_13

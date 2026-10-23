@@ -58,26 +58,26 @@ namespace StickyPeerSort
             bool mystery = s.placement.special.kind == SpecialKind.Mystery && !s.revealed;
             bool locked = s.placement.special.kind == SpecialKind.Locked && LockRule.Evaluate(owner.Session, index) == SpecialAction.Block;
             if (lockIcon == null)
-            { lockIcon = UIFactory.Panel("Lock icon", transform, new Vector2(53, 53), new Vector2(0, 22), Color.white); lockIcon.preserveAspect = true; }
+            { lockIcon = UIFactory.Panel("Lock icon", transform, new Vector2(53, 53), Vector2.zero, Color.white); lockIcon.preserveAspect = true; }
             lockIcon.gameObject.SetActive(locked);
-            lockIcon.rectTransform.sizeDelta = Vector2.one * s.placement.size.y * .64f;
-            lockIcon.rectTransform.anchoredPosition = new Vector2(0, s.placement.size.y * .12f);
+            lockIcon.rectTransform.sizeDelta = Vector2.one * Mathf.Min(s.placement.size.x, s.placement.size.y) * .52f;
+            lockIcon.rectTransform.anchoredPosition = Vector2.zero;
             if (screen != null && screen.theme != null) lockIcon.sprite = screen.theme.lockIcon;
             title.text = mystery ? "?" : d.showLabel ? d.displayName : "";
-            title.fontSize = mystery ? 82 : 27;
-            title.color = badge.color = mystery ? Color.white : UIFactory.Ink;
+            title.fontSize = mystery ? 86 : 27;
+            title.color = mystery ? Color.white : UIFactory.Ink;
             if (screen != null && screen.theme != null)
             {
-                title.color = badge.color = mystery ? Color.white : screen.theme.ink;
+                title.color = mystery ? Color.white : screen.theme.ink;
                 screen.theme.ApplyTextStyle(title); screen.theme.ApplyTextStyle(badge);
             }
             title.rectTransform.sizeDelta = s.placement.size * .83f;
             switch (s.placement.special.kind)
             {
-                case SpecialKind.Locked: badge.text = locked ? "CLEAR KEY SET" : "OPEN"; break;
+                case SpecialKind.Locked: badge.text = ""; break;
                 case SpecialKind.Frozen: badge.text = s.ice > 0 ? "ICE " + s.ice : ""; break;
                 case SpecialKind.Linked: badge.text = "LINK " + s.placement.special.linkId; break;
-                case SpecialKind.Mystery: badge.text = mystery ? "HIDDEN" : ""; break;
+                case SpecialKind.Mystery: badge.text = ""; break;
                 default: badge.text = ""; break;
             }
             badge.rectTransform.anchoredPosition = new Vector2(0, -s.placement.size.y * .31f);
@@ -85,9 +85,22 @@ namespace StickyPeerSort
             badge.fontSize = locked ? 12 : 17;
             if (s.placement.special.kind == SpecialKind.Frozen && s.ice > 0) image.color = Color.Lerp(d.tint, new Color(.4f, .86f, 1), .65f);
             if (mystery)
-            { image.sprite = screen != null ? screen.panelSprite : image.sprite; image.type = Image.Type.Sliced; image.color = new Color(.56f, .16f, .85f); }
+            {
+                image.sprite = d.ArtworkSprite;
+                image.type = Image.Type.Simple;
+                image.preserveAspect = true;
+                image.color = new Color(.12f, .16f, .28f);
+                title.transform.SetAsLastSibling();
+            }
             if (locked)
-            { image.sprite = screen != null ? screen.panelSprite : image.sprite; image.type = Image.Type.Sliced; image.color = new Color(.53f, .50f, .44f); title.text = ""; }
+            {
+                image.sprite = d.ArtworkSprite;
+                image.type = Image.Type.Simple;
+                image.preserveAspect = true;
+                image.color = Color.Lerp(d.tint, Color.black, .5f);
+                title.text = "";
+                lockIcon.transform.SetAsLastSibling();
+            }
             restingColor = image.color;
             if (coveredShade == null)
             {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level04
   m_EditorClassIdentifier: StickyPeerSort.Runtime::StickyPeerSort.LevelDefinition
   levelNumber: 4
-  activeCategoryCount: 2
+  activeCategoryCount: 3
   bufferCapacity: 4
   failOnOverflow: 1
   coinReward: 40
@@ -51,8 +51,8 @@ MonoBehaviour:
   stickers:
   - instanceId: L4_0
     definition: {fileID: 11400000, guid: 4632109b54d71aa4bb707443c8c0c859, type: 2}
-    position: {x: -274.32, y: 139.84607}
-    size: {x: 162, y: 146}
+    position: {x: -261.34045, y: 169.30226}
+    size: {x: 240, y: 216}
     rotation: -23
     scale: 1
     sortingOrder: 14
@@ -65,8 +65,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_1
     definition: {fileID: 11400000, guid: 1c44c4a6a5115c045b2cc595bf95f1de, type: 2}
-    position: {x: 145.68, y: 137.56}
-    size: {x: 162, y: 146}
+    position: {x: 145.68, y: 164.18417}
+    size: {x: 240, y: 216}
     rotation: 19
     scale: 1
     sortingOrder: 13
@@ -79,8 +79,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_2
     definition: {fileID: 11400000, guid: 65630b503a0225346a1d1f66d1b8c04e, type: 2}
-    position: {x: -274.32, y: -212.44}
-    size: {x: 162, y: 146}
+    position: {x: -274.16782, y: -196.41066}
+    size: {x: 240, y: 216}
     rotation: -12
     scale: 1
     sortingOrder: 12
@@ -93,8 +93,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_3
     definition: {fileID: 11400000, guid: c4ff76fda6c2a944a96e000123f21467, type: 2}
-    position: {x: 145.68, y: -207.18329}
-    size: {x: 162, y: 146}
+    position: {x: 145.68, y: -176.29243}
+    size: {x: 240, y: 216}
     rotation: 27
     scale: 1
     sortingOrder: 11
@@ -107,8 +107,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_4
     definition: {fileID: 11400000, guid: 7da0cd0a4ba46994ca8f5582379a3cd2, type: 2}
-    position: {x: -153.36, y: 148.12}
-    size: {x: 162, y: 146}
+    position: {x: -153.36, y: 164.18417}
+    size: {x: 240, y: 216}
     rotation: 19
     scale: 1
     sortingOrder: 10
@@ -121,8 +121,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_5
     definition: {fileID: 11400000, guid: 911ce87bbb4aabc4dba3fbe4ea37457b, type: 2}
-    position: {x: 266.64, y: 148.12}
-    size: {x: 162, y: 146}
+    position: {x: 266.64, y: 153.58934}
+    size: {x: 240, y: 216}
     rotation: -12
     scale: 1
     sortingOrder: 9
@@ -135,8 +135,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_6
     definition: {fileID: 11400000, guid: 80afffc4a13edb64aa75c91992a68f56, type: 2}
-    position: {x: -153.36, y: -201.88}
-    size: {x: 162, y: 146}
+    position: {x: -153.36, y: -176.29243}
+    size: {x: 240, y: 216}
     rotation: 27
     scale: 1
     sortingOrder: 8
@@ -149,8 +149,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_7
     definition: {fileID: 11400000, guid: dc403d39717283543bce25387c0da460, type: 2}
-    position: {x: 266.64, y: -201.88}
-    size: {x: 162, y: 146}
+    position: {x: 266.64, y: -201.55753}
+    size: {x: 240, y: 216}
     rotation: 9
     scale: 1
     sortingOrder: 7
@@ -163,8 +163,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_8
     definition: {fileID: 11400000, guid: f102b3d0700660b45844bcf9fdf78862, type: 2}
-    position: {x: -251.28, y: 220.12}
-    size: {x: 162, y: 146}
+    position: {x: -251.28, y: 196.41066}
+    size: {x: 240, y: 216}
     rotation: -12
     scale: 1
     sortingOrder: 6
@@ -177,8 +177,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_9
     definition: {fileID: 11400000, guid: 94573a07e8fe13043813cc15b0d391fb, type: 2}
-    position: {x: 168.72, y: 207.18329}
-    size: {x: 162, y: 146}
+    position: {x: 168.72, y: 176.29243}
+    size: {x: 240, y: 216}
     rotation: 27
     scale: 1
     sortingOrder: 5
@@ -191,8 +191,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_10
     definition: {fileID: 11400000, guid: 3f69abf0458958648804cfa694f0ed09, type: 2}
-    position: {x: -251.28, y: -129.88}
-    size: {x: 162, y: 146}
+    position: {x: -251.28, y: -148.44247}
+    size: {x: 240, y: 216}
     rotation: 9
     scale: 1
     sortingOrder: 4
@@ -205,8 +205,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_11
     definition: {fileID: 11400000, guid: bf4cabd38a3e98f43bd6e55b4744cb3c, type: 2}
-    position: {x: 168.72, y: -143.48236}
-    size: {x: 162, y: 146}
+    position: {x: 168.72, y: -174.69493}
+    size: {x: 240, y: 216}
     rotation: -28
     scale: 1
     sortingOrder: 3
@@ -219,8 +219,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_12
     definition: {fileID: 11400000, guid: 369f66cec0c8ae94eb10d5669197d495, type: 2}
-    position: {x: -274.32, y: 139.84607}
-    size: {x: 162, y: 146}
+    position: {x: -261.34045, y: 169.30226}
+    size: {x: 240, y: 216}
     rotation: -23
     scale: 1
     sortingOrder: 16
@@ -233,8 +233,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_13
     definition: {fileID: 11400000, guid: 26cbe770ae46e3841950dc78ed328425, type: 2}
-    position: {x: 145.68, y: 137.56}
-    size: {x: 162, y: 146}
+    position: {x: 145.68, y: 164.18417}
+    size: {x: 240, y: 216}
     rotation: 19
     scale: 1
     sortingOrder: 15
@@ -247,8 +247,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_14
     definition: {fileID: 11400000, guid: cbe62f61d1c25de49b87f71555874f98, type: 2}
-    position: {x: -155.28, y: -143.48236}
-    size: {x: 162, y: 146}
+    position: {x: -155.28, y: -174.69493}
+    size: {x: 240, y: 216}
     rotation: -28
     scale: 1
     sortingOrder: 2
@@ -261,8 +261,8 @@ MonoBehaviour:
       linkId: 
   - instanceId: L4_15
     definition: {fileID: 11400000, guid: 66f9b04eeff4aca499b496c975841529, type: 2}
-    position: {x: 264.72, y: -131.8}
-    size: {x: 162, y: 146}
+    position: {x: 264.72, y: -156.82257}
+    size: {x: 240, y: 216}
     rotation: 14
     scale: 1
     sortingOrder: 1
@@ -276,28 +276,28 @@ MonoBehaviour:
   piles:
   - id: tray_0
     position: {x: 0, y: 175}
-    size: {x: 840, y: 300}
+    size: {x: 860, y: 336}
     rotation: 0
     color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
   - id: tray_1
     position: {x: 0, y: -175}
-    size: {x: 840, y: 300}
+    size: {x: 860, y: 336}
     rotation: 0
     color: {r: 0.86, g: 0.77, b: 0.65, a: 1}
   solutionTrace:
   - L4_2
   - L4_3
-  - L4_4
   - L4_6
   - L4_7
   - L4_10
   - L4_11
   - L4_12
   - L4_0
+  - L4_4
+  - L4_8
   - L4_13
   - L4_1
   - L4_5
-  - L4_8
   - L4_9
   - L4_14
   - L4_15

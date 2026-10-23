@@ -22,7 +22,7 @@ namespace StickyPeerSort
             StickerVisuals.Apply(target, definition);
             if (definition.showLabel) UIFactory.Text("Sticker label", target.transform, definition.displayName, 17, target.rectTransform.sizeDelta * .95f, Vector2.zero);
             counter.text = FilledCount + " / " + stickers.Length;
-            if (progressDots != null && slot < progressDots.Length) progressDots[slot].color = completedColor;
+            if (progressDots != null && slot < progressDots.Length && progressDots[slot] != null) progressDots[slot].color = completedColor;
         }
     }
 }

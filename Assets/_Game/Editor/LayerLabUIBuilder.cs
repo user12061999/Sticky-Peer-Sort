@@ -75,13 +75,13 @@ namespace StickyPeerSort.Editor
         }
         static Button Booster(string name, Transform parent, string label, Sprite icon, float x, Color color, out TextMeshProUGUI counter)
         {
-            var button = Button(name, parent, label, new Vector2(170, 118), new Vector2(x, -837), color);
+            var button = Button(name, parent, label, new Vector2(164, 112), new Vector2(x, -765), color);
             button.gameObject.AddComponent<CanvasGroup>();
             var title = button.GetComponentInChildren<TextMeshProUGUI>(); title.fontSize = 24;
             title.color = Color.white; Outline(title);
-            title.rectTransform.sizeDelta = new Vector2(200, 42); title.rectTransform.anchoredPosition = new Vector2(0, -89);
-            Icon("Booster icon", button.transform, icon, new Vector2(64, 64), new Vector2(0, 2));
-            var badge = Panel("Inventory badge", button.transform, new Vector2(57, 43), new Vector2(66, 45), theme.ink);
+            title.rectTransform.sizeDelta = new Vector2(200, 42); title.rectTransform.anchoredPosition = new Vector2(0, -84);
+            Icon("Booster icon", button.transform, icon, new Vector2(62, 62), new Vector2(0, 2));
+            var badge = Panel("Inventory badge", button.transform, new Vector2(57, 43), new Vector2(64, 44), theme.ink);
             counter = Text("Count TMP", badge.transform, "10", 23, new Vector2(55, 38), Vector2.zero, Color.white);
             return button;
         }
@@ -144,39 +144,59 @@ namespace StickyPeerSort.Editor
             // Warm wooden table inspired by the reference palette.
             var grain = UIFactory.Rect("Wood grain", root, new Vector2(1080, 1920), Vector2.zero).gameObject.AddComponent<UIWoodGrain>();
             grain.raycastTarget = false;
-            var brand = Text("Brand TMP", root, "STICKY PEER SORT", 27, new Vector2(620, 50), new Vector2(-165, 894), theme.muted);
-            brand.color = Color.white; Outline(brand); brand.characterSpacing = 6; brand.alignment = TextAlignmentOptions.Left;
-            ui.levelLabel = Text("Level TMP", root, "LEVEL 01", 65, new Vector2(590, 105), new Vector2(-180, 817));
-            ui.levelLabel.color = Color.white; Outline(ui.levelLabel); ui.levelLabel.alignment = TextAlignmentOptions.Left;
-            var coinBar = Panel("Coin capsule", root, new Vector2(210, 82), new Vector2(270, 843), theme.ink);
-            Icon("Coin icon", coinBar.transform, theme.coinIcon, new Vector2(67, 67), new Vector2(-63, 0));
-            ui.coins = Text("Coins TMP", coinBar.transform, "0", 33, new Vector2(120, 70), new Vector2(31, 0), Color.white);
-            ui.settings = Button("Settings", root, "", new Vector2(100, 94), new Vector2(448, 844), Color.white);
-            Icon("Settings icon", ui.settings.transform, theme.settingsIcon, new Vector2(61, 61), new Vector2(0, 2));
-            Icon("Collection icon", root, theme.collectionIcon, new Vector2(36, 36), new Vector2(-455, 714));
-            Text("Collections title TMP", root, "COLLECTIONS", 27, new Vector2(420, 44), new Vector2(-205, 713)).alignment = TextAlignmentOptions.Left;
-            Panel("Album track", root, new Vector2(190, 12), new Vector2(285, 714), Hex("976023"));
-            ui.albumFill = Panel("Album fill", root, new Vector2(190, 12), new Vector2(285, 714), theme.mint);
-            ui.albumFill.type = Image.Type.Filled; ui.albumFill.fillMethod = Image.FillMethod.Horizontal; ui.albumFill.fillAmount = 0;
-            ui.progress = Text("Album progress TMP", root, "0 / 2", 27, new Vector2(110, 44), new Vector2(445, 714));
-            ui.categories = UIFactory.Rect("Category Cards", root, new Vector2(960, 304), new Vector2(0, 521));
-            var trayPanel = Panel("Waiting tray panel", root, new Vector2(944, 234), new Vector2(0, 225), Hex("FFD67D"));
+            // TOP BAR: Level capsule (center), Coin capsule (right), Settings button (far right)
+            // No brand logo on top left per user request.
+            var levelCapsuleRim = Panel("Level capsule rim", root, new Vector2(284, 80), new Vector2(0, 845), Hex("E5A93D"));
+            var levelCapsule = Panel("Level capsule", levelCapsuleRim.transform, new Vector2(274, 70), Vector2.zero, Hex("1D2545"));
+            ui.levelLabel = Text("Level TMP", levelCapsule.transform, "Level 1", 38, new Vector2(260, 60), Vector2.zero, Color.white);
+            ui.levelLabel.fontStyle = FontStyles.Bold;
+            ui.levelLabel.alignment = TextAlignmentOptions.Center;
+            Outline(ui.levelLabel);
+
+            var coinCapsuleRim = Panel("Coin capsule rim", root, new Vector2(204, 76), new Vector2(330, 845), Hex("E5A93D"));
+            var coinCapsule = Panel("Coin capsule", coinCapsuleRim.transform, new Vector2(196, 68), Vector2.zero, Hex("1D2545"));
+            Icon("Coin icon", coinCapsule.transform, theme.coinIcon, new Vector2(56, 56), new Vector2(-55, 0));
+            ui.coins = Text("Coins TMP", coinCapsule.transform, "0", 32, new Vector2(110, 60), new Vector2(26, 0), Color.white);
+            ui.coins.fontStyle = FontStyles.Bold;
+            Outline(ui.coins);
+
+            ui.settings = Button("Settings", root, "", new Vector2(76, 76), new Vector2(468, 845), Color.white);
+            Icon("Settings icon", ui.settings.transform, theme.settingsIcon, new Vector2(52, 52), Vector2.zero);
+
+            // Hidden HUD holders for legacy progress/album bindings (no display, prevents NRE)
+            var hiddenHud = UIFactory.Rect("Hidden HUD", root, Vector2.zero, Vector2.zero);
+            hiddenHud.gameObject.SetActive(false);
+            ui.albumFill = Panel("Album fill", hiddenHud, Vector2.zero, Vector2.zero, theme.mint);
+            ui.progress = Text("Album progress TMP", hiddenHud, "", 1, Vector2.zero, Vector2.zero);
+
+            // CATEGORY CARDS (just below top bar)
+            ui.categories = UIFactory.Rect("Category Cards", root, new Vector2(980, 320), new Vector2(0, 620));
+
+            // WAITING TRAY (below cards)
+            var trayPanel = Panel("Waiting tray panel", root, new Vector2(960, 140), new Vector2(0, 370), Hex("522A09"));
             ui.trayPanel = trayPanel;
-            ui.capacity = Text("Tray capacity TMP", trayPanel.transform, "WAITING TRAY   0 / 4", 23, new Vector2(860, 40), new Vector2(0, 78), theme.muted);
-            ui.buffer = UIFactory.Rect("Waiting Slots", trayPanel.transform, new Vector2(870, 130), new Vector2(0, -17));
-            var tip = Panel("Tip bubble", root, new Vector2(900, 68), new Vector2(0, 60), Hex("FFE6A0"));
-            ui.instruction = Text("Tutorial TMP", tip.transform, "Pick stickers with nothing on top.", 23, new Vector2(835, 62), Vector2.zero, theme.ink);
-            Panel("Board shadow", root, new Vector2(960, 760), new Vector2(0, -369), Hex("A76821"));
-            Panel("Board mat", root, new Vector2(960, 760), new Vector2(0, -360), new Color(1, .8f, .38f, .25f));
-            ui.board = UIFactory.Rect("Sticker Board", root, new Vector2(920, 860), new Vector2(0, -354));
-            // Bottom bar is a single clear touch region, with distinct action colors and count badges.
-            Panel("Booster dock", root, new Vector2(1040, 185), new Vector2(0, -854), Hex("B87929"));
+            var trayInner = Panel("Tray surface", trayPanel.transform, new Vector2(946, 126), Vector2.zero, Hex("7D4514"));
+            ui.capacity = Text("Tray capacity TMP", trayPanel.transform, "", 20, new Vector2(860, 30), new Vector2(0, 58), theme.muted);
+            ui.buffer = UIFactory.Rect("Waiting Slots", trayInner.transform, new Vector2(920, 116), Vector2.zero);
+
+            // Tutorial tip banner
+            var tip = Panel("Tip bubble", root, new Vector2(900, 54), new Vector2(0, 272), Hex("FFE6A0"));
+            ui.instruction = Text("Tutorial TMP", tip.transform, "Pick stickers with nothing on top.", 22, new Vector2(850, 48), Vector2.zero, theme.ink);
+
+            // MAIN BOARD: Sunken wooden well
+            Panel("Board shadow", root, new Vector2(990, 890), new Vector2(0, -190), Hex("3A1D06"));
+            var boardRim = Panel("Board rim", root, new Vector2(976, 876), new Vector2(0, -190), Hex("5C300B"));
+            Panel("Board well", boardRim.transform, new Vector2(956, 856), Vector2.zero, new Color(1f, .82f, .42f, .18f));
+            ui.board = UIFactory.Rect("Sticker Board", root, new Vector2(940, 840), new Vector2(0, -190));
+
+            // BOOSTER DOCK (bottom bar)
+            Panel("Booster dock", root, new Vector2(1000, 154), new Vector2(0, -780), Hex("6E3E11"));
             ui.undo = Booster("Undo", root, "UNDO", theme.undoIcon, -348, Hex("1F9CEB"), out ui.undoCount);
             ui.hint = Booster("Hint", root, "HINT", theme.hintIcon, -116, Hex("FFAC18"), out ui.hintCount);
             ui.extra = Booster("Extra Slot", root, "+ SLOT", theme.extraIcon, 116, Hex("61C62D"), out ui.extraCount);
             ui.shuffle = Booster("Shuffle", root, "MIX", theme.shuffleIcon, 348, Hex("A04BE3"), out ui.shuffleCount);
-            ui.restart = UIFactory.Button("Restart", root, "RESTART LEVEL", new Vector2(300, 42), new Vector2(0, -743), Hex("FFDF83"), theme.roundedPanel);
-            var restartText = ui.restart.GetComponentInChildren<TextMeshProUGUI>(); restartText.font = theme.font; restartText.fontSize = 18; restartText.color = theme.muted;
+            ui.restart = UIFactory.Button("Restart", root, "RESTART", new Vector2(220, 36), new Vector2(0, -870), Hex("E5BA56"), theme.roundedPanel);
+            var restartText = ui.restart.GetComponentInChildren<TextMeshProUGUI>(); restartText.font = theme.font; restartText.fontSize = 17; restartText.color = theme.ink;
             ui.restart.gameObject.AddComponent<UIButtonPressFeedback>();
             ui.effects = UIFactory.Rect("Animation Layer", root, new Vector2(1080, 1920), Vector2.zero);
             BuildModal(ui, root);

@@ -20,47 +20,47 @@ namespace StickyPeerSort.Editor
             int variant = Mathf.Clamp(level.levelNumber, 1, 10);
             if (variant == 1 || variant == 3)
             {
-                Add(level, anchors, owners, new Vector2(-225, 165), new Vector2(390, 300), -7);
-                Add(level, anchors, owners, new Vector2(225, 125), new Vector2(390, 300), 9);
-                Add(level, anchors, owners, new Vector2(-25, -205), new Vector2(390, 300), -4);
+                Add(level, anchors, owners, new Vector2(-225, 160), new Vector2(420, 336), -7);
+                Add(level, anchors, owners, new Vector2(225, 120), new Vector2(420, 336), 9);
+                Add(level, anchors, owners, new Vector2(-25, -200), new Vector2(420, 336), -4);
             }
             else if (variant == 2 || variant == 5)
             {
                 for (int row = 0; row < 2; row++) for (int col = 0; col < 2; col++)
-                    Add(level, anchors, owners, new Vector2(col == 0 ? -220 : 220, row == 0 ? 175 : -175), new Vector2(400, 310), variant == 5 ? (col == 0 ? -2 : 2) : 0);
+                    Add(level, anchors, owners, new Vector2(col == 0 ? -220 : 220, row == 0 ? 175 : -175), new Vector2(420, 336), variant == 5 ? (col == 0 ? -2 : 2) : 0);
             }
             else if (variant == 4)
             {
-                Add(level, anchors, owners, new Vector2(0, 175), new Vector2(840, 300), 0, new[] { new Vector2(-210, 0), new Vector2(210, 0) });
-                Add(level, anchors, owners, new Vector2(0, -175), new Vector2(840, 300), 0, new[] { new Vector2(-210, 0), new Vector2(210, 0) });
+                Add(level, anchors, owners, new Vector2(0, 175), new Vector2(860, 336), 0, new[] { new Vector2(-210, 0), new Vector2(210, 0) });
+                Add(level, anchors, owners, new Vector2(0, -175), new Vector2(860, 336), 0, new[] { new Vector2(-210, 0), new Vector2(210, 0) });
             }
             else if (variant == 6)
             {
                 for (int row = 0; row < 3; row++)
-                    Add(level, anchors, owners, new Vector2(0, 230 - row * 230), new Vector2(840, 205), 0, new[] { new Vector2(-210, 0), new Vector2(210, 0) });
+                    Add(level, anchors, owners, new Vector2(0, 230 - row * 230), new Vector2(860, 226), 0, new[] { new Vector2(-210, 0), new Vector2(210, 0) });
             }
             else if (variant == 7)
             {
-                Add(level, anchors, owners, Vector2.zero, new Vector2(860, 680), 0,
+                Add(level, anchors, owners, Vector2.zero, new Vector2(880, 700), 0,
                     new[] { new Vector2(-205, 160), new Vector2(205, 160), new Vector2(-205, -160), new Vector2(205, -160) });
             }
             else if (variant == 8)
             {
-                Add(level, anchors, owners, new Vector2(0, 230), new Vector2(840, 205), 0, new[] { new Vector2(-210, 0), new Vector2(210, 0) });
+                Add(level, anchors, owners, new Vector2(0, 230), new Vector2(860, 226), 0, new[] { new Vector2(-210, 0), new Vector2(210, 0) });
                 for (int row = 0; row < 2; row++) for (int col = 0; col < 2; col++)
-                    Add(level, anchors, owners, new Vector2(col == 0 ? -220 : 220, -row * 230), new Vector2(400, 205), 0);
+                    Add(level, anchors, owners, new Vector2(col == 0 ? -220 : 220, -row * 230), new Vector2(420, 226), 0);
             }
             else if (variant == 9)
             {
                 for (int row = 0; row < 3; row++) for (int col = 0; col < 2; col++)
-                    Add(level, anchors, owners, new Vector2(col == 0 ? -220 : 220, 230 - row * 230), new Vector2(400, 205), 0);
+                    Add(level, anchors, owners, new Vector2(col == 0 ? -220 : 220, 230 - row * 230), new Vector2(420, 226), 0);
             }
             else
             {
-                Add(level, anchors, owners, new Vector2(-220, 0), new Vector2(400, 680), 0,
+                Add(level, anchors, owners, new Vector2(-220, 0), new Vector2(420, 700), 0,
                     new[] { new Vector2(0, 230), Vector2.zero, new Vector2(0, -230) });
                 for (int row = 0; row < 3; row++)
-                    Add(level, anchors, owners, new Vector2(220, 230 - row * 230), new Vector2(400, 205), 0);
+                    Add(level, anchors, owners, new Vector2(220, 230 - row * 230), new Vector2(420, 226), 0);
             }
             Vector2[] offsets = { new Vector2(-67, -39), new Vector2(59, -28), new Vector2(-43, 47), new Vector2(57, 45),
                 new Vector2(-73, 2), new Vector2(13, -43), new Vector2(-7, 38), new Vector2(50, -4) };
@@ -75,8 +75,8 @@ namespace StickyPeerSort.Editor
                 if (shallow) offset.y *= .13f;
                 float r = data.rotation * Mathf.Deg2Rad;
                 p.position = anchors[anchor] + new Vector2(offset.x * Mathf.Cos(r) - offset.y * Mathf.Sin(r), offset.x * Mathf.Sin(r) + offset.y * Mathf.Cos(r));
-                p.size = shallow ? new Vector2(142, 120) : new Vector2(162, 146); p.scale = 1;
-                p.rotation = angles[(layer + anchor) % angles.Length] * (shallow ? .45f : 1) + data.rotation;
+                p.size = shallow ? new Vector2(210, 172) : new Vector2(240, 216); p.scale = 1;
+                p.rotation = angles[(layer + anchor) % angles.Length] * (shallow ? .22f : 1) + data.rotation;
                 p.sortingOrder = i; p.pileId = data.id;
                 // Keep the full rotated sticker rectangle inside its authored wooden compartment.
                 Vector2 relative = p.position - data.position;
@@ -111,8 +111,8 @@ namespace StickyPeerSort.Editor
             if (level.levelNumber >= 6)
             {
                 var locked = level.stickers[7]; var tray = level.piles.Find(x => x.id == locked.pileId);
-                locked.size = shallow ? new Vector2(142, 120) : new Vector2(162, 146);
-                locked.position = tray.position + (tray.size.x < 500 ? new Vector2(100, 0) : level.levelNumber == 7 ? new Vector2(0, -20) : Vector2.zero);
+                locked.size = shallow ? new Vector2(210, 172) : new Vector2(240, 216);
+                locked.position = tray.position + (tray.size.x < 500 ? new Vector2(65, 0) : level.levelNumber == 7 ? new Vector2(0, -20) : Vector2.zero);
                 locked.rotation = tray.rotation; locked.sortingOrder = level.stickers.Count + 1;
                 if (tray.size.x >= 500)
                     foreach (var other in level.stickers)
@@ -133,8 +133,8 @@ namespace StickyPeerSort.Editor
                 hidden.position = new Vector2(tray.position.x - 70, y); hidden.rotation = 0;
                 foreach (var other in level.stickers)
                     if (other != hidden && other.pileId == hidden.pileId && Mathf.Abs(other.position.y - y) < 130)
-                    { other.position = new Vector2(tray.position.x + 75, other.position.y); other.rotation = 0; }
-                cover.position = new Vector2(tray.position.x + 10, y); cover.sortingOrder = level.stickers.Count + 3;
+                    { other.position = new Vector2(tray.position.x + 80, other.position.y); other.rotation = 0; }
+                cover.position = new Vector2(tray.position.x + 35, y); cover.sortingOrder = level.stickers.Count + 3;
             }
         }
         static void Add(LevelDefinition level, List<Vector2> anchors, List<int> owners, Vector2 position, Vector2 size, float angle, Vector2[] groups = null)
