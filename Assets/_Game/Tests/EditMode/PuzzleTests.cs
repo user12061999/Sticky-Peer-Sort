@@ -26,18 +26,32 @@ namespace StickyPeerSort.Tests
         [Test] public void MatchingStickerFillsTarget() { var s = new GameSession(level); Assert.IsTrue(s.Select(0)); Assert.AreEqual(0, s.Categories[0].targets[0]); Assert.AreEqual(StickerLocation.Collected, s.Stickers[0].location); }
         [Test] public void FutureStickerPreservesIdentityInBuffer() { var s = new GameSession(level); s.Select(2); CollectionAssert.AreEqual(new[] { 2 }, s.Buffer); Assert.AreSame(level.stickers[2].definition, s.Stickers[s.Buffer[0]].placement.definition); }
         [Test] public void CompletionActivatesNextCategory() { var s = new GameSession(level); s.Select(0); Assert.IsTrue(s.Categories[1].active); Assert.IsFalse(s.Categories[0].active); }
-        [Test] public void BufferedStickerAutoTransfers() { var s = new GameSession(level); s.Select(1); s.Select(0); Assert.IsEmpty(s.Buffer); Assert.IsTrue(s.Categories[1].Complete); Assert.IsTrue(s.Categories[2].active); }
+        [Test] public void BufferedStickerAutoTransfers() { level.bufferCapacity = 2; var s = new GameSession(level); s.Select(1); s.Select(0); Assert.IsEmpty(s.Buffer); Assert.IsTrue(s.Categories[1].Complete); Assert.IsTrue(s.Categories[2].active); }
         [Test] public void CascadeResolvesInStableOrderBeforeResult()
         {
-            level.bufferCapacity = 2; var s = new GameSession(level); s.Select(2); s.Select(1); s.Select(0);
+            level.bufferCapacity = 3; var s = new GameSession(level); s.Select(2); s.Select(1); s.Select(0);
             Assert.AreEqual(GameplayState.Win, s.State); Assert.IsEmpty(s.Buffer);
             CollectionAssert.AreEqual(new[] { 0, 1, 2 }, s.Events.Where(e => e.kind == PuzzleEventKind.Collected).Select(e => e.sticker));
         }
-        [Test] public void FullTrayRemainsPlayableUntilExceeded() { var s = new GameSession(level); s.Select(2); Assert.AreEqual(GameplayState.Playing, s.State); s.Select(1); Assert.AreEqual(GameplayState.Fail, s.State); }
-        [Test] public void FullTrayCanResolveWithoutPrematureFailure() { var s = new GameSession(level); s.Select(1); s.Select(0); Assert.AreEqual(GameplayState.Playing, s.State); Assert.IsEmpty(s.Buffer); }
+        [Test] public void FullTrayFailsImmediatelyAndRejectsFurtherSelections()
+        {
+            var s = new GameSession(level); Assert.IsTrue(s.Select(2));
+            Assert.AreEqual(GameplayState.Fail, s.State); Assert.AreEqual(s.Capacity, s.Buffer.Count);
+            Assert.IsFalse(s.Select(1)); Assert.AreEqual(1, s.Events.Count(e => e.kind == PuzzleEventKind.Fail));
+            Assert.IsTrue(s.Undo()); Assert.AreEqual(GameplayState.Playing, s.State); Assert.IsEmpty(s.Buffer);
+        }
+        [Test] public void AutomaticTransfersResolveBeforeCheckingForAFullTray()
+        {
+            var s = new GameSession(level);
+            // A transient full snapshot must be drained by this move before the result is checked.
+            s.Buffer.Add(1); s.Stickers[1].location = StickerLocation.Buffer;
+            s.Select(0); Assert.AreEqual(GameplayState.Playing, s.State); Assert.IsEmpty(s.Buffer);
+            Assert.IsFalse(s.Events.Any(e => e.kind == PuzzleEventKind.Fail));
+        }
         [Test] public void WinEmittedExactlyOnce() { var s = new GameSession(level); int wins = 0; s.StateChanged += state => { if (state == GameplayState.Win) wins++; }; s.Select(0); s.Select(1); s.Select(2); Assert.IsFalse(s.Select(2)); Assert.AreEqual(1, wins); }
         [Test] public void PartiallyCoveredStickerIsBlockedEvenOnItsVisiblePart()
         {
+            level.bufferCapacity = 2; // Coverage fixture needs room for its future-category cover.
             level.stickers[0].position = Vector2.zero; level.stickers[1].position = new Vector2(50, 0);
             level.stickers[2].position = new Vector2(400, 0);
             var s = new GameSession(level); Assert.AreEqual(1, BoardGeometry.Hit(s, new Vector2(25, 0))); Assert.AreEqual(0, BoardGeometry.Hit(s, new Vector2(-60, 0))); Assert.IsTrue(BoardGeometry.Exposed(s, 0));
@@ -53,6 +67,7 @@ namespace StickyPeerSort.Tests
         [Test] public void TransparentCornerDoesNotConsumeTap() { var s = new GameSession(level); Assert.IsFalse(BoardGeometry.Contains(s.Stickers[0], level.stickers[0].position + new Vector2(84, 75))); }
         [Test] public void LockedStickerWaitsForRemovedDependency()
         {
+            level.bufferCapacity = 2;
             level.stickers[0].special.kind = SpecialKind.Locked; level.stickers[0].special.dependencyId = "s1";
             var s = new GameSession(level); Assert.IsFalse(s.Select(0)); s.Select(1); Assert.IsTrue(s.Select(0));
         }
@@ -70,6 +85,7 @@ namespace StickyPeerSort.Tests
         }
         [Test] public void LinkedPartnersRequireExposureWithoutRemovingEachOther()
         {
+            level.bufferCapacity = 2;
             foreach (int i in new[] { 0, 1 }) { level.stickers[i].special.kind = SpecialKind.Linked; level.stickers[i].special.linkId = "A"; }
             level.stickers[2].position = level.stickers[1].position;
             var s = new GameSession(level); Assert.IsFalse(s.Select(0)); s.Select(2); Assert.IsTrue(s.Select(0)); Assert.AreEqual(StickerLocation.Board, s.Stickers[1].location); Assert.IsTrue(s.Select(1));

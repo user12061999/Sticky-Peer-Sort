@@ -23,6 +23,7 @@ namespace StickyPeerSort
         public Image trayPanel;
         public StickerView stickerPrefab;
         public GameObject cardPrefab, slotPrefab;
+        public StickerTrayView trayPrefab;
         public readonly Dictionary<int, StickerView> stickerViews = new Dictionary<int, StickerView>();
         public readonly Dictionary<int, CategoryCardPresentation> categoryViews = new Dictionary<int, CategoryCardPresentation>();
         public readonly Dictionary<int, Image> waitingViews = new Dictionary<int, Image>();
@@ -56,14 +57,13 @@ namespace StickyPeerSort
         void UpdateTrayInstruction()
         {
             var s = context.Session;
-            instruction.text = s.Buffer.Count > s.Capacity ? "Tray overflow! Undo or retry with a different order."
-                : s.Buffer.Count == s.Capacity ? "Tray full! Collect from an OPEN set. Another waiting sticker will overflow."
+            instruction.text = s.Buffer.Count >= s.Capacity ? "Waiting tray full! Undo or retry with a different order."
                 : s.Buffer.Count > 0 && s.Buffer.Count == s.Capacity - 1 ? "Only one waiting slot left. Plan your next sticker."
                 : s.Level.tutorial;
         }
         public void UpdateTrayStatus(int count, int limit)
         {
-            capacity.text = (count > limit ? "TRAY OVERFLOW   " : count == limit ? "TRAY FULL   " : "WAITING TRAY   ") + count + " / " + limit;
+            capacity.text = (count >= limit ? "TRAY FULL   " : "WAITING TRAY   ") + count + " / " + limit;
             capacity.color = count >= limit ? new Color(.65f, .12f, .04f)
                 : count > 0 && count == limit - 1 ? new Color(.59f, .28f, .02f) : theme != null ? theme.muted : UIFactory.Ink;
             if (trayPanel != null) trayPanel.color = count >= limit ? new Color(1, .69f, .42f) : new Color(1, .84f, .49f);
@@ -158,6 +158,11 @@ namespace StickyPeerSort
             int number = 0;
             foreach (var pile in level.piles)
             {
+                if (trayPrefab != null)
+                {
+                    var compartment = Instantiate(trayPrefab, board);
+                    compartment.Bind(pile); continue;
+                }
                 number++;
                 var tray = UIFactory.Panel("Pile tray " + pile.id, board, pile.size, pile.position, theme != null ? theme.ink : pile.color, theme != null ? theme.trayFrame : panelSprite);
                 tray.rectTransform.localRotation = Quaternion.Euler(0, 0, pile.rotation);
@@ -178,7 +183,9 @@ namespace StickyPeerSort
             var cat = s.Categories[index];
             var categoryColor = theme != null ? theme.CategoryColor(cat.objective.category.color) : cat.objective.category.color;
             var card = Instantiate(cardPrefab, categories).GetComponent<RectTransform>();
-            float height = theme != null ? 318 : 280;
+            float height = theme != null ? 344 : 280;
+            float headerY = theme != null ? height * .5f - 41 : 100;
+            float counterY = theme != null ? -height * .5f + 32 : -110;
             card.name = "Category " + cat.objective.category.title; card.sizeDelta = new Vector2(cardWidth - 14, height);
             card.anchoredPosition = new Vector2((lane - (laneCount - 1) * .5f) * cardWidth, 0);
             card.GetComponent<Image>().color = theme != null ? categoryColor : Color.Lerp(cat.objective.category.color, Color.white, .65f);
@@ -186,35 +193,42 @@ namespace StickyPeerSort
             {
                 var shadow = card.gameObject.AddComponent<Shadow>(); shadow.effectColor = new Color(.25f, .1f, .01f, .35f); shadow.effectDistance = new Vector2(0, -6);
                 UIFactory.Panel("Card paper", card, card.sizeDelta - new Vector2(8, 8), Vector2.zero, new Color(1f, 0.98f, 0.93f, 1f), theme.roundedPanel);
-                UIFactory.Panel("Category ribbon", card, new Vector2(cardWidth - 24, 56), new Vector2(0, 118), categoryColor, theme.roundedPanel);
+                UIFactory.Panel("Category ribbon", card, new Vector2(cardWidth - 24, 56), new Vector2(0, headerY), categoryColor, theme.roundedPanel);
+                if (theme.referenceComposition)
+                {
+                    // A thin colored cover edge and cream paper: no heavy square target wells.
+                    card.Find("Card paper").GetComponent<Image>().color = theme.paper;
+                    var rim = UIFactory.Panel("Header highlight", card, new Vector2(cardWidth - 34, 3), new Vector2(0, headerY + 22), new Color(1, 1, 1, .5f), theme.roundedPanel);
+                    rim.raycastTarget = false;
+                }
             }
             var view = new CategoryCardPresentation { categoryIndex = index, lane = lane, rect = card, group = card.gameObject.AddComponent<CanvasGroup>(),
                 targets = new Image[cat.targets.Length], stickers = new int[cat.targets.Length], progressDots = null,
                 completedColor = categoryColor };
-            var title = UIFactory.Text("Title", card, cat.objective.category.title, theme != null && laneCount == 1 ? 36 : 28, new Vector2(cardWidth - 36, 50), new Vector2(0, theme != null ? 118 : 100));
+            var title = UIFactory.Text("Title", card, cat.objective.category.title, theme != null && laneCount == 1 ? 36 : 28, new Vector2(cardWidth - 36, 50), new Vector2(0, headerY));
             if (theme != null) { title.color = Color.white; theme.ApplyTextStyle(title); }
             if (theme != null && s.Stickers.Exists(x => x.placement.special.kind == SpecialKind.Locked && x.placement.special.unlockCondition == UnlockCondition.CategoryCompleted && x.placement.special.dependencyId == cat.objective.category.id))
             {
-                var key = UIFactory.Panel("Unlock key", card, new Vector2(38, 38), new Vector2(cardWidth * .5f - 38, 118), Color.white, theme.keyIcon);
+                var key = UIFactory.Panel("Unlock key", card, new Vector2(38, 38), new Vector2(cardWidth * .5f - 38, headerY), Color.white, theme.keyIcon);
                 key.type = Image.Type.Simple; key.preserveAspect = true;
             }
-            if (theme != null) UIFactory.Panel("Progress badge", card, new Vector2(106, 38), new Vector2(0, -127), categoryColor, theme.roundedPanel);
-            view.counter = UIFactory.Text("Count", card, "0 / " + cat.targets.Length, 25, new Vector2(110, 36), new Vector2(0, theme != null ? -127 : -110));
+            if (theme != null) UIFactory.Panel("Progress badge", card, new Vector2(106, 38), new Vector2(0, counterY), categoryColor, theme.roundedPanel);
+            view.counter = UIFactory.Text("Count", card, "0 / " + cat.targets.Length, 25, new Vector2(110, 36), new Vector2(0, counterY));
             if (theme != null) { view.counter.color = Color.white; theme.ApplyTextStyle(view.counter); }
             int columns = theme != null && laneCount == 1 ? Mathf.Min(4, cat.targets.Length) : 2;
             int rows = Mathf.CeilToInt((float)cat.targets.Length / columns);
             float colWidth = (cardWidth - 36) / columns;
-            float rowHeight = Mathf.Min(theme != null ? laneCount == 1 ? 118 : 84 : 86, (theme != null ? 170f : 172f) / rows);
+            float rowHeight = theme != null ? 224f / rows : Mathf.Min(86, 172f / rows);
             for (int t = 0; t < cat.targets.Length; t++)
             {
                 view.stickers[t] = -1;
-                Vector2 pos = new Vector2((t % columns - (columns - 1) * .5f) * colWidth, (rows - 1) * rowHeight * .5f - t / columns * rowHeight + 2);
-                Vector2 targetSize = new Vector2(colWidth - 16, rowHeight - 12);
+                Vector2 pos = new Vector2((t % columns - (columns - 1) * .5f) * colWidth, (rows - 1) * rowHeight * .5f - t / columns * rowHeight + (theme != null ? -8 : 2));
+                Vector2 targetSize = new Vector2(colWidth - (theme != null ? 4 : 16), rowHeight - (theme != null ? 4 : 12));
                 var def = cat.objective.exactTargets.Count > t ? cat.objective.exactTargets[t] : null;
                 Transform parent = card;
-                if (theme != null)
+                if (theme != null && !theme.referenceComposition)
                 {
-                    parent = UIFactory.Panel("Slot well " + t, card, new Vector2(colWidth - 8, rowHeight - 6), pos, new Color(0.94f, 0.89f, 0.80f, 1f), theme.slotFrame).transform;
+                    parent = UIFactory.Panel("Slot well " + t, card, new Vector2(colWidth - 2, rowHeight - 2), pos, new Color(0.94f, 0.89f, 0.80f, 1f), theme.slotFrame).transform;
                     pos = Vector2.zero;
                 }
                 view.targets[t] = UIFactory.Panel("Target " + t, parent, targetSize, pos, new Color(.88f, .74f, .56f, .45f), def != null ? def.ArtworkSprite : theme != null ? theme.collectionIcon : panelSprite);
@@ -228,6 +242,8 @@ namespace StickyPeerSort
                 {
                     StickerVisuals.Apply(view.targets[t], def);
                     view.targets[t].color = new Color(0.88f, 0.74f, 0.56f, 0.45f);
+                    if (theme != null && theme.referenceComposition && def.targetSilhouette != null)
+                    { view.targets[t].sprite = def.targetSilhouette; view.targets[t].color = Color.white; }
                     if (def.showLabel) UIFactory.Text("Target label", view.targets[t].transform, def.displayName, 17, targetSize * .95f, Vector2.zero, theme != null ? theme.muted : UIFactory.Ink);
                 }
             }
@@ -246,10 +262,10 @@ namespace StickyPeerSort
         void EnsureBufferSlots(int count)
         {
             while (bufferSlots.Count < count) bufferSlots.Add(Instantiate(slotPrefab, buffer).GetComponent<RectTransform>());
-            float width = Mathf.Min(theme != null ? 154 : 140, 920f / count);
+            float width = Mathf.Min(theme != null && theme.referenceComposition ? 176 : theme != null ? 154 : 140, 920f / count);
             for (int i = 0; i < bufferSlots.Count; i++)
             {
-                bufferSlots[i].sizeDelta = new Vector2(width - 12, 124);
+                bufferSlots[i].sizeDelta = new Vector2(width - 12, theme != null && theme.referenceComposition ? width - 12 : 124);
                 bufferSlots[i].anchoredPosition = new Vector2((i - (count - 1) * .5f) * width, 0);
                 if (theme != null)
                 {

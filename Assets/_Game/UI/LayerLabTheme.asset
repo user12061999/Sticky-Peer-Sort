@@ -33,7 +33,9 @@ MonoBehaviour:
   shuffleIcon: {fileID: 21300000, guid: ea91f02a0f42c4a999205804eaef008e, type: 3}
   keyIcon: {fileID: 21300000, guid: ba5483ff7f88c4c3ca881c0f56955f28, type: 3}
   lockIcon: {fileID: 21300000, guid: 1aeb9cf6ff7504198a4aed0e5932f5e2, type: 3}
-  coveredOpacity: 0.46
+  referenceComposition: 0
+  woodSurface: {fileID: 0}
+  coveredOpacity: 0.68
   coveredSoftness: 1.5
   background: {r: 0.8980392, g: 0.6313726, b: 0.23921569, a: 1}
   ink: {r: 0.25882354, g: 0.14509805, b: 0.07058824, a: 1}

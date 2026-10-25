@@ -19,6 +19,9 @@ MonoBehaviour:
   coinReward: 50
   difficulty: Learning
   tutorial: Complete the set with the KEY to unlock the locked sticker.
+  generatedStickerCount: 0
+  layoutSeed: 0
+  boardStickerSizeMultiplier: 1
   objectives:
   - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
     targetCount: 4

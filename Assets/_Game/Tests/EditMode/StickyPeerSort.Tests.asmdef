@@ -6,7 +6,8 @@
     "StickyPeerSort.Core",
     "StickyPeerSort.Services",
     "StickyPeerSort.Gameplay",
-    "StickyPeerSort.Editor"
+    "StickyPeerSort.Editor",
+    "Unity.ugui"
   ],
   "includePlatforms": [
     "Editor"

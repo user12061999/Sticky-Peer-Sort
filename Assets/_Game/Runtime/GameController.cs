@@ -10,6 +10,8 @@ namespace StickyPeerSort
         public GameplayUI ui;
         public LevelDefinition[] levels;
         public GameAudioConfig audioConfig;
+        [Tooltip("Leave empty for the main game. Sample scenes may use an isolated progress key.")]
+        public string progressKey;
         [SerializeField, FormerlySerializedAs("balance")] GameBalanceConfig balanceConfig;
         GameplayContext context;
         GameplayCoordinator gameplay;
@@ -34,7 +36,7 @@ namespace StickyPeerSort
         void Start()
         {
             Application.targetFrameRate = 60; Application.runInBackground = true; Screen.orientation = ScreenOrientation.Portrait;
-            Save = new SaveService(balance.startingBoosters);
+            Save = new SaveService(balance.startingBoosters, progressKey);
             context = new GameplayContext(Save.Data, balance);
             var audio = GetComponent<GameAudioFeedback>() ?? gameObject.AddComponent<GameAudioFeedback>();
             audio.Initialize(audioConfig, ui); ui.AudioFeedback = audio;

@@ -43,7 +43,7 @@ namespace StickyPeerSort
                 if (!landing && !(e.kind == PuzzleEventKind.Unlocked && animatedUnlocks.Contains(e.sticker))) Feedback.Play(e.kind);
                 if (context.Balance.haptics && (e.kind == PuzzleEventKind.Peel || e.kind == PuzzleEventKind.CategoryCompleted)) Feedback.Haptic();
                 StickerView view;
-                // The pop is part of the flight, so another tap never waits for a peel coroutine.
+                // Each flight owns its peel/stick sequence; other ordinary taps can start concurrently.
                 if (e.kind == PuzzleEventKind.Collected || e.kind == PuzzleEventKind.Buffered)
                 {
                     // Use the visible card and actual target slot, never the final logical category list.
@@ -57,7 +57,18 @@ namespace StickyPeerSort
                     var ghost = UIFactory.Panel("Flying sticker " + e.sticker, ui.effects, size, Vector2.zero, d.tint, d.ArtworkSprite);
                     StickerVisuals.Apply(ghost, d);
                     ghost.transform.position = start;
+                    ghost.rectTransform.localRotation = Quaternion.Euler(0, 0, rotation);
                     var text = d.showLabel ? UIFactory.Text("Label", ghost.transform, d.displayName, 25, size * .9f, Vector2.zero) : null;
+                    var page = new StickerPeelPresentation(ghost, text, context.Balance);
+                    // Curl the original sprite mesh before adding the cosmetic shadow mesh.
+                    UnityEngine.UI.Shadow flightShadow = null;
+                    if (ui.theme != null && ui.theme.referenceComposition)
+                    {
+                        flightShadow = ghost.gameObject.AddComponent<UnityEngine.UI.Shadow>();
+                        flightShadow.effectColor = new Color(.2f, .1f, .03f, .25f);
+                        flightShadow.effectDistance = new Vector2(4, -7);
+                    }
+                    yield return page.Animate(0, 1, context.Balance.peelDuration);
                     Vector2 targetSize = target.sizeDelta;
                     if (e.kind == PuzzleEventKind.Buffered) targetSize -= new Vector2(10, 19);
                     Vector3 end = target.position; float t = 0;
@@ -72,6 +83,7 @@ namespace StickyPeerSort
                         float peel = Mathf.Clamp01(t / Mathf.Max(.001f, context.Balance.pressDuration + context.Balance.peelDuration));
                         ghost.transform.localScale = Vector3.one * (1 - Mathf.Sin(press * Mathf.PI) * .06f + Mathf.Sin(peel * Mathf.PI) * context.Balance.flightPop);
                         ghost.rectTransform.localRotation = Quaternion.Euler(0, 0, Mathf.Lerp(rotation, 0, f));
+                        if (flightShadow != null) flightShadow.effectDistance = new Vector2(4, -7 - Mathf.Sin(f * Mathf.PI) * 10);
                         if (text != null) text.rectTransform.sizeDelta = ghost.rectTransform.sizeDelta * .9f;
                         yield return null;
                     }
@@ -88,6 +100,14 @@ namespace StickyPeerSort
                     }
                     ghost.transform.position = target.position;
                     ghost.rectTransform.sizeDelta = target.sizeDelta - (e.kind == PuzzleEventKind.Buffered ? new Vector2(10, 19) : Vector2.zero);
+                    // Reverse the same fold onto the live destination; commit/count/SFX follow the final flattening.
+                    yield return page.Animate(1, 0, context.Balance.stickDuration, () =>
+                    {
+                        ghost.transform.position = target.position;
+                        ghost.rectTransform.sizeDelta = target.sizeDelta - (e.kind == PuzzleEventKind.Buffered ? new Vector2(10, 19) : Vector2.zero);
+                        if (flightShadow != null) flightShadow.effectDistance = new Vector2(4, -7);
+                        if (text != null) text.rectTransform.sizeDelta = ghost.rectTransform.sizeDelta * .9f;
+                    });
                     ui.Land(e, resolved);
                     Feedback.Play(e.kind);
                     if (context.Balance.celebrations) ui.Celebration?.Land(target);
@@ -129,9 +149,9 @@ namespace StickyPeerSort
                     ui.Celebration?.Win(context.Progress.highestCompleted < resolved.Level.levelNumber ? resolved.Level.coinReward : 0);
                 if (e.kind == PuzzleEventKind.Fail)
                 {
-                    ui.instruction.text = "Tray overflow! Undo or retry with a different order.";
+                    ui.instruction.text = "Waiting tray full! Undo or retry with a different order.";
                     if (context.Balance.celebrations) ui.Celebration?.Land(ui.buffer);
-                    yield return new WaitForSecondsRealtime(.24f); // Show the actual overflow before opening the modal.
+                    yield return new WaitForSecondsRealtime(.24f); // Let the final occupied slot show before the lose modal.
                 }
                 EventFinished?.Invoke(e);
             }

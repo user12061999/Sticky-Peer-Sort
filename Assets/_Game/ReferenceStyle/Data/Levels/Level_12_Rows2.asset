@@ -1,0 +1,708 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68e389f2ea0404479ff4e8be1aff4af, type: 3}
+  m_Name: Level_12_Rows2
+  m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.LevelDefinition
+  levelNumber: 12
+  activeCategoryCount: 3
+  bufferCapacity: 4
+  failOnOverflow: 1
+  coinReward: 0
+  difficulty: Row planning
+  tutorial: Pick a bright sticker. Complete a set to open the next album.
+  generatedStickerCount: 40
+  layoutSeed: 4463
+  boardStickerSizeMultiplier: 0.75
+  objectives:
+  - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    - {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    - {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    - {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+  - category: {fileID: 11400000, guid: 9ef2c9fd403efa24aa48f168c2be209c, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    - {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    - {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    - {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+  - category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    - {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    - {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    - {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+  - category: {fileID: 11400000, guid: 41418998f18eb1e4d8032af8bfad3d2f, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    - {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    - {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    - {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+  - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    - {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    - {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    - {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+  - category: {fileID: 11400000, guid: 9ef2c9fd403efa24aa48f168c2be209c, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    - {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    - {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    - {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+  - category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    - {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    - {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    - {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+  - category: {fileID: 11400000, guid: 41418998f18eb1e4d8032af8bfad3d2f, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    - {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    - {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    - {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+  - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    - {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    - {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    - {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+  - category: {fileID: 11400000, guid: 9ef2c9fd403efa24aa48f168c2be209c, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    - {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    - {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    - {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+  stickers:
+  - instanceId: Level_12_Rows2_000_food_01
+    definition: {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    position: {x: -288.09836, y: 248.0845}
+    size: {x: 292.1853, y: 292.1853}
+    rotation: -6.5986733
+    scale: 0.75
+    sortingOrder: 32
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_001_food_02
+    definition: {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    position: {x: 298.6234, y: -155.15555}
+    size: {x: 293.082, y: 293.082}
+    rotation: 0.6327636
+    scale: 0.75
+    sortingOrder: 35
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_002_food_03
+    definition: {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    position: {x: 306.3686, y: 161.2317}
+    size: {x: 267.5171, y: 267.5171}
+    rotation: -3.7135892
+    scale: 0.75
+    sortingOrder: 34
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_003_food_04
+    definition: {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+    position: {x: -171.0634, y: -278.5048}
+    size: {x: 256.4627, y: 256.4627}
+    rotation: 1.4019455
+    scale: 0.75
+    sortingOrder: 28
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_004_animal_01
+    definition: {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    position: {x: 81.50861, y: 173.70978}
+    size: {x: 256.70395, y: 256.70395}
+    rotation: -13.791991
+    scale: 0.75
+    sortingOrder: 19
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_005_animal_02
+    definition: {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    position: {x: -137.71727, y: 247.22543}
+    size: {x: 258.3224, y: 258.3224}
+    rotation: -15.375371
+    scale: 0.75
+    sortingOrder: 36
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_006_animal_03
+    definition: {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    position: {x: 286.9348, y: -194.10991}
+    size: {x: 320.31128, y: 320.31128}
+    rotation: 0.5907458
+    scale: 0.75
+    sortingOrder: 33
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_007_animal_04
+    definition: {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+    position: {x: 259.06808, y: 176.67056}
+    size: {x: 342.6427, y: 342.6427}
+    rotation: -4.621255
+    scale: 0.75
+    sortingOrder: 27
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_008_plant_01
+    definition: {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    position: {x: -291.11072, y: 187.8065}
+    size: {x: 307.1294, y: 307.1294}
+    rotation: 2.6458666
+    scale: 0.75
+    sortingOrder: 38
+    pileId: tray_0
+    special:
+      kind: 3
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: A
+  - instanceId: Level_12_Rows2_009_plant_02
+    definition: {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    position: {x: -297.3767, y: -177.60101}
+    size: {x: 320.79584, y: 320.79584}
+    rotation: 0.2689048
+    scale: 0.75
+    sortingOrder: 37
+    pileId: tray_1
+    special:
+      kind: 3
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: A
+  - instanceId: Level_12_Rows2_010_plant_03
+    definition: {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    position: {x: 87.148094, y: -153.91104}
+    size: {x: 252.97844, y: 252.97844}
+    rotation: 3.3781157
+    scale: 0.75
+    sortingOrder: 15
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_011_plant_04
+    definition: {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+    position: {x: 188.9073, y: 167.42618}
+    size: {x: 304.03134, y: 304.03134}
+    rotation: -4.700962
+    scale: 0.75
+    sortingOrder: 18
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_012_vehicle_01
+    definition: {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    position: {x: 216.6247, y: 280.89722}
+    size: {x: 323.66284, y: 323.66284}
+    rotation: -1.5241698
+    scale: 0.75
+    sortingOrder: 29
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_013_vehicle_02
+    definition: {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    position: {x: 244.03029, y: 258.42532}
+    size: {x: 333.05307, y: 333.05307}
+    rotation: -5.268569
+    scale: 0.75
+    sortingOrder: 10
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_014_vehicle_03
+    definition: {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    position: {x: 323.76062, y: 225.44716}
+    size: {x: 254.75679, y: 254.75679}
+    rotation: 0.2100122
+    scale: 0.75
+    sortingOrder: 4
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_015_vehicle_04
+    definition: {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+    position: {x: -216.19463, y: 156.4142}
+    size: {x: 322.44687, y: 322.44687}
+    rotation: -2.3584442
+    scale: 0.75
+    sortingOrder: 11
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_016_food_01
+    definition: {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    position: {x: -54.247505, y: -157.99213}
+    size: {x: 264.95825, y: 264.95825}
+    rotation: -7.41666
+    scale: 0.75
+    sortingOrder: 13
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_017_food_02
+    definition: {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    position: {x: -175.56609, y: -242.104}
+    size: {x: 309.02182, y: 309.02182}
+    rotation: 10.448453
+    scale: 0.75
+    sortingOrder: 21
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_018_food_03
+    definition: {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    position: {x: 56.897087, y: 243.97456}
+    size: {x: 306.92148, y: 306.92148}
+    rotation: 1.5656648
+    scale: 0.75
+    sortingOrder: 25
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_019_food_04
+    definition: {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+    position: {x: 311.22638, y: -276.03503}
+    size: {x: 252.22371, y: 252.22371}
+    rotation: 3.702776
+    scale: 0.75
+    sortingOrder: 6
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_020_animal_01
+    definition: {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    position: {x: 68.86155, y: 161.3056}
+    size: {x: 263.65265, y: 263.65265}
+    rotation: 5.0223055
+    scale: 0.75
+    sortingOrder: 2
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_021_animal_02
+    definition: {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    position: {x: 9.154807, y: -191.83234}
+    size: {x: 309.77557, y: 309.77557}
+    rotation: -8.996952
+    scale: 0.75
+    sortingOrder: 1
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_022_animal_03
+    definition: {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    position: {x: 45.870163, y: -245.77309}
+    size: {x: 279.7023, y: 279.7023}
+    rotation: 14.467247
+    scale: 0.75
+    sortingOrder: 7
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_023_animal_04
+    definition: {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+    position: {x: 268.64825, y: -264.80634}
+    size: {x: 363.20047, y: 363.20047}
+    rotation: 0.62807333
+    scale: 0.75
+    sortingOrder: 40
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_024_plant_01
+    definition: {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    position: {x: 110.11276, y: -244.59352}
+    size: {x: 279.47305, y: 279.47305}
+    rotation: 4.234783
+    scale: 0.75
+    sortingOrder: 20
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_025_plant_02
+    definition: {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    position: {x: -40.309254, y: 246.72166}
+    size: {x: 276.0718, y: 276.0718}
+    rotation: -8.827109
+    scale: 0.75
+    sortingOrder: 17
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_026_plant_03
+    definition: {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    position: {x: -176.08575, y: 185.49289}
+    size: {x: 323.96725, y: 323.96725}
+    rotation: 3.2003973
+    scale: 0.75
+    sortingOrder: 39
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_027_plant_04
+    definition: {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+    position: {x: -303.29724, y: -248.51102}
+    size: {x: 258.96805, y: 258.96805}
+    rotation: -6.8412256
+    scale: 0.75
+    sortingOrder: 30
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_028_vehicle_01
+    definition: {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    position: {x: -71.21484, y: -292.1376}
+    size: {x: 294.74307, y: 294.74307}
+    rotation: 0.867355
+    scale: 0.75
+    sortingOrder: 5
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_029_vehicle_02
+    definition: {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    position: {x: -232.22043, y: -261.70154}
+    size: {x: 365.362, y: 365.362}
+    rotation: -2.606481
+    scale: 0.75
+    sortingOrder: 24
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_030_vehicle_03
+    definition: {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    position: {x: 208.36241, y: -161.60583}
+    size: {x: 282.65784, y: 282.65784}
+    rotation: 0.45638824
+    scale: 0.75
+    sortingOrder: 26
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_031_vehicle_04
+    definition: {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+    position: {x: -157.49393, y: -155.73145}
+    size: {x: 310.99042, y: 310.99042}
+    rotation: 3.919375
+    scale: 0.75
+    sortingOrder: 16
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_032_food_01
+    definition: {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    position: {x: 70.84124, y: 241.61617}
+    size: {x: 257.45963, y: 257.45963}
+    rotation: -17.590143
+    scale: 0.75
+    sortingOrder: 23
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_033_food_02
+    definition: {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    position: {x: -279.43005, y: -265.03705}
+    size: {x: 266.9893, y: 266.9893}
+    rotation: 5.779098
+    scale: 0.75
+    sortingOrder: 14
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_034_food_03
+    definition: {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    position: {x: -291.98492, y: 251.45633}
+    size: {x: 299.3005, y: 299.3005}
+    rotation: -0.33058852
+    scale: 0.75
+    sortingOrder: 12
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_035_food_04
+    definition: {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+    position: {x: -28.95018, y: 175.99}
+    size: {x: 331.2819, y: 331.2819}
+    rotation: -3.0231557
+    scale: 0.75
+    sortingOrder: 22
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_036_animal_01
+    definition: {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    position: {x: -111.91244, y: -201.54262}
+    size: {x: 280.14154, y: 280.14154}
+    rotation: -29.036076
+    scale: 0.75
+    sortingOrder: 31
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_037_animal_02
+    definition: {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    position: {x: -309.80957, y: 247.73688}
+    size: {x: 289.59024, y: 289.59024}
+    rotation: 1.6797849
+    scale: 0.75
+    sortingOrder: 9
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_038_animal_03
+    definition: {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    position: {x: 254.91562, y: -196.61768}
+    size: {x: 302.64404, y: 302.64404}
+    rotation: 18.581558
+    scale: 0.75
+    sortingOrder: 8
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_12_Rows2_039_animal_04
+    definition: {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+    position: {x: -99.855965, y: 289.56497}
+    size: {x: 276.37073, y: 276.37073}
+    rotation: -2.0012338
+    scale: 0.75
+    sortingOrder: 3
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  piles:
+  - id: tray_0
+    position: {x: 0, y: 210}
+    size: {x: 890, y: 380}
+    rotation: 0
+    color: {r: 0.7764706, g: 0.5058824, b: 0.18039216, a: 1}
+  - id: tray_1
+    position: {x: 0, y: -210}
+    size: {x: 890, y: 380}
+    rotation: 0
+    color: {r: 0.7764706, g: 0.5058824, b: 0.18039216, a: 1}
+  solutionTrace:
+  - Level_12_Rows2_023_animal_04
+  - Level_12_Rows2_026_plant_03
+  - Level_12_Rows2_008_plant_01
+  - Level_12_Rows2_009_plant_02
+  - Level_12_Rows2_005_animal_02
+  - Level_12_Rows2_001_food_02
+  - Level_12_Rows2_002_food_03
+  - Level_12_Rows2_006_animal_03
+  - Level_12_Rows2_000_food_01
+  - Level_12_Rows2_036_animal_01
+  - Level_12_Rows2_027_plant_04
+  - Level_12_Rows2_012_vehicle_01
+  - Level_12_Rows2_003_food_04
+  - Level_12_Rows2_007_animal_04
+  - Level_12_Rows2_030_vehicle_03
+  - Level_12_Rows2_018_food_03
+  - Level_12_Rows2_029_vehicle_02
+  - Level_12_Rows2_032_food_01
+  - Level_12_Rows2_035_food_04
+  - Level_12_Rows2_017_food_02
+  - Level_12_Rows2_024_plant_01
+  - Level_12_Rows2_004_animal_01
+  - Level_12_Rows2_011_plant_04
+  - Level_12_Rows2_025_plant_02
+  - Level_12_Rows2_031_vehicle_04
+  - Level_12_Rows2_010_plant_03
+  - Level_12_Rows2_033_food_02
+  - Level_12_Rows2_016_food_01
+  - Level_12_Rows2_034_food_03
+  - Level_12_Rows2_015_vehicle_04
+  - Level_12_Rows2_013_vehicle_02
+  - Level_12_Rows2_037_animal_02
+  - Level_12_Rows2_038_animal_03
+  - Level_12_Rows2_022_animal_03
+  - Level_12_Rows2_019_food_04
+  - Level_12_Rows2_028_vehicle_01
+  - Level_12_Rows2_014_vehicle_03
+  - Level_12_Rows2_039_animal_04
+  - Level_12_Rows2_020_animal_01
+  - Level_12_Rows2_021_animal_02

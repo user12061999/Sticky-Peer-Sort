@@ -19,6 +19,9 @@ MonoBehaviour:
   coinReward: 40
   difficulty: Planning
   tutorial: Remove the top stickers first. Covered stickers cannot be picked.
+  generatedStickerCount: 0
+  layoutSeed: 0
+  boardStickerSizeMultiplier: 1
   objectives:
   - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
     targetCount: 4

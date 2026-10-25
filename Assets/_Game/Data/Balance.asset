@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Balance
   m_EditorClassIdentifier: StickyPeerSort.Runtime::StickyPeerSort.GameBalanceConfig
   pressDuration: 0.045
-  peelDuration: 0.085
+  peelDuration: 0.16
   travelDuration: 0.24
+  pagePeel: 1
+  pagePeelMaterial: {fileID: 2100000, guid: 5f807f9ec6159fe40a0e0b6274538077, type: 2}
+  stickDuration: 0.14
   clickFailDuration: 0.16
   clickFailDistance: 9
   categoryDuration: 0.24

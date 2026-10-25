@@ -89,7 +89,7 @@ namespace StickyPeerSort
             SetState(GameplayState.CheckingResult);
             bool win = Buffer.Count == 0 && Categories.TrueForAll(c => c.Complete) && Stickers.TrueForAll(x => x.location == StickerLocation.Collected);
             if (win) { Events.Add(new PuzzleEvent(PuzzleEventKind.Win)); SetState(GameplayState.Win); }
-            else if (Level.failOnOverflow && Buffer.Count > Capacity) { Events.Add(new PuzzleEvent(PuzzleEventKind.Fail)); SetState(GameplayState.Fail); }
+            else if (Level.failOnOverflow && Buffer.Count >= Capacity) { Events.Add(new PuzzleEvent(PuzzleEventKind.Fail)); SetState(GameplayState.Fail); }
             else SetState(GameplayState.Playing);
             return true;
         }

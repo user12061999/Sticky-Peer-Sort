@@ -9,10 +9,12 @@ namespace StickyPeerSort
     }
     public sealed class SaveService : IProgressStore
     {
-        const string Key = "StickyPeerSort.Save.v1";
+        const string DefaultKey = "StickyPeerSort.Save.v1";
+        readonly string Key;
         public SaveData Data { get; private set; }
-        public SaveService(int startingBoosters = 10)
+        public SaveService(int startingBoosters = 10, string key = null)
         {
+            Key = string.IsNullOrEmpty(key) ? DefaultKey : key;
             bool fresh = !PlayerPrefs.HasKey(Key) || string.IsNullOrEmpty(PlayerPrefs.GetString(Key));
             Data = Decode(PlayerPrefs.GetString(Key, ""));
             if (fresh) Data.undo = Data.hint = Data.extraSlot = Data.shuffle = Mathf.Max(0, startingBoosters);

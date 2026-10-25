@@ -1,0 +1,1105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68e389f2ea0404479ff4e8be1aff4af, type: 3}
+  m_Name: Level_62_Pile1
+  m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.LevelDefinition
+  levelNumber: 62
+  activeCategoryCount: 3
+  bufferCapacity: 5
+  failOnOverflow: 1
+  coinReward: 0
+  difficulty: Special pile
+  tutorial: Clear FOOD for the key. Reveal ? by removing its cover.
+  generatedStickerCount: 64
+  layoutSeed: 9513
+  boardStickerSizeMultiplier: 0.75
+  objectives:
+  - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    - {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    - {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    - {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+  - category: {fileID: 11400000, guid: 9ef2c9fd403efa24aa48f168c2be209c, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    - {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    - {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    - {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+  - category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    - {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    - {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    - {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+  - category: {fileID: 11400000, guid: 41418998f18eb1e4d8032af8bfad3d2f, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    - {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    - {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    - {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+  - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    - {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    - {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    - {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+  - category: {fileID: 11400000, guid: 9ef2c9fd403efa24aa48f168c2be209c, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    - {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    - {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    - {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+  - category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    - {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    - {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    - {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+  - category: {fileID: 11400000, guid: 41418998f18eb1e4d8032af8bfad3d2f, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    - {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    - {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    - {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+  - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    - {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    - {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    - {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+  - category: {fileID: 11400000, guid: 9ef2c9fd403efa24aa48f168c2be209c, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    - {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    - {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    - {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+  - category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    - {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    - {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    - {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+  - category: {fileID: 11400000, guid: 41418998f18eb1e4d8032af8bfad3d2f, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    - {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    - {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    - {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+  - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    - {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    - {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    - {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+  - category: {fileID: 11400000, guid: 9ef2c9fd403efa24aa48f168c2be209c, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    - {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    - {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    - {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+  - category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    - {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    - {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    - {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+  - category: {fileID: 11400000, guid: 41418998f18eb1e4d8032af8bfad3d2f, type: 2}
+    targetCount: 4
+    exactTargets:
+    - {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    - {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    - {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    - {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+  stickers:
+  - instanceId: Level_62_Pile1_000_food_01
+    definition: {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    position: {x: -264.14548, y: 187.76903}
+    size: {x: 242.0235, y: 242.0235}
+    rotation: -1.5531573
+    scale: 0.75
+    sortingOrder: 12
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_001_food_02
+    definition: {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    position: {x: -277.77005, y: -157.15468}
+    size: {x: 208.96268, y: 208.96268}
+    rotation: -2.2330315
+    scale: 0.75
+    sortingOrder: 33
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_002_food_03
+    definition: {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    position: {x: -281.9657, y: 295.04605}
+    size: {x: 198.06702, y: 198.06702}
+    rotation: -3.8592777
+    scale: 0.75
+    sortingOrder: 49
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_003_food_04
+    definition: {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+    position: {x: -71.405, y: -288.35825}
+    size: {x: 221.10367, y: 221.10367}
+    rotation: -7.3808393
+    scale: 0.75
+    sortingOrder: 26
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_004_animal_01
+    definition: {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    position: {x: -143.12535, y: 284.8968}
+    size: {x: 221.3601, y: 221.3601}
+    rotation: 3.7751448
+    scale: 0.75
+    sortingOrder: 5
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_005_animal_02
+    definition: {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    position: {x: 61.9592, y: -290.06638}
+    size: {x: 203.60492, y: 203.60492}
+    rotation: 1.490738
+    scale: 0.75
+    sortingOrder: 17
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_006_animal_03
+    definition: {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    position: {x: 120.45377, y: -78.228455}
+    size: {x: 253.01816, y: 253.01816}
+    rotation: 34.67147
+    scale: 0.75
+    sortingOrder: 2
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_007_animal_04
+    definition: {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+    position: {x: 237.24553, y: 310.6473}
+    size: {x: 218.67625, y: 218.67625}
+    rotation: -3.7851968
+    scale: 0.75
+    sortingOrder: 31
+    pileId: tray_0
+    special:
+      kind: 1
+      unlockCondition: 1
+      dependencyId: food
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_008_plant_01
+    definition: {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    position: {x: 271.94736, y: -284.56897}
+    size: {x: 231.80804, y: 231.80804}
+    rotation: 0.85465276
+    scale: 0.75
+    sortingOrder: 62
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_009_plant_02
+    definition: {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    position: {x: -107.247734, y: 139.71138}
+    size: {x: 236.75313, y: 236.75313}
+    rotation: -3.0850136
+    scale: 0.75
+    sortingOrder: 28
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_010_plant_03
+    definition: {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    position: {x: -252.35205, y: -281.41656}
+    size: {x: 208.24597, y: 208.24597}
+    rotation: 11.118692
+    scale: 0.75
+    sortingOrder: 60
+    pileId: tray_0
+    special:
+      kind: 4
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_011_plant_04
+    definition: {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+    position: {x: -86.75057, y: 286.8346}
+    size: {x: 221.21829, y: 221.21829}
+    rotation: -8.412111
+    scale: 0.75
+    sortingOrder: 39
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_012_vehicle_01
+    definition: {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    position: {x: 46.70596, y: 306.49078}
+    size: {x: 262.35364, y: 262.35364}
+    rotation: -1.0235827
+    scale: 0.75
+    sortingOrder: 54
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_013_vehicle_02
+    definition: {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    position: {x: -260.33368, y: 24.670122}
+    size: {x: 242.743, y: 242.743}
+    rotation: -4.998511
+    scale: 0.75
+    sortingOrder: 55
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_014_vehicle_03
+    definition: {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    position: {x: -141.92607, y: -269.31454}
+    size: {x: 248.39905, y: 248.39905}
+    rotation: -5.935151
+    scale: 0.75
+    sortingOrder: 3
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_015_vehicle_04
+    definition: {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+    position: {x: 232.23262, y: 198.58783}
+    size: {x: 256.9499, y: 256.9499}
+    rotation: 8.186775
+    scale: 0.75
+    sortingOrder: 35
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_016_food_01
+    definition: {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    position: {x: -265.8877, y: -136.91124}
+    size: {x: 226.80151, y: 226.80151}
+    rotation: -4.999426
+    scale: 0.75
+    sortingOrder: 59
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_017_food_02
+    definition: {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    position: {x: 266.62897, y: -17.8995}
+    size: {x: 209.14667, y: 209.14667}
+    rotation: 11.699258
+    scale: 0.75
+    sortingOrder: 10
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_018_food_03
+    definition: {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    position: {x: 236.71463, y: 79.1253}
+    size: {x: 229.46973, y: 229.46973}
+    rotation: -32.48149
+    scale: 0.75
+    sortingOrder: 61
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_019_food_04
+    definition: {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+    position: {x: 218.79626, y: -293.45242}
+    size: {x: 232.79161, y: 232.79161}
+    rotation: -1.0611305
+    scale: 0.75
+    sortingOrder: 48
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_020_animal_01
+    definition: {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    position: {x: 144.40086, y: -234.1385}
+    size: {x: 211.26807, y: 211.26807}
+    rotation: -37.853195
+    scale: 0.75
+    sortingOrder: 27
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_021_animal_02
+    definition: {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    position: {x: -264.36142, y: -100.23124}
+    size: {x: 247.44344, y: 247.44344}
+    rotation: 5.8470893
+    scale: 0.75
+    sortingOrder: 51
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_022_animal_03
+    definition: {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    position: {x: -79.397575, y: 250.78896}
+    size: {x: 246.36719, y: 246.36719}
+    rotation: 29.189045
+    scale: 0.75
+    sortingOrder: 34
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_023_animal_04
+    definition: {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+    position: {x: 266.0943, y: 170.56226}
+    size: {x: 236.49333, y: 236.49333}
+    rotation: -2.315437
+    scale: 0.75
+    sortingOrder: 37
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_024_plant_01
+    definition: {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    position: {x: 91.06493, y: -259.47052}
+    size: {x: 226.07393, y: 226.07393}
+    rotation: 22.821323
+    scale: 0.75
+    sortingOrder: 24
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_025_plant_02
+    definition: {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    position: {x: 123.30307, y: -32.004383}
+    size: {x: 219.85631, y: 219.85631}
+    rotation: 2.7176561
+    scale: 0.75
+    sortingOrder: 63
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_026_plant_03
+    definition: {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    position: {x: -141.45454, y: 264.72415}
+    size: {x: 255.82512, y: 255.82512}
+    rotation: -6.4712896
+    scale: 0.75
+    sortingOrder: 11
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_027_plant_04
+    definition: {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+    position: {x: -258.64688, y: 243.60663}
+    size: {x: 258.9318, y: 258.9318}
+    rotation: 0.44264543
+    scale: 0.75
+    sortingOrder: 23
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_028_vehicle_01
+    definition: {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    position: {x: -45.81103, y: 26.34069}
+    size: {x: 277.77878, y: 277.77878}
+    rotation: 23.16714
+    scale: 0.75
+    sortingOrder: 7
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_029_vehicle_02
+    definition: {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    position: {x: 71.243484, y: -306.92834}
+    size: {x: 232.00288, y: 232.00288}
+    rotation: -4.7642703
+    scale: 0.75
+    sortingOrder: 18
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_030_vehicle_03
+    definition: {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    position: {x: -37.73681, y: -134.49272}
+    size: {x: 195.24448, y: 195.24448}
+    rotation: 8.65017
+    scale: 0.75
+    sortingOrder: 20
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_031_vehicle_04
+    definition: {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+    position: {x: -167.16772, y: -231.49188}
+    size: {x: 269.16608, y: 269.16608}
+    rotation: 40.8455
+    scale: 0.75
+    sortingOrder: 4
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_032_food_01
+    definition: {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    position: {x: 63.116245, y: -232.42384}
+    size: {x: 211.73714, y: 211.73714}
+    rotation: -42.95966
+    scale: 0.75
+    sortingOrder: 50
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_033_food_02
+    definition: {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    position: {x: -223.13943, y: 102.923225}
+    size: {x: 214.03409, y: 214.03409}
+    rotation: -29.424759
+    scale: 0.75
+    sortingOrder: 46
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_034_food_03
+    definition: {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    position: {x: 277.9618, y: 285.8234}
+    size: {x: 195.08174, y: 195.08174}
+    rotation: 7.9596314
+    scale: 0.75
+    sortingOrder: 6
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_035_food_04
+    definition: {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+    position: {x: -238.277, y: -42.84223}
+    size: {x: 257.90344, y: 257.90344}
+    rotation: -14.665126
+    scale: 0.75
+    sortingOrder: 44
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_036_animal_01
+    definition: {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    position: {x: -272.65784, y: 108.262184}
+    size: {x: 243.32266, y: 243.32266}
+    rotation: -0.5688347
+    scale: 0.75
+    sortingOrder: 47
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_037_animal_02
+    definition: {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    position: {x: 261.16098, y: -268.07706}
+    size: {x: 239.63351, y: 239.63351}
+    rotation: 10.075526
+    scale: 0.75
+    sortingOrder: 45
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_038_animal_03
+    definition: {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    position: {x: -261.10367, y: -283.21796}
+    size: {x: 252.36237, y: 252.36237}
+    rotation: -0.6619921
+    scale: 0.75
+    sortingOrder: 30
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_039_animal_04
+    definition: {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+    position: {x: -249.55156, y: -72.366585}
+    size: {x: 275.80365, y: 275.80365}
+    rotation: 1.7397642
+    scale: 0.75
+    sortingOrder: 52
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_040_plant_01
+    definition: {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    position: {x: -290.4705, y: -283.65945}
+    size: {x: 188.99039, y: 188.99039}
+    rotation: 0.55885184
+    scale: 0.75
+    sortingOrder: 38
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_041_plant_02
+    definition: {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    position: {x: -17.04406, y: 296.9471}
+    size: {x: 198.6533, y: 198.6533}
+    rotation: -2.3946235
+    scale: 0.75
+    sortingOrder: 36
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_042_plant_03
+    definition: {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    position: {x: 203.90189, y: 4.619001}
+    size: {x: 235.31918, y: 235.31918}
+    rotation: 25.726822
+    scale: 0.75
+    sortingOrder: 40
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_043_plant_04
+    definition: {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+    position: {x: -184.50955, y: 287.53033}
+    size: {x: 236.64978, y: 236.64978}
+    rotation: 1.4182256
+    scale: 0.75
+    sortingOrder: 57
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_044_vehicle_01
+    definition: {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    position: {x: 237.53967, y: 90.03317}
+    size: {x: 293.26852, y: 293.26852}
+    rotation: -5.179287
+    scale: 0.75
+    sortingOrder: 42
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_045_vehicle_02
+    definition: {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    position: {x: 240.49115, y: -51.913895}
+    size: {x: 292.9595, y: 292.9595}
+    rotation: 2.9514122
+    scale: 0.75
+    sortingOrder: 29
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_046_vehicle_03
+    definition: {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    position: {x: 254.48312, y: -106.39023}
+    size: {x: 240.10735, y: 240.10735}
+    rotation: 12.885282
+    scale: 0.75
+    sortingOrder: 41
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_047_vehicle_04
+    definition: {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+    position: {x: -182.51987, y: 309.1136}
+    size: {x: 213.77348, y: 213.77348}
+    rotation: -1.523752
+    scale: 0.75
+    sortingOrder: 53
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_048_food_01
+    definition: {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    position: {x: 275.08884, y: -50.728752}
+    size: {x: 213.55806, y: 213.55806}
+    rotation: -2.6471174
+    scale: 0.75
+    sortingOrder: 32
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_049_food_02
+    definition: {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    position: {x: -160.12018, y: -269.38007}
+    size: {x: 238.97484, y: 238.97484}
+    rotation: 17.064299
+    scale: 0.75
+    sortingOrder: 58
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_050_food_03
+    definition: {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    position: {x: 258.83154, y: 197.9224}
+    size: {x: 248.33942, y: 248.33942}
+    rotation: -4.3190517
+    scale: 0.75
+    sortingOrder: 22
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_051_food_04
+    definition: {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+    position: {x: 91.29517, y: 253.11646}
+    size: {x: 244.90572, y: 244.90572}
+    rotation: -27.339018
+    scale: 0.75
+    sortingOrder: 19
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_052_animal_01
+    definition: {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    position: {x: 180.55879, y: -267.7157}
+    size: {x: 207.24666, y: 207.24666}
+    rotation: -29.197853
+    scale: 0.75
+    sortingOrder: 56
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_053_animal_02
+    definition: {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    position: {x: -269.0919, y: 121.53814}
+    size: {x: 259.65247, y: 259.65247}
+    rotation: 0.43224478
+    scale: 0.75
+    sortingOrder: 15
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_054_animal_03
+    definition: {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    position: {x: -158.99837, y: -281.41656}
+    size: {x: 234.85205, y: 234.85205}
+    rotation: -9.562387
+    scale: 0.75
+    sortingOrder: 64
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_055_animal_04
+    definition: {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+    position: {x: 254.49797, y: -265.66113}
+    size: {x: 218.45685, y: 218.45685}
+    rotation: 33.738174
+    scale: 0.75
+    sortingOrder: 16
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_056_plant_01
+    definition: {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    position: {x: -103.99079, y: -80.8841}
+    size: {x: 187.6014, y: 187.6014}
+    rotation: 37.28316
+    scale: 0.75
+    sortingOrder: 13
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_057_plant_02
+    definition: {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    position: {x: -40.655003, y: -287.77057}
+    size: {x: 220.98021, y: 220.98021}
+    rotation: -0.47101527
+    scale: 0.75
+    sortingOrder: 8
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_058_plant_03
+    definition: {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    position: {x: 283.96295, y: -294.99478}
+    size: {x: 201.12991, y: 201.12991}
+    rotation: 2.9609156
+    scale: 0.75
+    sortingOrder: 25
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_059_plant_04
+    definition: {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+    position: {x: 267.9287, y: -183.41508}
+    size: {x: 238.4101, y: 238.4101}
+    rotation: 0.15631735
+    scale: 0.75
+    sortingOrder: 9
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_060_vehicle_01
+    definition: {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    position: {x: -1.8540226, y: 279.07965}
+    size: {x: 258.94373, y: 258.94373}
+    rotation: -17.942055
+    scale: 0.75
+    sortingOrder: 21
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_061_vehicle_02
+    definition: {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    position: {x: 82.659996, y: 115.88429}
+    size: {x: 296.75565, y: 296.75565}
+    rotation: 0.20573199
+    scale: 0.75
+    sortingOrder: 1
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_062_vehicle_03
+    definition: {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    position: {x: -81.04873, y: -271.43823}
+    size: {x: 235.96799, y: 235.96799}
+    rotation: 8.562711
+    scale: 0.75
+    sortingOrder: 43
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_62_Pile1_063_vehicle_04
+    definition: {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+    position: {x: -60.693993, y: -2.9595554}
+    size: {x: 260.535, y: 260.535}
+    rotation: -36.801815
+    scale: 0.75
+    sortingOrder: 14
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  piles:
+  - id: tray_0
+    position: {x: 0, y: 0}
+    size: {x: 780, y: 810}
+    rotation: 0
+    color: {r: 0.7764706, g: 0.5058824, b: 0.18039216, a: 1}
+  solutionTrace:
+  - Level_62_Pile1_054_animal_03
+  - Level_62_Pile1_025_plant_02
+  - Level_62_Pile1_008_plant_01
+  - Level_62_Pile1_018_food_03
+  - Level_62_Pile1_010_plant_03
+  - Level_62_Pile1_016_food_01
+  - Level_62_Pile1_049_food_02
+  - Level_62_Pile1_043_plant_04
+  - Level_62_Pile1_052_animal_01
+  - Level_62_Pile1_013_vehicle_02
+  - Level_62_Pile1_012_vehicle_01
+  - Level_62_Pile1_047_vehicle_04
+  - Level_62_Pile1_039_animal_04
+  - Level_62_Pile1_021_animal_02
+  - Level_62_Pile1_032_food_01
+  - Level_62_Pile1_002_food_03
+  - Level_62_Pile1_019_food_04
+  - Level_62_Pile1_036_animal_01
+  - Level_62_Pile1_033_food_02
+  - Level_62_Pile1_037_animal_02
+  - Level_62_Pile1_035_food_04
+  - Level_62_Pile1_062_vehicle_03
+  - Level_62_Pile1_044_vehicle_01
+  - Level_62_Pile1_046_vehicle_03
+  - Level_62_Pile1_042_plant_03
+  - Level_62_Pile1_011_plant_04
+  - Level_62_Pile1_040_plant_01
+  - Level_62_Pile1_023_animal_04
+  - Level_62_Pile1_041_plant_02
+  - Level_62_Pile1_015_vehicle_04
+  - Level_62_Pile1_022_animal_03
+  - Level_62_Pile1_001_food_02
+  - Level_62_Pile1_048_food_01
+  - Level_62_Pile1_007_animal_04
+  - Level_62_Pile1_038_animal_03
+  - Level_62_Pile1_045_vehicle_02
+  - Level_62_Pile1_009_plant_02
+  - Level_62_Pile1_020_animal_01
+  - Level_62_Pile1_003_food_04
+  - Level_62_Pile1_058_plant_03
+  - Level_62_Pile1_024_plant_01
+  - Level_62_Pile1_027_plant_04
+  - Level_62_Pile1_050_food_03
+  - Level_62_Pile1_060_vehicle_01
+  - Level_62_Pile1_030_vehicle_03
+  - Level_62_Pile1_051_food_04
+  - Level_62_Pile1_029_vehicle_02
+  - Level_62_Pile1_005_animal_02
+  - Level_62_Pile1_055_animal_04
+  - Level_62_Pile1_053_animal_02
+  - Level_62_Pile1_063_vehicle_04
+  - Level_62_Pile1_056_plant_01
+  - Level_62_Pile1_000_food_01
+  - Level_62_Pile1_026_plant_03
+  - Level_62_Pile1_017_food_02
+  - Level_62_Pile1_059_plant_04
+  - Level_62_Pile1_057_plant_02
+  - Level_62_Pile1_028_vehicle_01
+  - Level_62_Pile1_034_food_03
+  - Level_62_Pile1_004_animal_01
+  - Level_62_Pile1_031_vehicle_04
+  - Level_62_Pile1_014_vehicle_03
+  - Level_62_Pile1_006_animal_03
+  - Level_62_Pile1_061_vehicle_02

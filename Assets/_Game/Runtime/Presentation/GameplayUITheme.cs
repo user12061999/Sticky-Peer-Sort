@@ -22,8 +22,11 @@ namespace StickyPeerSort
         public Sprite coinIcon, settingsIcon, starIcon, failIcon, collectionIcon;
         public Sprite undoIcon, hintIcon, extraIcon, shuffleIcon;
         public Sprite keyIcon, lockIcon;
+        [Header("Reference composition (opt-in for sample scene)")]
+        public bool referenceComposition;
+        public Sprite woodSurface;
         [Header("Covered stickers")]
-        [Range(0, .8f)] public float coveredOpacity = .46f;
+        [Range(0, .8f)] public float coveredOpacity = .68f;
         [Range(0, 4)] public float coveredSoftness = 1.5f;
         public Color background = new Color(.91f, .95f, 1);
         public Color ink = new Color(.15f, .21f, .34f);

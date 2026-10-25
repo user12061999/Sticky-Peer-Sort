@@ -19,6 +19,7 @@ namespace StickyPeerSort
         Image lockIcon;
         public RectTransform LockIconRect => lockIcon != null ? lockIcon.rectTransform : null;
         Image coveredShade;
+        Image specialBadgePlate;
         public bool IsCoveredShadeVisible => coveredShade != null && coveredShade.gameObject.activeSelf;
         public void SetCovered(bool covered)
         {
@@ -83,13 +84,24 @@ namespace StickyPeerSort
             badge.rectTransform.anchoredPosition = new Vector2(0, -s.placement.size.y * .31f);
             badge.rectTransform.sizeDelta = new Vector2(s.placement.size.x * .95f, 32);
             badge.fontSize = locked ? 12 : 17;
+            bool referenceStyle = screen != null && screen.theme != null && screen.theme.referenceComposition;
+            bool specialBadge = referenceStyle && ((s.placement.special.kind == SpecialKind.Frozen && s.ice > 0) || s.placement.special.kind == SpecialKind.Linked);
+            if (specialBadge && specialBadgePlate == null)
+                specialBadgePlate = UIFactory.Panel("Special badge plate", transform, new Vector2(116, 34), Vector2.zero, Color.white, screen.panelSprite);
+            if (specialBadgePlate != null) specialBadgePlate.gameObject.SetActive(specialBadge);
+            if (specialBadge)
+            {
+                specialBadgePlate.color = s.placement.special.kind == SpecialKind.Frozen ? new Color(.06f, .48f, .78f) : new Color(.55f, .16f, .7f);
+                specialBadgePlate.rectTransform.anchoredPosition = badge.rectTransform.anchoredPosition;
+                badge.color = Color.white; badge.fontSize = 20; badge.transform.SetAsLastSibling(); screen.theme.ApplyTextStyle(badge);
+            }
             if (s.placement.special.kind == SpecialKind.Frozen && s.ice > 0) image.color = Color.Lerp(d.tint, new Color(.4f, .86f, 1), .65f);
             if (mystery)
             {
                 image.sprite = d.ArtworkSprite;
                 image.type = Image.Type.Simple;
                 image.preserveAspect = true;
-                image.color = new Color(.12f, .16f, .28f);
+                image.color = referenceStyle ? new Color(.56f, .16f, .85f) : new Color(.12f, .16f, .28f);
                 title.transform.SetAsLastSibling();
             }
             if (locked)

@@ -19,6 +19,9 @@ MonoBehaviour:
   coinReward: 70
   difficulty: Challenge
   tutorial: Hidden ? stickers reveal when uncovered. Clear the KEY set to unlock.
+  generatedStickerCount: 0
+  layoutSeed: 0
+  boardStickerSizeMultiplier: 1
   objectives:
   - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
     targetCount: 4

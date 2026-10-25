@@ -59,7 +59,7 @@ namespace StickyPeerSort
                     levelIndex < levels.Count - 1 ? "NEXT LEVEL" : "PLAY AGAIN", () => LoadLevel(levelIndex < levels.Count - 1 ? levelIndex + 1 : 0), "RETRY", () => LoadLevel(levelIndex));
             }
             else if (Session.State == GameplayState.Fail)
-                screen.ShowModal("TRAY OVERFLOW!", Session.Buffer.Count + " stickers need waiting space, but the tray has only " + Session.Capacity + " slots.\nUndo the last move or retry.", "RETRY", () => LoadLevel(levelIndex), "UNDO", UndoFromFail);
+                screen.ShowModal("TRAY FULL!", "All " + Session.Capacity + " waiting slots are occupied (" + Session.Buffer.Count + " / " + Session.Capacity + ").\nUndo the last move or retry.", "RETRY", () => LoadLevel(levelIndex), "UNDO", UndoFromFail);
         }
         void UndoFromFail()
         {

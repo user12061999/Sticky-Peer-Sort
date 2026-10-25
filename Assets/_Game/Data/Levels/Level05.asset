@@ -19,6 +19,9 @@ MonoBehaviour:
   coinReward: 45
   difficulty: Learning
   tutorial: 'Plan ahead: only four stickers fit in the waiting tray.'
+  generatedStickerCount: 0
+  layoutSeed: 0
+  boardStickerSizeMultiplier: 1
   objectives:
   - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
     targetCount: 4

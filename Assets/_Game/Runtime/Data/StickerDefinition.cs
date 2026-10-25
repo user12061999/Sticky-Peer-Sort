@@ -11,6 +11,8 @@ namespace StickyPeerSort
         [Tooltip("Assign any transparent PNG/Texture2D. Its alpha defines the sticker silhouette; no basic shape template is needed.")]
         public Texture2D texture;
         public Sprite sprite;
+        [Tooltip("Optional flat album silhouette, generated independently from the artwork alpha.")]
+        public Sprite targetSilhouette;
         public bool preserveAspect = true;
         [Range(.01f, 1)] public float alphaThreshold = .15f;
         [Range(32, 512)] public int alphaMaskResolution = 256;

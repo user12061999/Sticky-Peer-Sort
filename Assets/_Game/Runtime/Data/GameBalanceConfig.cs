@@ -7,6 +7,10 @@ namespace StickyPeerSort
         public float pressDuration = .045f;
         public float peelDuration = .085f;
         public float travelDuration = .24f;
+        [Header("Sticker page peel")]
+        public bool pagePeel = true;
+        public Material pagePeelMaterial;
+        [Min(0)] public float stickDuration = .14f;
         public float clickFailDuration = .16f;
         public float clickFailDistance = 9;
         public float categoryDuration = .24f;

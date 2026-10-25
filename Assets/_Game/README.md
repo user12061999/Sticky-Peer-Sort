@@ -1,8 +1,16 @@
 # Sticky Peer Sort prototype
 
+## Scene mẫu theo reference
+
+Bốn mẫu hiện dùng **32 / 40 / 48 / 64 sticker**, tương ứng **8 / 10 / 12 / 16 bộ**, xếp chồng ngẫu nhiên và trộn category. Trong asset level mẫu, chỉnh **Generated Sticker Count** (bội số 4) và **Layout Seed**, rồi chạy **Tools > Sticker Category Game > Fill Current Scene Trays with Dense Sticker Piles** để tạo lại. Menu này thay nội dung mẫu và kiểm tra đường thắng trước khi lưu; các level chính được giữ riêng.
+
+Mở `Assets/_Game/Scenes/SampleStickerLevel.unity` để xem bốn bố cục **Grid4 / Rows2 / Mixed3 / Pile1**. Menu **Tools > Sticker Category Game > Reference Style > Generate Sample Scene and Four Levels** tạo lại view/prefab; **Level Preview** chọn từng mẫu để Play. Scene chính, level hiện có và tiến trình chính được giữ riêng. Tài liệu phân tích, cấu hình và ảnh so sánh nằm ở `Docs/ReferenceStyle/ArtStyleAnalysis.md` và `Docs/ReferenceStyle/LevelLayoutNotes.md`.
+
 ## Chạy game
 
-Mở `Assets/_Game/Scenes/StickerCategoryPrototype.unity`, nhấn **Play**. Game khởi đầu Level 1; nút **bánh răng > Continue Saved** mở level đã lưu. Nhấn sticker để thu vào category đang mở; sticker của category tương lai vào khay. Khay đầy vẫn được chơi, vượt dung lượng mới thua sau khi xử lý hết các chuyển tự động. Thu đủ mọi mục tiêu và hết khay để thắng.
+Hiệu ứng dán sticker: bóc cong mép tại chỗ → nhảy đến ô → trải phẳng theo chiều ngược lại. Cấu hình **Page Peel / Peel Duration / Stick Duration** trong Balance; xem `Docs/StickerPeel.md`. Cả scene chính và scene reference đã bật hiệu ứng.
+
+Mở `Assets/_Game/Scenes/StickerCategoryPrototype.unity`, nhấn **Play**. Game khởi đầu Level 1; nút **bánh răng > Continue Saved** mở level đã lưu. Nhấn sticker để thu vào category đang mở; sticker của category tương lai vào khay. Khay chờ đầy ô sẽ thua sau khi xử lý hết các chuyển tự động. Thu đủ mọi mục tiêu và hết khay để thắng.
 
 **Undo** hoàn tác một lượt, kể cả trạng thái ice/buffer/category. **Hint** dùng lời giải được bộ giải xác minh. **+ Slot** tăng một ô trong level hiện tại. **Mix** chỉ áp dụng khi bộ giải xác minh được cách hoàn thành bố cục mới. Các level mẫu không cần booster. Lưu thưởng một lần cho mỗi level, không nhận lại coin khi chơi lại.
 
@@ -10,9 +18,11 @@ Chỉ chọn được sticker **không bị sticker nào khác đè lên**, kể
 
 Sticker bị đè có lớp phủ đen với mép mềm theo alpha artwork để nhận biết trạng thái bị chặn. Lớp phủ nằm dưới chữ và icon khóa, không nhận raycast, không sửa texture gốc và không đổi geometry chọn sticker. Tự bỏ lớp phủ ngay khi không còn bị đè; Undo/Restart/Shuffle dựng lại đúng trạng thái. Chỉnh **Covered Opacity** và **Covered Softness** trong `UI/LayerLabTheme.asset`. Softness làm mềm mép lớp tối, không làm nhòe artwork gốc.
 
-**Logic thua:** sau khi xử lý xong các lượt tự chuyển vào category, nếu số sticker chờ **lớn hơn** dung lượng khay thì thua (mặc định 5/4). Đầy 4/4 vẫn tiếp tục lấy sticker khớp với bộ đang mở. UI báo khi chỉ còn một ô, đổi màu và hiện **TRAY FULL** khi đầy; sticker vượt dung lượng có ô viền đỏ tạm thời. Sau khi sticker tràn đáp xuống, hiển thị trạng thái tràn 0.24 giây rồi mở **TRAY OVERFLOW!** với Retry/Undo. Thua không cộng coin và khóa chọn sticker. Undo khôi phục trước lượt tràn; Retry tạo lại level.
+**Logic thua:** sau khi xử lý xong các lượt tự chuyển vào category, nếu số sticker chờ **bằng hoặc lớn hơn** dung lượng khay thì thua (4/4 hoặc 5/5 tùy level). Không cần lấy thêm sticker vượt khay. Lượt bấm tiếp bị khóa ngay; sticker cuối vẫn bay và dán xong, giữ trạng thái đầy 0.24 giây rồi mở **TRAY FULL!** với Retry/Undo. Thua không cộng coin. Undo trả lại trước lượt làm đầy khay; Retry tạo lại level. Cả 14 level đang bật **Fail When Buffer Is Full**.
 
-Level 1–2 là màn làm quen không thể tràn khay. Để xem thua mà không phải chơi qua hai màn đầu: nhấn **Play**, chọn **Tools > Sticker Category Game > Preview Lose - Level 3 (Play Mode)**. Công cụ chạy chuỗi chọn hợp lệ trên layout Level 3 thật để đạt 5/4; không thay level asset hoặc ép state Fail. Đợi tự chạy xong rồi thử Undo/Retry; tránh bấm xen giữa lúc preview chạy.
+Sticker trên board của bốn mẫu reference dùng **Board Sticker Size Multiplier = 0.75**: giảm 25% cả hình và alpha hitbox; category/ô chờ giữ nguyên kích thước. Giá trị này được giữ khi tạo lại bố cục mẫu. Level 3 chính đã có trace mới theo luật thua khi đầy; không đổi vị trí các sticker của level chính.
+
+Để xem thua trên scene chính mà không phải chơi qua hai màn đầu: nhấn **Play**, chọn **Tools > Sticker Category Game > Preview Lose - Level 3 (Play Mode)**. Công cụ chạy chuỗi chọn hợp lệ trên layout Level 3 thật và dừng khi khay đầy 4/4; không thay level asset hoặc ép state Fail. Đợi tự chạy xong rồi thử Undo/Retry; tránh bấm xen giữa lúc preview chạy. Menu này chỉ bật khi scene đang chơi có Level 3.
 
 Project dùng **Old Input Manager** (`activeInputHandler: 0`) và **StandaloneInputModule**. Sticker xử lý **PointerDown** để phản hồi ngay lúc nhấn. Các lượt thu bình thường cho phép nhiều sticker cùng bay; kết quả vào ô được commit theo thứ tự bấm. Chỉ tạm khóa thao tác khi hoàn tất/thay khay hoặc kết thúc level để giữ đúng chuỗi animation. Booster đợi các chuyến bay xong trước khi thay đổi bàn chơi. **Click Fail Duration / Distance** trong Balance chỉnh phản hồi bấm sai.
 
@@ -100,3 +110,5 @@ Mystery ở Level 9–10 được xếp lệch dưới một sticker để phầ
 Hoàn tất bộ có chìa khóa: ô cuối đáp xuống → giữ đủ số lượng và pulse → chìa khóa bay từ header đến khóa → icon khóa xoay, nâng và mờ đi → mặt khóa lật thành artwork → khay cũ rời đi và khay mới vào. Mystery tự lật khi được bỏ lớp che, đổi artwork ở giữa cú lật. Trong lúc mở khóa/lật, input tạm khóa để tránh lấy sticker trước khi hiệu ứng hoàn tất; các lượt bay thông thường vẫn nhận bấm liên tiếp.
 
 Chỉnh **Key Flight Duration** (0.45s), **Lock Open Duration** (0.28s), **Special Reveal Duration** (0.32s) trong `Assets/_Game/Data/Balance.asset`. Không cần Animator hoặc asset mới. Đổi level hủy hiệu ứng đang chạy; Undo sau lượt trả lại mặt khóa/bí ẩn theo snapshot.
+
+Per-level content controls and live Editor preview: see Docs/LevelAuthoring.md.

@@ -27,6 +27,7 @@ namespace StickyPeerSort.Tests
             fast.pressDuration = fast.peelDuration = fast.travelDuration = fast.categoryDuration = .001f;
             fast.categoryFilledHold = fast.categoryExitDuration = fast.categoryEnterDuration = .001f;
             fast.keyFlightDuration = fast.lockOpenDuration = fast.specialRevealDuration = .001f;
+            fast.stickDuration = .001f;
             Assert.AreEqual(GameplayState.Playing, controller.Session.State);
         }
         [UnityTearDown] public IEnumerator Cleanup()
@@ -147,6 +148,31 @@ namespace StickyPeerSort.Tests
             yield return WaitForAnimation(); controller.Undo();
             foreach (var pair in controller.ui.stickerViews) Assert.AreEqual(before[pair.Key], pair.Value.IsCoveredShadeVisible);
         }
+        [UnityTest] public IEnumerator StickerPeelsAtSourceAndFlattensAtLiveTargetBeforeLanding()
+        {
+            LoadFlatLevel(0); fast.peelDuration = .25f; fast.travelDuration = .12f; fast.stickDuration = .3f;
+            Vector3 start = controller.ui.stickerViews[0].Rect.position;
+            var target = controller.ui.categoryViews[0].targets[0].rectTransform;
+            controller.Tap(0); yield return null;
+            var ghost = controller.ui.effects.Find("Flying sticker 0"); Assert.IsNotNull(ghost);
+            var curl = ghost.GetComponent<StickerCurlMesh>(); Assert.IsNotNull(curl);
+            float deadline = Time.realtimeSinceStartup + 4;
+            while (curl.Amount < .1f && Time.realtimeSinceStartup < deadline) yield return null;
+            Assert.Greater(curl.Amount, .1f); Assert.Less(curl.Amount, 1);
+            Assert.Less(Vector3.Distance(start, ghost.position), .01f, "Peel must happen before the jump.");
+            Assert.AreEqual(0, controller.ui.categoryViews[0].FilledCount); Assert.IsTrue(controller.CanTap);
+            while ((Vector3.Distance(target.position, ghost.position) > .01f || curl.Amount >= .99f) && Time.realtimeSinceStartup < deadline) yield return null;
+            Assert.Greater(curl.Amount, 0); Assert.Less(curl.Amount, .99f);
+            Assert.AreEqual(0, controller.ui.categoryViews[0].FilledCount, "Do not commit the target while the sticker is still curved.");
+            // Keep tracking the live slot even if the layout moves during the reverse fold.
+            target.anchoredPosition += new Vector2(7, 0); yield return null;
+            Assert.Less(Vector3.Distance(target.position, ghost.position), .01f);
+            yield return WaitForAnimation(); Assert.AreEqual(1, controller.ui.categoryViews[0].FilledCount);
+            Assert.IsNull(controller.ui.effects.Find("Flying sticker 0"));
+            // Loading another level halfway through peeling must cancel and dispose the whole flight.
+            controller.LoadLevel(0); controller.Tap(0); yield return null; controller.LoadLevel(0); yield return null;
+            Assert.AreEqual(0, controller.ui.effects.childCount); Assert.IsFalse(controller.IsAnimating); Assert.IsTrue(controller.CanTap);
+        }
         [UnityTest] public IEnumerator LandingSoundWaitsForArrival()
         {
             var feedback = new LandingFeedback { controller = controller }; controller.Feedback = feedback;
@@ -178,7 +204,7 @@ namespace StickyPeerSort.Tests
             public void Play(PuzzleEventKind kind)
             {
                 if (kind != PuzzleEventKind.Buffered) return;
-                int index = 12 + arrivals++;
+                int index = 8 + arrivals++;
                 var ghost = controller.ui.effects.Find("Flying sticker " + index).GetComponent<UnityEngine.UI.Image>();
                 var waiting = controller.ui.waitingViews[index];
                 Assert.Less(Vector3.Distance(ghost.transform.position, waiting.transform.position), .01f, "Flight must track a recentered waiting slot.");
@@ -186,12 +212,13 @@ namespace StickyPeerSort.Tests
             }
             public void Haptic() { }
         }
-        [UnityTest] public IEnumerator ConcurrentBufferFlightsTrackSlotsWhenOverflowRecentersTray()
+        [UnityTest] public IEnumerator ConcurrentBufferFlightsStopAtFullTrayWithoutAnOverflowSlot()
         {
-            LoadFlatLevel(4); fast.travelDuration = .15f;
+            LoadFlatLevel(4, 2); fast.travelDuration = .15f;
             var feedback = new BufferLandingFeedback { controller = controller }; controller.Feedback = feedback;
-            foreach (int index in new[] { 12, 13, 14, 15, 16 }) controller.Tap(index);
-            yield return WaitForAnimation(); Assert.AreEqual(5, feedback.arrivals); Assert.AreEqual(GameplayState.Fail, controller.Session.State);
+            foreach (int index in new[] { 8, 9, 10, 11, 12 }) { Assert.IsFalse(controller.Session.HasTarget(index)); controller.Tap(index); }
+            yield return WaitForAnimation(); Assert.AreEqual(4, feedback.arrivals); Assert.AreEqual(GameplayState.Fail, controller.Session.State);
+            Assert.AreEqual(4, controller.ui.waitingViews.Count); Assert.AreEqual(StickerLocation.Board, controller.Session.Stickers[12].location);
         }
         [UnityTest] public IEnumerator MutingStopsAudioAndRestoresPreference()
         {
@@ -238,19 +265,27 @@ namespace StickyPeerSort.Tests
             }
             Assert.Fail("Sticker has no visible test point: " + index); return Vector2.zero;
         }
-        void LoadFlatLevel(int index)
+        void LoadFlatLevel(int index, int activeCategoryCount = -1)
         {
             // These fixtures isolate transition/buffer rules from the separately tested pile layout.
             var fixture = Object.Instantiate(controller.levels[index]); fixtures.Add(fixture); fixture.piles.Clear();
+            if (activeCategoryCount > 0) fixture.activeCategoryCount = activeCategoryCount;
+            Vector2 spacing = new Vector2(210, 170);
+            foreach (var placement in fixture.stickers)
+            {
+                spacing.x = Mathf.Max(spacing.x, placement.size.x * placement.scale + 24);
+                spacing.y = Mathf.Max(spacing.y, placement.size.y * placement.scale + 24);
+            }
             for (int i = 0; i < fixture.stickers.Count; i++)
             {
-                var p = fixture.stickers[i]; p.position = new Vector2((i % 4 - 1.5f) * 210, (i / 4 - 2) * 170); p.rotation = 0;
+                var p = fixture.stickers[i]; p.position = new Vector2((i % 4 - 1.5f) * spacing.x, (i / 4 - 2) * spacing.y); p.rotation = 0;
             }
             controller.levels[index] = fixture; controller.LoadLevel(index);
         }
         [UnityTest] public IEnumerator FinalSlotRendersBeforeExitAndNewCardEntersBeforeBufferFlights()
         {
             LoadFlatLevel(2);
+            controller.levels[2].bufferCapacity = 5; controller.LoadLevel(2); // Isolate transitions from the full-tray lose rule.
             foreach (int i in new[] { 8, 9, 10, 11, 0, 1, 2 }) { controller.Tap(i); yield return WaitForAnimation(); }
             Assert.AreEqual(4, controller.ui.waitingViews.Count);
             int oldLane = controller.ui.categoryViews[0].lane;
@@ -334,44 +369,45 @@ namespace StickyPeerSort.Tests
             controller.LoadLevel(0); controller.ui.restart.onClick.Invoke(); Assert.AreEqual(GameplayState.Paused, controller.Session.State);
             controller.ui.primary.onClick.Invoke(); Assert.AreEqual(GameplayState.Playing, controller.Session.State); Assert.AreEqual(8, controller.ui.stickerViews.Count);
         }
-        [UnityTest] public IEnumerator OverflowShowsFailureUndoRecoversAndRetryResets()
+        [UnityTest] public IEnumerator FullTrayShowsFailureUndoRecoversAndRetryResets()
         {
-            LoadFlatLevel(4);
-            foreach (int i in new[] { 12, 13, 14, 15, 16 }) { controller.Tap(i); yield return WaitForAnimation(); }
+            LoadFlatLevel(4, 2);
+            foreach (int i in new[] { 8, 9, 10, 11 }) { Assert.IsFalse(controller.Session.HasTarget(i)); controller.Tap(i); yield return WaitForAnimation(); }
             Assert.AreEqual(GameplayState.Fail, controller.Session.State); Assert.IsTrue(controller.ui.modal.activeSelf);
-            controller.ui.secondary.onClick.Invoke(); Assert.AreEqual(GameplayState.Playing, controller.Session.State); Assert.AreEqual(4, controller.Session.Buffer.Count);
-            controller.Tap(16); yield return WaitForAnimation(); Assert.AreEqual(GameplayState.Fail, controller.Session.State);
+            controller.ui.secondary.onClick.Invoke(); Assert.AreEqual(GameplayState.Playing, controller.Session.State); Assert.AreEqual(3, controller.Session.Buffer.Count);
+            controller.Tap(11); yield return WaitForAnimation(); Assert.AreEqual(GameplayState.Fail, controller.Session.State);
             controller.ui.primary.onClick.Invoke(); Assert.AreEqual(GameplayState.Playing, controller.Session.State); Assert.IsEmpty(controller.Session.Buffer);
         }
-        [UnityTest] public IEnumerator ActualLevelThreeShowsFullWarningThenOverflowAndCanRecover()
+        [UnityTest] public IEnumerator ActualLevelThreeLosesAtFourOfFourAndCanRecover()
         {
-            controller.LoadLevel(2); int coinsBefore = controller.Save.Data.coins; bool fullSeen = false;
+            controller.LoadLevel(2); int coinsBefore = controller.Save.Data.coins; bool fullSeen = false; int last = -1;
             int[] path = { 1, 2, 4, 7, 5, 8, 10, 13, 12, 11 };
             for (int step = 0; step < path.Length; step++)
             {
                 Assert.IsTrue(controller.Session.Legal(path[step]), "Actual overlapping-board move " + step);
                 controller.Tap(path[step]);
-                if (step == path.Length - 1)
+                if (controller.Session.State == GameplayState.Fail)
                 {
+                    last = path[step];
                     Assert.AreEqual(GameplayState.Fail, controller.Session.State); Assert.IsFalse(controller.CanTap);
                     Assert.IsFalse(controller.ui.modal.activeSelf, "Lose modal waits for the sticker to arrive.");
                 }
                 yield return WaitForAnimation();
                 if (controller.Session.Buffer.Count == 4)
                 {
-                    fullSeen = true; Assert.AreEqual(GameplayState.Playing, controller.Session.State); Assert.IsTrue(controller.CanTap);
-                    StringAssert.Contains("TRAY FULL", controller.ui.capacity.text); StringAssert.Contains("OPEN set", controller.ui.instruction.text);
-                    Assert.IsFalse(controller.ui.modal.activeSelf);
+                    fullSeen = true; Assert.AreEqual(GameplayState.Fail, controller.Session.State); Assert.IsFalse(controller.CanTap);
+                    StringAssert.Contains("TRAY FULL", controller.ui.capacity.text); Assert.IsTrue(controller.ui.modal.activeSelf);
                     ScreenCapture.CaptureScreenshot("Temp/TrayFullPreview.png"); yield return null;
+                    break;
                 }
             }
-            Assert.IsTrue(fullSeen); Assert.AreEqual(5, controller.Session.Buffer.Count);
-            StringAssert.Contains("OVERFLOW", controller.ui.modalTitle.text); StringAssert.Contains("5", controller.ui.modalBody.text);
+            Assert.IsTrue(fullSeen); Assert.AreEqual(4, controller.Session.Buffer.Count);
+            StringAssert.Contains("FULL", controller.ui.modalTitle.text); StringAssert.Contains("4 / 4", controller.ui.modalBody.text);
             Assert.AreEqual(coinsBefore, controller.Save.Data.coins);
             ScreenCapture.CaptureScreenshot("Temp/LosePreview.png"); yield return null;
             controller.ui.secondary.onClick.Invoke(); Assert.AreEqual(GameplayState.Playing, controller.Session.State);
-            Assert.AreEqual(4, controller.Session.Buffer.Count); Assert.IsFalse(controller.ui.modal.activeSelf);
-            controller.Tap(11); yield return WaitForAnimation(); controller.ui.primary.onClick.Invoke();
+            Assert.AreEqual(3, controller.Session.Buffer.Count); Assert.IsFalse(controller.ui.modal.activeSelf);
+            controller.Tap(last); yield return WaitForAnimation(); controller.ui.primary.onClick.Invoke();
             Assert.AreEqual(3, controller.Session.Level.levelNumber); Assert.IsEmpty(controller.Session.Buffer);
             Assert.IsFalse(controller.ui.modal.activeSelf); Assert.IsTrue(controller.CanTap);
         }

@@ -5,6 +5,18 @@ namespace StickyPeerSort
 {
     public enum SpecialKind { None, Locked, Frozen, Linked, Mystery }
     public enum UnlockCondition { StickerRemoved, CategoryCompleted, KeyCollected }
+    public enum LevelDifficulty { Easy, Normal, Hard }
+    [Serializable] public sealed class LevelGenerationConfig
+    {
+        public bool enabled;
+        public LevelDifficulty difficulty = LevelDifficulty.Normal;
+        [Min(1)] public int categoryCount = 4;
+        [Range(1, 32)] public int typesPerCategory = 4;
+        [Range(0, 100)] public float mysteryPercent = 5;
+        [Range(0, 100)] public float lockedPercent = 5;
+        [Tooltip("Empty uses this level's existing definitions. Pool order determines the category sequence.")]
+        public List<StickerDefinition> stickerPool = new List<StickerDefinition>();
+    }
     [Serializable] public sealed class StickerSpecialConfig
     {
         public SpecialKind kind;
@@ -46,10 +58,15 @@ namespace StickyPeerSort
         public int levelNumber = 1;
         [Range(1, 4)] public int activeCategoryCount = 3;
         [Min(1)] public int bufferCapacity = 4;
-        public bool failOnOverflow = true;
+        [InspectorName("Fail When Buffer Is Full")] public bool failOnOverflow = true;
         public int coinReward = 25;
         public string difficulty = "Easy";
         [TextArea] public string tutorial;
+        [Header("Level content authoring (four stickers per album)")]
+        [Min(0)] public int generatedStickerCount;
+        public int layoutSeed;
+        [Range(.25f, 1.5f)] public float boardStickerSizeMultiplier = 1;
+        public LevelGenerationConfig generation = new LevelGenerationConfig();
         public List<CategoryObjective> objectives = new List<CategoryObjective>();
         public List<StickerPlacement> stickers = new List<StickerPlacement>();
         public List<BoardPileDefinition> piles = new List<BoardPileDefinition>();

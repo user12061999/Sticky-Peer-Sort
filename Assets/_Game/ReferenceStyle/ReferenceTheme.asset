@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719744e839afef947851e4da9135697c, type: 3}
+  m_Name: ReferenceTheme
+  m_EditorClassIdentifier: StickyPeerSort.Runtime::StickyPeerSort.GameplayUITheme
+  font: {fileID: 11400000, guid: d2d1aeb954629457095df6b4603312c4, type: 2}
+  headingTextMaterial: {fileID: 2100000, guid: 50f15b0ffb4ed464599b5777512e7f7f, type: 2}
+  lightTextMaterial: {fileID: 2100000, guid: b42c08e55e14f45439cfe830f70ff66f, type: 2}
+  darkTextMaterial: {fileID: 2100000, guid: 2d9b0be76e49bcd4188616177cb38f20, type: 2}
+  roundedPanel: {fileID: 21300000, guid: 946f1c01b6ce14631a249b555b9d5a84, type: 3}
+  cardFrame: {fileID: 21300000, guid: 946f1c01b6ce14631a249b555b9d5a84, type: 3}
+  trayFrame: {fileID: 21300000, guid: 946f1c01b6ce14631a249b555b9d5a84, type: 3}
+  slotFrame: {fileID: 21300000, guid: 34dac20198f504d9aa9669248e19917f, type: 3}
+  buttonFrame: {fileID: 21300000, guid: dd57fe2a51cb941fdac00cc855f2b9e1, type: 3}
+  buttonHighlight: {fileID: 21300000, guid: 366ed6da040d84c12a20c67be1cb524b, type: 3}
+  coinIcon: {fileID: 21300000, guid: 6c61e840f3f8d4a54bdbcb254e31bdbd, type: 3}
+  settingsIcon: {fileID: 21300000, guid: b9b257dbe6e8147fc8a45226e735b6e1, type: 3}
+  starIcon: {fileID: 21300000, guid: 5cf538fcf439a49d48fcf2995f950403, type: 3}
+  failIcon: {fileID: 21300000, guid: f1a76f95358d94ca080a3e48691f8e5f, type: 3}
+  collectionIcon: {fileID: 21300000, guid: dadeb220eea8441c0b9af6b59d160ad9, type: 3}
+  undoIcon: {fileID: 21300000, guid: 96cb1e276640e4af487aac0c3251e632, type: 3}
+  hintIcon: {fileID: 21300000, guid: 4cb7b1cae639a483292bd0f94c277113, type: 3}
+  extraIcon: {fileID: 21300000, guid: 92612e52b2aa04624b7f415f38d6426f, type: 3}
+  shuffleIcon: {fileID: 21300000, guid: ea91f02a0f42c4a999205804eaef008e, type: 3}
+  keyIcon: {fileID: 21300000, guid: ba5483ff7f88c4c3ca881c0f56955f28, type: 3}
+  lockIcon: {fileID: 21300000, guid: 1aeb9cf6ff7504198a4aed0e5932f5e2, type: 3}
+  referenceComposition: 1
+  woodSurface: {fileID: 21300000, guid: 67068cbb7dd2b1e40972e66d0e1f4136, type: 3}
+  coveredOpacity: 0.68
+  coveredSoftness: 0.7
+  background: {r: 0.9019608, g: 0.6313726, b: 0.25490198, a: 1}
+  ink: {r: 0.25882354, g: 0.14509805, b: 0.07058824, a: 1}
+  muted: {r: 0.45882353, g: 0.25882354, b: 0.09411765, a: 1}
+  paper: {r: 1, g: 0.94509804, b: 0.8, a: 1}
+  accent: {r: 0.08627451, g: 0.62352943, b: 0.90588236, a: 1}
+  mint: {r: 0.38039216, g: 0.73333335, b: 0.15686275, a: 1}
+  trayRim: {r: 1, g: 0.8156863, b: 0.47843137, a: 1}
+  trayWell: {r: 0.7764706, g: 0.5058824, b: 0.18039216, a: 1}
+  emptySlot: {r: 0.9372549, g: 0.8, b: 0.5137255, a: 1}
