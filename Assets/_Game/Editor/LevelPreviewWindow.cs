@@ -10,7 +10,11 @@ namespace StickyPeerSort.Editor
         [SerializeField] int selected;
         Vector2 scroll;
         UnityEditor.Editor levelEditor;
-        void OnDisable() { if (levelEditor != null) DestroyImmediate(levelEditor); }
+        LevelReviewPanel review;
+        public static event Action<LevelDefinition> PreviewRefreshed;
+        void OnEnable() { review = new LevelReviewPanel(Repaint); EditorApplication.update += TickReview; }
+        void TickReview() { review?.Tick(); }
+        void OnDisable() { EditorApplication.update -= TickReview; review?.Dispose(); if (levelEditor != null) DestroyImmediate(levelEditor); }
         [MenuItem("Tools/Sticker Category Game/Level Preview")]
         public static void Open() { var window = GetWindow<LevelPreviewWindow>("Level Preview"); window.minSize = new Vector2(350, 420); window.Show(); }
         [InitializeOnLoadMethod] static void Initialize() { EditorApplication.update += LoadPending; }
@@ -32,9 +36,11 @@ namespace StickyPeerSort.Editor
             for (int i = 0; i < c.levels.Length; i++)
             {
                 var level = c.levels[i];
+                if (level == null) { EditorGUILayout.LabelField("Missing level at index " + i); continue; }
                 if (GUILayout.Toggle(selected == i, "Level " + level.levelNumber + "   |   " + level.piles.Count + " trays   |   " + level.difficulty, "Button") && selected != i) { selected = i; Preview(i); }
             }
             selected = Mathf.Clamp(selected, 0, c.levels.Length - 1);
+            if (c.levels[selected] == null) { EditorGUILayout.EndScrollView(); return; }
             if (GUILayout.Button("Preview Selected in Game View")) Preview(selected);
             if (GUILayout.Button("Play Selected"))
             {
@@ -42,6 +48,8 @@ namespace StickyPeerSort.Editor
                 else { SessionState.SetInt(Pending, selected); EditorApplication.isPlaying = true; }
             }
             if (GUILayout.Button("Select Level Asset")) Selection.activeObject = c.levels[selected];
+            EditorGUILayout.Space();
+            review?.Draw(c, c.levels[selected]);
             EditorGUILayout.Space();
             UnityEditor.Editor.CreateCachedEditor(c.levels[selected], typeof(LevelDefinitionInspector), ref levelEditor);
             // The same authoring inspector is available here and on the level asset.
@@ -60,16 +68,33 @@ namespace StickyPeerSort.Editor
         {
             var c = UnityEngine.Object.FindFirstObjectByType<GameController>();
             if (c == null) return;
+            if (c.levels == null || index < 0 || index >= c.levels.Length || c.levels[index] == null) return;
             if (EditorApplication.isPlaying) { c.LoadLevel(index); return; }
-            c.ui.Initialize(new PreviewModel(c.levels[index], c.balance), new PreviewInput()); c.ui.Render();
+            PreviewRefreshed?.Invoke(c.levels[index]);
+            if (LevelAnalysis.Analyze(c.levels[index]).verification == LevelVerification.Invalid)
+            { ClearPreview(c, "Invalid level — see Level Analysis for details."); return; }
+            DisplaySession(c, new GameSession(c.levels[index]));
             if (focusGameView) EditorApplication.ExecuteMenuItem("Window/General/Game");
+        }
+        public static void DisplaySession(GameController controller, GameSession session)
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode || controller == null || controller.ui == null) return;
+            controller.ui.Initialize(new PreviewModel(session, controller.balance), new PreviewInput()); controller.ui.Render();
+        }
+        public static void ClearPreview(GameController controller, string message)
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode || controller == null || controller.ui == null) return;
+            var ui = controller.ui;
+            UIFactory.Clear(ui.board); UIFactory.Clear(ui.categories); UIFactory.Clear(ui.buffer);
+            ui.stickerViews.Clear(); ui.categoryViews.Clear(); ui.waitingViews.Clear();
+            ui.Initialize(null, new PreviewInput()); ui.HideModal(); ui.SetInstruction(message);
         }
         sealed class PreviewModel : IGameplayReadModel
         {
             public GameSession Session { get; }
             public SaveData Progress { get; } = new SaveData();
             public GameBalanceConfig Balance { get; }
-            public PreviewModel(LevelDefinition level, GameBalanceConfig balance) { Session = new GameSession(level); Balance = balance; }
+            public PreviewModel(GameSession session, GameBalanceConfig balance) { Session = session; Balance = balance; }
         }
         sealed class PreviewInput : IStickerInput { public void Tap(int index) { } public void TapAt(Vector2 point) { } }
     }

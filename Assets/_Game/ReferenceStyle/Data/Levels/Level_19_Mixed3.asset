@@ -17,11 +17,35 @@ MonoBehaviour:
   bufferCapacity: 4
   failOnOverflow: 1
   coinReward: 0
-  difficulty: Mixed compartments
+  difficulty: Normal
   tutorial: Pick a bright sticker. Complete a set to open the next album.
   generatedStickerCount: 48
   layoutSeed: 5170
   boardStickerSizeMultiplier: 0.75
+  generation:
+    enabled: 1
+    difficulty: 1
+    categoryCount: 4
+    typesPerCategory: 4
+    mysteryPercent: 20
+    lockedPercent: 5
+    stickerPool:
+    - {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    - {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    - {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    - {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+    - {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    - {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    - {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    - {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+    - {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    - {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    - {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    - {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+    - {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    - {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    - {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    - {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
   objectives:
   - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
     targetCount: 4
@@ -108,27 +132,13 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
     - {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
   stickers:
-  - instanceId: Level_19_Mixed3_000_food_01
+  - instanceId: Level_19_Mixed3_000
     definition: {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
-    position: {x: 324.70105, y: 136.54987}
-    size: {x: 223.43219, y: 223.43219}
-    rotation: 3.3540645
+    position: {x: -265.33032, y: -103.839516}
+    size: {x: 233.88048, y: 233.88048}
+    rotation: -3.8623662
     scale: 0.75
     sortingOrder: 48
-    pileId: tray_1
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_001_food_02
-    definition: {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
-    position: {x: -141.41316, y: -259.01166}
-    size: {x: 298.2407, y: 298.2407}
-    rotation: -4.257804
-    scale: 0.75
-    sortingOrder: 36
     pileId: tray_2
     special:
       kind: 0
@@ -136,13 +146,13 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: Level_19_Mixed3_002_food_03
-    definition: {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
-    position: {x: -221.17932, y: 283.0855}
-    size: {x: 237.57794, y: 237.57794}
-    rotation: 0.26043665
+  - instanceId: Level_19_Mixed3_001
+    definition: {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    position: {x: -130.46745, y: 225.58795}
+    size: {x: 251.4664, y: 251.4664}
+    rotation: 14.236874
     scale: 0.75
-    sortingOrder: 37
+    sortingOrder: 36
     pileId: tray_0
     special:
       kind: 0
@@ -150,11 +160,11 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: Level_19_Mixed3_003_food_04
-    definition: {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
-    position: {x: -292.65808, y: -150.54742}
-    size: {x: 297.4922, y: 297.4922}
-    rotation: 2.714714
+  - instanceId: Level_19_Mixed3_002
+    definition: {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    position: {x: 325.6635, y: -234.84451}
+    size: {x: 239.54297, y: 239.54297}
+    rotation: 23.631195
     scale: 0.75
     sortingOrder: 31
     pileId: tray_2
@@ -164,69 +174,13 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: Level_19_Mixed3_004_animal_01
-    definition: {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
-    position: {x: 145.54553, y: 267.34686}
-    size: {x: 253.60251, y: 253.60251}
-    rotation: -5.641616
-    scale: 0.75
-    sortingOrder: 20
-    pileId: tray_1
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_005_animal_02
-    definition: {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
-    position: {x: 115.5242, y: -151.18277}
-    size: {x: 237.44466, y: 237.44466}
-    rotation: 9.850356
-    scale: 0.75
-    sortingOrder: 47
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_006_animal_03
-    definition: {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
-    position: {x: 277.65805, y: -151.81265}
-    size: {x: 269.27032, y: 269.27032}
-    rotation: 4.612441
-    scale: 0.75
-    sortingOrder: 17
-    pileId: tray_2
-    special:
-      kind: 2
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_007_animal_04
-    definition: {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
-    position: {x: -175.98578, y: 251.11069}
-    size: {x: 318.05386, y: 318.05386}
-    rotation: -3.0838192
+  - instanceId: Level_19_Mixed3_003
+    definition: {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+    position: {x: 47.677383, y: -295.38116}
+    size: {x: 263.1626, y: 263.1626}
+    rotation: 1.7867594
     scale: 0.75
     sortingOrder: 18
-    pileId: tray_0
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_008_plant_01
-    definition: {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
-    position: {x: -121.71243, y: -266.98505}
-    size: {x: 245.56844, y: 245.56844}
-    rotation: -4.7647676
-    scale: 0.75
-    sortingOrder: 10
     pileId: tray_2
     special:
       kind: 0
@@ -234,389 +188,67 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: Level_19_Mixed3_009_plant_02
-    definition: {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
-    position: {x: 317.84637, y: 231.44205}
-    size: {x: 259.80942, y: 259.80942}
-    rotation: 2.2689981
-    scale: 0.75
-    sortingOrder: 5
-    pileId: tray_1
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_010_plant_03
-    definition: {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
-    position: {x: -20.20842, y: -184.3771}
-    size: {x: 263.6449, y: 263.6449}
-    rotation: 24.797556
-    scale: 0.75
-    sortingOrder: 3
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_011_plant_04
-    definition: {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
-    position: {x: 15.133917, y: -161.40553}
-    size: {x: 269.9817, y: 269.9817}
-    rotation: 10.722422
-    scale: 0.75
-    sortingOrder: 7
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_012_vehicle_01
-    definition: {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
-    position: {x: 288.05304, y: -138.44861}
-    size: {x: 284.26367, y: 284.26367}
-    rotation: 13.003763
-    scale: 0.75
-    sortingOrder: 21
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_013_vehicle_02
-    definition: {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
-    position: {x: 301.55048, y: 280.45868}
-    size: {x: 257.54074, y: 257.54074}
-    rotation: 11.664781
-    scale: 0.75
-    sortingOrder: 1
-    pileId: tray_1
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_014_vehicle_03
-    definition: {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
-    position: {x: 203.34506, y: -234.80594}
-    size: {x: 295.8394, y: 295.8394}
-    rotation: 1.1538163
-    scale: 0.75
-    sortingOrder: 2
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_015_vehicle_04
-    definition: {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
-    position: {x: -315.48004, y: 283.56937}
-    size: {x: 251.31087, y: 251.31087}
-    rotation: 1.4757804
-    scale: 0.75
-    sortingOrder: 6
-    pileId: tray_0
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_016_food_01
-    definition: {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
-    position: {x: 191.6447, y: 168.12794}
-    size: {x: 228.52426, y: 228.52426}
-    rotation: 26.004072
-    scale: 0.75
-    sortingOrder: 16
-    pileId: tray_1
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_017_food_02
-    definition: {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
-    position: {x: 161.78287, y: -266.90622}
-    size: {x: 285.2494, y: 285.2494}
-    rotation: -2.9486852
-    scale: 0.75
-    sortingOrder: 45
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_018_food_03
-    definition: {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
-    position: {x: -133.60881, y: -140.50142}
-    size: {x: 246.29517, y: 246.29517}
-    rotation: 3.050923
-    scale: 0.75
-    sortingOrder: 27
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_019_food_04
-    definition: {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
-    position: {x: -162.04672, y: 161.79205}
-    size: {x: 274.4416, y: 274.4416}
-    rotation: 5.6457605
-    scale: 0.75
-    sortingOrder: 12
-    pileId: tray_0
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_020_animal_01
+  - instanceId: Level_19_Mixed3_004
     definition: {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
-    position: {x: 304.46924, y: -198.88982}
-    size: {x: 264.7093, y: 264.7093}
-    rotation: 8.613524
+    position: {x: 347.19135, y: 263.7814}
+    size: {x: 237.78639, y: 237.78639}
+    rotation: 5.700055
     scale: 0.75
-    sortingOrder: 44
-    pileId: tray_2
+    sortingOrder: 47
+    pileId: tray_1
     special:
       kind: 0
       unlockCondition: 0
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: Level_19_Mixed3_021_animal_02
+  - instanceId: Level_19_Mixed3_005
     definition: {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
-    position: {x: 321.65283, y: 219.71776}
-    size: {x: 262.42105, y: 262.42105}
-    rotation: 1.137895
+    position: {x: 347.26242, y: -294.60968}
+    size: {x: 256.5464, y: 256.5464}
+    rotation: 2.5478215
     scale: 0.75
-    sortingOrder: 15
-    pileId: tray_1
+    sortingOrder: 37
+    pileId: tray_2
     special:
-      kind: 0
+      kind: 4
       unlockCondition: 0
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: Level_19_Mixed3_022_animal_03
+  - instanceId: Level_19_Mixed3_006
     definition: {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
-    position: {x: 144.72371, y: 188.77148}
-    size: {x: 249.5378, y: 249.5378}
-    rotation: 1.9124591
-    scale: 0.75
-    sortingOrder: 46
-    pileId: tray_1
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_023_animal_04
-    definition: {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
-    position: {x: 80.816444, y: -138.27405}
-    size: {x: 313.2379, y: 313.2379}
-    rotation: 4.587949
-    scale: 0.75
-    sortingOrder: 40
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_024_plant_01
-    definition: {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
-    position: {x: -291.48535, y: 168.24521}
-    size: {x: 240.26318, y: 240.26318}
-    rotation: -13.576476
-    scale: 0.75
-    sortingOrder: 28
-    pileId: tray_0
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_025_plant_02
-    definition: {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
-    position: {x: -133.17117, y: 260.04944}
-    size: {x: 231.49591, y: 231.49591}
-    rotation: 3.9155254
-    scale: 0.75
-    sortingOrder: 25
-    pileId: tray_0
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_026_plant_03
-    definition: {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
-    position: {x: 309.20743, y: -184.0932}
-    size: {x: 259.7759, y: 259.7759}
-    rotation: 5.5633035
-    scale: 0.75
-    sortingOrder: 19
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_027_plant_04
-    definition: {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
-    position: {x: -301.35876, y: 181.61552}
-    size: {x: 280.7114, y: 280.7114}
-    rotation: 0.9353719
-    scale: 0.75
-    sortingOrder: 38
-    pileId: tray_0
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_028_vehicle_01
-    definition: {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
-    position: {x: -293.69623, y: -295.87238}
-    size: {x: 271.71948, y: 271.71948}
-    rotation: 2.0026407
-    scale: 0.75
-    sortingOrder: 34
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_029_vehicle_02
-    definition: {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
-    position: {x: 269.4851, y: -160.48703}
-    size: {x: 315.8729, y: 315.8729}
-    rotation: 15.517795
-    scale: 0.75
-    sortingOrder: 22
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_030_vehicle_03
-    definition: {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
-    position: {x: 128.80963, y: 149.03331}
-    size: {x: 224.58232, y: 224.58232}
-    rotation: -3.0090923
-    scale: 0.75
-    sortingOrder: 9
-    pileId: tray_1
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_031_vehicle_04
-    definition: {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
-    position: {x: -274.72665, y: -210.65797}
-    size: {x: 321.70514, y: 321.70514}
-    rotation: 7.263075
-    scale: 0.75
-    sortingOrder: 39
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_032_food_01
-    definition: {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
-    position: {x: -204.93594, y: -139.76187}
-    size: {x: 278.08588, y: 278.08588}
-    rotation: -1.2586455
-    scale: 0.75
-    sortingOrder: 26
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_033_food_02
-    definition: {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
-    position: {x: 167.50296, y: 253.62993}
-    size: {x: 286.00958, y: 286.00958}
-    rotation: 1.7014627
-    scale: 0.75
-    sortingOrder: 13
-    pileId: tray_1
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_034_food_03
-    definition: {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
-    position: {x: -325.00293, y: -264.21298}
-    size: {x: 228.52011, y: 228.52011}
-    rotation: 2.87809
+    position: {x: 258.38855, y: 290.70337}
+    size: {x: 292.9955, y: 292.9955}
+    rotation: -6.1742845
     scale: 0.75
     sortingOrder: 14
+    pileId: tray_1
+    special:
+      kind: 4
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_007
+    definition: {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+    position: {x: -333.67648, y: -142.22815}
+    size: {x: 280.75418, y: 280.75418}
+    rotation: -1.2323954
+    scale: 0.75
+    sortingOrder: 20
     pileId: tray_2
     special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
+      kind: 1
+      unlockCondition: 1
+      dependencyId: food
       iceLayers: 2
       linkId: 
-  - instanceId: Level_19_Mixed3_035_food_04
-    definition: {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
-    position: {x: -292.0998, y: 261.95627}
-    size: {x: 278.55743, y: 278.55743}
-    rotation: -8.095253
-    scale: 0.75
-    sortingOrder: 33
-    pileId: tray_0
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_036_animal_01
-    definition: {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
-    position: {x: 196.63004, y: -131.89456}
-    size: {x: 234.94093, y: 234.94093}
-    rotation: -0.96700954
+  - instanceId: Level_19_Mixed3_008
+    definition: {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    position: {x: -41.126114, y: -202.5872}
+    size: {x: 231.5506, y: 231.5506}
+    rotation: 5.084207
     scale: 0.75
     sortingOrder: 8
     pileId: tray_2
@@ -626,13 +258,13 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: Level_19_Mixed3_037_animal_02
-    definition: {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
-    position: {x: -256.67523, y: 160.91687}
-    size: {x: 271.20792, y: 271.20792}
-    rotation: 0.048527837
+  - instanceId: Level_19_Mixed3_009
+    definition: {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    position: {x: -343.73886, y: 140.73138}
+    size: {x: 246.21997, y: 246.21997}
+    rotation: -6.260573
     scale: 0.75
-    sortingOrder: 32
+    sortingOrder: 10
     pileId: tray_0
     special:
       kind: 0
@@ -640,25 +272,25 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: Level_19_Mixed3_038_animal_03
-    definition: {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
-    position: {x: 16.138062, y: -286.3358}
-    size: {x: 242.98114, y: 242.98114}
-    rotation: 0.008416891
+  - instanceId: Level_19_Mixed3_010
+    definition: {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    position: {x: -197.75084, y: 280.64044}
+    size: {x: 276.1665, y: 276.1665}
+    rotation: 12.304659
     scale: 0.75
-    sortingOrder: 23
-    pileId: tray_2
+    sortingOrder: 3
+    pileId: tray_0
     special:
       kind: 0
       unlockCondition: 0
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: Level_19_Mixed3_039_animal_04
-    definition: {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
-    position: {x: -155.11691, y: 143.63376}
-    size: {x: 279.50778, y: 279.50778}
-    rotation: -0.49077857
+  - instanceId: Level_19_Mixed3_011
+    definition: {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+    position: {x: -312.6949, y: 138.74017}
+    size: {x: 280.7114, y: 280.7114}
+    rotation: -8.647681
     scale: 0.75
     sortingOrder: 11
     pileId: tray_0
@@ -668,67 +300,67 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: Level_19_Mixed3_040_plant_01
-    definition: {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
-    position: {x: 130.74783, y: 144.12744}
-    size: {x: 211.78008, y: 211.78008}
-    rotation: -0.3318777
-    scale: 0.75
-    sortingOrder: 42
-    pileId: tray_1
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_041_plant_02
-    definition: {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
-    position: {x: 265.48743, y: 163.84818}
-    size: {x: 255.85487, y: 255.85487}
-    rotation: 0.6397196
-    scale: 0.75
-    sortingOrder: 41
-    pileId: tray_1
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_042_plant_03
-    definition: {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
-    position: {x: -34.811028, y: -154.66293}
-    size: {x: 274.2961, y: 274.2961}
-    rotation: 4.0154924
-    scale: 0.75
-    sortingOrder: 43
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_043_plant_04
-    definition: {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
-    position: {x: 323.41675, y: -283.59222}
-    size: {x: 231.66504, y: 231.66504}
-    rotation: -1.7250116
-    scale: 0.75
-    sortingOrder: 29
-    pileId: tray_2
-    special:
-      kind: 0
-      unlockCondition: 0
-      dependencyId: 
-      iceLayers: 2
-      linkId: 
-  - instanceId: Level_19_Mixed3_044_vehicle_01
+  - instanceId: Level_19_Mixed3_012
     definition: {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
-    position: {x: 239.65378, y: 286.13074}
-    size: {x: 291.5155, y: 291.5155}
-    rotation: 6.6490774
+    position: {x: -132.16287, y: -269.31635}
+    size: {x: 340.00012, y: 340.00012}
+    rotation: -22.733765
+    scale: 0.75
+    sortingOrder: 17
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_013
+    definition: {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    position: {x: -157.2233, y: 295.3098}
+    size: {x: 301.83154, y: 301.83154}
+    rotation: 13.961931
+    scale: 0.75
+    sortingOrder: 5
+    pileId: tray_0
+    special:
+      kind: 4
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_014
+    definition: {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    position: {x: 221.63744, y: -120.7366}
+    size: {x: 263.8825, y: 263.8825}
+    rotation: 4.761961
+    scale: 0.75
+    sortingOrder: 1
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_015
+    definition: {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+    position: {x: 121.70121, y: 311.69498}
+    size: {x: 246.94185, y: 246.94185}
+    rotation: 7.386155
+    scale: 0.75
+    sortingOrder: 21
+    pileId: tray_1
+    special:
+      kind: 4
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_016
+    definition: {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    position: {x: 111.929, y: 244.54839}
+    size: {x: 230.06854, y: 230.06854}
+    rotation: -2.8679326
     scale: 0.75
     sortingOrder: 4
     pileId: tray_1
@@ -738,27 +370,279 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: Level_19_Mixed3_045_vehicle_02
+  - instanceId: Level_19_Mixed3_017
+    definition: {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    position: {x: -96.61608, y: -276.2251}
+    size: {x: 266.26712, y: 266.26712}
+    rotation: 24.82378
+    scale: 0.75
+    sortingOrder: 45
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_018
+    definition: {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    position: {x: 222.56203, y: 125.468605}
+    size: {x: 224.2724, y: 224.2724}
+    rotation: 7.5266895
+    scale: 0.75
+    sortingOrder: 16
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_019
+    definition: {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+    position: {x: -233.07402, y: 133.43054}
+    size: {x: 284.35992, y: 284.35992}
+    rotation: -3.6888075
+    scale: 0.75
+    sortingOrder: 46
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_020
+    definition: {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    position: {x: -191.02518, y: 129.02075}
+    size: {x: 231.82457, y: 231.82457}
+    rotation: 8.911033
+    scale: 0.75
+    sortingOrder: 13
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_021
+    definition: {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    position: {x: -122.59405, y: 140.28503}
+    size: {x: 274.4416, y: 274.4416}
+    rotation: 5.6457605
+    scale: 0.75
+    sortingOrder: 27
+    pileId: tray_0
+    special:
+      kind: 4
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_022
+    definition: {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    position: {x: 196.87009, y: 213.83748}
+    size: {x: 241.9812, y: 241.9812}
+    rotation: -36.103077
+    scale: 0.75
+    sortingOrder: 44
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_023
+    definition: {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+    position: {x: -297.11484, y: -218.87456}
+    size: {x: 324.94098, y: 324.94098}
+    rotation: -5.416236
+    scale: 0.75
+    sortingOrder: 40
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_024
+    definition: {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    position: {x: -335.29883, y: 190.78674}
+    size: {x: 223.75273, y: 223.75273}
+    rotation: -19.325489
+    scale: 0.75
+    sortingOrder: 28
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_025
+    definition: {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    position: {x: 111.78111, y: -269.8465}
+    size: {x: 294.19025, y: 294.19025}
+    rotation: -11.844911
+    scale: 0.75
+    sortingOrder: 25
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_026
+    definition: {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    position: {x: -351.52557, y: 207.54329}
+    size: {x: 237.16173, y: 237.16173}
+    rotation: 0.9229157
+    scale: 0.75
+    sortingOrder: 19
+    pileId: tray_0
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_027
+    definition: {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+    position: {x: 334.45734, y: -186.62721}
+    size: {x: 256.9005, y: 256.9005}
+    rotation: 6.8361406
+    scale: 0.75
+    sortingOrder: 39
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_028
+    definition: {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    position: {x: 327.83533, y: 253.01721}
+    size: {x: 277.23758, y: 277.23758}
+    rotation: 8.960452
+    scale: 0.75
+    sortingOrder: 38
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_029
     definition: {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
-    position: {x: -194.90932, y: 277.2825}
-    size: {x: 301.83154, y: 301.83154}
-    rotation: 6.999265
+    position: {x: -167.4712, y: -111.159676}
+    size: {x: 332.575, y: 332.575}
+    rotation: -0.6428285
     scale: 0.75
-    sortingOrder: 35
-    pileId: tray_0
+    sortingOrder: 34
+    pileId: tray_2
     special:
       kind: 0
       unlockCondition: 0
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: Level_19_Mixed3_046_vehicle_03
+  - instanceId: Level_19_Mixed3_030
     definition: {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
-    position: {x: -158.7645, y: 176.66335}
-    size: {x: 279.37546, y: 279.37546}
-    rotation: -6.706968
+    position: {x: -160.40546, y: -269.11728}
+    size: {x: 293.6319, y: 293.6319}
+    rotation: 4.9295096
     scale: 0.75
-    sortingOrder: 30
+    sortingOrder: 22
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_031
+    definition: {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+    position: {x: 95.483406, y: -135.31903}
+    size: {x: 309.25058, y: 309.25058}
+    rotation: -8.7626705
+    scale: 0.75
+    sortingOrder: 6
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_032
+    definition: {fileID: 11400000, guid: 7ac12538bac49534f9fcc2eae8a47cca, type: 2}
+    position: {x: -325.32483, y: 292.7172}
+    size: {x: 278.55743, y: 278.55743}
+    rotation: -8.095253
+    scale: 0.75
+    sortingOrder: 26
+    pileId: tray_0
+    special:
+      kind: 4
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_033
+    definition: {fileID: 11400000, guid: 22800865bac3c7e488d19861c37adf3b, type: 2}
+    position: {x: 199.78198, y: 118.11093}
+    size: {x: 244.00735, y: 244.00735}
+    rotation: 3.376255
+    scale: 0.75
+    sortingOrder: 15
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_034
+    definition: {fileID: 11400000, guid: 21687509ec6eb4a47841cb9b49393596, type: 2}
+    position: {x: 132.66339, y: 160.83624}
+    size: {x: 272.76056, y: 272.76056}
+    rotation: -8.849238
+    scale: 0.75
+    sortingOrder: 32
+    pileId: tray_1
+    special:
+      kind: 4
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_035
+    definition: {fileID: 11400000, guid: 92873400585d37841933c054c6cf3603, type: 2}
+    position: {x: 340.7411, y: -108.95072}
+    size: {x: 254.54326, y: 254.54326}
+    rotation: 2.1683388
+    scale: 0.75
+    sortingOrder: 33
+    pileId: tray_2
+    special:
+      kind: 4
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_036
+    definition: {fileID: 11400000, guid: 184366f025160634e8fa8920dc580bab, type: 2}
+    position: {x: -113.955, y: 128.41327}
+    size: {x: 229.5573, y: 229.5573}
+    rotation: -9.131109
+    scale: 0.75
+    sortingOrder: 12
     pileId: tray_0
     special:
       kind: 0
@@ -766,13 +650,153 @@ MonoBehaviour:
       dependencyId: 
       iceLayers: 2
       linkId: 
-  - instanceId: Level_19_Mixed3_047_vehicle_04
-    definition: {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
-    position: {x: -300.61447, y: -134.15317}
-    size: {x: 270.9689, y: 270.9689}
-    rotation: 5.686061
+  - instanceId: Level_19_Mixed3_037
+    definition: {fileID: 11400000, guid: dc0a6b36a2e0c574eb5bc45623c3d401, type: 2}
+    position: {x: 212.03796, y: -265.85422}
+    size: {x: 271.12946, y: 271.12946}
+    rotation: -1.7737393
+    scale: 0.75
+    sortingOrder: 7
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_038
+    definition: {fileID: 11400000, guid: 10def028fc53e8240941d725070465ec, type: 2}
+    position: {x: -35.60832, y: -125.38481}
+    size: {x: 267.49597, y: 267.49597}
+    rotation: -13.672502
+    scale: 0.75
+    sortingOrder: 23
+    pileId: tray_2
+    special:
+      kind: 4
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_039
+    definition: {fileID: 11400000, guid: 0a71cc3031b1e3741a5fe6624e681a2c, type: 2}
+    position: {x: -328.4718, y: -277.61453}
+    size: {x: 296.3408, y: 296.3408}
+    rotation: -1.3470563
+    scale: 0.75
+    sortingOrder: 9
+    pileId: tray_2
+    special:
+      kind: 1
+      unlockCondition: 1
+      dependencyId: food
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_040
+    definition: {fileID: 11400000, guid: bd7e53db94340134cb82748e250b2411, type: 2}
+    position: {x: 146.12662, y: -249.9588}
+    size: {x: 284.66333, y: 284.66333}
+    rotation: 42.624176
+    scale: 0.75
+    sortingOrder: 42
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_041
+    definition: {fileID: 11400000, guid: 4bb9fd28fa3f6294b95ce6675c147e3f, type: 2}
+    position: {x: -162.93169, y: -145.5502}
+    size: {x: 294.9904, y: 294.9904}
+    rotation: -16.579786
+    scale: 0.75
+    sortingOrder: 41
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_042
+    definition: {fileID: 11400000, guid: 6a2bc4f68bfa8ae41ba4ef6d61731315, type: 2}
+    position: {x: 339.91348, y: 134.11307}
+    size: {x: 268.4152, y: 268.4152}
+    rotation: 2.244019
+    scale: 0.75
+    sortingOrder: 43
+    pileId: tray_1
+    special:
+      kind: 4
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_043
+    definition: {fileID: 11400000, guid: 871924def96e2924c879f223011308e6, type: 2}
+    position: {x: 98.19082, y: -229.74057}
+    size: {x: 270.97403, y: 270.97403}
+    rotation: 42.799625
+    scale: 0.75
+    sortingOrder: 29
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_044
+    definition: {fileID: 11400000, guid: 92d8822d7ac8b2c479ef01bbeeadb136, type: 2}
+    position: {x: 313.32355, y: 296.89835}
+    size: {x: 309.05878, y: 309.05878}
+    rotation: 12.970855
+    scale: 0.75
+    sortingOrder: 2
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_045
+    definition: {fileID: 11400000, guid: 7b36ea25b0d6f40488586ea814e62435, type: 2}
+    position: {x: 143.2036, y: -134.33377}
+    size: {x: 275.44693, y: 275.44693}
+    rotation: -39.619972
     scale: 0.75
     sortingOrder: 24
+    pileId: tray_2
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_046
+    definition: {fileID: 11400000, guid: 6d0f23bdfc67c574681733f67fa086a4, type: 2}
+    position: {x: 338.8809, y: 224.74344}
+    size: {x: 252.30238, y: 252.30238}
+    rotation: 8.578493
+    scale: 0.75
+    sortingOrder: 35
+    pileId: tray_1
+    special:
+      kind: 0
+      unlockCondition: 0
+      dependencyId: 
+      iceLayers: 2
+      linkId: 
+  - instanceId: Level_19_Mixed3_047
+    definition: {fileID: 11400000, guid: 63150917502fa2c4f807b35ce5b27c9f, type: 2}
+    position: {x: 197.08635, y: -117.13847}
+    size: {x: 319.54657, y: 319.54657}
+    rotation: 2.714714
+    scale: 0.75
+    sortingOrder: 30
     pileId: tray_2
     special:
       kind: 0
@@ -797,53 +821,51 @@ MonoBehaviour:
     rotation: 0
     color: {r: 0.7764706, g: 0.5058824, b: 0.18039216, a: 1}
   solutionTrace:
-  - Level_19_Mixed3_000_food_01
-  - Level_19_Mixed3_005_animal_02
-  - Level_19_Mixed3_022_animal_03
-  - Level_19_Mixed3_017_food_02
-  - Level_19_Mixed3_020_animal_01
-  - Level_19_Mixed3_042_plant_03
-  - Level_19_Mixed3_040_plant_01
-  - Level_19_Mixed3_041_plant_02
-  - Level_19_Mixed3_023_animal_04
-  - Level_19_Mixed3_031_vehicle_04
-  - Level_19_Mixed3_027_plant_04
-  - Level_19_Mixed3_002_food_03
-  - Level_19_Mixed3_001_food_02
-  - Level_19_Mixed3_045_vehicle_02
-  - Level_19_Mixed3_028_vehicle_01
-  - Level_19_Mixed3_035_food_04
-  - Level_19_Mixed3_037_animal_02
-  - Level_19_Mixed3_003_food_04
-  - Level_19_Mixed3_046_vehicle_03
-  - Level_19_Mixed3_043_plant_04
-  - Level_19_Mixed3_024_plant_01
-  - Level_19_Mixed3_018_food_03
-  - Level_19_Mixed3_032_food_01
-  - Level_19_Mixed3_025_plant_02
-  - Level_19_Mixed3_047_vehicle_04
-  - Level_19_Mixed3_038_animal_03
-  - Level_19_Mixed3_029_vehicle_02
-  - Level_19_Mixed3_012_vehicle_01
-  - Level_19_Mixed3_004_animal_01
-  - Level_19_Mixed3_026_plant_03
-  - Level_19_Mixed3_007_animal_04
-  - Level_19_Mixed3_006_animal_03
-  - Level_19_Mixed3_006_animal_03
-  - Level_19_Mixed3_006_animal_03
-  - Level_19_Mixed3_016_food_01
-  - Level_19_Mixed3_021_animal_02
-  - Level_19_Mixed3_034_food_03
-  - Level_19_Mixed3_033_food_02
-  - Level_19_Mixed3_019_food_04
-  - Level_19_Mixed3_039_animal_04
-  - Level_19_Mixed3_008_plant_01
-  - Level_19_Mixed3_030_vehicle_03
-  - Level_19_Mixed3_036_animal_01
-  - Level_19_Mixed3_011_plant_04
-  - Level_19_Mixed3_015_vehicle_04
-  - Level_19_Mixed3_009_plant_02
-  - Level_19_Mixed3_044_vehicle_01
-  - Level_19_Mixed3_010_plant_03
-  - Level_19_Mixed3_014_vehicle_03
-  - Level_19_Mixed3_013_vehicle_02
+  - Level_19_Mixed3_000
+  - Level_19_Mixed3_004
+  - Level_19_Mixed3_017
+  - Level_19_Mixed3_019
+  - Level_19_Mixed3_022
+  - Level_19_Mixed3_024
+  - Level_19_Mixed3_027
+  - Level_19_Mixed3_005
+  - Level_19_Mixed3_034
+  - Level_19_Mixed3_015
+  - Level_19_Mixed3_041
+  - Level_19_Mixed3_023
+  - Level_19_Mixed3_001
+  - Level_19_Mixed3_016
+  - Level_19_Mixed3_029
+  - Level_19_Mixed3_030
+  - Level_19_Mixed3_035
+  - Level_19_Mixed3_042
+  - Level_19_Mixed3_007
+  - Level_19_Mixed3_021
+  - Level_19_Mixed3_020
+  - Level_19_Mixed3_028
+  - Level_19_Mixed3_038
+  - Level_19_Mixed3_040
+  - Level_19_Mixed3_002
+  - Level_19_Mixed3_032
+  - Level_19_Mixed3_013
+  - Level_19_Mixed3_010
+  - Level_19_Mixed3_046
+  - Level_19_Mixed3_018
+  - Level_19_Mixed3_033
+  - Level_19_Mixed3_047
+  - Level_19_Mixed3_043
+  - Level_19_Mixed3_025
+  - Level_19_Mixed3_003
+  - Level_19_Mixed3_006
+  - Level_19_Mixed3_012
+  - Level_19_Mixed3_008
+  - Level_19_Mixed3_026
+  - Level_19_Mixed3_011
+  - Level_19_Mixed3_009
+  - Level_19_Mixed3_036
+  - Level_19_Mixed3_039
+  - Level_19_Mixed3_044
+  - Level_19_Mixed3_045
+  - Level_19_Mixed3_031
+  - Level_19_Mixed3_037
+  - Level_19_Mixed3_014

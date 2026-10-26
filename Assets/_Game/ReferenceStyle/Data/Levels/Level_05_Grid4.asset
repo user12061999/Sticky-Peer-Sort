@@ -22,6 +22,14 @@ MonoBehaviour:
   generatedStickerCount: 32
   layoutSeed: 3756
   boardStickerSizeMultiplier: 0.75
+  generation:
+    enabled: 0
+    difficulty: 1
+    categoryCount: 4
+    typesPerCategory: 4
+    mysteryPercent: 5
+    lockedPercent: 5
+    stickerPool: []
   objectives:
   - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
     targetCount: 4

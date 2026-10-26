@@ -11,6 +11,7 @@ namespace StickyPeerSort.Editor
         double rebuildAt;
         bool pending;
         bool failed;
+        bool generationOptions;
         void OnEnable() { EditorApplication.update += UpdatePreview; Undo.undoRedoPerformed += OnUndo; }
         void OnDisable()
         {
@@ -35,11 +36,20 @@ namespace StickyPeerSort.Editor
         {
             var levelConfig = (LevelDefinition)target;
             bool wasEnabled = levelConfig.generation.enabled;
-            EditorGUILayout.HelpBox("Enable Generation to configure content. Changes rebuild after a short pause and refresh Game View in Edit Mode. Percentages round to whole stickers; four stickers per album. Easy/Normal/Hard changes overlap density. Invalid settings retain the last valid board.", MessageType.Info);
             serializedObject.Update();
             EditorGUI.BeginChangeCheck();
-            DrawPropertiesExcluding(serializedObject, "m_Script", "objectives", "stickers", "solutionTrace");
-            if (!levelConfig.generation.enabled)
+            DrawSpecialRatios(levelConfig);
+            DrawPropertiesExcluding(serializedObject, "m_Script", "generation", "objectives", "stickers", "solutionTrace");
+            generationOptions = EditorGUILayout.Foldout(generationOptions, "Generation Options (difficulty, categories, artwork pool)", true);
+            if (generationOptions)
+            {
+                var generation = serializedObject.FindProperty("generation");
+                EditorGUILayout.PropertyField(generation.FindPropertyRelative("difficulty"));
+                EditorGUILayout.PropertyField(generation.FindPropertyRelative("categoryCount"));
+                EditorGUILayout.PropertyField(generation.FindPropertyRelative("typesPerCategory"));
+                EditorGUILayout.PropertyField(generation.FindPropertyRelative("stickerPool"), true);
+            }
+            if (!serializedObject.FindProperty("generation").FindPropertyRelative("enabled").boolValue)
             {
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("objectives"), true);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("stickers"), true);
@@ -73,6 +83,37 @@ namespace StickyPeerSort.Editor
                 }
             }
             if (!string.IsNullOrEmpty(status)) EditorGUILayout.HelpBox(status, failed ? MessageType.Error : MessageType.Info);
+        }
+
+        void DrawSpecialRatios(LevelDefinition level)
+        {
+            var generation = serializedObject.FindProperty("generation");
+            var enabled = generation.FindPropertyRelative("enabled");
+            var mystery = generation.FindPropertyRelative("mysteryPercent");
+            var locked = generation.FindPropertyRelative("lockedPercent");
+            EditorGUILayout.LabelField("Special Sticker Ratios — this level", EditorStyles.boldLabel);
+            using (new EditorGUI.DisabledScope(EditorApplication.isPlayingOrWillChangePlaymode))
+            {
+                EditorGUILayout.PropertyField(enabled, new GUIContent("Enable Generated Content", "Generate the board from this level's settings, replacing manual placements. Required to apply these ratios."));
+                using (new EditorGUI.DisabledScope(!enabled.boolValue))
+                {
+                    mystery.floatValue = EditorGUILayout.Slider(new GUIContent("Mystery (?) %", "Percentage of all stickers that begin hidden behind another sticker."), mystery.floatValue, 0, 100);
+                    locked.floatValue = EditorGUILayout.Slider(new GUIContent("Locked %", "Percentage of all stickers locked until the first key category is completed."), locked.floatValue, 0, 100);
+                }
+            }
+            int count = serializedObject.FindProperty("generatedStickerCount").intValue;
+            if (count == 0) count = level.stickers.Count;
+            int requestedMystery = Mathf.RoundToInt(count * mystery.floatValue / 100);
+            int requestedLocked = Mathf.RoundToInt(count * locked.floatValue / 100);
+            EditorGUILayout.LabelField("Requested (rounded)", requestedMystery + " mystery + " + requestedLocked + " locked / " + count + " stickers");
+            EditorGUILayout.LabelField("Current board", level.stickers.Count(p => p.special.kind == SpecialKind.Mystery) + " mystery + " + level.stickers.Count(p => p.special.kind == SpecialKind.Locked) + " locked / " + level.stickers.Count + " stickers");
+            if (!enabled.boolValue)
+                EditorGUILayout.HelpBox("Enable Generated Content to apply these percentages. Enabling replaces manual placements, including manually authored frozen/linked stickers. Current board remains unchanged until enabled.", MessageType.Info);
+            else if (mystery.floatValue + locked.floatValue > 100)
+                EditorGUILayout.HelpBox("Mystery + Locked must total at most 100%. Last valid board will be retained.", MessageType.Error);
+            else
+                EditorGUILayout.HelpBox("Percentages apply to all stickers and round to whole counts. Preview updates after 0.5 seconds. The key category remains unlocked. If packing fails, lower the ratios or change Layout Seed; the last valid board is retained.", MessageType.Info);
+            EditorGUILayout.Space();
         }
     }
 }

@@ -112,3 +112,5 @@ Hoàn tất bộ có chìa khóa: ô cuối đáp xuống → giữ đủ số l
 Chỉnh **Key Flight Duration** (0.45s), **Lock Open Duration** (0.28s), **Special Reveal Duration** (0.32s) trong `Assets/_Game/Data/Balance.asset`. Không cần Animator hoặc asset mới. Đổi level hủy hiệu ứng đang chạy; Undo sau lượt trả lại mặt khóa/bí ẩn theo snapshot.
 
 Per-level content controls and live Editor preview: see Docs/LevelAuthoring.md.
+
+Level analysis, solution replay and batch validation: see Docs/LevelAnalysis.md.

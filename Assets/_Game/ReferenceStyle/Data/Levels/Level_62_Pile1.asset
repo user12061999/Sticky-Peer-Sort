@@ -22,6 +22,14 @@ MonoBehaviour:
   generatedStickerCount: 64
   layoutSeed: 9513
   boardStickerSizeMultiplier: 0.75
+  generation:
+    enabled: 0
+    difficulty: 1
+    categoryCount: 4
+    typesPerCategory: 4
+    mysteryPercent: 5
+    lockedPercent: 5
+    stickerPool: []
   objectives:
   - category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
     targetCount: 4
@@ -1039,67 +1047,67 @@ MonoBehaviour:
     rotation: 0
     color: {r: 0.7764706, g: 0.5058824, b: 0.18039216, a: 1}
   solutionTrace:
-  - Level_62_Pile1_054_animal_03
-  - Level_62_Pile1_025_plant_02
   - Level_62_Pile1_008_plant_01
-  - Level_62_Pile1_018_food_03
-  - Level_62_Pile1_010_plant_03
   - Level_62_Pile1_016_food_01
-  - Level_62_Pile1_049_food_02
+  - Level_62_Pile1_018_food_03
+  - Level_62_Pile1_025_plant_02
   - Level_62_Pile1_043_plant_04
   - Level_62_Pile1_052_animal_01
-  - Level_62_Pile1_013_vehicle_02
-  - Level_62_Pile1_012_vehicle_01
-  - Level_62_Pile1_047_vehicle_04
-  - Level_62_Pile1_039_animal_04
-  - Level_62_Pile1_021_animal_02
-  - Level_62_Pile1_032_food_01
-  - Level_62_Pile1_002_food_03
   - Level_62_Pile1_019_food_04
-  - Level_62_Pile1_036_animal_01
-  - Level_62_Pile1_033_food_02
   - Level_62_Pile1_037_animal_02
+  - Level_62_Pile1_054_animal_03
+  - Level_62_Pile1_010_plant_03
+  - Level_62_Pile1_012_vehicle_01
+  - Level_62_Pile1_013_vehicle_02
+  - Level_62_Pile1_030_vehicle_03
+  - Level_62_Pile1_039_animal_04
+  - Level_62_Pile1_032_food_01
+  - Level_62_Pile1_047_vehicle_04
+  - Level_62_Pile1_002_food_03
+  - Level_62_Pile1_020_animal_01
+  - Level_62_Pile1_021_animal_02
   - Level_62_Pile1_035_food_04
-  - Level_62_Pile1_062_vehicle_03
+  - Level_62_Pile1_001_food_02
+  - Level_62_Pile1_007_animal_04
+  - Level_62_Pile1_011_plant_04
+  - Level_62_Pile1_024_plant_01
+  - Level_62_Pile1_041_plant_02
+  - Level_62_Pile1_022_animal_03
+  - Level_62_Pile1_029_vehicle_02
   - Level_62_Pile1_044_vehicle_01
   - Level_62_Pile1_046_vehicle_03
   - Level_62_Pile1_042_plant_03
-  - Level_62_Pile1_011_plant_04
-  - Level_62_Pile1_040_plant_01
-  - Level_62_Pile1_023_animal_04
-  - Level_62_Pile1_041_plant_02
-  - Level_62_Pile1_015_vehicle_04
-  - Level_62_Pile1_022_animal_03
-  - Level_62_Pile1_001_food_02
   - Level_62_Pile1_048_food_01
-  - Level_62_Pile1_007_animal_04
+  - Level_62_Pile1_049_food_02
+  - Level_62_Pile1_005_animal_02
+  - Level_62_Pile1_023_animal_04
+  - Level_62_Pile1_015_vehicle_04
+  - Level_62_Pile1_009_plant_02
+  - Level_62_Pile1_036_animal_01
+  - Level_62_Pile1_027_plant_04
+  - Level_62_Pile1_033_food_02
+  - Level_62_Pile1_040_plant_01
   - Level_62_Pile1_038_animal_03
   - Level_62_Pile1_045_vehicle_02
-  - Level_62_Pile1_009_plant_02
-  - Level_62_Pile1_020_animal_01
-  - Level_62_Pile1_003_food_04
-  - Level_62_Pile1_058_plant_03
-  - Level_62_Pile1_024_plant_01
-  - Level_62_Pile1_027_plant_04
   - Level_62_Pile1_050_food_03
-  - Level_62_Pile1_060_vehicle_01
-  - Level_62_Pile1_030_vehicle_03
-  - Level_62_Pile1_051_food_04
-  - Level_62_Pile1_029_vehicle_02
-  - Level_62_Pile1_005_animal_02
-  - Level_62_Pile1_055_animal_04
-  - Level_62_Pile1_053_animal_02
-  - Level_62_Pile1_063_vehicle_04
-  - Level_62_Pile1_056_plant_01
-  - Level_62_Pile1_000_food_01
-  - Level_62_Pile1_026_plant_03
+  - Level_62_Pile1_058_plant_03
   - Level_62_Pile1_017_food_02
-  - Level_62_Pile1_059_plant_04
-  - Level_62_Pile1_057_plant_02
-  - Level_62_Pile1_028_vehicle_01
   - Level_62_Pile1_034_food_03
+  - Level_62_Pile1_060_vehicle_01
+  - Level_62_Pile1_051_food_04
+  - Level_62_Pile1_006_animal_03
+  - Level_62_Pile1_053_animal_02
+  - Level_62_Pile1_000_food_01
+  - Level_62_Pile1_055_animal_04
+  - Level_62_Pile1_062_vehicle_03
+  - Level_62_Pile1_003_food_04
+  - Level_62_Pile1_026_plant_03
   - Level_62_Pile1_004_animal_01
   - Level_62_Pile1_031_vehicle_04
+  - Level_62_Pile1_057_plant_02
   - Level_62_Pile1_014_vehicle_03
-  - Level_62_Pile1_006_animal_03
+  - Level_62_Pile1_059_plant_04
+  - Level_62_Pile1_063_vehicle_04
+  - Level_62_Pile1_056_plant_01
+  - Level_62_Pile1_028_vehicle_01
   - Level_62_Pile1_061_vehicle_02

@@ -1,6 +1,8 @@
 # Per-level content and live preview
 
-Open **Tools > Sticker Category Game > Level Preview**, select a level in the current gameplay scene, then expand **Generation** and enable **Enabled**. The same controls are available by selecting its LevelDefinition asset. Existing authored boards stay unchanged until generation is enabled.
+Open **Tools > Sticker Category Game > Level Preview**, select a level in the current gameplay scene, then enable **Enable Generated Content** in **Special Sticker Ratios — this level**. The same controls are available by selecting its LevelDefinition asset. Existing authored boards stay unchanged until generation is enabled.
+
+Adjust **Mystery (?) %** and **Locked %** at the top of the inspector. **Requested (rounded)** shows the expected counts from the percentages; **Current board** shows the successfully generated counts. The preview rebuilds after a 0.5-second pause. The total percentage must not exceed 100%; geometry and key-category constraints may require lower ratios. Expand **Generation Options** for difficulty, category/type counts and the sticker pool. For example, 10% mystery and 5% locked on a 64-sticker level request 6 mystery and 3 locked stickers.
 
 | Setting | Meaning |
 |---|---|
