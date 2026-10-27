@@ -94,6 +94,7 @@ namespace StickyPeerSort
             return true;
         }
         public bool HasTarget(int i) { int c, t; return FindTarget(i, out c, out t); }
+        public bool TryGetTarget(int i, out int category, out int target) { return FindTarget(i, out category, out target); }
         void RevealUncovered(bool emit)
         {
             for (int i = 0; i < Stickers.Count; i++)
@@ -106,15 +107,22 @@ namespace StickyPeerSort
         bool FindTarget(int i, out int category, out int target)
         {
             var d = Stickers[i].placement.definition;
+            category = target = -1;
+            int mostFilled = -1;
             for (int c = 0; c < Categories.Count; c++)
             {
                 var cat = Categories[c];
                 if (!cat.active || cat.objective.category != d.category) continue;
                 for (int t = 0; t < cat.targets.Length; t++)
                     if (cat.targets[t] < 0 && (cat.objective.exactTargets.Count == 0 || cat.objective.exactTargets[t] == d))
-                    { category = c; target = t; return true; }
+                    {
+                        // Consider only sheets with an exact free target, then prefer the most filled.
+                        // Equal counts retain objective order; the first matching slot wins within a sheet.
+                        if (cat.Count > mostFilled) { category = c; target = t; mostFilled = cat.Count; }
+                        break;
+                    }
             }
-            category = target = -1; return false;
+            return category >= 0;
         }
         bool Collect(int i)
         {

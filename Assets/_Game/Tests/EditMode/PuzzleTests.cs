@@ -128,6 +128,34 @@ namespace StickyPeerSort.Tests
             level.objectives[0].exactTargets.Add(level.stickers[1].definition); level.objectives[0].exactTargets.Add(level.stickers[0].definition);
             var s = new GameSession(level); s.Select(0); Assert.AreEqual(0, s.Categories[0].targets[1]); s.Select(1); Assert.AreEqual(1, s.Categories[0].targets[0]);
         }
+        void TwoOverlappingSheets()
+        {
+            var a = level.stickers[0].definition; var b = level.stickers[1].definition; var c = level.stickers[2].definition;
+            b.category = c.category = a.category;
+            level.activeCategoryCount = 2; level.bufferCapacity = 3; level.objectives.Clear();
+            level.objectives.Add(new CategoryObjective { category = a.category, targetCount = 3, exactTargets = new List<StickerDefinition> { a, b, b } });
+            level.objectives.Add(new CategoryObjective { category = a.category, targetCount = 3, exactTargets = new List<StickerDefinition> { a, c, c } });
+            var extra = new[] { b, c, a };
+            for (int i = 0; i < extra.Length; i++) level.stickers.Add(new StickerPlacement { instanceId = "s" + (i + 3), definition = extra[i], position = new Vector2(1000 + i * 300, 0) });
+        }
+        [Test] public void SharedDesignPrefersTheMoreFilledMatchingSheet()
+        {
+            TwoOverlappingSheets(); var session = new GameSession(level);
+            Assert.IsTrue(session.Select(2)); Assert.IsTrue(session.Select(4));
+            int category, slot;
+            Assert.IsTrue(session.TryGetTarget(0, out category, out slot)); Assert.AreEqual(1, category); Assert.AreEqual(0, slot);
+            Assert.IsTrue(session.Select(0)); Assert.IsTrue(session.Categories[1].Complete); Assert.AreEqual(0, session.Categories[0].Count);
+            Assert.AreEqual(1, session.Events.Find(e => e.kind == PuzzleEventKind.Collected && e.sticker == 0).category);
+        }
+        [Test] public void FullnessNeverOverridesTheRequiredDesignAndTiesKeepOrder()
+        {
+            TwoOverlappingSheets(); var session = new GameSession(level); int category, slot;
+            Assert.IsTrue(session.TryGetTarget(0, out category, out slot)); Assert.AreEqual(0, category);
+            session.Select(2); session.Select(4);
+            Assert.IsTrue(session.TryGetTarget(1, out category, out slot)); Assert.AreEqual(0, category, "Fuller sheet has no matching B design.");
+            session.Select(0);
+            Assert.IsTrue(session.TryGetTarget(5, out category, out slot)); Assert.AreEqual(0, category, "Completed sheets cannot receive stickers.");
+        }
         [Test] public void ExtraSlotAndUndoRestoreCapacity() { var s = new GameSession(level); s.AddSlot(); Assert.AreEqual(2, s.Capacity); s.Undo(); Assert.AreEqual(1, s.Capacity); }
         [Test] public void ShufflePreservesIdentityAndUndoRestoresTransforms()
         {

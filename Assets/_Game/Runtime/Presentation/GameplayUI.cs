@@ -53,13 +53,14 @@ namespace StickyPeerSort
         public void Render() { RenderFrom(context); }
         public void HideModal() { modal.SetActive(false); }
         public void SetInstruction(string message) { instruction.text = message; }
-        public void SynchronizeAfterMoves() { CompactBuffer(context.Session); UpdateHud(context); UpdateTrayInstruction(); }
+        public void SynchronizeAfterMoves() { CompactBuffer(context.Session); UpdateHud(context); UpdateTrayInstruction(); RefreshCoveredStickers(); }
         void UpdateTrayInstruction()
         {
             var s = context.Session;
             instruction.text = s.Buffer.Count >= s.Capacity ? "Waiting tray full! Undo or retry with a different order."
                 : s.Buffer.Count > 0 && s.Buffer.Count == s.Capacity - 1 ? "Only one waiting slot left. Plan your next sticker."
                 : s.Level.tutorial;
+            if (context.Balance.dragToPeel) instruction.text += "\nDrag to peel; release early to reattach.";
         }
         public void UpdateTrayStatus(int count, int limit)
         {
@@ -292,11 +293,15 @@ namespace StickyPeerSort
             return card.targets[e.slot].rectTransform;
         }
         public bool TakeSticker(int index, out Vector3 position, out Vector2 size)
+        { float amount, direction; return TakeSticker(index, out position, out size, out amount, out direction); }
+        public bool TakeSticker(int index, out Vector3 position, out Vector2 size, out float peeledAmount, out float peelDirection)
         {
+            peeledAmount = peelDirection = 0;
             StickerView view; Image waiting;
             if (stickerViews.TryGetValue(index, out view))
             {
                 position = view.transform.position; size = view.Rect.sizeDelta * view.Rect.localScale.x;
+                if (view.DragPeel != null) { peeledAmount = view.DragPeel.CompletedAmount; peelDirection = view.DragPeel.DirectionDegrees; }
                 view.gameObject.SetActive(false); Destroy(view.gameObject); stickerViews.Remove(index); RefreshCoveredStickers(); return true;
             }
             if (waitingViews.TryGetValue(index, out waiting))

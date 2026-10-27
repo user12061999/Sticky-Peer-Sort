@@ -3,7 +3,7 @@ using UnityEngine;
 namespace StickyPeerSort
 {
     // Application flow. Dependencies are ports; this class does not know about Unity UI or coroutines.
-    public sealed class GameplayCoordinator : IGameplayCommands, IDisposable
+    public sealed class GameplayCoordinator : IGameplayCommands, IStickerPeelInput, IDisposable
     {
         readonly GameplayContext context;
         readonly ILevelRepository levels;
@@ -13,8 +13,9 @@ namespace StickyPeerSort
         readonly IMovePresenter presenter;
         readonly IGameplayScreen screen;
         int levelIndex;
+        int peeling = -1;
         GameSession Session => context.Session;
-        public bool CanTap => Session != null && !presenter.BlocksInput && !screen.HasModal && Session.State == GameplayState.Playing;
+        public bool CanTap => peeling < 0 && Session != null && !presenter.BlocksInput && !screen.HasModal && Session.State == GameplayState.Playing;
         bool Available => CanTap && !presenter.IsBusy;
         public GameplayCoordinator(GameplayContext context, ILevelRepository levels, IGameSessionFactory sessions,
             IProgressStore progress, IGameplayBoosters boosters, IMovePresenter presenter, IGameplayScreen screen)
@@ -25,6 +26,7 @@ namespace StickyPeerSort
         }
         public void LoadLevel(int index)
         {
+            peeling = -1;
             presenter.Reset(); levelIndex = Mathf.Clamp(index, 0, levels.Count - 1);
             context.Session = sessions.Create(levels.Get(levelIndex)); screen.HideModal(); screen.Render();
         }
@@ -35,8 +37,21 @@ namespace StickyPeerSort
             presenter.Enqueue(new MovePresentation(Session));
         }
         public void TapAt(Vector2 point) { if (CanTap) Tap(BoardGeometry.Hit(Session, point)); }
-        public void Undo() { if (!presenter.IsBusy && boosters.Undo(Session, context.Balance)) { screen.HideModal(); screen.Render(); } }
-        public void Extra() { if (!presenter.IsBusy && boosters.Extra(Session, context.Balance)) screen.Render(); }
+        public bool TryBeginPeel(int index)
+        {
+            if (!CanTap || !Session.Legal(index)) return false;
+            peeling = index; return true;
+        }
+        public bool CommitPeel(int index)
+        {
+            if (peeling != index) return false;
+            peeling = -1;
+            if (!CanTap || !Session.Legal(index)) return false;
+            Tap(index); return true;
+        }
+        public void CancelPeel(int index) { if (peeling == index) peeling = -1; }
+        public void Undo() { if (peeling < 0 && !presenter.IsBusy && boosters.Undo(Session, context.Balance)) { screen.HideModal(); screen.Render(); } }
+        public void Extra() { if (peeling < 0 && !presenter.IsBusy && boosters.Extra(Session, context.Balance)) screen.Render(); }
         public void Hint()
         {
             if (!Available) return; int index;
@@ -84,7 +99,7 @@ namespace StickyPeerSort
                 "RESUME", Resume, "CONTINUE SAVED", () => LoadLevel(Mathf.Min(progress.Data.unlockedLevel - 1, levels.Count - 1)));
         }
         void Resume() { screen.HideModal(); Session.Pause(false); }
-        public void Suspend(bool paused) { progress.Flush(); if (paused && Available) Pause(); }
-        public void Dispose() { presenter.Drained -= OnPresentationDrained; presenter.Reset(); }
+        public void Suspend(bool paused) { progress.Flush(); if (paused) peeling = -1; if (paused && Available) Pause(); }
+        public void Dispose() { peeling = -1; presenter.Drained -= OnPresentationDrained; presenter.Reset(); }
     }
 }

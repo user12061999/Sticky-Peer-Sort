@@ -10,6 +10,11 @@ namespace StickyPeerSort
         [Header("Sticker page peel")]
         public bool pagePeel = true;
         public Material pagePeelMaterial;
+        [Header("Interactive drag peel (Old Input EventSystem)")]
+        public bool dragToPeel = true;
+        [Range(.35f, 1.5f)] public float dragPeelDistanceRatio = .85f;
+        [Range(.01f, .2f)] public float dragPeelDeadZone = .05f;
+        [Min(.01f)] public float dragReattachDuration = .18f;
         [Min(0)] public float stickDuration = .14f;
         public float clickFailDuration = .16f;
         public float clickFailDistance = 9;

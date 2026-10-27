@@ -53,8 +53,132 @@ namespace StickyPeerSort.Tests
             var hits = new List<RaycastResult>(); EventSystem.current.RaycastAll(pointer, hits);
             Assert.IsNotEmpty(hits); Assert.AreEqual(view.gameObject, hits[0].gameObject);
             ExecuteEvents.Execute(hits[0].gameObject, pointer, ExecuteEvents.pointerDownHandler);
+            Assert.AreEqual(0, controller.Session.Categories[0].Count, "Pointer-down must not select before the full peel.");
+            pointer.position = RectTransformUtility.WorldToScreenPoint(null, controller.ui.board.TransformPoint(local + Vector2.left * 1000));
+            ExecuteEvents.Execute(hits[0].gameObject, pointer, ExecuteEvents.dragHandler);
             controller.Tap(0); Assert.AreEqual(1, controller.Session.Categories[0].Count);
             yield return WaitForAnimation(); Assert.AreEqual(7, controller.ui.stickerViews.Count);
+        }
+        [UnityTest] public IEnumerator BoardHasNoDestinationBadgesAndSpecialsStayConcealed()
+        {
+            LoadFlatLevel(0); var level = controller.levels[0]; level.activeCategoryCount = 1; level.bufferCapacity = 3;
+            level.stickers[1].position = level.stickers[0].position + new Vector2(40, 0); level.stickers[1].sortingOrder = -1;
+            level.stickers[6].special.kind = SpecialKind.Mystery;
+            level.stickers[6].position = level.stickers[5].position + new Vector2(-60, 0); level.stickers[6].sortingOrder = -2;
+            level.stickers[7].special = new StickerSpecialConfig { kind = SpecialKind.Locked, dependencyId = level.stickers[0].instanceId };
+            controller.LoadLevel(0); yield return null; Canvas.ForceUpdateCanvases();
+            var views = controller.ui.stickerViews;
+            Assert.AreEqual(StickerBoardState.Available, views[0].BoardState);
+            Assert.AreEqual(StickerBoardState.Blocked, views[1].BoardState);
+            Assert.Less(views[1].image.color.grayscale, views[0].image.color.grayscale);
+            Assert.AreEqual(StickerBoardState.Available, views[4].BoardState);
+            foreach (int i in new[] { 0, 4 }) Assert.IsNull(views[i].GetComponentInChildren<StickerBoardAdornment>(true), "Ordinary stickers must not allocate a check/clock graphic.");
+            Assert.AreEqual(StickerBoardState.Mystery, views[6].BoardState); Assert.AreEqual(Color.black, views[6].image.color);
+            Assert.GreaterOrEqual(views[6].title.fontSize, Mathf.Min(level.stickers[6].size.x, level.stickers[6].size.y) * .7f);
+            Assert.IsTrue(views[7].HasLockChains); Assert.IsTrue(views[7].LockIconRect.gameObject.activeSelf);
+            foreach (int i in new[] { 7 })
+            {
+                var graphic = views[i].GetComponentInChildren<StickerBoardAdornment>();
+                Assert.IsNotNull(graphic); Assert.IsFalse(graphic.raycastTarget);
+                var mesh = graphic.canvasRenderer.GetMesh();
+                Assert.IsNotNull(mesh);
+                Assert.Greater(mesh.vertexCount, 0, "Lock chains need a rendered mesh.");
+            }
+            controller.Tap(6); yield return null; Assert.AreEqual(Color.black, views[6].image.color, "Rejected mystery taps must not expose its texture.");
+            controller.Tap(0); yield return WaitForAnimation();
+            Assert.AreEqual(StickerBoardState.Available, controller.ui.stickerViews[1].BoardState);
+            Assert.IsFalse(controller.ui.stickerViews[7].HasLockChains);
+            Assert.IsFalse(controller.ui.stickerViews[7].LockIconRect.gameObject.activeSelf);
+        }
+        [UnityTest] public IEnumerator TargetHighlightSurvivesBadgeRemovalForWaitingAndGallery()
+        {
+            LoadFlatLevel(0); controller.levels[0].activeCategoryCount = 1; controller.LoadLevel(0);
+            var view = controller.ui.stickerViews[4];
+            Assert.AreEqual(StickerBoardState.Available, view.BoardState); Assert.IsFalse(controller.Session.HasTarget(4));
+            var waitingTarget = controller.ui.buffer.GetChild(0).GetComponent<UnityEngine.UI.Image>();
+            Color waitingColor = waitingTarget.color; Vector2 start; var pointer = BeginPeel(4, out start);
+            Assert.AreNotEqual(waitingColor, waitingTarget.color, "Holding a waiting-bound sticker should highlight its destination slot.");
+            ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.pointerUpHandler); Assert.AreEqual(waitingColor, waitingTarget.color);
+            foreach (int i in new[] { 0, 1, 2, 3 }) { controller.Tap(i); yield return WaitForAnimation(); }
+            int category, slot; Assert.IsTrue(controller.Session.TryGetTarget(4, out category, out slot));
+            var target = controller.ui.categoryViews[category].targets[slot]; Color targetColor = target.color;
+            pointer = BeginPeel(4, out start); Assert.AreNotEqual(targetColor, target.color, "Gallery target highlight remains available without a board badge.");
+            ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.pointerUpHandler); Assert.AreEqual(targetColor, target.color);
+            Assert.AreEqual(StickerBoardState.Available, view.BoardState);
+            Assert.IsNull(view.GetComponentInChildren<StickerBoardAdornment>(true));
+        }
+        PointerEventData BeginPeel(int index, out Vector2 start)
+        {
+            Canvas.ForceUpdateCanvases(); start = VisiblePoint(index);
+            var pointer = new PointerEventData(EventSystem.current) { pointerId = -1, button = PointerEventData.InputButton.Left,
+                position = RectTransformUtility.WorldToScreenPoint(null, controller.ui.board.TransformPoint(start)) };
+            ExecuteEvents.Execute(controller.ui.stickerViews[index].gameObject, pointer, ExecuteEvents.pointerDownHandler);
+            return pointer;
+        }
+        void MovePeel(StickerView view, PointerEventData pointer, Vector2 start, float amount, Vector2? direction = null)
+        {
+            var p = controller.Session.Stickers[controller.Session.Level.stickers.FindIndex(s => s.instanceId == view.name.Substring("Sticker ".Length))].placement;
+            float distance = Mathf.Min(p.definition.FitSize(p.size).x, p.definition.FitSize(p.size).y) * p.scale * fast.dragPeelDistanceRatio;
+            pointer.position = RectTransformUtility.WorldToScreenPoint(null, controller.ui.board.TransformPoint(start + (direction ?? Vector2.left) * distance * amount));
+            ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.dragHandler);
+        }
+        [UnityTest] public IEnumerator PartialDragBackAndEarlyReleaseReattachWithoutChangingGameState()
+        {
+            LoadFlatLevel(0); var view = controller.ui.stickerViews[0]; string before = controller.Session.Key(); Vector2 start;
+            var pointer = BeginPeel(0, out start); Assert.IsTrue(view.DragPeel.IsPeeling); Assert.IsFalse(controller.CanTap);
+            MovePeel(view, pointer, start, .45f); Assert.AreEqual(.45f, view.DragPeel.Amount, .001f);
+            MovePeel(view, pointer, start, .1f); Assert.AreEqual(.1f, view.DragPeel.Amount, .001f);
+            MovePeel(view, pointer, start, 0); ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.pointerUpHandler);
+            yield return null; Assert.IsTrue(controller.CanTap); Assert.AreEqual(before, controller.Session.Key());
+            Assert.AreEqual(1, view.GetComponent<CanvasGroup>().alpha); Assert.IsFalse(controller.Session.CanUndo);
+            pointer = BeginPeel(0, out start); MovePeel(view, pointer, start, .55f);
+            ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.pointerUpHandler);
+            Assert.IsTrue(view.DragPeel.IsReturning); Assert.IsFalse(controller.CanTap);
+            float deadline = Time.realtimeSinceStartup + 2;
+            while (view.DragPeel.IsReturning && Time.realtimeSinceStartup < deadline) yield return null;
+            yield return null;
+            Assert.AreEqual(before, controller.Session.Key()); Assert.IsTrue(controller.CanTap); Assert.IsEmpty(controller.Session.Buffer);
+            Assert.AreEqual(0, controller.ui.effects.childCount); Assert.AreEqual(0, view.DragPeel.Amount);
+        }
+        [UnityTest] public IEnumerator FullDragHandsFoldToGalleryFlightOnceAndThenCanBeUndone()
+        {
+            LoadFlatLevel(0); fast.peelDuration = .4f; fast.travelDuration = .25f;
+            var view = controller.ui.stickerViews[0]; Vector2 start; var pointer = BeginPeel(0, out start);
+            MovePeel(view, pointer, start, .5f); Assert.AreEqual(0, controller.Session.Categories[0].Count);
+            MovePeel(view, pointer, start, 1.1f);
+            Assert.AreEqual(1, controller.Session.Categories[0].Count); Assert.IsFalse(controller.ui.stickerViews.ContainsKey(0));
+            var flying = controller.ui.effects.Find("Flying sticker 0"); Assert.IsNotNull(flying);
+            Assert.AreEqual(1, flying.GetComponent<StickerCurlMesh>().Amount, .001f, "A completed drag must not restart the peel animation.");
+            ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.pointerUpHandler);
+            yield return WaitForAnimation(); Assert.AreEqual(1, controller.ui.categoryViews[0].FilledCount);
+            controller.Undo(); Assert.IsTrue(controller.ui.stickerViews.ContainsKey(0)); Assert.AreEqual(0, controller.Session.Categories[0].Count);
+        }
+        [UnityTest] public IEnumerator FullDragWithoutMatchingSheetLandsInWaitingArea()
+        {
+            LoadFlatLevel(0, 1); var view = controller.ui.stickerViews[4]; Vector2 start; var pointer = BeginPeel(4, out start);
+            Assert.AreEqual(StickerBoardState.Available, view.BoardState); Assert.IsFalse(controller.Session.HasTarget(4));
+            MovePeel(view, pointer, start, .5f, Vector2.up); Assert.AreEqual(-90, view.DragPeel.DirectionDegrees, .001f);
+            Assert.IsEmpty(controller.Session.Buffer);
+            MovePeel(view, pointer, start, 1.1f, Vector2.up);
+            Assert.AreEqual(1, controller.Session.Buffer.Count);
+            yield return WaitForAnimation(); Assert.IsTrue(controller.ui.waitingViews.ContainsKey(4));
+            Assert.AreEqual(0, controller.Session.Categories[0].Count);
+        }
+        [UnityTest] public IEnumerator PartialDragKeepsCoversAndRejectsOtherPointersThenRestartCancelsIt()
+        {
+            LoadFlatLevel(0); var level = controller.levels[0];
+            level.stickers[1].position = level.stickers[0].position + new Vector2(40, 0); level.stickers[1].sortingOrder = -1;
+            controller.LoadLevel(0); var view = controller.ui.stickerViews[0]; Vector2 start; var pointer = BeginPeel(0, out start);
+            MovePeel(view, pointer, start, .5f); string before = controller.Session.Key();
+            Assert.IsTrue(BoardGeometry.Covered(controller.Session, 1)); Assert.IsTrue(controller.ui.stickerViews[1].IsCoveredShadeVisible);
+            controller.Tap(2); Assert.AreEqual(before, controller.Session.Key());
+            int undo = controller.Save.Data.undo; controller.Undo(); Assert.AreEqual(undo, controller.Save.Data.undo);
+            pointer.pointerId = 9; MovePeel(view, pointer, start, 1.5f); Assert.AreEqual(.5f, view.DragPeel.Amount, .001f);
+            controller.LoadLevel(0); yield return null;
+            Assert.IsTrue(controller.CanTap); Assert.AreEqual(0, controller.ui.effects.childCount); Assert.IsTrue(BoardGeometry.Covered(controller.Session, 1));
+            view = controller.ui.stickerViews[0]; pointer = BeginPeel(0, out start); MovePeel(view, pointer, start, .4f);
+            ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.cancelHandler); yield return null;
+            Assert.IsTrue(controller.CanTap); Assert.AreEqual(0, controller.ui.effects.childCount);
         }
         sealed class LandingFeedback : IGameFeedback
         {

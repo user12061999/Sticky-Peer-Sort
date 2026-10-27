@@ -22,6 +22,9 @@ namespace StickyPeerSort
         public Sprite coinIcon, settingsIcon, starIcon, failIcon, collectionIcon;
         public Sprite undoIcon, hintIcon, extraIcon, shuffleIcon;
         public Sprite keyIcon, lockIcon;
+        [Header("Board sticker states")]
+        public Color blockedStickerTint = new Color(.6f, .6f, .6f, 1);
+        [Range(.5f, .95f)] public float mysteryQuestionSize = .78f;
         [Header("Reference composition (opt-in for sample scene)")]
         public bool referenceComposition;
         public Sprite woodSurface;

@@ -5,6 +5,12 @@ using UnityEngine;
 namespace StickyPeerSort
 {
     public interface IStickerInput { void Tap(int index); void TapAt(Vector2 boardPoint); }
+    public interface IStickerPeelInput
+    {
+        bool TryBeginPeel(int index);
+        bool CommitPeel(int index);
+        void CancelPeel(int index);
+    }
     public interface IGameplayReadModel
     {
         GameSession Session { get; }

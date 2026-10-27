@@ -10,6 +10,12 @@ namespace StickyPeerSort
         const int Columns = 32, Rows = 4;
         readonly List<UIVertex> source = new List<UIVertex>(6);
         float amount;
+        float directionDegrees;
+        public float DirectionDegrees
+        {
+            get => directionDegrees;
+            set { directionDegrees = value; if (graphic != null) graphic.SetVerticesDirty(); }
+        }
         public float Amount
         {
             get => amount;
@@ -27,14 +33,22 @@ namespace StickyPeerSort
                 min = Vector3.Min(min, v.position); max = Vector3.Max(max, v.position);
                 uvMin = Vector2.Min(uvMin, v.uv0); uvMax = Vector2.Max(uvMax, v.uv0);
             }
-            float width = max.x - min.x; if (width < .001f) return;
+            float originalWidth = max.x - min.x; if (originalWidth < .001f) return;
+            float height = max.y - min.y, angleDegrees = directionDegrees * Mathf.Deg2Rad;
+            float cos = Mathf.Cos(angleDegrees), sin = Mathf.Sin(angleDegrees);
+            float width = Mathf.Abs(cos) * originalWidth + Mathf.Abs(sin) * height;
+            Vector2 center = (min + max) * .5f;
             mesh.Clear();
             float fold = 1 - amount * .82f, radius = .16f;
             for (int y = 0; y <= Rows; y++) for (int x = 0; x <= Columns; x++)
             {
                 float u = (float)x / Columns, v = (float)y / Rows;
-                float distance = Mathf.Max(0, u - fold), angle = Mathf.Min(Mathf.PI, distance / radius);
-                float projected = u, lift = 0, back = 0, shade = 0;
+                Vector2 original = new Vector2(Mathf.Lerp(min.x, max.x, u), Mathf.Lerp(min.y, max.y, v));
+                Vector2 offset = original - center;
+                Vector2 local = new Vector2(cos * offset.x + sin * offset.y, -sin * offset.x + cos * offset.y);
+                float along = local.x / width + .5f;
+                float distance = Mathf.Max(0, along - fold), angle = Mathf.Min(Mathf.PI, distance / radius);
+                float projected = along, lift = 0, back = 0, shade = 0;
                 if (distance > 0)
                 {
                     projected = fold + radius * Mathf.Sin(angle) - Mathf.Max(0, distance - Mathf.PI * radius);
@@ -44,8 +58,10 @@ namespace StickyPeerSort
                 }
                 var vertex = first;
                 // Slight diagonal elevation makes the curled white underside visible without a 3D camera.
-                vertex.position = new Vector3(min.x + (projected + lift * .14f) * width,
-                    Mathf.Lerp(min.y, max.y, v) + lift * width * (.32f + v * .1f), min.z);
+                local.x = (projected + lift * .14f - .5f) * width;
+                local.y += lift * width * (.32f + v * .1f);
+                vertex.position = new Vector3(center.x + cos * local.x - sin * local.y,
+                    center.y + sin * local.x + cos * local.y, min.z);
                 vertex.uv0 = new Vector4(Mathf.Lerp(uvMin.x, uvMax.x, u), Mathf.Lerp(uvMin.y, uvMax.y, v), 0, 0);
                 vertex.uv1 = new Vector4(back, shade, 0, 0);
                 mesh.AddVert(vertex);

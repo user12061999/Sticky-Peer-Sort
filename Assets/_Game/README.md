@@ -114,3 +114,5 @@ Chỉnh **Key Flight Duration** (0.45s), **Lock Open Duration** (0.28s), **Speci
 Per-level content controls and live Editor preview: see Docs/LevelAuthoring.md.
 
 Level analysis, solution replay and batch validation: see Docs/LevelAnalysis.md.
+
+Interactive drag peeling and most-filled matching sheet priority: see Docs/InteractivePeel.md.

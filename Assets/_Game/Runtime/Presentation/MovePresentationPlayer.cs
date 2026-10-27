@@ -51,7 +51,8 @@ namespace StickyPeerSort
                     float rotation = ui.stickerViews.TryGetValue(e.sticker, out view) ? view.Rect.localEulerAngles.z : 0;
                     if (rotation > 180) rotation -= 360;
                     Vector3 start; Vector2 size;
-                    if (!ui.TakeSticker(e.sticker, out start, out size))
+                    float peeledAmount, peelDirection;
+                    if (!ui.TakeSticker(e.sticker, out start, out size, out peeledAmount, out peelDirection))
                         throw new System.InvalidOperationException("Missing visible source for sticker " + e.sticker);
                     var d = resolved.Stickers[e.sticker].placement.definition;
                     var ghost = UIFactory.Panel("Flying sticker " + e.sticker, ui.effects, size, Vector2.zero, d.tint, d.ArtworkSprite);
@@ -60,6 +61,7 @@ namespace StickyPeerSort
                     ghost.rectTransform.localRotation = Quaternion.Euler(0, 0, rotation);
                     var text = d.showLabel ? UIFactory.Text("Label", ghost.transform, d.displayName, 25, size * .9f, Vector2.zero) : null;
                     var page = new StickerPeelPresentation(ghost, text, context.Balance);
+                    page.DirectionDegrees = peelDirection;
                     // Curl the original sprite mesh before adding the cosmetic shadow mesh.
                     UnityEngine.UI.Shadow flightShadow = null;
                     if (ui.theme != null && ui.theme.referenceComposition)
@@ -68,7 +70,8 @@ namespace StickyPeerSort
                         flightShadow.effectColor = new Color(.2f, .1f, .03f, .25f);
                         flightShadow.effectDistance = new Vector2(4, -7);
                     }
-                    yield return page.Animate(0, 1, context.Balance.peelDuration);
+                    if (peeledAmount < .999f) yield return page.Animate(peeledAmount, 1, context.Balance.peelDuration);
+                    else page.Set(1); // Continue the user's completed peel; never restart it at zero.
                     Vector2 targetSize = target.sizeDelta;
                     if (e.kind == PuzzleEventKind.Buffered) targetSize -= new Vector2(10, 19);
                     Vector3 end = target.position; float t = 0;

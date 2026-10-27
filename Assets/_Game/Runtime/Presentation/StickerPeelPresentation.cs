@@ -12,6 +12,7 @@ namespace StickyPeerSort
         readonly StickerCurlMesh curl;
         readonly TextMeshProUGUI label;
         public bool Enabled => curl != null;
+        public float DirectionDegrees { set { if (curl != null) curl.DirectionDegrees = value; } }
         public StickerPeelPresentation(Image image, TextMeshProUGUI label, GameBalanceConfig config)
         {
             this.label = label;
