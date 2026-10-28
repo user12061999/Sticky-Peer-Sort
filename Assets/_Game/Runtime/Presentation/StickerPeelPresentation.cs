@@ -25,7 +25,7 @@ namespace StickyPeerSort
             curl = image.gameObject.AddComponent<StickerCurlMesh>();
             if (definition != null) curl.ArtworkBounds = VisibleBounds(definition);
         }
-        static Rect VisibleBounds(StickerDefinition definition)
+        internal static Rect VisibleBounds(StickerDefinition definition)
         {
             if (bounds.TryGetValue(definition, out var cached)) return cached;
             Vector2 min = Vector2.one, max = Vector2.zero;

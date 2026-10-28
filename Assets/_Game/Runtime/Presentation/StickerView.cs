@@ -24,6 +24,7 @@ namespace StickyPeerSort
         GameplayUITheme theme;
         bool showingMystery, showingLocked;
         public StickerDragPeel DragPeel { get; private set; }
+        public StickerDefinition Definition => context.Session.Stickers[index].placement.definition;
         public StickerBoardState BoardState { get; private set; }
         public bool HasLockChains => adornment != null && adornment.gameObject.activeSelf && BoardState == StickerBoardState.Locked;
         public bool IsCoveredShadeVisible => coveredShade != null && coveredShade.gameObject.activeSelf;

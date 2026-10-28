@@ -90,6 +90,7 @@ namespace StickyPeerSort
         }
         public void ShowModal(string title, string body, string a, Action actionA, string b, Action actionB)
         {
+            StickerBackingPaper.Clear(effects);
             modal.SetActive(true); modalTitle.text = title; modalBody.text = body;
             if (theme != null && modalIcon != null)
             {

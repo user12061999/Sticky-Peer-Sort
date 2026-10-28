@@ -23,6 +23,8 @@ namespace StickyPeerSort
         CanvasGroup sourceGroup;
         float sourceAlpha;
         StickerPeelPresentation page;
+        StickerBackingPaper backing;
+        public StickerBackingPaper TakeBackingPaper() { var paper = backing; backing = null; return paper; }
         Coroutine returning;
         public bool IsPeeling => held;
         public bool IsReturning => returning != null;
@@ -54,6 +56,7 @@ namespace StickyPeerSort
             var label = definition.showLabel ? UIFactory.Text("Label", ghost.transform, definition.displayName, 25, ghost.rectTransform.sizeDelta * .9f, Vector2.zero) : null;
             page = new StickerPeelPresentation(ghost, label, context.Balance, definition); page.Set(0);
             var shadow = ghost.gameObject.AddComponent<Shadow>(); shadow.effectDistance = new Vector2(4, -7); shadow.effectColor = new Color(0, 0, 0, .25f);
+            backing = StickerBackingPaper.Create(view, screen, context.Balance, index);
             sourceGroup = view.GetComponent<CanvasGroup>();
             if (sourceGroup == null) sourceGroup = view.gameObject.AddComponent<CanvasGroup>();
             sourceAlpha = sourceGroup.alpha; sourceGroup.alpha = 0;
@@ -73,6 +76,7 @@ namespace StickyPeerSort
             Vector2 localDirection = Quaternion.Euler(0, 0, -view.Rect.localEulerAngles.z) * progress.Direction;
             DirectionDegrees = Mathf.Atan2(-localDirection.y, -localDirection.x) * Mathf.Rad2Deg;
             page.DirectionDegrees = DirectionDegrees; page.Set(Amount);
+            if (backing != null) backing.SetPeel(Amount);
             if (Amount < 1) return;
             held = false; CompletedAmount = 1; RestoreDestination();
             if (!input.CommitPeel(index)) { CompletedAmount = 0; Reattach(); }
@@ -91,9 +95,11 @@ namespace StickyPeerSort
             while (from > .001f && time < duration)
             {
                 time += Time.unscaledDeltaTime; Amount = Mathf.Lerp(from, 0, Mathf.SmoothStep(0, 1, time / duration));
-                page.Set(Amount); yield return null;
+                page.Set(Amount); if (backing != null) backing.SetPeel(Amount);
+                yield return null;
             }
             Amount = 0; page.Set(0);
+            if (backing != null) backing.SetPeel(0);
             yield return null; // Render a fully flat sticker above the board before handing back to its source.
             returning = null; CancelImmediately();
         }
@@ -113,6 +119,7 @@ namespace StickyPeerSort
         {
             if (returning != null) { StopCoroutine(returning); returning = null; }
             held = false; input?.CancelPeel(index); RestoreDestination();
+            if (backing != null) { backing.Discard(); backing = null; }
             if (sourceGroup != null) sourceGroup.alpha = sourceAlpha;
             if (ghost != null) { ghost.gameObject.SetActive(false); Destroy(ghost.gameObject); }
             ghost = null; page = null; Amount = CompletedAmount = 0;

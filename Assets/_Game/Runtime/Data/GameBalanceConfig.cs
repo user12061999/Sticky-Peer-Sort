@@ -15,6 +15,12 @@ namespace StickyPeerSort
         [Range(.35f, 1.5f)] public float dragPeelDistanceRatio = .85f;
         [Range(.01f, .2f)] public float dragPeelDeadZone = .05f;
         [Min(.01f)] public float dragReattachDuration = .18f;
+        [Header("Sticker backing paper")]
+        public bool backingPaper = true;
+        [Range(0, 1)] public float backingPaperOpacity = .45f;
+        [Min(.1f)] public float backingPaperFallDuration = .85f;
+        [Min(0)] public float backingPaperFallDistance = 230;
+        public Color backingPaperTint = new Color(1, .975f, .90f, 1);
         [Min(0)] public float stickDuration = .14f;
         public float clickFailDuration = .16f;
         public float clickFailDistance = 9;

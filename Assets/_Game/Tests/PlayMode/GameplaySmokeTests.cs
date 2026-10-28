@@ -28,6 +28,7 @@ namespace StickyPeerSort.Tests
             fast.categoryFilledHold = fast.categoryExitDuration = fast.categoryEnterDuration = .001f;
             fast.keyFlightDuration = fast.lockOpenDuration = fast.specialRevealDuration = .001f;
             fast.stickDuration = .001f;
+            fast.backingPaper = false; // Most fixtures isolate move sequencing; dedicated paper tests enable it.
             Assert.AreEqual(GameplayState.Playing, controller.Session.State);
         }
         [UnityTearDown] public IEnumerator Cleanup()
@@ -222,6 +223,46 @@ namespace StickyPeerSort.Tests
             Assert.Greater(ghost.GetComponent<Canvas>().sortingOrder, canvas.sortingOrder);
             while (view.DragPeel.IsReturning) yield return null;
             Assert.AreEqual(1, view.GetComponent<CanvasGroup>().alpha); Assert.AreEqual(0, controller.Session.Categories[0].Count);
+        }
+        [UnityTest] public IEnumerator BackingPaperShowsBelowPartialPeelAndCancelsWithoutDropping()
+        {
+            LoadFlatLevel(0); fast.backingPaper = true;
+            var view = controller.ui.stickerViews[0]; string before = controller.Session.Key(); Vector2 start;
+            var pointer = BeginPeel(0, out start); MovePeel(view, pointer, start, .55f);
+            var paper = controller.ui.effects.Find("Sticker backing paper 0").GetComponent<StickerBackingPaper>();
+            Assert.IsFalse(paper.IsFalling);
+            Assert.AreEqual(fast.backingPaperOpacity, paper.GetComponent<CanvasGroup>().alpha, .001f);
+            Assert.Less(paper.GetComponent<CanvasGroup>().alpha, 1);
+            Assert.AreSame(view.image.sprite, paper.GetComponent<UnityEngine.UI.Image>().sprite, "The paper must use the sticker's own alpha silhouette.");
+            Assert.AreEqual(view.Rect.rect.width * view.Rect.lossyScale.x, ((RectTransform)paper.transform).rect.width * paper.transform.lossyScale.x, .01f);
+            Assert.Less(paper.GetComponent<Canvas>().sortingOrder, controller.ui.effects.Find("Interactive peel 0").GetComponent<Canvas>().sortingOrder);
+            foreach (var graphic in paper.GetComponentsInChildren<UnityEngine.UI.Graphic>()) Assert.IsFalse(graphic.raycastTarget);
+            Assert.AreEqual(before, controller.Session.Key());
+            ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.pointerUpHandler);
+            while (view.DragPeel.IsReturning) yield return null;
+            yield return null;
+            Assert.IsTrue(paper == null); Assert.AreEqual(before, controller.Session.Key()); Assert.IsTrue(controller.CanTap);
+        }
+        [UnityTest] public IEnumerator ReleasedBackingFallsWithoutBlockingCollectionThenExpiresAndResets()
+        {
+            LoadFlatLevel(0, 1); fast.backingPaper = true; fast.backingPaperFallDuration = .8f; fast.backingPaperFallDistance = 180;
+            var view = controller.ui.stickerViews[4]; Vector2 start; var pointer = BeginPeel(4, out start);
+            MovePeel(view, pointer, start, .5f);
+            var paper = controller.ui.effects.Find("Sticker backing paper 4").GetComponent<StickerBackingPaper>();
+            Vector3 home = paper.transform.localPosition; MovePeel(view, pointer, start, 1.1f);
+            Assert.IsTrue(paper.IsFalling); Assert.AreEqual(1, controller.Session.Buffer.Count);
+            yield return WaitForAnimation();
+            Assert.IsTrue(controller.ui.waitingViews.ContainsKey(4)); Assert.IsTrue(controller.CanTap);
+            string after = controller.Session.Key(); yield return new WaitForSecondsRealtime(.18f);
+            Assert.Less(paper.transform.localPosition.y, home.y); Assert.AreEqual(after, controller.Session.Key());
+            ScreenCapture.CaptureScreenshot("Temp/BackingPaperFallTest.png"); yield return null;
+            float deadline = Time.realtimeSinceStartup + 2;
+            while (paper != null && Time.realtimeSinceStartup < deadline) yield return null;
+            Assert.IsTrue(paper == null); Assert.IsTrue(controller.CanTap);
+            view = controller.ui.stickerViews[0]; pointer = BeginPeel(0, out start); MovePeel(view, pointer, start, 1.1f);
+            Assert.IsNotEmpty(controller.ui.effects.GetComponentsInChildren<StickerBackingPaper>());
+            controller.LoadLevel(0); yield return null;
+            Assert.IsEmpty(controller.ui.effects.GetComponentsInChildren<StickerBackingPaper>(true)); Assert.IsTrue(controller.CanTap);
         }
         sealed class LandingFeedback : IGameFeedback
         {

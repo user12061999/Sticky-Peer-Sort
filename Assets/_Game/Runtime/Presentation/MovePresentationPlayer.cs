@@ -48,7 +48,11 @@ namespace StickyPeerSort
                 {
                     // Use the visible card and actual target slot, never the final logical category list.
                     var target = ui.Destination(e);
-                    float rotation = ui.stickerViews.TryGetValue(e.sticker, out view) ? Mathf.DeltaAngle(ui.effects.eulerAngles.z, view.Rect.eulerAngles.z) : 0;
+                    bool fromBoard = ui.stickerViews.TryGetValue(e.sticker, out view);
+                    var backing = fromBoard && view.DragPeel != null ? view.DragPeel.TakeBackingPaper() : null;
+                    if (fromBoard && backing == null) backing = StickerBackingPaper.Create(view, ui, context.Balance, e.sticker);
+                    if (backing != null) backing.SetPeel(1);
+                    float rotation = fromBoard ? Mathf.DeltaAngle(ui.effects.eulerAngles.z, view.Rect.eulerAngles.z) : 0;
                     if (rotation > 180) rotation -= 360;
                     Vector3 start; Vector2 size;
                     float peeledAmount, peelDirection;
@@ -73,6 +77,7 @@ namespace StickyPeerSort
                     }
                     if (peeledAmount < .999f) yield return page.Animate(peeledAmount, 1, context.Balance.peelDuration);
                     else page.Set(1); // Continue the user's completed peel; never restart it at zero.
+                    if (backing != null) backing.Release();
                     Vector2 targetSize = target.sizeDelta;
                     if (e.kind == PuzzleEventKind.Buffered) targetSize -= new Vector2(10, 19);
                     Vector3 end = target.position; float t = 0;
