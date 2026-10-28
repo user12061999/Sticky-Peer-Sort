@@ -97,12 +97,32 @@ namespace StickyPeerSort.Tests
             Assert.AreEqual(StickerBoardState.Available, view.BoardState); Assert.IsFalse(controller.Session.HasTarget(4));
             var waitingTarget = controller.ui.buffer.GetChild(0).GetComponent<UnityEngine.UI.Image>();
             Color waitingColor = waitingTarget.color; Vector2 start; var pointer = BeginPeel(4, out start);
-            Assert.AreNotEqual(waitingColor, waitingTarget.color, "Holding a waiting-bound sticker should highlight its destination slot.");
+            Assert.AreEqual(waitingColor, waitingTarget.color, "The destination artwork must keep its original tint.");
+            Assert.IsNotNull(waitingTarget.GetComponentInChildren<DestinationPreviewGlow>());
             ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.pointerUpHandler); Assert.AreEqual(waitingColor, waitingTarget.color);
+            while (view.DragPeel.IsReturning) yield return null;
             foreach (int i in new[] { 0, 1, 2, 3 }) { controller.Tap(i); yield return WaitForAnimation(); }
             int category, slot; Assert.IsTrue(controller.Session.TryGetTarget(4, out category, out slot));
             var target = controller.ui.categoryViews[category].targets[slot]; Color targetColor = target.color;
-            pointer = BeginPeel(4, out start); Assert.AreNotEqual(targetColor, target.color, "Gallery target highlight remains available without a board badge.");
+            pointer = BeginPeel(4, out start); Assert.AreEqual(targetColor, target.color);
+            var glow = target.GetComponentInChildren<DestinationPreviewGlow>();
+            Assert.IsNotNull(glow, "A sticker contour should preview the target without filling it.");
+            Assert.Greater(glow.OutlineImage.color.g, glow.OutlineImage.color.r);
+            Assert.Greater(glow.OutlineImage.color.g, glow.OutlineImage.color.b);
+            Assert.IsFalse(glow.OutlineImage.raycastTarget);
+            var contour = glow.OutlineImage.sprite.texture;
+            Assert.AreEqual(0, contour.GetPixel(0, 0).a, "No rectangular corner is allowed.");
+            Assert.AreEqual(0, contour.GetPixel(contour.width - 1, contour.height - 1).a);
+            bool outlineFound = false;
+            var definition = controller.Session.Stickers[4].placement.definition;
+            for (int y = 0; y < contour.height; y += 3) for (int x = 0; x < contour.width; x += 3)
+            {
+                float alpha = contour.GetPixel(x, y).a; outlineFound |= alpha > 0;
+                int padding = DestinationPreviewGlow.ContourPadding;
+                var uv = new Vector2((x - padding + .5f) / (contour.width - padding * 2), (y - padding + .5f) / (contour.height - padding * 2));
+                if (definition.ContainsUV(uv)) Assert.AreEqual(0, alpha, "Highlight must not cover the sticker's opaque artwork.");
+            }
+            Assert.IsTrue(outlineFound);
             ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.pointerUpHandler); Assert.AreEqual(targetColor, target.color);
             Assert.AreEqual(StickerBoardState.Available, view.BoardState);
             Assert.IsNull(view.GetComponentInChildren<StickerBoardAdornment>(true));
@@ -129,7 +149,8 @@ namespace StickyPeerSort.Tests
             MovePeel(view, pointer, start, .45f); Assert.AreEqual(.45f, view.DragPeel.Amount, .001f);
             MovePeel(view, pointer, start, .1f); Assert.AreEqual(.1f, view.DragPeel.Amount, .001f);
             MovePeel(view, pointer, start, 0); ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.pointerUpHandler);
-            yield return null; Assert.IsTrue(controller.CanTap); Assert.AreEqual(before, controller.Session.Key());
+            while (view.DragPeel.IsReturning) yield return null;
+            Assert.IsTrue(controller.CanTap); Assert.AreEqual(before, controller.Session.Key());
             Assert.AreEqual(1, view.GetComponent<CanvasGroup>().alpha); Assert.IsFalse(controller.Session.CanUndo);
             pointer = BeginPeel(0, out start); MovePeel(view, pointer, start, .55f);
             ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.pointerUpHandler);
@@ -148,6 +169,8 @@ namespace StickyPeerSort.Tests
             MovePeel(view, pointer, start, 1.1f);
             Assert.AreEqual(1, controller.Session.Categories[0].Count); Assert.IsFalse(controller.ui.stickerViews.ContainsKey(0));
             var flying = controller.ui.effects.Find("Flying sticker 0"); Assert.IsNotNull(flying);
+            Assert.IsTrue(flying.GetComponent<Canvas>().overrideSorting);
+            Assert.IsFalse(flying.GetComponent<UnityEngine.UI.Image>().maskable);
             Assert.AreEqual(1, flying.GetComponent<StickerCurlMesh>().Amount, .001f, "A completed drag must not restart the peel animation.");
             ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.pointerUpHandler);
             yield return WaitForAnimation(); Assert.AreEqual(1, controller.ui.categoryViews[0].FilledCount);
@@ -177,8 +200,28 @@ namespace StickyPeerSort.Tests
             controller.LoadLevel(0); yield return null;
             Assert.IsTrue(controller.CanTap); Assert.AreEqual(0, controller.ui.effects.childCount); Assert.IsTrue(BoardGeometry.Covered(controller.Session, 1));
             view = controller.ui.stickerViews[0]; pointer = BeginPeel(0, out start); MovePeel(view, pointer, start, .4f);
-            ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.cancelHandler); yield return null;
+            ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.cancelHandler);
+            while (view.DragPeel.IsReturning) yield return null;
+            yield return null;
             Assert.IsTrue(controller.CanTap); Assert.AreEqual(0, controller.ui.effects.childCount);
+        }
+        [UnityTest] public IEnumerator PeeledStickerAndReturnStayAboveSortedMaskedBoardUntilFlat()
+        {
+            LoadFlatLevel(0); var canvas = controller.ui.board.gameObject.AddComponent<Canvas>();
+            canvas.overrideSorting = true; canvas.sortingOrder = 80;
+            controller.ui.board.localScale = Vector3.one * 1.15f;
+            controller.ui.board.gameObject.AddComponent<UnityEngine.UI.RectMask2D>();
+            var view = controller.ui.stickerViews[0]; Vector2 start; var pointer = BeginPeel(0, out start);
+            MovePeel(view, pointer, start, .65f);
+            var ghost = controller.ui.effects.Find("Interactive peel 0"); Assert.IsNotNull(ghost);
+            Assert.AreEqual(view.Rect.rect.width * view.Rect.lossyScale.x, ((RectTransform)ghost).rect.width * ghost.lossyScale.x, .01f);
+            Assert.Greater(ghost.GetComponent<Canvas>().sortingOrder, canvas.sortingOrder);
+            Assert.IsFalse(ghost.GetComponent<UnityEngine.UI.Image>().maskable);
+            ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.pointerUpHandler);
+            Assert.IsTrue(view.DragPeel.IsReturning); Assert.AreEqual(0, view.GetComponent<CanvasGroup>().alpha);
+            Assert.Greater(ghost.GetComponent<Canvas>().sortingOrder, canvas.sortingOrder);
+            while (view.DragPeel.IsReturning) yield return null;
+            Assert.AreEqual(1, view.GetComponent<CanvasGroup>().alpha); Assert.AreEqual(0, controller.Session.Categories[0].Count);
         }
         sealed class LandingFeedback : IGameFeedback
         {

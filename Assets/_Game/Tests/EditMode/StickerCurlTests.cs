@@ -45,6 +45,31 @@ namespace StickyPeerSort.Tests
             }
             finally { Object.DestroyImmediate(obj); }
         }
+        [TestCase(0)] [TestCase(45)] [TestCase(90)] [TestCase(180)]
+        public void FlexibleFoldKeepsUVsAndDrawsLiftedTrianglesAfterTheFront(float direction)
+        {
+            var obj = new GameObject("Flexible curl test", typeof(RectTransform), typeof(Image), typeof(StickerCurlMesh));
+            var result = new Mesh();
+            try
+            {
+                var curl = obj.GetComponent<StickerCurlMesh>(); curl.Amount = .65f; curl.DirectionDegrees = direction;
+                curl.ArtworkBounds = new Rect(.1f, .1f, .8f, .8f);
+                using (var helper = Quad()) { curl.ModifyMesh(helper); helper.FillMesh(result); }
+                var curlData = new System.Collections.Generic.List<Vector4>(); result.GetUVs(1, curlData);
+                bool transition = false;
+                foreach (var data in curlData) { transition |= data.x > 0 && data.x < 1; Assert.IsFalse(float.IsNaN(data.z)); }
+                Assert.IsTrue(transition, "The front/back transition should be continuous, not a binary white fragment.");
+                var uv = result.uv;
+                foreach (var point in uv) { Assert.That(point.x, Is.InRange(.2f, .70001f)); Assert.That(point.y, Is.InRange(.3f, .80001f)); }
+                var indices = result.triangles; float previous = -1;
+                for (int i = 0; i < indices.Length; i += 3)
+                {
+                    float depth = curlData[indices[i]].z + curlData[indices[i + 1]].z + curlData[indices[i + 2]].z;
+                    Assert.GreaterOrEqual(depth + .0001f, previous, "Lifted parts must render after the flat front."); previous = depth;
+                }
+            }
+            finally { Object.DestroyImmediate(result); Object.DestroyImmediate(obj); }
+        }
         [Test] public void BothGameBalancesReferenceTheIncludedCurlShader()
         {
             foreach (var path in new[] { "Assets/_Game/Data/Balance.asset", "Assets/_Game/ReferenceStyle/Data/ReferenceBalance.asset" })

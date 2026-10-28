@@ -48,7 +48,7 @@ namespace StickyPeerSort
                 {
                     // Use the visible card and actual target slot, never the final logical category list.
                     var target = ui.Destination(e);
-                    float rotation = ui.stickerViews.TryGetValue(e.sticker, out view) ? view.Rect.localEulerAngles.z : 0;
+                    float rotation = ui.stickerViews.TryGetValue(e.sticker, out view) ? Mathf.DeltaAngle(ui.effects.eulerAngles.z, view.Rect.eulerAngles.z) : 0;
                     if (rotation > 180) rotation -= 360;
                     Vector3 start; Vector2 size;
                     float peeledAmount, peelDirection;
@@ -57,10 +57,11 @@ namespace StickyPeerSort
                     var d = resolved.Stickers[e.sticker].placement.definition;
                     var ghost = UIFactory.Panel("Flying sticker " + e.sticker, ui.effects, size, Vector2.zero, d.tint, d.ArtworkSprite);
                     StickerVisuals.Apply(ghost, d);
+                    StickerPeelLayer.Prepare(ghost, ui);
                     ghost.transform.position = start;
                     ghost.rectTransform.localRotation = Quaternion.Euler(0, 0, rotation);
                     var text = d.showLabel ? UIFactory.Text("Label", ghost.transform, d.displayName, 25, size * .9f, Vector2.zero) : null;
-                    var page = new StickerPeelPresentation(ghost, text, context.Balance);
+                    var page = new StickerPeelPresentation(ghost, text, context.Balance, d);
                     page.DirectionDegrees = peelDirection;
                     // Curl the original sprite mesh before adding the cosmetic shadow mesh.
                     UnityEngine.UI.Shadow flightShadow = null;

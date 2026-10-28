@@ -19,7 +19,7 @@ namespace StickyPeerSort
         bool held;
         PeelDragProgress progress;
         Image ghost, destination;
-        Color destinationColor;
+        DestinationPreviewGlow destinationGlow;
         CanvasGroup sourceGroup;
         float sourceAlpha;
         StickerPeelPresentation page;
@@ -46,12 +46,13 @@ namespace StickyPeerSort
             Vector2 size = sticker.placement.definition.FitSize(sticker.placement.size) * sticker.placement.scale;
             progress = new PeelDragProgress(start, Mathf.Min(size.x, size.y) * context.Balance.dragPeelDistanceRatio, context.Balance.dragPeelDeadZone);
             CompletedAmount = Amount = 0; DirectionDegrees = 0;
-            ghost = UIFactory.Panel("Interactive peel " + index, screen.effects, view.Rect.sizeDelta * view.Rect.localScale.x, Vector2.zero, view.image.color, view.image.sprite);
+            ghost = UIFactory.Panel("Interactive peel " + index, screen.effects, StickerPeelLayer.SizeInOverlay(view.Rect, screen.effects), Vector2.zero, view.image.color, view.image.sprite);
             ghost.preserveAspect = view.image.preserveAspect;
-            ghost.transform.position = view.Rect.position; ghost.rectTransform.localRotation = view.Rect.localRotation;
+            StickerPeelLayer.Prepare(ghost, screen);
+            ghost.transform.position = view.Rect.position; ghost.transform.rotation = view.Rect.rotation;
             var definition = sticker.placement.definition;
             var label = definition.showLabel ? UIFactory.Text("Label", ghost.transform, definition.displayName, 25, ghost.rectTransform.sizeDelta * .9f, Vector2.zero) : null;
-            page = new StickerPeelPresentation(ghost, label, context.Balance); page.Set(0);
+            page = new StickerPeelPresentation(ghost, label, context.Balance, definition); page.Set(0);
             var shadow = ghost.gameObject.AddComponent<Shadow>(); shadow.effectDistance = new Vector2(4, -7); shadow.effectColor = new Color(0, 0, 0, .25f);
             sourceGroup = view.GetComponent<CanvasGroup>();
             if (sourceGroup == null) sourceGroup = view.gameObject.AddComponent<CanvasGroup>();
@@ -78,21 +79,22 @@ namespace StickyPeerSort
         }
         public void OnPointerUp(PointerEventData e) { if (held && e.pointerId == pointer) Reattach(); }
         public void OnEndDrag(PointerEventData e) { if (held && e.pointerId == pointer) Reattach(); }
-        public void OnCancel(BaseEventData e) { CancelImmediately(); }
+        public void OnCancel(BaseEventData e) { if (held) Reattach(); }
         void Reattach()
         {
             held = false; RestoreDestination();
-            if (Amount <= .001f) { CancelImmediately(); return; }
             returning = StartCoroutine(ReturnToBoard());
         }
         IEnumerator ReturnToBoard()
         {
             float from = Amount, duration = Mathf.Max(.01f, context.Balance.dragReattachDuration), time = 0;
-            while (time < duration)
+            while (from > .001f && time < duration)
             {
                 time += Time.unscaledDeltaTime; Amount = Mathf.Lerp(from, 0, Mathf.SmoothStep(0, 1, time / duration));
                 page.Set(Amount); yield return null;
             }
+            Amount = 0; page.Set(0);
+            yield return null; // Render a fully flat sticker above the board before handing back to its source.
             returning = null; CancelImmediately();
         }
         void HighlightDestination()
@@ -104,10 +106,9 @@ namespace StickyPeerSort
             else if (startedSession.Buffer.Count < screen.buffer.childCount)
                 destination = screen.buffer.GetChild(startedSession.Buffer.Count).GetComponent<Image>();
             if (destination == null) return;
-            destinationColor = destination.color;
-            destination.color = gallery ? new Color(.35f, 1, .45f) : new Color(1, .72f, .15f);
+            destinationGlow = DestinationPreviewGlow.Show(destination, startedSession.Stickers[index].placement.definition, gallery);
         }
-        void RestoreDestination() { if (destination != null) destination.color = destinationColor; destination = null; }
+        void RestoreDestination() { if (destinationGlow != null) destinationGlow.Hide(); destinationGlow = null; destination = null; }
         public void CancelImmediately()
         {
             if (returning != null) { StopCoroutine(returning); returning = null; }

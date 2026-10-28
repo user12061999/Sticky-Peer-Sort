@@ -300,7 +300,7 @@ namespace StickyPeerSort
             StickerView view; Image waiting;
             if (stickerViews.TryGetValue(index, out view))
             {
-                position = view.transform.position; size = view.Rect.sizeDelta * view.Rect.localScale.x;
+                position = view.transform.position; size = StickerPeelLayer.SizeInOverlay(view.Rect, effects);
                 if (view.DragPeel != null) { peeledAmount = view.DragPeel.CompletedAmount; peelDirection = view.DragPeel.DirectionDegrees; }
                 view.gameObject.SetActive(false); Destroy(view.gameObject); stickerViews.Remove(index); RefreshCoveredStickers(); return true;
             }
