@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f9aa710ec81cb4aa86c7af125ec27a, type: 3}
   m_Name: Audio
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.GameAudioConfig
-  volume: 0.55
+  volume: 0.8
+  musicVolume: 0.6
+  bgm: {fileID: 8300000, guid: 5e882808fe86af04f90413fbce86f002, type: 3}
   peel: {fileID: 8300000, guid: de46232a3d20a7c4f8eb6b862bdc4a17, type: 3}
   land: {fileID: 8300000, guid: 6bad959fbe4d1444c82c3883a1a59cbe, type: 3}
   buffer: {fileID: 8300000, guid: 732903b33eec31a43b67d9e5dd71b308, type: 3}
@@ -23,3 +25,5 @@ MonoBehaviour:
   win: {fileID: 8300000, guid: 050375cf91be3254e8ab92460f5a168f, type: 3}
   fail: {fileID: 8300000, guid: 826aa06165c993448a21568c9b2c4464, type: 3}
   button: {fileID: 8300000, guid: 2c96d59c34885ab4dafec96d79294894, type: 3}
+  freezeBreak: {fileID: 8300000, guid: 0de656a0c45e5ea4b94623bb806809a5, type: 3}
+  mysteryReveal: {fileID: 8300000, guid: da2b0fb7fbd7e4b4081850d658428572, type: 3}

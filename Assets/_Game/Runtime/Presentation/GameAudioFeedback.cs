@@ -9,6 +9,7 @@ namespace StickyPeerSort
         const string MutedKey = "StickyPeerSort.SoundMuted";
         GameAudioConfig config;
         readonly AudioSource[] voices = new AudioSource[6];
+        AudioSource musicVoice;
         int nextVoice;
         float nextReject;
         public bool Muted { get; private set; }
@@ -19,6 +20,16 @@ namespace StickyPeerSort
             {
                 voices[i] = gameObject.AddComponent<AudioSource>(); voices[i].playOnAwake = false;
                 voices[i].spatialBlend = 0; voices[i].priority = i == 0 ? 64 : 128;
+            }
+            if (config != null && config.bgm != null)
+            {
+                musicVoice = gameObject.AddComponent<AudioSource>();
+                musicVoice.clip = config.bgm;
+                musicVoice.loop = true;
+                musicVoice.volume = config.musicVolume;
+                musicVoice.spatialBlend = 0;
+                musicVoice.priority = 0;
+                if (!Muted) musicVoice.Play();
             }
             if (ui.sound != null)
             {
@@ -32,7 +43,15 @@ namespace StickyPeerSort
         public void SetMuted(bool value)
         {
             Muted = value; PlayerPrefs.SetInt(MutedKey, value ? 1 : 0); PlayerPrefs.Save();
-            if (value) foreach (var voice in voices) if (voice != null) voice.Stop();
+            if (value)
+            {
+                foreach (var voice in voices) if (voice != null) voice.Stop();
+                if (musicVoice != null) musicVoice.Pause();
+            }
+            else
+            {
+                if (musicVoice != null && !musicVoice.isPlaying) musicVoice.Play();
+            }
         }
         public void Play(PuzzleEventKind kind)
         {
@@ -45,7 +64,9 @@ namespace StickyPeerSort
                 case PuzzleEventKind.Buffered: clip = config.buffer; break;
                 case PuzzleEventKind.CategoryCompleted: clip = config.collection; break;
                 case PuzzleEventKind.CategoryActivated: clip = config.entrance; break;
-                case PuzzleEventKind.IceBroken: case PuzzleEventKind.Unlocked: case PuzzleEventKind.Revealed: clip = config.special; break;
+                case PuzzleEventKind.IceBroken: clip = config.freezeBreak != null ? config.freezeBreak : config.special; break;
+                case PuzzleEventKind.Revealed: clip = config.mysteryReveal != null ? config.mysteryReveal : config.special; break;
+                case PuzzleEventKind.Unlocked: clip = config.special; break;
                 case PuzzleEventKind.Win: clip = config.win; break;
                 case PuzzleEventKind.Fail: clip = config.fail; break;
             }
