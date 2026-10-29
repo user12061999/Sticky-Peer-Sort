@@ -187,11 +187,9 @@ namespace StickyPeerSort.Editor
             UIFactory.Text("Game title TMP", root, "STICKY PEER SORT", 43, new Vector2(900, 65), new Vector2(0, 761)).fontStyle = FontStyles.Bold;
             UIFactory.Text("Subtitle TMP", root, "a little order, a lot of joy", 25, new Vector2(900, 40), new Vector2(0, 706), Hex("8B877E"));
             ui.categories = UIFactory.Rect("Category Cards", root, new Vector2(960, 280), new Vector2(0, 501));
-            ui.capacity = UIFactory.Text("Tray capacity TMP", root, "WAITING TRAY  0 / 4", 24, new Vector2(900, 45), new Vector2(0, 307));
             ui.buffer = UIFactory.Rect("Waiting Tray", root, new Vector2(960, 130), new Vector2(0, 211));
             var boardMat = UIFactory.Panel("Board mat", root, new Vector2(960, 905), new Vector2(0, -348), Hex("F2E8D7"), panel);
             ui.board = UIFactory.Rect("Sticker Board", root, new Vector2(920, 860), new Vector2(0, -348));
-            ui.instruction = UIFactory.Text("Tutorial TMP", root, "Tap a sticker to start its collection.", 26, new Vector2(920, 90), new Vector2(0, 82));
             ui.progress = UIFactory.Text("Progress TMP", root, "0 / 2 COLLECTIONS", 23, new Vector2(940, 38), new Vector2(0, -760));
             ui.undo = UIFactory.Button("Undo", root, "UNDO", new Vector2(210, 88), new Vector2(-354, -866), Hex("E6DDCF"), panel);
             ui.hint = UIFactory.Button("Hint", root, "HINT", new Vector2(210, 88), new Vector2(-118, -866), Hex("F3D78F"), panel);

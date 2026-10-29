@@ -49,6 +49,9 @@ namespace StickyPeerSort
             ui.Initialize(context, gameplay); ui.BindCommands(gameplay);
             presentation.EventFinished += ForwardPresentationEvent;
             gameplay.LoadLevel(0);
+            var tutorial = GetComponent<GameTutorialGuide>();
+            if (tutorial == null) tutorial = gameObject.AddComponent<GameTutorialGuide>();
+            tutorial.Initialize(this, Save);
         }
         void ForwardPresentationEvent(PuzzleEvent e) { PresentationEventFinished?.Invoke(e); }
         public void LoadLevel(int index) { gameplay.LoadLevel(index); }

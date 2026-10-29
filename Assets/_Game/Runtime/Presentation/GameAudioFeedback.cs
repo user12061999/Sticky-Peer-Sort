@@ -70,17 +70,26 @@ namespace StickyPeerSort
                 case PuzzleEventKind.Win: clip = config.win; break;
                 case PuzzleEventKind.Fail: clip = config.fail; break;
             }
-            PlayClip(clip, kind == PuzzleEventKind.Win || kind == PuzzleEventKind.Fail);
+            float gain = 1;
+            switch (kind)
+            {
+                case PuzzleEventKind.Collected: case PuzzleEventKind.Buffered: gain = config.landingVolume; break;
+                case PuzzleEventKind.CategoryCompleted: gain = config.collectionVolume; break;
+                case PuzzleEventKind.CategoryActivated: gain = config.entranceVolume; break;
+                case PuzzleEventKind.Revealed: case PuzzleEventKind.Unlocked: case PuzzleEventKind.IceBroken: gain = config.specialVolume; break;
+                case PuzzleEventKind.Win: gain = config.winVolume; break;
+            }
+            PlayClip(clip, kind == PuzzleEventKind.Win || kind == PuzzleEventKind.Fail, gain);
         }
         public void Reject()
         { if (config != null && Time.unscaledTime >= nextReject) { nextReject = Time.unscaledTime + .1f; PlayClip(config.reject); } }
         public void Click() { if (config != null) PlayClip(config.button); }
-        void PlayClip(AudioClip clip, bool result = false)
+        void PlayClip(AudioClip clip, bool result = false, float gain = 1)
         {
             if (Muted || config == null || clip == null || voices[0] == null) return;
             int voice = result ? 0 : 1 + nextVoice++ % (voices.Length - 1);
             if (result) foreach (var source in voices) source.Stop();
-            voices[voice].clip = clip; voices[voice].volume = config.volume; voices[voice].Play();
+            voices[voice].clip = clip; voices[voice].volume = config.volume * gain; voices[voice].Play();
         }
         public void Haptic()
         {

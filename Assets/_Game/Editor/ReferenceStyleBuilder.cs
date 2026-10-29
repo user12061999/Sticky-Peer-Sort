@@ -38,6 +38,7 @@ namespace StickyPeerSort.Editor
                 theme.name = "ReferenceTheme"; AssetDatabase.CreateAsset(theme, Root + "/ReferenceTheme.asset");
             }
             theme.referenceComposition = true; theme.background = Hex("E6A141"); theme.paper = Hex("FFF1CC");
+            if (theme.tutorialHand == null) theme.tutorialHand = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Layer Lab/GUI Pro-SuperCasual/ResourcesData/Sprites/Components/Icon_TutorialHand/256/tutorial_hand_1.png");
             theme.trayRim = Hex("FFD07A"); theme.trayWell = Hex("C6812E"); theme.coveredOpacity = .68f; theme.coveredSoftness = .7f;
             theme.woodSurface = GenerateWood(); EditorUtility.SetDirty(theme);
             var definitions = LoadArtwork(); var levels = new LevelDefinition[4];
@@ -274,9 +275,7 @@ namespace StickyPeerSort.Editor
             SavePrefab(header.gameObject, "LevelHeader");
             ui.categories = UIFactory.Rect("Category albums", root, new Vector2(980, 330), new Vector2(0, 607));
             ui.buffer = UIFactory.Rect("Buffer row", root, new Vector2(940, 164), new Vector2(0, 334));
-            ui.capacity = UIFactory.Text("Buffer status TMP", root, "", 20, new Vector2(880, 30), new Vector2(0, 222), theme.ink);
-            ui.instruction = UIFactory.Text("Instruction TMP", root, "", 22, new Vector2(930, 48), new Vector2(0, 172), theme.ink);
-            ui.board = UIFactory.Rect("StickerBoard", root, new Vector2(940, 840), new Vector2(0, -280)); SavePrefab(ui.board.gameObject, "StickerBoard");
+            ui.board = UIFactory.Rect("StickerBoard", root, new Vector2(940, 840), new Vector2(0, -246)); SavePrefab(ui.board.gameObject, "StickerBoard");
             var dock = UIFactory.Rect("Booster dock", root, new Vector2(960, 130), new Vector2(0, -810));
             ui.undo = Booster(dock, "Undo", "UNDO", theme.undoIcon, -330, Hex("22A5E9"), out ui.undoCount);
             ui.hint = Booster(dock, "Hint", "HINT", theme.hintIcon, -110, Hex("FFA81B"), out ui.hintCount);

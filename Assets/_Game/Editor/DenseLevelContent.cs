@@ -83,6 +83,7 @@ namespace StickyPeerSort.Editor
                 var session = new GameSession(flat); var trace = new List<int>(); var random = new System.Random(level.layoutSeed + 751);
                 int mystery = level.generation.enabled ? -1 : flat.stickers.FindIndex(p => p.special.kind == SpecialKind.Mystery);
                 int pending = -1;
+                int parked = 0;
                 while (session.State == GameplayState.Playing && trace.Count < flat.stickers.Count * 4)
                 {
                     var choices = Enumerable.Range(0, flat.stickers.Count).Where(i => session.Legal(i) && session.HasTarget(i)).ToList();
@@ -98,12 +99,26 @@ namespace StickyPeerSort.Editor
                     if (pending >= 0 && session.Stickers[pending].location == StickerLocation.Board) choices = new List<int> { pending };
                     if (choices.Count == 0) throw new InvalidOperationException("No logical authoring path for " + level.name);
                     int chosen = choices[random.Next(choices.Count)]; session.Select(chosen); trace.Add(chosen);
+                    // Campaign authoring can interleave future-sheet pieces into the witness.
+                    // Their layer priority makes these buffer decisions part of the real board.
+                    if (level.generation.enabled && pending < 0 && trace.Count >= 4 && parked < level.generation.plannedBufferPeak)
+                    {
+                        var future = Enumerable.Range(0, flat.stickers.Count)
+                            .Where(i => session.Stickers[i].location == StickerLocation.Board && session.Legal(i) && !session.HasTarget(i) && flat.stickers[i].special.kind == SpecialKind.None).ToList();
+                        while (future.Count > 0 && parked < level.generation.plannedBufferPeak)
+                        {
+                            int buffered = future[random.Next(future.Count)]; future.Remove(buffered);
+                            if (!session.Select(buffered) || session.State == GameplayState.Fail) throw new InvalidOperationException("Buffer planning exhausted the waiting tray.");
+                            trace.Add(buffered); parked++;
+                        }
+                    }
                     pending = -1;
                     if (session.Stickers[chosen].location == StickerLocation.Board) pending = chosen;
                     else if (flat.stickers[chosen].special.kind == SpecialKind.Linked)
                         pending = flat.stickers.FindIndex(p => p != flat.stickers[chosen] && p.special.kind == SpecialKind.Linked && p.special.linkId == flat.stickers[chosen].special.linkId && session.Stickers[flat.stickers.IndexOf(p)].location == StickerLocation.Board);
                 }
                 if (session.State != GameplayState.Win) throw new InvalidOperationException("Authoring plan did not win.");
+                if (level.generation.enabled && parked < level.generation.plannedBufferPeak) throw new InvalidOperationException("Not enough future-sheet stickers for the planned buffer route.");
                 var unique = trace.Distinct().ToList();
                 for (int rank = 0; rank < unique.Count; rank++) level.stickers[unique[rank]].sortingOrder = unique.Count - rank;
                 return trace;

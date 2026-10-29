@@ -9,8 +9,9 @@ namespace StickyPeerSort
     {
         readonly GameplayUI ui;
         readonly IGameplayReadModel context;
-        public SpecialStickerPresentation(GameplayUI ui, IGameplayReadModel context)
-        { this.ui = ui; this.context = context; }
+        readonly IGameFeedback feedback;
+        public SpecialStickerPresentation(GameplayUI ui, IGameplayReadModel context, IGameFeedback feedback = null)
+        { this.ui = ui; this.context = context; this.feedback = feedback; }
 
         public IEnumerator Unlock(int index, RectTransform keySource)
         {
@@ -54,11 +55,10 @@ namespace StickyPeerSort
                 icon.anchoredPosition = home; icon.localRotation = Quaternion.identity;
                 icon.localScale = Vector3.one; group.alpha = 1;
             }
-            yield return Reveal(index);
-            if (context.Balance.celebrations) ui.Celebration?.Collection(view.Rect);
+            yield return Reveal(index, PuzzleEventKind.Unlocked);
         }
 
-        public IEnumerator Reveal(int index)
+        public IEnumerator Reveal(int index, PuzzleEventKind sound = PuzzleEventKind.Revealed)
         {
             if (!ui.stickerViews.TryGetValue(index, out var view)) yield break;
             Vector3 home = view.Rect.localScale;
@@ -71,6 +71,8 @@ namespace StickyPeerSort
                 yield return null;
             }
             ui.RefreshSticker(index);
+            feedback?.Play(sound);
+            if (context.Balance.celebrations) ui.Celebration?.Reveal(view.Rect);
             time = 0;
             view.Rect.localScale = new Vector3(home.x * .025f, home.y * 1.08f, home.z);
             while (time < half)

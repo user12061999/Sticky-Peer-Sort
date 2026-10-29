@@ -6,6 +6,7 @@ namespace StickyPeerSort
     {
         public int version = 1, unlockedLevel = 1, highestCompleted, coins;
         public int undo = 10, hint = 10, extraSlot = 10, shuffle = 10;
+        public int completedTutorials;
     }
     public sealed class SaveService : IProgressStore
     {
@@ -30,6 +31,12 @@ namespace StickyPeerSort
             Data.highestCompleted = level.levelNumber; Data.unlockedLevel = level.levelNumber + 1; Data.coins += level.coinReward; Flush(); return true;
         }
         public void Flush() { PlayerPrefs.SetString(Key, JsonUtility.ToJson(Data)); PlayerPrefs.Save(); }
+        public void CompleteTutorial(TutorialLesson lesson)
+        {
+            int flag = (int)lesson;
+            if ((Data.completedTutorials & flag) == flag) return;
+            Data.completedTutorials |= flag; Flush();
+        }
     }
     public interface IGameFeedback { void Play(PuzzleEventKind kind); void Haptic(); }
     public sealed class SilentFeedback : IGameFeedback { public void Play(PuzzleEventKind kind) { } public void Haptic() { } }

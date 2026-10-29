@@ -9,20 +9,30 @@ namespace StickyPeerSort
     {
         GameplayUI ui;
         RectTransform layer;
+        ImportedVfxPlayer imported;
         readonly Dictionary<RectTransform, Vector3> pulsing = new Dictionary<RectTransform, Vector3>();
         public void Initialize(GameplayUI screen)
         {
             ui = screen;
             layer = UIFactory.Rect("Celebration Layer", ui.effects.parent, new Vector2(1080, 1920), Vector2.zero);
             layer.SetAsLastSibling();
+            imported = gameObject.AddComponent<ImportedVfxPlayer>();
+            imported.Initialize(layer);
         }
         public void ResetEffects()
         {
             StopAllCoroutines();
+            if (imported != null) imported.Clear();
             foreach (var pair in pulsing) if (pair.Key != null) pair.Key.localScale = pair.Value;
             pulsing.Clear(); if (layer != null) UIFactory.Clear(layer);
         }
-        public void Land(RectTransform target) { if (!pulsing.ContainsKey(target)) StartCoroutine(Pop(target)); }
+        public void Land(RectTransform target, bool sparkle = true)
+        {
+            if (target == null) return;
+            if (sparkle) imported?.Land(target.position);
+            if (!pulsing.ContainsKey(target)) StartCoroutine(Pop(target));
+        }
+        public void Reveal(RectTransform target) { if (target != null) imported?.Reveal(target.position); }
         IEnumerator Pop(RectTransform target)
         {
             Vector3 home = target.localScale; pulsing.Add(target, home); float elapsed = 0;
@@ -34,11 +44,12 @@ namespace StickyPeerSort
             if (target != null) target.localScale = home; pulsing.Remove(target);
         }
         public void Collection(RectTransform card)
-        { if (layer != null) StartCoroutine(Burst(card.position, 12, .6f, false)); }
+        { if (layer != null && (imported == null || !imported.Collection(card.position))) StartCoroutine(Burst(card.position, 12, .6f, false)); }
         public void Win(int reward)
         {
             if (layer == null) return;
-            StartCoroutine(Burst(layer.TransformPoint(new Vector3(0, 480)), 42, 1.5f, true));
+            var position = layer.TransformPoint(new Vector3(0, 480));
+            if (imported == null || !imported.Win(position)) StartCoroutine(Burst(position, 42, 1.5f, true));
             if (reward > 0) StartCoroutine(Coins(reward));
         }
         IEnumerator Burst(Vector3 world, int count, float duration, bool confetti)

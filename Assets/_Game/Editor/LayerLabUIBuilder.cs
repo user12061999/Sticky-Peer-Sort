@@ -48,6 +48,7 @@ namespace StickyPeerSort.Editor
             }
             if (theme.keyIcon == null) theme.keyIcon = Sprite("Icon_ItemIcons/128/ItemIcon_Key_Gold.png");
             if (theme.lockIcon == null) theme.lockIcon = Sprite("IconMisc/Icon_Lock02.png");
+            if (theme.tutorialHand == null) theme.tutorialHand = Sprite("Icon_TutorialHand/256/tutorial_hand_1.png");
             EditorUtility.SetDirty(theme); WarmTextMaterials.Ensure(theme);
             return theme;
         }
@@ -176,12 +177,7 @@ namespace StickyPeerSort.Editor
             var trayPanel = Panel("Waiting tray panel", root, new Vector2(960, 140), new Vector2(0, 370), Hex("522A09"));
             ui.trayPanel = trayPanel;
             var trayInner = Panel("Tray surface", trayPanel.transform, new Vector2(946, 126), Vector2.zero, Hex("7D4514"));
-            ui.capacity = Text("Tray capacity TMP", trayPanel.transform, "", 20, new Vector2(860, 30), new Vector2(0, 58), theme.muted);
             ui.buffer = UIFactory.Rect("Waiting Slots", trayInner.transform, new Vector2(920, 116), Vector2.zero);
-
-            // Tutorial tip banner
-            var tip = Panel("Tip bubble", root, new Vector2(900, 54), new Vector2(0, 272), Hex("FFE6A0"));
-            ui.instruction = Text("Tutorial TMP", tip.transform, "Pick stickers with nothing on top.", 22, new Vector2(850, 48), Vector2.zero, theme.ink);
 
             // MAIN BOARD: Sunken wooden well
             Panel("Board shadow", root, new Vector2(990, 890), new Vector2(0, -190), Hex("3A1D06"));

@@ -60,6 +60,10 @@ namespace StickyPeerSort.Editor
             if (count / 4 < settings.categoryCount) throw new InvalidOperationException("Add at least one album (4 stickers) per category.");
             if (settings.mysteryPercent < 0 || settings.lockedPercent < 0 || settings.mysteryPercent + settings.lockedPercent > 100)
                 throw new InvalidOperationException("Mystery and locked percentages must be nonnegative and total at most 100%.");
+            if (settings.plannedBufferPeak < 0 || settings.plannedBufferPeak > 3 || settings.plannedBufferPeak >= level.bufferCapacity)
+                throw new InvalidOperationException("Planned buffer peak must be 0–3 and leave at least one waiting slot free.");
+            if (settings.plannedBufferPeak > 0 && settings.categoryCount <= level.activeCategoryCount)
+                throw new InvalidOperationException("Buffer planning needs more categories than active sheets.");
             if (level.piles.Count == 0 || level.piles.Any(p => p.size.x <= 40 || p.size.y <= 40) || level.piles.Select(p => p.id).Distinct().Count() != level.piles.Count)
                 throw new InvalidOperationException("Define trays with unique IDs and width/height greater than 40.");
             var pool = (settings.stickerPool.Count == 0 ? level.stickers.Select(p => p.definition) : settings.stickerPool)

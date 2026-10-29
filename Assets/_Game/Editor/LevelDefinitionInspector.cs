@@ -47,6 +47,7 @@ namespace StickyPeerSort.Editor
                 EditorGUILayout.PropertyField(generation.FindPropertyRelative("difficulty"));
                 EditorGUILayout.PropertyField(generation.FindPropertyRelative("categoryCount"));
                 EditorGUILayout.PropertyField(generation.FindPropertyRelative("typesPerCategory"));
+                EditorGUILayout.PropertyField(generation.FindPropertyRelative("plannedBufferPeak"));
                 EditorGUILayout.PropertyField(generation.FindPropertyRelative("stickerPool"), true);
             }
             if (!serializedObject.FindProperty("generation").FindPropertyRelative("enabled").boolValue)

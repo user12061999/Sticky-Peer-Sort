@@ -52,10 +52,11 @@ namespace StickyPeerSort
         }
         public void Render() { RenderFrom(context); }
         public void HideModal() { modal.SetActive(false); }
-        public void SetInstruction(string message) { instruction.text = message; }
+        public void SetInstruction(string message) { if (instruction != null) instruction.text = message; }
         public void SynchronizeAfterMoves() { CompactBuffer(context.Session); UpdateHud(context); UpdateTrayInstruction(); RefreshCoveredStickers(); }
         void UpdateTrayInstruction()
         {
+            if (instruction == null) return;
             var s = context.Session;
             instruction.text = s.Buffer.Count >= s.Capacity ? "Waiting tray full! Undo or retry with a different order."
                 : s.Buffer.Count > 0 && s.Buffer.Count == s.Capacity - 1 ? "Only one waiting slot left. Plan your next sticker."
@@ -64,9 +65,12 @@ namespace StickyPeerSort
         }
         public void UpdateTrayStatus(int count, int limit)
         {
-            capacity.text = (count >= limit ? "TRAY FULL   " : "WAITING TRAY   ") + count + " / " + limit;
-            capacity.color = count >= limit ? new Color(.65f, .12f, .04f)
-                : count > 0 && count == limit - 1 ? new Color(.59f, .28f, .02f) : theme != null ? theme.muted : UIFactory.Ink;
+            if (capacity != null)
+            {
+                capacity.text = (count >= limit ? "TRAY FULL   " : "WAITING TRAY   ") + count + " / " + limit;
+                capacity.color = count >= limit ? new Color(.65f, .12f, .04f)
+                    : count > 0 && count == limit - 1 ? new Color(.59f, .28f, .02f) : theme != null ? theme.muted : UIFactory.Ink;
+            }
             if (trayPanel != null) trayPanel.color = count >= limit ? new Color(1, .69f, .42f) : new Color(1, .84f, .49f);
         }
         public void RefreshSticker(int index) { if (stickerViews.TryGetValue(index, out var view)) view.Bind(context, input, index); }
@@ -79,14 +83,14 @@ namespace StickyPeerSort
             if (index < 0 || !stickerViews.TryGetValue(index, out var view)) return;
             view.ClickFail(context.Balance);
             AudioFeedback?.Reject();
-            instruction.text = BoardGeometry.Covered(context.Session, index) ? "Remove the sticker on top first." : "Sticker blocked. Check its lock or linked partner.";
+            SetInstruction(BoardGeometry.Covered(context.Session, index) ? "Remove the sticker on top first." : "Sticker blocked. Check its lock or linked partner.");
         }
         public void HighlightSticker(int index)
         {
             UpdateHud(context);
             foreach (var entry in stickerViews) entry.Value.Bind(context, input, entry.Key);
             if (!stickerViews.TryGetValue(index, out var view)) return;
-            view.image.color = Color.white; instruction.text = "Try the highlighted " + context.Session.Stickers[index].placement.definition.displayName + " sticker.";
+            view.image.color = Color.white; SetInstruction("Try the highlighted " + context.Session.Stickers[index].placement.definition.displayName + " sticker.");
         }
         public void ShowModal(string title, string body, string a, Action actionA, string b, Action actionB)
         {
@@ -132,7 +136,7 @@ namespace StickyPeerSort
         void RenderFrom(IGameplayReadModel owner)
         {
             Celebration?.ResetEffects();
-            var s = owner.Session; ApplySafeArea(); UpdateHud(owner); instruction.text = s.Level.tutorial;
+            var s = owner.Session; ApplySafeArea(); UpdateHud(owner); SetInstruction(s.Level.tutorial);
             UpdateTrayInstruction();
             UIFactory.Clear(categories); UIFactory.Clear(buffer); UIFactory.Clear(board);
             stickerViews.Clear(); categoryViews.Clear(); waitingViews.Clear(); bufferSlots.Clear(); vacantLanes.Clear();

@@ -46,3 +46,4 @@ MonoBehaviour:
   trayRim: {r: 1, g: 0.83137256, b: 0.46666667, a: 1}
   trayWell: {r: 0.7490196, g: 0.49411765, b: 0.16862746, a: 1}
   emptySlot: {r: 0.9372549, g: 0.8, b: 0.5137255, a: 1}
+  tutorialHand: {fileID: 21300000, guid: 8afa2e7b2f8164e8ba506c859202879d, type: 3}

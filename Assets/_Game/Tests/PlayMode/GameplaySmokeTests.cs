@@ -604,7 +604,7 @@ namespace StickyPeerSort.Tests
                 if (controller.Session.Buffer.Count == 4)
                 {
                     fullSeen = true; Assert.AreEqual(GameplayState.Fail, controller.Session.State); Assert.IsFalse(controller.CanTap);
-                    StringAssert.Contains("TRAY FULL", controller.ui.capacity.text); Assert.IsTrue(controller.ui.modal.activeSelf);
+                    StringAssert.Contains("TRAY FULL", controller.ui.modalTitle.text); Assert.IsTrue(controller.ui.modal.activeSelf);
                     ScreenCapture.CaptureScreenshot("Temp/TrayFullPreview.png"); yield return null;
                     break;
                 }

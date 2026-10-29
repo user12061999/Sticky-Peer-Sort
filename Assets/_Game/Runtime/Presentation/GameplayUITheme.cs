@@ -6,6 +6,7 @@ namespace StickyPeerSort
     public sealed class GameplayUITheme : ScriptableObject
     {
         public TMP_FontAsset font;
+        public Sprite tutorialHand;
         [Header("TextMeshPro SDF presets")]
         public Material headingTextMaterial, lightTextMaterial, darkTextMaterial;
         public void ApplyTextStyle(TMP_Text text)

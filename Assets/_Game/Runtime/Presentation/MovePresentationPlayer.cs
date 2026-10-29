@@ -34,13 +34,14 @@ namespace StickyPeerSort
         IEnumerator Present(IReadOnlyList<PuzzleEvent> events, GameSession resolved, int ticket)
         {
             IsBusy = true;
-            var specials = new SpecialStickerPresentation(ui, context);
+            var specials = new SpecialStickerPresentation(ui, context, Feedback);
             var animatedUnlocks = new HashSet<int>();
             foreach (var e in events)
             {
                 Phase = e.kind;
                 bool landing = e.kind == PuzzleEventKind.Collected || e.kind == PuzzleEventKind.Buffered;
-                if (!landing && !(e.kind == PuzzleEventKind.Unlocked && animatedUnlocks.Contains(e.sticker))) Feedback.Play(e.kind);
+                bool timedFeedback = e.kind == PuzzleEventKind.CategoryCompleted || e.kind == PuzzleEventKind.Unlocked || e.kind == PuzzleEventKind.Revealed;
+                if (!landing && !timedFeedback) Feedback.Play(e.kind);
                 if (context.Balance.haptics && (e.kind == PuzzleEventKind.Peel || e.kind == PuzzleEventKind.CategoryCompleted)) Feedback.Haptic();
                 StickerView view;
                 // Each flight owns its peel/stick sequence; other ordinary taps can start concurrently.
@@ -127,9 +128,10 @@ namespace StickyPeerSort
                 if (e.kind == PuzzleEventKind.CategoryCompleted)
                 {
                     var card = ui.categoryViews[e.category];
-                    ui.instruction.text = resolved.Categories[e.category].objective.category.title + " collection complete!";
+                    ui.SetInstruction(resolved.Categories[e.category].objective.category.title + " collection complete!");
                     float hold = 0;
                     while (hold < context.Balance.categoryFilledHold) { hold += Time.unscaledDeltaTime; yield return null; }
+                    Feedback.Play(e.kind);
                     if (context.Balance.celebrations) ui.Celebration?.Collection(card.rect);
                     yield return Scale(card.rect, 1.06f, context.Balance.categoryDuration * .5f);
                     yield return Scale(card.rect, 1, context.Balance.categoryDuration * .5f);
@@ -139,7 +141,6 @@ namespace StickyPeerSort
                         if (unlock.kind != PuzzleEventKind.Unlocked || animatedUnlocks.Contains(unlock.sticker)) continue;
                         var config = resolved.Stickers[unlock.sticker].placement.special;
                         if (config.unlockCondition != UnlockCondition.CategoryCompleted || config.dependencyId != resolved.Categories[e.category].objective.category.id) continue;
-                        Feedback.Play(PuzzleEventKind.Unlocked);
                         yield return specials.Unlock(unlock.sticker, card.rect.Find("Unlock key") as RectTransform);
                         animatedUnlocks.Add(unlock.sticker);
                     }
@@ -158,8 +159,8 @@ namespace StickyPeerSort
                     ui.Celebration?.Win(context.Progress.highestCompleted < resolved.Level.levelNumber ? resolved.Level.coinReward : 0);
                 if (e.kind == PuzzleEventKind.Fail)
                 {
-                    ui.instruction.text = "Waiting tray full! Undo or retry with a different order.";
-                    if (context.Balance.celebrations) ui.Celebration?.Land(ui.buffer);
+                    ui.SetInstruction("Waiting tray full! Undo or retry with a different order.");
+                    if (context.Balance.celebrations) ui.Celebration?.Land(ui.buffer, false);
                     yield return new WaitForSecondsRealtime(.24f); // Let the final occupied slot show before the lose modal.
                 }
                 EventFinished?.Invoke(e);

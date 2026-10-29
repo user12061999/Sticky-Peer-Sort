@@ -16,14 +16,19 @@ MonoBehaviour:
   musicVolume: 0.6
   bgm: {fileID: 8300000, guid: 5e882808fe86af04f90413fbce86f002, type: 3}
   peel: {fileID: 8300000, guid: de46232a3d20a7c4f8eb6b862bdc4a17, type: 3}
-  land: {fileID: 8300000, guid: 6bad959fbe4d1444c82c3883a1a59cbe, type: 3}
-  buffer: {fileID: 8300000, guid: 732903b33eec31a43b67d9e5dd71b308, type: 3}
+  land: {fileID: 8300000, guid: 11390b4b43824e54e9eaada95422a366, type: 3}
+  buffer: {fileID: 8300000, guid: 11390b4b43824e54e9eaada95422a366, type: 3}
   reject: {fileID: 8300000, guid: a1de83fad45fcfd4c8b533ed53f52127, type: 3}
-  collection: {fileID: 8300000, guid: 35e1672075b736c4fa447eac749983cc, type: 3}
-  entrance: {fileID: 8300000, guid: 65b43fe39c369104789d8d4b7c89b908, type: 3}
-  special: {fileID: 8300000, guid: ee96b46b30283394a8b12e5b7e80444f, type: 3}
-  win: {fileID: 8300000, guid: 050375cf91be3254e8ab92460f5a168f, type: 3}
+  collection: {fileID: 8300000, guid: 2722086750a69aa4289a792be804c60b, type: 3}
+  entrance: {fileID: 8300000, guid: 5052682f23f19384da5d743dc76ed64b, type: 3}
+  special: {fileID: 8300000, guid: 74ea4a2ad98acb241bdb9753be6cd8c4, type: 3}
+  win: {fileID: 8300000, guid: 2dcd5da12751d034bb710af85ad18450, type: 3}
   fail: {fileID: 8300000, guid: 826aa06165c993448a21568c9b2c4464, type: 3}
   button: {fileID: 8300000, guid: 2c96d59c34885ab4dafec96d79294894, type: 3}
   freezeBreak: {fileID: 8300000, guid: 0de656a0c45e5ea4b94623bb806809a5, type: 3}
-  mysteryReveal: {fileID: 8300000, guid: da2b0fb7fbd7e4b4081850d658428572, type: 3}
+  mysteryReveal: {fileID: 8300000, guid: 74ea4a2ad98acb241bdb9753be6cd8c4, type: 3}
+  landingVolume: 0.35
+  collectionVolume: 0.5
+  entranceVolume: 0.35
+  specialVolume: 0.4
+  winVolume: 0.55

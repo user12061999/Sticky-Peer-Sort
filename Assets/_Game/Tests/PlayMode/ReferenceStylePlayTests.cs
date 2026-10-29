@@ -37,10 +37,10 @@ namespace StickyPeerSort.Tests
             while (controller.IsAnimating && Time.realtimeSinceStartup < deadline) yield return null;
             Assert.IsFalse(controller.IsAnimating);
         }
-        [UnityTest] public IEnumerator AllFourSampleTracesWinThroughRealPresentation()
+        [UnityTest] public IEnumerator AllCampaignTracesWinThroughRealPresentation()
         {
             string mainBefore = PlayerPrefs.GetString("StickyPeerSort.Save.v1", "");
-            for (int n = 0; n < 4; n++)
+            for (int n = 0; n < controller.levels.Length; n++)
             {
                 controller.LoadLevel(n); var level = controller.Session.Level;
                 Assert.AreEqual(level.piles.Count, controller.ui.board.GetComponentsInChildren<StickerTrayView>().Length);

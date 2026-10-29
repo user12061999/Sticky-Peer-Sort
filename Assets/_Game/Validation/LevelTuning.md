@@ -1,4 +1,6 @@
-# Current level layout and tuning report
+# Legacy prototype level layout and tuning report
+
+The active gameplay scenes now use the 15-level campaign described in [CampaignBalance.md](CampaignBalance.md). This table describes the retained prototype assets under `Data/Levels`, not the current campaign.
 
 Exact texture targets, four waiting slots, and solver-verified wins without boosters. Seeded random-legal play is diagnostic, not human difficulty.
 

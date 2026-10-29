@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_Name: UI Particle Additive
+  m_Shader: {fileID: 4800000, guid: 8cc17df0010541b6bff0977802301b3f, type: 3}
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _DstBlend: 1
+    m_Colors: []

@@ -4,6 +4,7 @@ namespace StickyPeerSort
     [CreateAssetMenu(menuName = "Sticker Sort/Balance")]
     public sealed class GameBalanceConfig : ScriptableObject
     {
+        public bool tutorialsEnabled = true;
         public float pressDuration = .045f;
         public float peelDuration = .085f;
         public float travelDuration = .24f;
