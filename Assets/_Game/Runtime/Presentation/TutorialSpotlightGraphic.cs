@@ -34,33 +34,41 @@ namespace StickyPeerSort
             SetMaterialDirty();
         }
 
-        public void SetTarget(RectTransform target, RectTransform relativeTo, float padding = 16f)
+        public void SetTarget(RectTransform target, RectTransform relativeTo = null, float padding = 26f)
         {
-            if (target == null || relativeTo == null) return;
+            if (target == null) return;
+            if (relativeTo == null) relativeTo = rectTransform;
             var corners = new Vector3[4];
             target.GetWorldCorners(corners);
-            Vector3 centerWorld = (corners[0] + corners[2]) * 0.5f;
-            Vector2 localCenter = relativeTo.InverseTransformPoint(centerWorld);
-            float w = Vector3.Distance(corners[1], corners[2]);
-            float h = Vector3.Distance(corners[0], corners[1]);
-            float r = Mathf.Max(w, h) * 0.52f + padding;
+            Vector2 c0 = relativeTo.InverseTransformPoint(corners[0]);
+            Vector2 c1 = relativeTo.InverseTransformPoint(corners[1]);
+            Vector2 c2 = relativeTo.InverseTransformPoint(corners[2]);
+            Vector2 c3 = relativeTo.InverseTransformPoint(corners[3]);
+            Vector2 localCenter = (c0 + c2) * 0.5f;
+            float w = Vector2.Distance(c1, c2);
+            float h = Vector2.Distance(c0, c1);
+            float r = Mathf.Max(w, h) * 0.54f + padding;
             SetCircle1(localCenter, r);
         }
 
-        public void SetSecondaryTarget(RectTransform secondary, RectTransform relativeTo, float padding = 12f)
+        public void SetSecondaryTarget(RectTransform secondary, RectTransform relativeTo = null, float padding = 18f)
         {
-            if (secondary == null || relativeTo == null)
+            if (secondary == null)
             {
                 ClearCircle2();
                 return;
             }
+            if (relativeTo == null) relativeTo = rectTransform;
             var corners = new Vector3[4];
             secondary.GetWorldCorners(corners);
-            Vector3 centerWorld = (corners[0] + corners[2]) * 0.5f;
-            Vector2 localCenter = relativeTo.InverseTransformPoint(centerWorld);
-            float w = Vector3.Distance(corners[1], corners[2]);
-            float h = Vector3.Distance(corners[0], corners[1]);
-            float r = Mathf.Max(w, h) * 0.52f + padding;
+            Vector2 c0 = relativeTo.InverseTransformPoint(corners[0]);
+            Vector2 c1 = relativeTo.InverseTransformPoint(corners[1]);
+            Vector2 c2 = relativeTo.InverseTransformPoint(corners[2]);
+            Vector2 c3 = relativeTo.InverseTransformPoint(corners[3]);
+            Vector2 localCenter = (c0 + c2) * 0.5f;
+            float w = Vector2.Distance(c1, c2);
+            float h = Vector2.Distance(c0, c1);
+            float r = Mathf.Max(w, h) * 0.54f + padding;
             SetCircle2(localCenter, r);
         }
 

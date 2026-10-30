@@ -89,11 +89,11 @@ namespace StickyPeerSort
             var guideRect = (actionView != null ? actionView.Rect : subjectView.Rect);
 
             // 1. Fullscreen dark overlay with circular spotlight cutouts
-            var veilGo = UIFactory.Rect("Dark Spotlight Veil", root, new Vector2(1080, 1920), Vector2.zero);
+            var veilGo = UIFactory.Rect("Dark Spotlight Veil", root, new Vector2(4000, 4000), Vector2.zero);
             spotlightVeil = veilGo.gameObject.AddComponent<TutorialSpotlightGraphic>();
             spotlightVeil.color = new Color(0f, 0f, 0f, 0.78f);
-            spotlightVeil.SetTarget(guideRect, root, 18f);
-            if (destinationTarget != null) spotlightVeil.SetSecondaryTarget(destinationTarget, root, 14f);
+            spotlightVeil.SetTarget(guideRect, spotlightVeil.rectTransform, 26f);
+            if (destinationTarget != null) spotlightVeil.SetSecondaryTarget(destinationTarget, spotlightVeil.rectTransform, 18f);
             else spotlightVeil.ClearCircle2();
 
             // 2. Prominent, high-contrast tutorial card dialog
@@ -179,8 +179,8 @@ namespace StickyPeerSort
             var guideRect = (actionView != null ? actionView.Rect : subjectView.Rect);
             if (spotlightVeil != null && guideRect != null)
             {
-                spotlightVeil.SetTarget(guideRect, root, 18f);
-                if (destinationTarget != null) spotlightVeil.SetSecondaryTarget(destinationTarget, root, 14f);
+                spotlightVeil.SetTarget(guideRect, spotlightVeil.rectTransform, 26f);
+                if (destinationTarget != null) spotlightVeil.SetSecondaryTarget(destinationTarget, spotlightVeil.rectTransform, 18f);
             }
 
             if (hand == null) return;

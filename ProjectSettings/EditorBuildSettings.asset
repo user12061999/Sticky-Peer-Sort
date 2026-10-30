@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Game/Scenes/StickerCategoryPrototype.unity
     guid: d75cb7e5410af9f4596ec3281807460c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Game/Scenes/SampleStickerLevel.unity
     guid: 5070a6209818beb42bc75f7755d7d826
   m_configObjects:
