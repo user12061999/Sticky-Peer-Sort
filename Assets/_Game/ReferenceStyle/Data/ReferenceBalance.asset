@@ -57,4 +57,5 @@ MonoBehaviour:
   startingBoosters: 10
   boostersEnabled: 1
   haptics: 0
+  backingPaper: 0
   tutorialsEnabled: 1

@@ -18,7 +18,7 @@ namespace StickyPeerSort
 
         public static StickerBackingPaper Create(StickerView source, GameplayUI ui, GameBalanceConfig balance, int index)
         {
-            if (!balance.backingPaper) return null;
+            if (balance == null || !balance.backingPaper) return null;
             var definition = source.image.sprite;
             var placement = source.Rect;
             // Reuse the sticker's exact alpha and layout; there is no rectangular carrier or margin.

@@ -17,7 +17,7 @@ namespace StickyPeerSort
         [Range(.01f, .2f)] public float dragPeelDeadZone = .05f;
         [Min(.01f)] public float dragReattachDuration = .18f;
         [Header("Sticker backing paper")]
-        public bool backingPaper = true;
+        public bool backingPaper = false;
         [Range(0, 1)] public float backingPaperOpacity = .45f;
         [Min(.1f)] public float backingPaperFallDuration = .85f;
         [Min(0)] public float backingPaperFallDistance = 230;
