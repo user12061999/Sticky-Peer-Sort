@@ -5,5 +5,6 @@ namespace StickyPeerSort
         SaveData Data { get; }
         bool Complete(LevelDefinition level);
         void Flush();
+        void ResetTutorial(TutorialLesson lesson);
     }
 }

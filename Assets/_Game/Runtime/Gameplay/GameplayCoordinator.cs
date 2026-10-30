@@ -30,6 +30,17 @@ namespace StickyPeerSort
             presenter.Reset(); levelIndex = Mathf.Clamp(index, 0, levels.Count - 1);
             context.Session = sessions.Create(levels.Get(levelIndex)); screen.HideModal(); screen.Render();
         }
+        public void RestartLevel()
+        {
+            ResetTutorialForLevel(levelIndex);
+            LoadLevel(levelIndex);
+        }
+        void ResetTutorialForLevel(int index)
+        {
+            if (index == 0) progress.ResetTutorial(TutorialLesson.Peel);
+            else if (index == 2) progress.ResetTutorial(TutorialLesson.Mystery);
+            else if (index == 4) progress.ResetTutorial(TutorialLesson.Lock);
+        }
         public void Tap(int index)
         {
             if (!CanTap) return;
@@ -71,26 +82,26 @@ namespace StickyPeerSort
             {
                 bool reward = progress.Complete(Session.Level); screen.SynchronizeAfterMoves();
                 screen.ShowModal("COLLECTION COMPLETE!", reward ? "+" + Session.Level.coinReward + " coins. Album updated." : "Great sorting! Collection already in your album.",
-                    levelIndex < levels.Count - 1 ? "NEXT LEVEL" : "PLAY AGAIN", () => LoadLevel(levelIndex < levels.Count - 1 ? levelIndex + 1 : 0), "RETRY", () => LoadLevel(levelIndex));
+                    levelIndex < levels.Count - 1 ? "NEXT LEVEL" : "PLAY AGAIN", () => { if (levelIndex >= levels.Count - 1) ResetTutorialForLevel(0); LoadLevel(levelIndex < levels.Count - 1 ? levelIndex + 1 : 0); }, "RETRY", RestartLevel);
             }
             else if (Session.State == GameplayState.Fail)
-                screen.ShowModal("TRAY FULL!", "All " + Session.Capacity + " waiting slots are occupied (" + Session.Buffer.Count + " / " + Session.Capacity + ").\nUndo the last move or retry.", "RETRY", () => LoadLevel(levelIndex), "UNDO", UndoFromFail);
+                screen.ShowModal("TRAY FULL!", "All " + Session.Capacity + " waiting slots are occupied (" + Session.Buffer.Count + " / " + Session.Capacity + ").\nUndo the last move or retry.", "RETRY", RestartLevel, "UNDO", UndoFromFail);
         }
         void UndoFromFail()
         {
             screen.HideModal(); Undo();
-            if (Session.State == GameplayState.Fail) screen.ShowModal("NO UNDO LEFT", "Restart for a fresh tray.", "RETRY", () => LoadLevel(levelIndex), "+ SLOT", ExtraFromFail);
+            if (Session.State == GameplayState.Fail) screen.ShowModal("NO UNDO LEFT", "Restart for a fresh tray.", "RETRY", RestartLevel, "+ SLOT", ExtraFromFail);
         }
         void ExtraFromFail()
         {
             if (!context.Balance.boostersEnabled || progress.Data.extraSlot <= 0)
-            { screen.ShowModal("NO EXTRA SLOTS LEFT", "Restart to try another order.", "RETRY", () => LoadLevel(levelIndex), "UNDO", UndoFromFail); return; }
+            { screen.ShowModal("NO EXTRA SLOTS LEFT", "Restart to try another order.", "RETRY", RestartLevel, "UNDO", UndoFromFail); return; }
             screen.HideModal(); Extra();
         }
         public void ConfirmRestart()
         {
             if (!Available) return; Session.Pause(true);
-            screen.ShowModal("RESTART LEVEL?", "Your current board will be reset.", "RESTART", () => LoadLevel(levelIndex), "KEEP PLAYING", Resume);
+            screen.ShowModal("RESTART LEVEL?", "Your current board will be reset.", "RESTART", RestartLevel, "KEEP PLAYING", Resume);
         }
         public void Pause()
         {

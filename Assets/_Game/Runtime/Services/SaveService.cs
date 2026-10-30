@@ -37,6 +37,16 @@ namespace StickyPeerSort
             if ((Data.completedTutorials & flag) == flag) return;
             Data.completedTutorials |= flag; Flush();
         }
+        public void ResetTutorial(TutorialLesson lesson)
+        {
+            int flag = (int)lesson;
+            if ((Data.completedTutorials & flag) == 0) return;
+            Data.completedTutorials &= ~flag; Flush();
+        }
+        public void ResetAllTutorials()
+        {
+            Data.completedTutorials = 0; Flush();
+        }
     }
     public interface IGameFeedback { void Play(PuzzleEventKind kind); void Haptic(); }
     public sealed class SilentFeedback : IGameFeedback { public void Play(PuzzleEventKind kind) { } public void Haptic() { } }

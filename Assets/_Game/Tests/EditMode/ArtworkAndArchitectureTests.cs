@@ -91,7 +91,7 @@ namespace StickyPeerSort.Tests
         {
             public SaveData Data { get; } = new SaveData();
             public bool Complete(LevelDefinition level) { Data.highestCompleted = level.levelNumber; return true; }
-            public void Flush() { }
+            public void Flush() { } public void ResetTutorial(TutorialLesson lesson) { Data.completedTutorials &= ~(int)lesson; }
         }
         sealed class RecordingPresenter : IMovePresenter
         {
@@ -114,3 +114,4 @@ namespace StickyPeerSort.Tests
         }
     }
 }
+

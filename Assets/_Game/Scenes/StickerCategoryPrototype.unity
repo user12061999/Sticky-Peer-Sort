@@ -5918,6 +5918,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ab502e1ff163cbe4a8c3f2cbfef4e5d4, type: 2}
   - {fileID: 11400000, guid: 73a4dd3b81121b541abbaba5bd69af25, type: 2}
   audioConfig: {fileID: 11400000, guid: 850dc78946bc70d4e81616a23b9e29ae, type: 2}
+  progressKey: 
   balanceConfig: {fileID: 11400000, guid: 2337e849148603649bb5e6393100744e, type: 2}
 --- !u!4 &921306214
 Transform:
@@ -12515,6 +12516,7 @@ MonoBehaviour:
   stickerPrefab: {fileID: 7778259885418463250, guid: 0526e793487883e429becfb428b5a676, type: 3}
   cardPrefab: {fileID: 1386515139363123021, guid: 64fcd8d31310b984fbbb3fd19eaa9a74, type: 3}
   slotPrefab: {fileID: 51177241620742128, guid: 113ed612bcad6574ba109b91f970ca3b, type: 3}
+  trayPrefab: {fileID: 0}
 --- !u!114 &1909990253
 MonoBehaviour:
   m_ObjectHideFlags: 0

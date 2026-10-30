@@ -1,20 +1,20 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
+
 namespace StickyPeerSort
 {
-    // Scene composition root and backwards-compatible scene API; no puzzle rules or animation logic.
+    // The scene root owns presentation and lifecycle, but contains no puzzle rules or undo logic.
+    [SelectionBase]
     public sealed class GameController : MonoBehaviour, ICoroutineRunner
     {
-        public GameplayUI ui;
         public LevelDefinition[] levels;
+        public GameBalanceConfig balanceConfig;
+        public GameplayUI ui;
         public GameAudioConfig audioConfig;
-        [Tooltip("Leave empty for the main game. Sample scenes may use an isolated progress key.")]
         public string progressKey;
-        [SerializeField, FormerlySerializedAs("balance")] GameBalanceConfig balanceConfig;
-        GameplayContext context;
         GameplayCoordinator gameplay;
+        GameplayContext context;
         MovePresentationPlayer presentation;
         IGameFeedback feedback = new SilentFeedback();
         public GameBalanceConfig balance
@@ -37,6 +37,10 @@ namespace StickyPeerSort
         {
             Application.targetFrameRate = 60; Application.runInBackground = true; Screen.orientation = ScreenOrientation.Portrait;
             Save = new SaveService(balance.startingBoosters, progressKey);
+            if (Application.isEditor)
+            {
+                Save.ResetTutorial(TutorialLesson.Peel);
+            }
             context = new GameplayContext(Save.Data, balance);
             var audio = GetComponent<GameAudioFeedback>() ?? gameObject.AddComponent<GameAudioFeedback>();
             audio.Initialize(audioConfig, ui); ui.AudioFeedback = audio;
@@ -55,6 +59,7 @@ namespace StickyPeerSort
         }
         void ForwardPresentationEvent(PuzzleEvent e) { PresentationEventFinished?.Invoke(e); }
         public void LoadLevel(int index) { gameplay.LoadLevel(index); }
+        public void Restart() { gameplay.RestartLevel(); }
         public void Tap(int index) { gameplay.Tap(index); }
         public void TapAt(Vector2 point) { gameplay.TapAt(point); }
         public void Undo() { gameplay.Undo(); }

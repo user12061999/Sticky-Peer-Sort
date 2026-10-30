@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace StickyPeerSort
 {
-    // Temporary, non-blocking coaching. Only its dismiss button receives raycasts.
+    // Temporary coaching with circular dark spotlight veil around guided stickers.
     public sealed class GameTutorialGuide : MonoBehaviour
     {
         GameController controller;
@@ -13,6 +13,8 @@ namespace StickyPeerSort
         GameSession session;
         RectTransform root, bubble, hand;
         CanvasGroup group;
+        TutorialSpotlightGraphic spotlightVeil;
+        RectTransform destinationTarget;
         StickerView subjectView, actionView;
         RectTransform keyTarget;
         DestinationPreviewGlow subjectGlow, destinationGlow;
@@ -50,7 +52,7 @@ namespace StickyPeerSort
             SubjectIndex = TutorialGuidePolicy.Subject(session, lesson);
             if (SubjectIndex < 0 || !ui.stickerViews.TryGetValue(SubjectIndex, out subjectView)) return false;
             ActionStickerIndex = lesson == TutorialLesson.Mystery ? TutorialGuidePolicy.CoverToRemove(session, SubjectIndex) : SubjectIndex;
-            actionView = null; keyTarget = null;
+            actionView = null; keyTarget = null; destinationTarget = null;
             if (ActionStickerIndex >= 0) ui.stickerViews.TryGetValue(ActionStickerIndex, out actionView);
             var special = session.Stickers[SubjectIndex].placement.special;
             if (lesson == TutorialLesson.Lock)
@@ -60,7 +62,11 @@ namespace StickyPeerSort
                 {
                     foreach (var pair in ui.categoryViews)
                         if (session.Categories[pair.Key].objective.category.id == special.dependencyId)
-                        { keyTarget = pair.Value.rect.Find("Unlock key") as RectTransform; if (keyTarget == null) keyTarget = pair.Value.rect; break; }
+                        {
+                            keyTarget = pair.Value.rect.Find("Unlock key") as RectTransform;
+                            if (keyTarget == null) keyTarget = pair.Value.rect;
+                            break;
+                        }
                 }
                 else
                 {
@@ -68,31 +74,80 @@ namespace StickyPeerSort
                     if (ActionStickerIndex >= 0) ui.stickerViews.TryGetValue(ActionStickerIndex, out actionView);
                 }
             }
+            int targetCategory = -1, targetSlot = -1;
+            if (lesson == TutorialLesson.Peel && session.TryGetTarget(SubjectIndex, out targetCategory, out targetSlot) && ui.categoryViews.TryGetValue(targetCategory, out var card))
+                destinationTarget = card.targets[targetSlot].rectTransform;
+            else if (lesson == TutorialLesson.Lock && keyTarget != null)
+                destinationTarget = keyTarget;
+
             ActiveLesson = lesson; started = Time.unscaledTime;
             root = UIFactory.Rect("First-time tutorial " + lesson, ui.effects.parent, new Vector2(1080, 1920), Vector2.zero);
-            root.SetAsLastSibling(); group = root.gameObject.AddComponent<CanvasGroup>(); group.blocksRaycasts = true;
-            var panel = UIFactory.Panel("Tutorial speech card", root, new Vector2(820, 194), Vector2.zero, new Color(.12f, .16f, .28f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
-            bubble = panel.rectTransform;
-            var shadow = panel.gameObject.AddComponent<Shadow>(); shadow.effectColor = new Color(0, 0, 0, .3f); shadow.effectDistance = new Vector2(0, -6);
+            root.SetAsLastSibling();
+            group = root.gameObject.AddComponent<CanvasGroup>();
+            group.blocksRaycasts = true;
+
+            var guideRect = (actionView != null ? actionView.Rect : subjectView.Rect);
+
+            // 1. Fullscreen dark overlay with circular spotlight cutouts
+            var veilGo = UIFactory.Rect("Dark Spotlight Veil", root, new Vector2(1080, 1920), Vector2.zero);
+            spotlightVeil = veilGo.gameObject.AddComponent<TutorialSpotlightGraphic>();
+            spotlightVeil.color = new Color(0f, 0f, 0f, 0.78f);
+            spotlightVeil.SetTarget(guideRect, root, 18f);
+            if (destinationTarget != null) spotlightVeil.SetSecondaryTarget(destinationTarget, root, 14f);
+            else spotlightVeil.ClearCircle2();
+
+            // 2. Prominent, high-contrast tutorial card dialog
+            var outerRim = UIFactory.Panel("Tutorial gold rim", root, new Vector2(926, 252), Vector2.zero, new Color(0.96f, 0.74f, 0.28f, 1f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
+            bubble = outerRim.rectTransform;
+            var shadow = outerRim.gameObject.AddComponent<Shadow>();
+            shadow.effectColor = new Color(0, 0, 0, 0.55f);
+            shadow.effectDistance = new Vector2(0, -8);
+
+            var cardInner = UIFactory.Panel("Tutorial speech card", outerRim.transform, new Vector2(918, 244), Vector2.zero, new Color(0.08f, 0.12f, 0.23f, 0.98f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
+
             string title = lesson == TutorialLesson.Peel ? "PEEL & MATCH" : lesson == TutorialLesson.Mystery ? "MYSTERY STICKER" : "UNLOCK WITH A KEY";
             string body = lesson == TutorialLesson.Peel ? "Hold and drag a bright sticker to peel it.\nMatch its picture to the glowing sheet.\nRelease early to stick it back."
                 : lesson == TutorialLesson.Mystery ? "Peel away the sticker covering the ?.\nIts hidden picture will be revealed."
                 : special.unlockCondition == UnlockCondition.CategoryCompleted ? "Complete the sheet with the key.\nIts key unlocks the chained stickers."
                 : "Remove the required sticker first\nto release these chains.";
-            var heading = UIFactory.Text("Tutorial title TMP", bubble, title, 31, new Vector2(680, 45), new Vector2(-30, 57), new Color(1, .85f, .34f));
+
+            // Lesson icon badge
+            var badge = UIFactory.Panel("Lesson badge", cardInner.transform, new Vector2(60, 60), new Vector2(-395, 68), new Color(0.96f, 0.74f, 0.28f, 0.22f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
+            Sprite badgeSprite = lesson == TutorialLesson.Lock ? (ui.theme != null ? ui.theme.keyIcon : null) : (ui.theme != null ? ui.theme.tutorialHand : null);
+            if (badgeSprite != null)
+            {
+                var icon = UIFactory.Panel("Badge icon", badge.transform, new Vector2(44, 44), Vector2.zero, Color.white, badgeSprite);
+                icon.preserveAspect = true;
+            }
+            else if (lesson == TutorialLesson.Mystery)
+            {
+                var q = UIFactory.Text("Badge question mark", badge.transform, "?", 36, new Vector2(44, 44), Vector2.zero, new Color(1f, 0.88f, 0.35f, 1f));
+                q.fontStyle = FontStyles.Bold;
+            }
+
+            var heading = UIFactory.Text("Tutorial title TMP", cardInner.transform, title, 36, new Vector2(650, 50), new Vector2(-25, 68), new Color(1f, 0.88f, 0.35f, 1f));
             heading.alignment = TextAlignmentOptions.Left;
-            var text = UIFactory.Text("Tutorial explanation TMP", bubble, body, 26, new Vector2(640, 92), new Vector2(-50, -10), Color.white);
+            heading.fontStyle = FontStyles.Bold;
+
+            var text = UIFactory.Text("Tutorial explanation TMP", cardInner.transform, body, 29, new Vector2(680, 114), new Vector2(-60, -20), Color.white);
             text.alignment = TextAlignmentOptions.Left;
-            var button = UIFactory.Button("Dismiss tutorial", bubble, lesson == TutorialLesson.Peel ? "SKIP" : "GOT IT", new Vector2(125, 42), new Vector2(322, -67), new Color(.3f, .74f, .18f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
-            var label = button.GetComponentInChildren<TextMeshProUGUI>(); label.fontSize = 21; label.color = Color.white;
+            text.fontStyle = FontStyles.Normal;
+
+            var button = UIFactory.Button("Dismiss tutorial", cardInner.transform, lesson == TutorialLesson.Peel ? "SKIP" : "GOT IT", new Vector2(165, 58), new Vector2(345, -60), new Color(0.28f, 0.74f, 0.16f, 1f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
+            var label = button.GetComponentInChildren<TextMeshProUGUI>();
+            label.fontSize = 25;
+            label.fontStyle = FontStyles.Bold;
+            label.color = Color.white;
             if (ui.theme != null) ui.theme.ApplyTextStyle(label);
             button.onClick.AddListener(Dismiss);
+
             subjectGlow = DestinationPreviewGlow.Show(subjectView.image, subjectView.Definition, false);
-            if (lesson == TutorialLesson.Peel && session.TryGetTarget(SubjectIndex, out int category, out int slot) && ui.categoryViews.TryGetValue(category, out var card))
-                destinationGlow = DestinationPreviewGlow.Show(card.targets[slot], subjectView.Definition, true);
+            if (destinationTarget != null && lesson == TutorialLesson.Peel && targetCategory >= 0 && ui.categoryViews.TryGetValue(targetCategory, out var destCard))
+                destinationGlow = DestinationPreviewGlow.Show(destCard.targets[targetSlot], subjectView.Definition, true);
+
             if (ui.theme != null && ui.theme.tutorialHand != null)
             {
-                var pointer = UIFactory.Panel("Tutorial drag hand", root, Vector2.one * 112, Vector2.zero, Color.white, ui.theme.tutorialHand);
+                var pointer = UIFactory.Panel("Tutorial drag hand", root, Vector2.one * 120, Vector2.zero, Color.white, ui.theme.tutorialHand);
                 pointer.preserveAspect = true; hand = pointer.rectTransform;
             }
             SetVisible(true); return true;
@@ -104,7 +159,6 @@ namespace StickyPeerSort
             {
                 var piece = session.Stickers[ActionStickerIndex];
                 var fit = piece.placement.definition.FitSize(piece.placement.size);
-                // Aim at opaque, clickable artwork rather than transparent sprite padding.
                 for (int y = 0; y < 5; y++) for (int x = 0; x < 5; x++)
                 {
                     var local = new Vector2((x - 2) * fit.x * .12f, (y - 2) * fit.y * .12f);
@@ -119,8 +173,16 @@ namespace StickyPeerSort
         void Animate()
         {
             var point = root.InverseTransformPoint(Point()); float t = Time.unscaledTime - started;
-            float desiredY = point.y < -200 ? point.y + 225 : point.y - 225;
+            float desiredY = point.y < -150 ? point.y + 265 : point.y - 265;
             bubble.anchoredPosition = new Vector2(0, CardY(desiredY));
+
+            var guideRect = (actionView != null ? actionView.Rect : subjectView.Rect);
+            if (spotlightVeil != null && guideRect != null)
+            {
+                spotlightVeil.SetTarget(guideRect, root, 18f);
+                if (destinationTarget != null) spotlightVeil.SetSecondaryTarget(destinationTarget, root, 14f);
+            }
+
             if (hand == null) return;
             bool drag = ActiveLesson == TutorialLesson.Peel || ActiveLesson == TutorialLesson.Mystery && actionView != null;
             float f = Mathf.Clamp01((t % 2.1f - .35f) / 1.1f);
@@ -130,16 +192,14 @@ namespace StickyPeerSort
         }
         float CardY(float preferred)
         {
-            // Protect the demonstrated sticker, its cover and the sheet artwork.
-            // Empty waiting wells can temporarily sit behind a lesson; occupied wells stay readable.
             var subject = Bounds(subjectView.Rect);
             var action = actionView != null ? Bounds(actionView.Rect) : subject;
             var gallery = Bounds(ui.categories); var waiting = Bounds(ui.buffer);
             float best = 0, score = float.MaxValue;
-            foreach (float candidate in new[] { preferred, waiting.center.y, (waiting.yMin + Bounds(ui.board).yMax) * .5f, 0, -300, -520, 550 })
+            foreach (float candidate in new[] { preferred, waiting.center.y, (waiting.yMin + Bounds(ui.board).yMax) * .5f, 0, -320, -540, 560 })
             {
-                float y = Mathf.Clamp(candidate, -610, 640);
-                var rect = new Rect(-410, y - 97, 820, 194);
+                float y = Mathf.Clamp(candidate, -600, 620);
+                var rect = new Rect(-464, y - 127, 928, 254);
                 float value = Overlap(rect, subject) * 50 + Overlap(rect, action) * 50 + Overlap(rect, gallery) * 20
                     + Overlap(rect, waiting) * (session.Buffer.Count > 0 ? 10 : .1f) + Mathf.Abs(y - preferred) * .01f;
                 if (value < score) { best = y; score = value; }
@@ -176,7 +236,9 @@ namespace StickyPeerSort
             if (destinationGlow != null) destinationGlow.Hide();
             subjectGlow = destinationGlow = null;
             if (root != null) { root.gameObject.SetActive(false); Destroy(root.gameObject); }
-            root = bubble = hand = null; subjectView = actionView = null; keyTarget = null;
+            root = bubble = hand = destinationTarget = null;
+            spotlightVeil = null;
+            subjectView = actionView = null; keyTarget = null;
             ActiveLesson = TutorialLesson.None; SubjectIndex = ActionStickerIndex = -1;
         }
         void OnDisable() { Clear(); }
