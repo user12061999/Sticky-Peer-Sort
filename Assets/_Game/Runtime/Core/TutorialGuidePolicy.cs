@@ -1,7 +1,7 @@
 namespace StickyPeerSort
 {
     [System.Flags]
-    public enum TutorialLesson { None = 0, Peel = 1, Mystery = 2, Lock = 4 }
+    public enum TutorialLesson { None = 0, Peel = 1, Mystery = 2, Lock = 4, AutoMove = 8, SheetSwap = 16, Holding = 32, HoldingCollect = 64 }   // 8–64: level-1 tips (GameTipsGuide)
 
     // Read-only lesson selection. Tutorials never select a sticker or alter puzzle rules.
     public static class TutorialGuidePolicy

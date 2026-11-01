@@ -152,9 +152,17 @@ namespace StickyPeerSort
             }
             SetVisible(true); return true;
         }
+        Vector2 outward = new Vector2(.6f, .8f);
         Vector3 Point()
         {
             if (keyTarget != null) return keyTarget.position;
+            // Spec: peeling starts at the sticker's edge, so the hand demonstrates from a grabbable rim point.
+            if (actionView != null && controller.balance.requireEdgeStart &&
+                BoardGeometry.TryEdgePoint(session, ActionStickerIndex, controller.balance.peelEdgeBand, out var edge, out var direction))
+            {
+                outward = ((Vector2)root.InverseTransformVector(ui.board.TransformVector(direction))).normalized;
+                return ui.board.TransformPoint(edge);
+            }
             if (actionView != null)
             {
                 var piece = session.Stickers[ActionStickerIndex];
@@ -187,7 +195,7 @@ namespace StickyPeerSort
             bool drag = ActiveLesson == TutorialLesson.Peel || ActiveLesson == TutorialLesson.Mystery && actionView != null;
             float f = Mathf.Clamp01((t % 2.1f - .35f) / 1.1f);
             float travel = drag ? Mathf.SmoothStep(0, 1, f) * 160 : Mathf.Sin(t * 4) * 8;
-            hand.anchoredPosition = (Vector2)point + new Vector2(33 + (drag ? travel * .25f : 0), -38 + travel);
+            hand.anchoredPosition = (Vector2)point + new Vector2(33, -38) + (drag ? outward * travel : new Vector2(0, travel));
             hand.localScale = Vector3.one * (1 - Mathf.Sin(f * Mathf.PI) * .08f);
         }
         float CardY(float preferred)

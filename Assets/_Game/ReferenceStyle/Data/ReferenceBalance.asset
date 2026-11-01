@@ -12,11 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a5afb244738a344681e2680554b60f3, type: 3}
   m_Name: ReferenceBalance
   m_EditorClassIdentifier: StickyPeerSort.Runtime::StickyPeerSort.GameBalanceConfig
+  tutorialsEnabled: 1
   pressDuration: 0.045
   peelDuration: 0.16
   travelDuration: 0.24
   pagePeel: 1
   pagePeelMaterial: {fileID: 2100000, guid: 5f807f9ec6159fe40a0e0b6274538077, type: 2}
+  dragToPeel: 1
+  dragPeelDistanceRatio: 0.85
+  dragPeelDeadZone: 0.05
+  dragReattachDuration: 0.18
+  backingPaper: 0
+  backingPaperOpacity: 0.45
+  backingPaperFallDuration: 0.85
+  backingPaperFallDistance: 230
+  backingPaperTint: {r: 1, g: 0.975, b: 0.9, a: 1}
   stickDuration: 0.14
   clickFailDuration: 0.16
   clickFailDistance: 9
@@ -56,6 +66,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   startingBoosters: 10
   boostersEnabled: 1
-  haptics: 0
-  backingPaper: 0
-  tutorialsEnabled: 1
+  haptics: 1
+  peelFeedbackFastSpeed: 3
+  peelTickSpacingSlow: 0.09
+  peelTickSpacingFast: 0.045
+  reattachTickSpacing: 0.15
+  requireEdgeStart: 1
+  peelEdgeBand: 0.2
+  dragGuideDelay: 0.45
+  dragGuideDuration: 2.6

@@ -47,15 +47,20 @@ namespace StickyPeerSort
             if (feedback is SilentFeedback) feedback = audio;
             var celebration = GetComponent<GameCelebration>() ?? gameObject.AddComponent<GameCelebration>();
             celebration.Initialize(ui); ui.Celebration = celebration;
+            var peelFeel = GetComponent<PeelFeedback>() ?? gameObject.AddComponent<PeelFeedback>();
+            peelFeel.Initialize(ui, balance); ui.PeelFeel = peelFeel;
             presentation = new MovePresentationPlayer(ui, context, this) { Feedback = feedback };
             var boosters = new GameplayBoosters(Save, new BoundedPuzzleSolver());
             gameplay = new GameplayCoordinator(context, new LevelRepository(levels), new GameSessionFactory(), Save, boosters, presentation, ui);
             ui.Initialize(context, gameplay); ui.BindCommands(gameplay);
             presentation.EventFinished += ForwardPresentationEvent;
-            gameplay.LoadLevel(0);
+            gameplay.LoadDisplayLevel(Save.Data.currentLevel);   // spec: save level progress; a board in progress is not saved
             var tutorial = GetComponent<GameTutorialGuide>();
             if (tutorial == null) tutorial = gameObject.AddComponent<GameTutorialGuide>();
             tutorial.Initialize(this, Save);
+            var tips = GetComponent<GameTipsGuide>();
+            if (tips == null) tips = gameObject.AddComponent<GameTipsGuide>();
+            tips.Initialize(this, Save);
         }
         void ForwardPresentationEvent(PuzzleEvent e) { PresentationEventFinished?.Invoke(e); }
         public void LoadLevel(int index) { gameplay.LoadLevel(index); }

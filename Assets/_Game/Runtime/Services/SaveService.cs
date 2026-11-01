@@ -7,6 +7,7 @@ namespace StickyPeerSort
         public int version = 1, unlockedLevel = 1, highestCompleted, coins;
         public int undo = 10, hint = 10, extraSlot = 10, shuffle = 10;
         public int completedTutorials;
+        public int currentLevel = 1;   // displayed level number to resume (keeps counting past 15)
     }
     public sealed class SaveService : IProgressStore
     {

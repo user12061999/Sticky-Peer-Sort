@@ -42,7 +42,8 @@ namespace StickyPeerSort
                 bool landing = e.kind == PuzzleEventKind.Collected || e.kind == PuzzleEventKind.Buffered;
                 bool timedFeedback = e.kind == PuzzleEventKind.CategoryCompleted || e.kind == PuzzleEventKind.Unlocked || e.kind == PuzzleEventKind.Revealed;
                 if (!landing && !timedFeedback) Feedback.Play(e.kind);
-                if (context.Balance.haptics && (e.kind == PuzzleEventKind.Peel || e.kind == PuzzleEventKind.CategoryCompleted)) Feedback.Haptic();
+                // Short amplitude pulses (GameHaptics) instead of Handheld.Vibrate's long buzz; the peel pulse comes from the drag (PeelFeedback).
+                if (context.Balance.haptics && e.kind == PuzzleEventKind.CategoryCompleted) GameHaptics.Pulse(30, 200, true);
                 StickerView view;
                 // Each flight owns its peel/stick sequence; other ordinary taps can start concurrently.
                 if (e.kind == PuzzleEventKind.Collected || e.kind == PuzzleEventKind.Buffered)
@@ -120,6 +121,8 @@ namespace StickyPeerSort
                     });
                     ui.Land(e, resolved);
                     Feedback.Play(e.kind);
+                    runner.Run(LandBounce(target));   // game feel: the receiving slot pops so the landing reads as a hit
+                    if (context.Balance.haptics) GameHaptics.Pulse(10, e.kind == PuzzleEventKind.Collected ? 90 : 60);
                     if (context.Balance.celebrations) ui.Celebration?.Land(target);
                     ghost.gameObject.SetActive(false); UnityEngine.Object.Destroy(ghost.gameObject);
                     ui.UpdateTrayStatus(ui.waitingViews.Count, resolved.Capacity);
@@ -189,6 +192,17 @@ namespace StickyPeerSort
                 yield return null;
             } while (t < duration);
             card.rect.anchoredPosition = to; card.rect.localScale = Vector3.one * (entering ? 1 : .85f); card.group.alpha = entering ? 1 : 0;
+        }
+        static IEnumerator LandBounce(Transform target)
+        {
+            const float duration = .22f; float t = 0;
+            while (t < duration && target != null)
+            {
+                t += Time.unscaledDeltaTime; float k = Mathf.Clamp01(t / duration);
+                target.localScale = Vector3.one * (1 + .18f * Mathf.Sin(k * Mathf.PI) * (1 - k * .5f));
+                yield return null;
+            }
+            if (target != null) target.localScale = Vector3.one;
         }
         IEnumerator Scale(Transform target, float factor, float duration)
         {

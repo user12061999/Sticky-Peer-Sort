@@ -38,6 +38,16 @@ namespace StickyPeerSort
         public AnimationCurve easing = AnimationCurve.EaseInOut(0, 0, 1, 1);
         public int startingBoosters = 10;
         public bool boostersEnabled = true;
-        public bool haptics;
+        public bool haptics = true;
+        [Header("Peel feel (spec: peeling and feedback)")]
+        [Tooltip("Peel progress per second that counts as a fast drag (louder, denser ticks).")] [Min(.1f)] public float peelFeedbackFastSpeed = 3f;
+        [Range(.01f, .3f)] public float peelTickSpacingSlow = .09f, peelTickSpacingFast = .045f;
+        [Range(.02f, .5f)] public float reattachTickSpacing = .15f;
+        [Tooltip("Peeling must start in this outer band of the sticker (fraction of its size). The core counts as a tap.")]
+        public bool requireEdgeStart = true;
+        [Range(.05f, .45f)] public float peelEdgeBand = .2f;
+        [Header("Recurring drag guide")]
+        [Min(0)] public float dragGuideDelay = .45f;
+        [Min(.5f)] public float dragGuideDuration = 2.6f;
     }
 }

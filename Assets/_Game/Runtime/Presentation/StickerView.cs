@@ -187,6 +187,8 @@ namespace StickyPeerSort
             var sticker = context.Session.Stickers[index];
             if (!context.Balance.dragToPeel || !context.Session.Legal(index) || sticker.placement.special.kind == SpecialKind.Frozen && sticker.ice > 0)
                 input.TapAt(p);
+            else if (context.Balance.requireEdgeStart && !BoardGeometry.NearEdge(sticker, p, context.Balance.peelEdgeBand))
+                PeelSignals.Tap(index);   // spec: peeling starts at the edge; a press in the middle only asks for the drag guide
             else DragPeel.Begin(e);
         }
     }

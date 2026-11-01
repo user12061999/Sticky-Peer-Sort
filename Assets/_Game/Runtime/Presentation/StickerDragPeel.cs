@@ -61,6 +61,7 @@ namespace StickyPeerSort
             if (sourceGroup == null) sourceGroup = view.gameObject.AddComponent<CanvasGroup>();
             sourceAlpha = sourceGroup.alpha; sourceGroup.alpha = 0;
             HighlightDestination();
+            screen.PeelFeel?.Begin(); PeelSignals.Started(index);
         }
         bool Point(PointerEventData e, out Vector2 point)
         { return RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)view.transform.parent, e.position, e.pressEventCamera, out point); }
@@ -72,7 +73,9 @@ namespace StickyPeerSort
             if (!held || e.pointerId != pointer) return;
             if (context.Session != startedSession || startedSession.State != GameplayState.Playing) { CancelImmediately(); return; }
             Vector2 point; if (!Point(e, out point)) return;
+            float before = Amount;
             Amount = progress.Update(point);
+            screen.PeelFeel?.Progress(before, Amount);
             Vector2 localDirection = Quaternion.Euler(0, 0, -view.Rect.localEulerAngles.z) * progress.Direction;
             DirectionDegrees = Mathf.Atan2(-localDirection.y, -localDirection.x) * Mathf.Rad2Deg;
             page.DirectionDegrees = DirectionDegrees; page.Set(Amount);
@@ -80,6 +83,7 @@ namespace StickyPeerSort
             if (Amount < 1) return;
             held = false; CompletedAmount = 1; RestoreDestination();
             if (!input.CommitPeel(index)) { CompletedAmount = 0; Reattach(); }
+            else { screen.PeelFeel?.Completed(); PeelSignals.Completed(index); }
         }
         public void OnPointerUp(PointerEventData e) { if (held && e.pointerId == pointer) Reattach(); }
         public void OnEndDrag(PointerEventData e) { if (held && e.pointerId == pointer) Reattach(); }
@@ -87,6 +91,8 @@ namespace StickyPeerSort
         void Reattach()
         {
             held = false; RestoreDestination();
+            screen.PeelFeel?.Reattached(Amount);
+            if (Amount < .04f) PeelSignals.Tap(index);   // pressed and released without peeling = a standalone tap
             returning = StartCoroutine(ReturnToBoard());
         }
         IEnumerator ReturnToBoard()

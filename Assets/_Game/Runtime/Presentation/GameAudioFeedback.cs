@@ -84,6 +84,7 @@ namespace StickyPeerSort
         public void Reject()
         { if (config != null && Time.unscaledTime >= nextReject) { nextReject = Time.unscaledTime + .1f; PlayClip(config.reject); } }
         public void Click() { if (config != null) PlayClip(config.button); }
+        public void Coins() { if (config != null && config.coins != null) PlayClip(config.coins, false, config.coinsVolume); }
         void PlayClip(AudioClip clip, bool result = false, float gain = 1)
         {
             if (Muted || config == null || clip == null || voices[0] == null) return;

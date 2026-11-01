@@ -55,6 +55,7 @@ namespace StickyPeerSort
         public GameSession Session { get; internal set; }
         public SaveData Progress { get; }
         public GameBalanceConfig Balance { get; set; }
+        public int DisplayLevel { get; set; }   // spec: after level 15 show 16, 17… while repeating board data 1–15
         public GameplayContext(SaveData progress, GameBalanceConfig balance) { Progress = progress; Balance = balance; }
     }
     public sealed class LevelRepository : ILevelRepository

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace StickyPeerSort
         public Button sound;
         public GameAudioFeedback AudioFeedback { get; set; }
         public GameCelebration Celebration { get; set; }
+        public PeelFeedback PeelFeel { get; set; }
         public Sprite panelSprite;
         public GameplayUITheme theme;
         public TextMeshProUGUI undoCount, hintCount, extraCount, shuffleCount;
@@ -35,7 +37,24 @@ namespace StickyPeerSort
         IStickerInput input;
         IGameplayCommands commands;
         public bool HasModal => modal.activeSelf;
-        public void Initialize(IGameplayReadModel context, IStickerInput input) { this.context = context; this.input = input; }
+        public void Initialize(IGameplayReadModel context, IStickerInput input) { this.context = context; this.input = input; ApplyReadability(); }
+        // Game feel: the 24 px booster captions and 17 px RESTART were unreadable on phones; enlarge them in place.
+        void ApplyReadability()
+        {
+            foreach (var button in new[] { undo, hint, extra, shuffle })
+            {
+                if (button == null) continue;
+                foreach (var label in button.GetComponentsInChildren<TextMeshProUGUI>(true))
+                {
+                    if (label.name != "Label") continue;
+                    label.enableAutoSizing = true; label.fontSizeMin = 26; label.fontSizeMax = 34; label.fontStyle |= FontStyles.Bold;
+                    label.rectTransform.sizeDelta = new Vector2(label.rectTransform.sizeDelta.x, Mathf.Max(label.rectTransform.sizeDelta.y, 50));
+                }
+            }
+            if (restart != null)   // the RESTART pill sits between the booster captions, so only its text grows, not the pill
+                foreach (var label in restart.GetComponentsInChildren<TextMeshProUGUI>(true))
+                { label.enableAutoSizing = true; label.fontSizeMin = 18; label.fontSizeMax = 24; label.fontStyle |= FontStyles.Bold; }
+        }
         public void BindCommands(IGameplayCommands value)
         {
             UnbindCommands(); commands = value;
@@ -72,6 +91,35 @@ namespace StickyPeerSort
                     : count > 0 && count == limit - 1 ? new Color(.59f, .28f, .02f) : theme != null ? theme.muted : UIFactory.Ink;
             }
             if (trayPanel != null) trayPanel.color = count >= limit ? new Color(1, .69f, .42f) : new Color(1, .84f, .49f);
+            WarnLastSlot(count, limit);
+        }
+        // Game feel: one free holding slot left → the free slot pulses red, a soft warning sound and a double tap of haptics, once per new count.
+        int warnedCount = -1; Coroutine warning;
+        void WarnLastSlot(int count, int limit)
+        {
+            bool danger = count > 0 && count == limit - 1;
+            if (!danger) { warnedCount = -1; return; }
+            if (warnedCount == count || !isActiveAndEnabled) return;
+            warnedCount = count;
+            AudioFeedback?.Reject();
+            if (context != null && context.Balance.haptics) { GameHaptics.Pulse(14, 150, true); StartCoroutine(DelayedPulse()); }
+            if (warning == null) warning = StartCoroutine(PulseLastSlot());
+        }
+        IEnumerator DelayedPulse() { yield return new WaitForSecondsRealtime(.09f); GameHaptics.Pulse(14, 150, true); }
+        IEnumerator PulseLastSlot()
+        {
+            float t = 0;
+            while (context != null && context.Session != null && context.Session.Buffer.Count == context.Session.Capacity - 1 && context.Session.Buffer.Count > 0)
+            {
+                t += Time.unscaledDeltaTime; int free = context.Session.Buffer.Count;
+                if (free < bufferSlots.Count && bufferSlots[free] != null && bufferSlots[free].TryGetComponent<Image>(out var slot))
+                    slot.color = Color.Lerp(theme != null ? theme.trayRim : Color.white, new Color(1, .25f, .15f), .5f + .5f * Mathf.Sin(t * 9));
+                yield return null;
+            }
+            for (int i = 0; i < bufferSlots.Count; i++)
+                if (bufferSlots[i] != null && bufferSlots[i].TryGetComponent<Image>(out var slot) && context != null && context.Session != null)
+                    slot.color = i >= context.Session.Capacity ? new Color(1, .23f, .12f) : theme != null ? theme.trayRim : slot.color;
+            warning = null;
         }
         public void RefreshSticker(int index) { if (stickerViews.TryGetValue(index, out var view)) view.Bind(context, input, index); }
         void RefreshCoveredStickers()
@@ -115,7 +163,7 @@ namespace StickyPeerSort
         public void UpdateHud(IGameplayReadModel owner)
         {
             var s = owner.Session;
-            levelLabel.text = "Level " + s.Level.levelNumber; coins.text = theme != null ? owner.Progress.coins.ToString() : "COINS  " + owner.Progress.coins;
+            levelLabel.text = "Level " + (owner is GameplayContext live && live.DisplayLevel > 0 ? live.DisplayLevel : s.Level.levelNumber); coins.text = theme != null ? owner.Progress.coins.ToString() : "COINS  " + owner.Progress.coins;
             int completed = s.Categories.FindAll(c => c.Complete).Count;
             progress.text = theme != null ? completed + " / " + s.Categories.Count : completed + " / " + s.Categories.Count + " COLLECTIONS  |  " + s.Level.difficulty.ToUpperInvariant();
             if (albumFill != null) albumFill.fillAmount = (float)completed / Mathf.Max(1, s.Categories.Count);

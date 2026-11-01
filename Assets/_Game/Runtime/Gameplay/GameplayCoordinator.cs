@@ -24,16 +24,19 @@ namespace StickyPeerSort
             this.boosters = boosters; this.presenter = presenter; this.screen = screen;
             presenter.Drained += OnPresentationDrained;
         }
-        public void LoadLevel(int index)
+        public void LoadLevel(int index) { Load(Mathf.Clamp(index, 0, levels.Count - 1) + 1); }
+        // Displayed level n plays board data ((n - 1) mod count) + 1, so the campaign loops indefinitely (spec: stage scope).
+        public void LoadDisplayLevel(int display) { Load(Mathf.Max(1, display)); }
+        void Load(int display)
         {
             peeling = -1;
-            presenter.Reset(); levelIndex = Mathf.Clamp(index, 0, levels.Count - 1);
+            presenter.Reset(); levelIndex = (display - 1) % Mathf.Max(1, levels.Count); context.DisplayLevel = display;
             context.Session = sessions.Create(levels.Get(levelIndex)); screen.HideModal(); screen.Render();
         }
         public void RestartLevel()
         {
-            ResetTutorialForLevel(levelIndex);
-            LoadLevel(levelIndex);
+            if (context.DisplayLevel == levelIndex + 1) ResetTutorialForLevel(levelIndex);   // first pass only: tutorials are shown on first introduction
+            Load(context.DisplayLevel);
         }
         void ResetTutorialForLevel(int index)
         {
@@ -81,8 +84,9 @@ namespace StickyPeerSort
             if (Session.State == GameplayState.Win)
             {
                 bool reward = progress.Complete(Session.Level); screen.SynchronizeAfterMoves();
+                int next = context.DisplayLevel + 1; progress.Data.currentLevel = next; progress.Flush();
                 screen.ShowModal("COLLECTION COMPLETE!", reward ? "+" + Session.Level.coinReward + " coins. Album updated." : "Great sorting! Collection already in your album.",
-                    levelIndex < levels.Count - 1 ? "NEXT LEVEL" : "PLAY AGAIN", () => { if (levelIndex >= levels.Count - 1) ResetTutorialForLevel(0); LoadLevel(levelIndex < levels.Count - 1 ? levelIndex + 1 : 0); }, "RETRY", RestartLevel);
+                    "NEXT LEVEL", () => LoadDisplayLevel(next), "RETRY", RestartLevel);
             }
             else if (Session.State == GameplayState.Fail)
                 screen.ShowModal("TRAY FULL!", "All " + Session.Capacity + " waiting slots are occupied (" + Session.Buffer.Count + " / " + Session.Capacity + ").\nUndo the last move or retry.", "RETRY", RestartLevel, "UNDO", UndoFromFail);
@@ -107,7 +111,7 @@ namespace StickyPeerSort
         {
             if (!Available) return; Session.Pause(true);
             screen.ShowModal("PAUSED", "Album: " + progress.Data.highestCompleted + " / " + levels.Count + " levels.\nUnlocked level: " + progress.Data.unlockedLevel,
-                "RESUME", Resume, "CONTINUE SAVED", () => LoadLevel(Mathf.Min(progress.Data.unlockedLevel - 1, levels.Count - 1)));
+                "RESUME", Resume, "CONTINUE SAVED", () => LoadDisplayLevel(progress.Data.currentLevel));
         }
         void Resume() { screen.HideModal(); Session.Pause(false); }
         public void Suspend(bool paused) { progress.Flush(); if (paused) peeling = -1; if (paused && Available) Pause(); }

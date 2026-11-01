@@ -53,6 +53,36 @@ namespace StickyPeerSort
             if (uv.x < 0 || uv.y < 0 || uv.x > 1 || uv.y > 1) return false;
             return s.placement.definition.ContainsUV(uv);
         }
+        // Spec: peeling starts from a sticker's edge. True when the point lies outside the sticker's inner ellipse
+        // (band = fraction of the sticker size kept as the grab rim on every side).
+        public static bool NearEdge(StickerRuntime s, Vector2 boardPoint, float band)
+        {
+            Vector2 d = boardPoint - s.position;
+            float r = -s.rotation * Mathf.Deg2Rad;
+            Vector2 p = new Vector2(d.x * Mathf.Cos(r) - d.y * Mathf.Sin(r), d.x * Mathf.Sin(r) + d.y * Mathf.Cos(r));
+            Vector2 size = s.placement.definition.FitSize(s.placement.size) * s.placement.scale;
+            float core = Mathf.Max(.05f, .5f - band);
+            if (size.x <= 0 || size.y <= 0) return true;
+            float nx = p.x / size.x / core, ny = p.y / size.y / core;
+            return nx * nx + ny * ny >= 1;
+        }
+        // A visible, grabbable rim point of a sticker (board space), preferring the lower-right side; used by the guides.
+        public static bool TryEdgePoint(GameSession session, int index, float band, out Vector2 point, out Vector2 outward)
+        {
+            var s = session.Stickers[index];
+            Vector2 size = s.placement.definition.FitSize(s.placement.size) * s.placement.scale;
+            float r = s.rotation * Mathf.Deg2Rad;
+            foreach (float degrees in new[] { -40f, -20f, -60f, 0f, -90f, 20f, -120f, 45f, 180f, 90f, 135f, -150f })
+                for (float radius = .44f; radius >= .5f - band - .02f; radius -= .03f)
+                {
+                    float a = degrees * Mathf.Deg2Rad;
+                    Vector2 local = new Vector2(Mathf.Cos(a) * size.x * radius, Mathf.Sin(a) * size.y * radius);
+                    Vector2 world = s.position + new Vector2(local.x * Mathf.Cos(r) - local.y * Mathf.Sin(r), local.x * Mathf.Sin(r) + local.y * Mathf.Cos(r));
+                    if (Hit(session, world) != index || !NearEdge(s, world, band)) continue;
+                    point = world; outward = (world - s.position).normalized; return true;
+                }
+            point = s.position; outward = new Vector2(.7f, -.7f); return false;
+        }
         public static int Hit(GameSession session, Vector2 p)
         {
             int hit = -1;

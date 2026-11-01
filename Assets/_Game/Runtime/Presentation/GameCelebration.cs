@@ -79,6 +79,7 @@ namespace StickyPeerSort
         }
         IEnumerator Coins(int reward)
         {
+            ui.AudioFeedback?.Coins();
             var root = UIFactory.Rect("Coin reward", layer, Vector2.zero, new Vector2(0, 495));
             var label = UIFactory.Text("Reward TMP", root, "+" + reward + " COINS", 38, new Vector2(620, 70), Vector2.zero, Color.white);
             var coins = new Image[9]; var starts = new Vector3[9];
