@@ -23,7 +23,7 @@ namespace StickyPeerSort.Tests
             yield return SceneManager.LoadSceneAsync(0); yield return null;
             controller = Object.FindFirstObjectByType<GameController>(); Assert.IsNotNull(controller);
             if (controller.ui.modal.activeSelf) controller.ui.primary.onClick.Invoke();
-            original = controller.balance; fast = Object.Instantiate(original); controller.balance = fast;
+            original = controller.balance; fast = Object.Instantiate(original); fast.peelFromGrabSide = false; controller.balance = fast;
             fast.pressDuration = fast.peelDuration = fast.travelDuration = fast.categoryDuration = .001f;
             fast.categoryFilledHold = fast.categoryExitDuration = fast.categoryEnterDuration = .001f;
             fast.keyFlightDuration = fast.lockOpenDuration = fast.specialRevealDuration = .001f;

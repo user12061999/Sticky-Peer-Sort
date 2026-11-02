@@ -46,7 +46,10 @@ namespace StickyPeerSort
             startedSession = context.Session; pointer = e.pointerId; held = true;
             var sticker = startedSession.Stickers[index];
             Vector2 size = sticker.placement.definition.FitSize(sticker.placement.size) * sticker.placement.scale;
-            progress = new PeelDragProgress(start, Mathf.Min(size.x, size.y) * context.Balance.dragPeelDistanceRatio, context.Balance.dragPeelDeadZone);
+            var balance = context.Balance;
+            progress = balance.peelFromGrabSide && TryGrabSide(sticker, start, size, balance.peelCornerThreshold, out var inward)
+                ? new PeelDragProgress(start, Mathf.Min(size.x, size.y) * balance.grabPeelDistanceRatio, balance.grabPeelDeadZone, inward)
+                : new PeelDragProgress(start, Mathf.Min(size.x, size.y) * balance.dragPeelDistanceRatio, balance.dragPeelDeadZone);
             CompletedAmount = Amount = 0; DirectionDegrees = 0;
             ghost = UIFactory.Panel("Interactive peel " + index, screen.effects, StickerPeelLayer.SizeInOverlay(view.Rect, screen.effects), Vector2.zero, view.image.color, view.image.sprite);
             ghost.preserveAspect = view.image.preserveAspect;
@@ -54,7 +57,8 @@ namespace StickyPeerSort
             ghost.transform.position = view.Rect.position; ghost.transform.rotation = view.Rect.rotation;
             var definition = sticker.placement.definition;
             var label = definition.showLabel ? UIFactory.Text("Label", ghost.transform, definition.displayName, 25, ghost.rectTransform.sizeDelta * .9f, Vector2.zero) : null;
-            page = new StickerPeelPresentation(ghost, label, context.Balance, definition); page.Set(0);
+            page = new StickerPeelPresentation(ghost, label, context.Balance, definition);
+            UpdateDirection(); page.Set(0);
             var shadow = ghost.gameObject.AddComponent<Shadow>(); shadow.effectDistance = new Vector2(4, -7); shadow.effectColor = new Color(0, 0, 0, .25f);
             backing = StickerBackingPaper.Create(view, screen, context.Balance, index);
             sourceGroup = view.GetComponent<CanvasGroup>();
@@ -62,6 +66,28 @@ namespace StickyPeerSort
             sourceAlpha = sourceGroup.alpha; sourceGroup.alpha = 0;
             HighlightDestination();
             screen.PeelFeel?.Begin(); PeelSignals.Started(index);
+        }
+        void UpdateDirection()
+        {
+            Vector2 localDirection = Quaternion.Euler(0, 0, -view.Rect.localEulerAngles.z) * progress.Direction;
+            DirectionDegrees = Mathf.Atan2(-localDirection.y, -localDirection.x) * Mathf.Rad2Deg;
+            page.DirectionDegrees = DirectionDegrees;
+        }
+        // Which side was grabbed: a corner when the press is far out on both axes, else the nearest edge.
+        // Returns the board-space drag direction that peels from there (towards the opposite side).
+        static bool TryGrabSide(StickerRuntime sticker, Vector2 boardPoint, Vector2 size, float cornerThreshold, out Vector2 inward)
+        {
+            inward = Vector2.zero;
+            if (size.x <= 0 || size.y <= 0) return false;
+            float r = sticker.rotation * Mathf.Deg2Rad, c = Mathf.Cos(r), s = Mathf.Sin(r);
+            Vector2 d = boardPoint - sticker.position;
+            Vector2 n = new Vector2((d.x * c + d.y * s) / size.x, (-d.x * s + d.y * c) / size.y) * 2;
+            if (n.sqrMagnitude < .04f) return false;
+            Vector2 side = Mathf.Abs(n.x) > cornerThreshold && Mathf.Abs(n.y) > cornerThreshold ? new Vector2(Mathf.Sign(n.x) * size.x, Mathf.Sign(n.y) * size.y)
+                : Mathf.Abs(n.x) >= Mathf.Abs(n.y) ? new Vector2(Mathf.Sign(n.x), 0) : new Vector2(0, Mathf.Sign(n.y));
+            side.Normalize();
+            inward = -new Vector2(side.x * c - side.y * s, side.x * s + side.y * c);
+            return true;
         }
         bool Point(PointerEventData e, out Vector2 point)
         { return RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)view.transform.parent, e.position, e.pressEventCamera, out point); }
@@ -76,9 +102,7 @@ namespace StickyPeerSort
             float before = Amount;
             Amount = progress.Update(point);
             screen.PeelFeel?.Progress(before, Amount);
-            Vector2 localDirection = Quaternion.Euler(0, 0, -view.Rect.localEulerAngles.z) * progress.Direction;
-            DirectionDegrees = Mathf.Atan2(-localDirection.y, -localDirection.x) * Mathf.Rad2Deg;
-            page.DirectionDegrees = DirectionDegrees; page.Set(Amount);
+            UpdateDirection(); page.Set(Amount);
             if (backing != null) backing.SetPeel(Amount);
             if (Amount < 1) return;
             held = false; CompletedAmount = 1; RestoreDestination();

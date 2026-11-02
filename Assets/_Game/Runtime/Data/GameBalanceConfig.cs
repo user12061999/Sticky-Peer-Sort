@@ -45,7 +45,13 @@ namespace StickyPeerSort
         [Range(.02f, .5f)] public float reattachTickSpacing = .15f;
         [Tooltip("Peeling must start in this outer band of the sticker (fraction of its size). The core counts as a tap.")]
         public bool requireEdgeStart = true;
-        [Range(.05f, .45f)] public float peelEdgeBand = .2f;
+        [Range(.05f, .45f)] public float peelEdgeBand = .3f;
+        [Tooltip("The flap lifts at the grabbed corner/edge and any drag direction counts (curved paths still peel).")]
+        public bool peelFromGrabSide = true;
+        [Range(.35f, 1.5f)] public float grabPeelDistanceRatio = .7f;
+        [Range(.01f, .3f)] public float grabPeelDeadZone = .1f;
+        [Tooltip("A grab beyond this fraction of the half size on both axes lifts the corner; otherwise the nearest edge.")]
+        [Range(0, 1)] public float peelCornerThreshold = .45f;
         [Header("Recurring drag guide")]
         [Min(0)] public float dragGuideDelay = .45f;
         [Min(.5f)] public float dragGuideDuration = 2.6f;
