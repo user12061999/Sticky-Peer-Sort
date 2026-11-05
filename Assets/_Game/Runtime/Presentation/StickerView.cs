@@ -177,16 +177,29 @@ namespace StickyPeerSort
         {
             if (context == null) return false;
             Vector2 p; RectTransformUtility.ScreenPointToLocalPointInRectangle(board, point, camera, out p);
-            return BoardGeometry.Contains(context.Session.Stickers[index], p);
+            return Resolve(p) == index;
+        }
+        // Every view filters every raycast, so one result per frame and point is shared between them.
+        static int resolvedFrame = -1, resolvedSticker;
+        static Vector2 resolvedPoint;
+        static GameSession resolvedSession;
+        int Resolve(Vector2 p)
+        {
+            if (resolvedFrame != Time.frameCount || resolvedPoint != p || resolvedSession != context.Session)
+            {
+                resolvedFrame = Time.frameCount; resolvedPoint = p; resolvedSession = context.Session;
+                resolvedSticker = BoardGeometry.ResolveTouch(context.Session, p, context.Balance.touchSlop);
+            }
+            return resolvedSticker;
         }
         public void OnPointerDown(PointerEventData e)
         {
             if (e.button != PointerEventData.InputButton.Left) return;
             Vector2 p; RectTransformUtility.ScreenPointToLocalPointInRectangle(board, e.position, e.pressEventCamera, out p);
-            if (BoardGeometry.Hit(context.Session, p) != index) return;
+            if (Resolve(p) != index) return;
             var sticker = context.Session.Stickers[index];
             if (!context.Balance.dragToPeel || !context.Session.Legal(index) || sticker.placement.special.kind == SpecialKind.Frozen && sticker.ice > 0)
-                input.TapAt(p);
+                input.Tap(index);
             else if (context.Balance.requireEdgeStart && !BoardGeometry.NearEdge(sticker, p, context.Balance.peelEdgeBand))
                 PeelSignals.Tap(index);   // spec: peeling starts at the edge; a press in the middle only asks for the drag guide
             else DragPeel.Begin(e);

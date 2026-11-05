@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_animal_whale
   displayName: WHALE
-  category: {fileID: 11400000, guid: 9ef2c9fd403efa24aa48f168c2be209c, type: 2}
+  category: {fileID: 11400000, guid: 7911afecd7c02fd42830c501ec1ccae8, type: 2}
   texture: {fileID: 2800000, guid: 158d7924ae34c9543a2424c8054242e0, type: 3}
   sprite: {fileID: 21300000, guid: 158d7924ae34c9543a2424c8054242e0, type: 3}
   targetSilhouette: {fileID: 21300000, guid: 7896caff297e74f42b9a4ff264f76416, type: 3}

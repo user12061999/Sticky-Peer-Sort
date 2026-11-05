@@ -16,26 +16,8 @@ namespace StickyPeerSort.Editor
         [Serializable] public sealed class Entry { public string id, category, displayName, filename; }
         public static List<StickerDefinition> PoolForLevel(int index, IEnumerable<StickerDefinition> legacy)
         {
-            var manifestPath = Root + "/manifest.json";
-            if (!File.Exists(manifestPath)) return legacy.ToList();
-            var entries = JsonUtility.FromJson<Manifest>(File.ReadAllText(manifestPath)).entries;
-            var all = entries.Select(e => AssetDatabase.LoadAssetAtPath<StickerDefinition>(Root + "/Data/" + e.id + ".asset")).ToArray();
-            if (all.Length != 64 || all.Any(d => d == null)) return legacy.ToList();
-            var pool = new List<StickerDefinition>();
-            foreach (var category in Categories)
-            {
-                var group = all.Where(d => d.category.id == CategoryId(category)).ToArray();
-                int offset = index % 4 * 4;
-                pool.AddRange(group.Skip(offset)); pool.AddRange(group.Take(offset));
-                pool.AddRange(legacy.Where(d => d.category.id == CategoryId(category)));
-            }
-            return pool;
+            return File.Exists(Root + "/manifest.json") ? ProductionCategories.Pool(index) : legacy.ToList();
         }
-        static string CategoryId(string category)
-        {
-            return AssetDatabase.LoadAssetAtPath<CategoryDefinition>("Assets/_Game/Data/Categories/" + CategoryFile(category) + ".asset").id;
-        }
-        static string CategoryFile(string category) => category == "animal" ? "ANIMALS" : category == "plant" ? "PLANTS" : category == "vehicle" ? "VEHICLES" : "FOOD";
         [MenuItem("Tools/Sticker Category Game/Production Stickers/Import and Apply 64 Individual Stickers")]
         public static void Build()
         {
@@ -102,7 +84,7 @@ namespace StickyPeerSort.Editor
                 var d=AssetDatabase.LoadAssetAtPath<StickerDefinition>(dataPath);
                 if(d==null) {d=ScriptableObject.CreateInstance<StickerDefinition>(); AssetDatabase.CreateAsset(d,dataPath);}
                 d.name=d.id=e.id; d.displayName=e.displayName;
-                d.category=AssetDatabase.LoadAssetAtPath<CategoryDefinition>("Assets/_Game/Data/Categories/"+CategoryFile(e.category)+".asset");
+                d.category=ProductionCategories.For(e.id);
                 d.texture=AssetDatabase.LoadAssetAtPath<Texture2D>(path); d.sprite=sprite; d.showLabel=false; d.tint=Color.white; d.preserveAspect=true;
                 d.alphaThreshold=.15f; d.alphaMaskResolution=256;
                 var alpha=new byte[256*256];

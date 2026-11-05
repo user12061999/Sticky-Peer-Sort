@@ -40,7 +40,7 @@ namespace StickyPeerSort.Tests
         {
             SessionState.SetBool(PlayPending, true);
             api = ScriptableObject.CreateInstance<TestRunnerApi>(); api.RegisterCallbacks(new Results("Temp/CampaignPresentationTests.txt", true));
-            api.Execute(new ExecutionSettings(new Filter { testMode = TestMode.PlayMode, testNames = new[] { "StickyPeerSort.Tests.ReferenceStylePlayTests", "StickyPeerSort.Tests.TutorialGuidePlayTests" } }));
+            api.Execute(new ExecutionSettings(new Filter { testMode = TestMode.PlayMode, testNames = new[] { "StickyPeerSort.Tests.ReferenceStylePlayTests", "StickyPeerSort.Tests.TutorialGuidePlayTests", "StickyPeerSort.Tests.ProductionStickerInteractionPlayTests" } }));
         }
         [MenuItem("Tools/Sticker Category Game/Test Tutorial Guides (Play Mode)")]
         public static void RunTutorials()
@@ -72,7 +72,7 @@ namespace StickyPeerSort.Tests
             }
             bool Matches(ITestResultAdaptor result)
             {
-                if (result.FullName.Contains(presentation ? "ReferenceStylePlayTests" : "CampaignBalanceTests") || presentation && result.FullName.Contains("TutorialGuidePlayTests")) return true;
+                if (result.FullName.Contains(presentation ? "ReferenceStylePlayTests" : "CampaignBalanceTests") || presentation && (result.FullName.Contains("TutorialGuidePlayTests") || result.FullName.Contains("ProductionStickerInteractionPlayTests"))) return true;
                 if (result.HasChildren) foreach (var child in result.Children) if (Matches(child)) return true;
                 return false;
             }

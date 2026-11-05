@@ -2,7 +2,7 @@
 
 ## Picking a destination
 
-The sticker must match a free exact design target on an active sheet. Among all eligible sheets, `GameSession` prefers the sheet with the **largest filled target count**. Equal counts keep objective list order. The first matching free slot inside the chosen sheet wins. A fuller sheet cannot accept an unmatched design or an already occupied target.
+Campaign sheets accept any sticker of their category. Where a sheet lists exact targets, the sticker must match a free one. Among all eligible sheets, `GameSession` prefers the sheet with the **largest filled target count**. Equal counts keep objective list order. The first matching free slot inside the chosen sheet wins. A fuller sheet cannot accept an unmatched design or an already occupied target.
 
 The same selector drives direct collection, transfers from the waiting area, destination preview and the solver. Filled counts include logically committed moves whose flight may still be landing, so rapid moves reserve destinations consistently. Legacy objectives with empty exactTargets retain their category-only fallback.
 
@@ -10,7 +10,7 @@ The same selector drives direct collection, transfers from the waiting area, des
 
 With **Drag To Peel** enabled on GameBalanceConfig (default):
 
-1. Press an exposed, legal sticker. Its destination highlights, and an isolated visual ghost appears. The logical sticker remains on the board.
+1. Press an exposed, legal sticker anywhere on it. A press within **Touch Slop** (28 board units) of a playable sticker also picks it, unless it lands on another playable sticker. A press made while input is busy (for example a sheet change) starts peeling with the same drag once input is free. Its destination highlights, and an isolated visual ghost appears. The logical sticker remains on the board.
 2. Drag in any direction. The first movement outside the dead zone establishes the peel direction. Progress is the projected distance along that direction, scaled to the sticker's visible size.
 3. Drag back towards the starting point to reverse the peel. Perpendicular movement does not silently change direction or increase progress.
 4. Release before the complete peel to animate back to the board. No target, waiting slot, undo step, reward, mystery reveal or cover is committed by this cancellation.
@@ -18,7 +18,7 @@ With **Drag To Peel** enabled on GameBalanceConfig (default):
 
 Quick press/release on an ordinary sticker no longer collects it. Frozen pieces still use taps to crack ice; once the ice is gone, they can be peeled. Covered/locked pieces retain their click-fail feedback. Drag controls use the existing StandaloneInputModule and pointer IDs for both mouse and touch; no New Input System dependency is introduced.
 
-Only one uncommitted peel owns input at a time. Other pointer taps and boosters cannot alter the board during it. Level reload, cancel, loss of application focus or pause restores/cancels the uncommitted view. Ordinary previously committed flights may continue while another legal sticker is being peeled. Programmatic `GameController.Tap` remains available for solver/test playback when no gesture holds input.
+Only one uncommitted peel owns input at a time, and releasing frees input at once while the flap settles. Other pointer taps and boosters cannot alter the board during it. Level reload, cancel, loss of application focus or pause restores/cancels the uncommitted view. Ordinary previously committed flights may continue while another legal sticker is being peeled. Programmatic `GameController.Tap` remains available for solver/test playback when no gesture holds input.
 
 ## Configuration
 

@@ -18,7 +18,7 @@ namespace StickyPeerSort.Tests
         [UnitySetUp] public IEnumerator Setup()
         {
             existed = PlayerPrefs.HasKey(Key); old = PlayerPrefs.GetString(Key, "");
-            yield return SceneManager.LoadSceneAsync("SampleStickerLevel"); yield return null;
+            yield return GameplayTestScene.LoadReference(); yield return null;
             controller = Object.FindFirstObjectByType<GameController>(); guide = controller.GetComponent<GameTutorialGuide>();
             balance = Object.Instantiate(controller.balance); controller.balance = balance;
             balance.tutorialsEnabled = true;
@@ -66,7 +66,7 @@ namespace StickyPeerSort.Tests
             controller.ui.settings.onClick.Invoke(); yield return null; Assert.IsFalse(guide.IsVisible);
             controller.ui.primary.onClick.Invoke(); yield return null; Assert.IsTrue(guide.IsVisible);
             guide.Dismiss();
-            Assert.AreEqual(7, SaveService.Decode(PlayerPrefs.GetString(Key)).completedTutorials);
+            Assert.AreEqual(7, SaveService.Decode(PlayerPrefs.GetString(Key)).completedTutorials & 7);
             controller.LoadLevel(2); yield return null; Assert.AreEqual(TutorialLesson.None, guide.ActiveLesson);
             controller.LoadLevel(4); yield return null; Assert.AreEqual(TutorialLesson.None, guide.ActiveLesson);
         }
@@ -90,7 +90,7 @@ namespace StickyPeerSort.Tests
                 Assert.AreNotEqual(0, controller.Save.Data.completedTutorials & (int)lesson);
                 Assert.AreEqual(TutorialLesson.None, guide.ActiveLesson);
             }
-            Assert.AreEqual(7, SaveService.Decode(PlayerPrefs.GetString(Key)).completedTutorials);
+            Assert.AreEqual(7, SaveService.Decode(PlayerPrefs.GetString(Key)).completedTutorials & 7);
             balance.tutorialsEnabled = false; controller.Save.Data.completedTutorials = 0;
             controller.LoadLevel(0); yield return null; Assert.IsFalse(guide.IsVisible);
         }

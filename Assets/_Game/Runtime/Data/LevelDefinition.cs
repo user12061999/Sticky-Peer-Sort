@@ -16,6 +16,8 @@ namespace StickyPeerSort
         [Range(0, 100)] public float lockedPercent = 5;
         [Tooltip("Author a winning route that temporarily parks this many future-sheet stickers after the opening moves. Must leave one buffer slot free.")]
         [Range(0, 3)] public int plannedBufferPeak;
+        [Tooltip("Each design appears once and each category has one sheet, whose slots take any sticker of that category.")]
+        public bool categorySheets;
         [Tooltip("Empty uses this level's existing definitions. Pool order determines the category sequence.")]
         public List<StickerDefinition> stickerPool = new List<StickerDefinition>();
     }

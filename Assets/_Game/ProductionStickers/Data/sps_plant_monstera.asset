@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_plant_monstera
   displayName: MONSTERA
-  category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
+  category: {fileID: 11400000, guid: 6167ccf6e9fccee48bcbc8686e27fbe3, type: 2}
   texture: {fileID: 2800000, guid: eed2b715c1b224b469859eb66e104284, type: 3}
   sprite: {fileID: 21300000, guid: eed2b715c1b224b469859eb66e104284, type: 3}
   targetSilhouette: {fileID: 21300000, guid: 87ed1f0353014ab49bc343037e64f32a, type: 3}

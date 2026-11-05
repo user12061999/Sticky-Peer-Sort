@@ -30,6 +30,12 @@ namespace StickyPeerSort
                 foreach (var target in group.SelectMany(o => o.exactTargets).Where(t => t != null).GroupBy(t => t))
                     if (available.Count(p => p.definition == target.Key) < target.Count()) errors.Add("Missing exact target: " + target.Key.id);
             }
+            if (level.generation != null && level.generation.categorySheets)
+            {
+                foreach (var repeated in level.stickers.Where(p => p.definition != null).GroupBy(p => p.definition).Where(g => g.Count() > 1)) errors.Add("Design appears more than once: " + repeated.Key.id);
+                foreach (var repeated in level.objectives.Where(o => o.category != null).GroupBy(o => o.category).Where(g => g.Count() > 1)) errors.Add("Category has more than one sheet: " + repeated.Key.title);
+                if (level.objectives.Any(o => o.exactTargets.Count > 0)) errors.Add("Category sheets must not request specific designs.");
+            }
             foreach (var p in level.stickers)
             {
                 if (p.definition != null && !level.objectives.Any(o => o.category == p.definition.category)) errors.Add("Sticker category has no objective: " + p.instanceId);

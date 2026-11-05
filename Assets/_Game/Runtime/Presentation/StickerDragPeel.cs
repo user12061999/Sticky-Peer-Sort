@@ -16,7 +16,7 @@ namespace StickyPeerSort
         IStickerPeelInput input;
         GameSession startedSession;
         int index, pointer;
-        bool held;
+        bool held, pressPending;
         PeelDragProgress progress;
         Image ghost, destination;
         DestinationPreviewGlow destinationGlow;
@@ -40,10 +40,17 @@ namespace StickyPeerSort
         }
         public void Begin(PointerEventData e)
         {
-            if (held || returning != null || input == null || screen == null || screen.HasModal || !Application.isPlaying) return;
+            pressPending = true; pointer = e.pointerId;
+            TryStart(e);
+        }
+        // A press during a sheet change is remembered, so the same drag starts peeling once input is free.
+        void TryStart(PointerEventData e)
+        {
+            if (held || input == null || screen == null || screen.HasModal || !Application.isPlaying) return;
+            if (returning != null) CancelImmediately();
             Vector2 start;
             if (!Point(e, out start) || !input.TryBeginPeel(index)) return;
-            startedSession = context.Session; pointer = e.pointerId; held = true;
+            startedSession = context.Session; pointer = e.pointerId; held = true; pressPending = false;
             var sticker = startedSession.Stickers[index];
             Vector2 size = sticker.placement.definition.FitSize(sticker.placement.size) * sticker.placement.scale;
             var balance = context.Balance;
@@ -96,7 +103,9 @@ namespace StickyPeerSort
         public void OnDrag(PointerEventData e) { Drag(e); }
         void Drag(PointerEventData e)
         {
-            if (!held || e.pointerId != pointer) return;
+            if (e.pointerId != pointer) return;
+            if (!held && pressPending) TryStart(e);
+            if (!held) return;
             if (context.Session != startedSession || startedSession.State != GameplayState.Playing) { CancelImmediately(); return; }
             Vector2 point; if (!Point(e, out point)) return;
             float before = Amount;
@@ -109,12 +118,14 @@ namespace StickyPeerSort
             if (!input.CommitPeel(index)) { CompletedAmount = 0; Reattach(); }
             else { screen.PeelFeel?.Completed(); PeelSignals.Completed(index); }
         }
-        public void OnPointerUp(PointerEventData e) { if (held && e.pointerId == pointer) Reattach(); }
-        public void OnEndDrag(PointerEventData e) { if (held && e.pointerId == pointer) Reattach(); }
+        public void OnPointerUp(PointerEventData e) { pressPending = false; if (held && e.pointerId == pointer) Reattach(); }
+        public void OnEndDrag(PointerEventData e) { pressPending = false; if (held && e.pointerId == pointer) Reattach(); }
         public void OnCancel(BaseEventData e) { if (held) Reattach(); }
         void Reattach()
         {
             held = false; RestoreDestination();
+            // The board is free the moment the finger lifts; the flap only finishes settling visually.
+            input?.CancelPeel(index);
             screen.PeelFeel?.Reattached(Amount);
             if (Amount < .04f) PeelSignals.Tap(index);   // pressed and released without peeling = a standalone tap
             returning = StartCoroutine(ReturnToBoard());
@@ -148,7 +159,7 @@ namespace StickyPeerSort
         public void CancelImmediately()
         {
             if (returning != null) { StopCoroutine(returning); returning = null; }
-            held = false; input?.CancelPeel(index); RestoreDestination();
+            held = pressPending = false; input?.CancelPeel(index); RestoreDestination();
             if (backing != null) { backing.Discard(); backing = null; }
             if (sourceGroup != null) sourceGroup.alpha = sourceAlpha;
             if (ghost != null) { ghost.gameObject.SetActive(false); Destroy(ghost.gameObject); }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_plant_lotus
   displayName: LOTUS
-  category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
+  category: {fileID: 11400000, guid: a922782baea9cd44ab3310f5ef9f06bf, type: 2}
   texture: {fileID: 2800000, guid: 81108a2e8edd8fb48a956906f2aaba82, type: 3}
   sprite: {fileID: 21300000, guid: 81108a2e8edd8fb48a956906f2aaba82, type: 3}
   targetSilhouette: {fileID: 21300000, guid: 882c2e8a5b45a84459a0fcca68916fa3, type: 3}

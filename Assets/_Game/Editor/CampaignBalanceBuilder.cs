@@ -17,29 +17,29 @@ namespace StickyPeerSort.Editor
         public const string Root = "Assets/_Game/ReferenceStyle/Data/Campaign";
         sealed class Recipe
         {
-            public int count, categories, types, active, mystery, locked, bufferPeak, layout;
+            public int count, active, mystery, locked, bufferPeak, layout;
             public LevelDifficulty difficulty;
             public string tutorial;
-            public Recipe(int count, int categories, int types, int active, int mystery, int locked, int peak, int layout, LevelDifficulty difficulty, string tutorial)
-            { this.count = count; this.categories = categories; this.types = types; this.active = active; this.mystery = mystery; this.locked = locked; bufferPeak = peak; this.layout = layout; this.difficulty = difficulty; this.tutorial = tutorial; }
+            public Recipe(int count, int active, int mystery, int locked, int peak, int layout, LevelDifficulty difficulty, string tutorial)
+            { this.count = count; this.active = active; this.mystery = mystery; this.locked = locked; bufferPeak = peak; this.layout = layout; this.difficulty = difficulty; this.tutorial = tutorial; }
         }
         static readonly Recipe[] Recipes =
         {
-            new Recipe(12,2,2,2,0,0,0,1,LevelDifficulty.Easy,"Peel a bright sticker and match its exact picture to a sheet."),
-            new Recipe(16,3,3,2,0,0,0,0,LevelDifficulty.Easy,"Clear a sheet to reveal the next. Keep a waiting slot free."),
-            new Recipe(20,3,4,2,1,0,0,2,LevelDifficulty.Easy,"Remove the cover to discover the black ? sticker."),
-            new Recipe(24,4,4,3,2,0,0,1,LevelDifficulty.Normal,"Match the picture, not just the category. Plan around covered stickers."),
-            new Recipe(28,4,4,3,0,2,0,0,LevelDifficulty.Normal,"Complete the sheet with a key to release chained stickers."),
-            new Recipe(28,4,4,3,2,2,0,2,LevelDifficulty.Normal,"Reveal hidden pictures and clear the key sheet first."),
-            new Recipe(32,4,4,2,3,2,1,1,LevelDifficulty.Normal,"Two open sheets: use the waiting tray for future pictures."),
-            new Recipe(32,4,4,3,2,2,0,0,LevelDifficulty.Normal,"Three open sheets give you more room to plan."),
-            new Recipe(36,4,4,2,4,3,1,2,LevelDifficulty.Normal,"Uncover the key pictures while keeping waiting space."),
-            new Recipe(40,4,4,2,4,4,2,3,LevelDifficulty.Hard,"Plan two future pictures ahead. A full waiting tray ends the level."),
-            new Recipe(36,4,4,3,3,2,0,1,LevelDifficulty.Normal,"A lighter round: fill the most complete matching sheet."),
-            new Recipe(40,4,4,2,5,3,2,0,LevelDifficulty.Hard,"Clear covers carefully. Save space for pictures on future sheets."),
-            new Recipe(44,4,4,2,5,4,2,2,LevelDifficulty.Hard,"Find the key sheet's pictures before committing waiting space."),
-            new Recipe(44,4,4,3,4,3,1,1,LevelDifficulty.Normal,"Use three open sheets to work through a larger board."),
-            new Recipe(48,4,4,2,6,5,3,3,LevelDifficulty.Hard,"Chapter challenge: uncover, unlock and keep one waiting slot free.")
+            new Recipe(12,2,0,0,0,1,LevelDifficulty.Easy,"Peel a bright sticker and place it on the sheet for its category."),
+            new Recipe(16,2,0,0,0,0,LevelDifficulty.Easy,"Clear a sheet to reveal the next. Keep a waiting slot free."),
+            new Recipe(20,2,1,0,0,2,LevelDifficulty.Easy,"Remove the cover to discover the black ? sticker."),
+            new Recipe(24,3,2,0,0,1,LevelDifficulty.Normal,"Each sticker belongs to one sheet. Plan around covered stickers."),
+            new Recipe(28,3,0,2,0,0,LevelDifficulty.Normal,"Complete the sheet with a key to release chained stickers."),
+            new Recipe(28,3,2,2,0,2,LevelDifficulty.Normal,"Reveal hidden stickers and clear the key sheet first."),
+            new Recipe(32,2,3,2,1,1,LevelDifficulty.Normal,"Two open sheets: use the waiting tray for stickers from future sheets."),
+            new Recipe(32,3,2,2,0,0,LevelDifficulty.Normal,"Three open sheets give you more room to plan."),
+            new Recipe(36,2,4,3,1,2,LevelDifficulty.Normal,"Uncover the key stickers while keeping waiting space."),
+            new Recipe(40,2,4,4,2,3,LevelDifficulty.Hard,"Plan two stickers ahead. A full waiting tray ends the level."),
+            new Recipe(36,3,3,2,0,1,LevelDifficulty.Normal,"A lighter round: fill the most complete matching sheet."),
+            new Recipe(40,2,5,3,2,0,LevelDifficulty.Hard,"Clear covers carefully. Save space for stickers from future sheets."),
+            new Recipe(44,2,5,4,2,2,LevelDifficulty.Hard,"Find the key sheet's stickers before committing waiting space."),
+            new Recipe(44,3,4,3,1,1,LevelDifficulty.Normal,"Use three open sheets to work through a larger board."),
+            new Recipe(48,2,6,5,3,3,LevelDifficulty.Hard,"Chapter challenge: uncover, unlock and keep one waiting slot free.")
         };
         static CampaignBalanceBuilder()
         {
@@ -55,7 +55,7 @@ namespace StickyPeerSort.Editor
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode) throw new InvalidOperationException("Exit Play Mode first.");
             var staged = new List<LevelDefinition>();
-            var report = new StringBuilder("# First chapter balance\n\nFive waiting slots; full means lose. Exact artwork targets. All winning traces are replayed without boosters. Random and target-first bots are diagnostics, not human win rates. Relief rounds: 8, 11 and 14.\n\n|Level|Stickers|Artworks|Trays|Open sheets|?|Locked|Route peak / 5|Depth|Initially clickable|Random wins / 64|Target-first wins / 64|\n|---|---|---|---|---|---|---|---|---|---|---|---|\n");
+            var report = new StringBuilder("# First chapter balance\n\nFive waiting slots; full means lose. One sheet per category, each design once. All winning traces are replayed without boosters. Random and target-first bots are diagnostics, not human win rates. Relief rounds: 8, 11 and 14.\n\n|Level|Stickers|Artworks|Trays|Open sheets|?|Locked|Route peak / 5|Depth|Initially clickable|Random wins / 64|Target-first wins / 64|\n|---|---|---|---|---|---|---|---|---|---|---|---|\n");
             try
             {
                 var templates = new[] { "Level_05_Grid4", "Level_12_Rows2", "Level_19_Mixed3", "Level_62_Pile1" }
@@ -76,7 +76,7 @@ namespace StickyPeerSort.Editor
                     level.boardStickerSizeMultiplier = .75f;
                     level.coinReward = r.difficulty == LevelDifficulty.Easy ? 25 : r.difficulty == LevelDifficulty.Normal ? 35 : 50;
                     level.tutorial = r.tutorial;
-                    level.generation = new LevelGenerationConfig { enabled = true, difficulty = r.difficulty, categoryCount = r.categories, typesPerCategory = r.types,
+                    level.generation = new LevelGenerationConfig { enabled = true, difficulty = r.difficulty, categoryCount = r.count / 4, typesPerCategory = 4, categorySheets = true,
                         mysteryPercent = 100f * r.mystery / r.count, lockedPercent = 100f * r.locked / r.count, plannedBufferPeak = r.bufferPeak, stickerPool = ProductionStickerBuilder.PoolForLevel(i, pool) };
                     string message;
                     if (!ConfiguredLevelGenerator.Rebuild(level, out message)) throw new InvalidOperationException(level.name + ": " + message);

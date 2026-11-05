@@ -66,6 +66,8 @@ namespace StickyPeerSort.Editor
                 throw new InvalidOperationException("Buffer planning needs more categories than active sheets.");
             if (level.piles.Count == 0 || level.piles.Any(p => p.size.x <= 40 || p.size.y <= 40) || level.piles.Select(p => p.id).Distinct().Count() != level.piles.Count)
                 throw new InvalidOperationException("Define trays with unique IDs and width/height greater than 40.");
+            if (settings.categorySheets && (settings.categoryCount != count / 4 || settings.typesPerCategory != 4))
+                throw new InvalidOperationException("Category sheets need one category of four designs per sheet.");
             var pool = (settings.stickerPool.Count == 0 ? level.stickers.Select(p => p.definition) : settings.stickerPool)
                 .Where(d => d != null && d.category != null).Distinct().ToList();
             var groups = pool.GroupBy(d => d.category).Take(settings.categoryCount).Select(g => g.Take(settings.typesPerCategory).ToArray()).ToArray();
@@ -83,7 +85,8 @@ namespace StickyPeerSort.Editor
                 var objective = new CategoryObjective { category = group[0].category, targetCount = 4 };
                 for (int t = 0; t < 4; t++)
                 {
-                    var definition = group[((set / groups.Length) * 4 + t) % group.Length]; objective.exactTargets.Add(definition);
+                    var definition = group[((set / groups.Length) * 4 + t) % group.Length];
+                    if (!settings.categorySheets) objective.exactTargets.Add(definition);
                     level.stickers.Add(new StickerPlacement { instanceId = level.name + "_" + (set * 4 + t).ToString("000"), definition = definition });
                 }
                 level.objectives.Add(objective);

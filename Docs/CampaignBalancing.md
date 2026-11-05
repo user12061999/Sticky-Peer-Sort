@@ -2,11 +2,11 @@
 
 Both gameplay scenes now reference `Assets/_Game/ReferenceStyle/Data/Campaign/Campaign_01.asset` through `Campaign_15.asset`. Existing prototype and reference samples remain available as layout templates. Saved progress and booster inventory are not reset.
 
-- Levels 1–2 teach exact artwork matching and changing sheets, with no special stickers.
+- Levels 1–2 teach sorting by category and changing sheets, with no special stickers.
 - Level 3 introduces one covered mystery; level 5 introduces locks separately.
 - Levels 6–9 combine the mechanics and introduce future-sheet parking.
 - Levels 10, 12, 13 and 15 provide planning challenges. Levels 8, 11 and 14 provide relief with three open sheets.
-- Counts progress from 12 to 48 stickers and from 4 to 16 different artworks. Five waiting slots are available throughout; filling all of them still loses. Mystery reaches 6/48 (12.5%) and locks 5/48 (about 10.4%).
+- Counts progress from 12 to 48 stickers. **Each design appears once per level and each category has one sheet**, whose four slots take any sticker of that category. The 64 designs form 16 themed categories of four (`ProductionCategories.cs`, assets under `ProductionStickers/Categories`). Five waiting slots are available throughout; filling all of them still loses. Mystery reaches 6/48 (12.5%) and locks 5/48 (about 10.4%).
 
 The board size multiplier stays at 0.75. Trays alternate among two wide wells, four compartments, three mixed wells and a single large well. Layouts remain irregular and overlapping.
 

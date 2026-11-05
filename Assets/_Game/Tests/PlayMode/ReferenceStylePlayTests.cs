@@ -16,7 +16,7 @@ namespace StickyPeerSort.Tests
         [UnitySetUp] public IEnumerator SetUp()
         {
             existed = PlayerPrefs.HasKey(DemoKey); old = PlayerPrefs.GetString(DemoKey, "");
-            yield return SceneManager.LoadSceneAsync("SampleStickerLevel"); yield return null;
+            yield return GameplayTestScene.LoadReference(); yield return null;
             controller = Object.FindFirstObjectByType<GameController>();
             Assert.IsNotNull(controller); Assert.AreEqual(DemoKey, controller.progressKey);
             balance = Object.Instantiate(controller.balance); controller.balance = balance;
@@ -24,6 +24,7 @@ namespace StickyPeerSort.Tests
             balance.categoryFilledHold = balance.categoryEnterDuration = balance.categoryExitDuration = .001f;
             balance.keyFlightDuration = balance.lockOpenDuration = balance.specialRevealDuration = .001f;
             balance.stickDuration = .001f;
+            controller.LoadLevel(0);
         }
         [UnityTearDown] public IEnumerator TearDown()
         {
@@ -45,8 +46,7 @@ namespace StickyPeerSort.Tests
                 controller.LoadLevel(n); var level = controller.Session.Level;
                 Assert.AreEqual(level.piles.Count, controller.ui.board.GetComponentsInChildren<StickerTrayView>().Length);
                 foreach (var card in controller.ui.categoryViews.Values)
-                    for (int slot = 0; slot < 4; slot++)
-                        Assert.AreSame(level.objectives[card.categoryIndex].exactTargets[slot].targetSilhouette, card.targets[slot].sprite);
+                    Assert.AreEqual(4, card.targets.Length);
                 foreach (string id in level.solutionTrace)
                 {
                     int index = level.stickers.FindIndex(p => p.instanceId == id);
@@ -58,14 +58,14 @@ namespace StickyPeerSort.Tests
             }
             Assert.AreEqual(mainBefore, PlayerPrefs.GetString("StickyPeerSort.Save.v1", ""));
         }
-        [UnityTest] public IEnumerator LandingReplacesTheSilhouetteWithMatchingArtwork()
+        [UnityTest] public IEnumerator LandingReplacesTheEmptySlotWithMatchingArtwork()
         {
             var level = controller.Session.Level; int index = level.stickers.FindIndex(p => p.instanceId == level.solutionTrace[0]);
             var definition = level.stickers[index].definition;
             Assert.AreEqual(.75f, controller.ui.stickerViews[index].Rect.localScale.x, .001f);
             int category = level.objectives.FindIndex(o => o.category == definition.category);
-            int slot = level.objectives[category].exactTargets.IndexOf(definition);
-            Assert.AreSame(definition.targetSilhouette, controller.ui.categoryViews[category].targets[slot].sprite);
+            Assert.IsEmpty(level.objectives[category].exactTargets);
+            int slot = controller.ui.categoryViews[category].FilledCount;
             controller.Tap(index); yield return Finish();
             var target = controller.ui.categoryViews[category].targets[slot];
             Assert.AreSame(definition.ArtworkSprite, target.sprite); Assert.AreEqual(definition.tint, target.color);

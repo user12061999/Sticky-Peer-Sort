@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_plant_cherry_blossom
   displayName: CHERRY BLOSSOM
-  category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
+  category: {fileID: 11400000, guid: a922782baea9cd44ab3310f5ef9f06bf, type: 2}
   texture: {fileID: 2800000, guid: 9ad4af803a54c024e9d28e5bd75658f6, type: 3}
   sprite: {fileID: 21300000, guid: 9ad4af803a54c024e9d28e5bd75658f6, type: 3}
   targetSilhouette: {fileID: 21300000, guid: 78d41d526d0b3654d8365f55aa1a5229, type: 3}

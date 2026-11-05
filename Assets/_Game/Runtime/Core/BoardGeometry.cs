@@ -94,6 +94,21 @@ namespace StickyPeerSort
             }
             return hit;
         }
+        // Fingers land imprecisely: a press on a playable sticker always takes it, but one that
+        // misses, or lands on a covered sticker, goes to the nearest playable sticker within slop.
+        public static int ResolveTouch(GameSession session, Vector2 p, float slop)
+        {
+            int exact = Hit(session, p);
+            if (slop <= 0 || exact >= 0 && session.Legal(exact)) return exact;
+            for (int ring = 1; ring <= 2; ring++)
+                for (int step = 0; step < 8; step++)
+                {
+                    float a = step * Mathf.PI / 4;
+                    int near = Hit(session, p + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * slop * ring * .5f);
+                    if (near >= 0 && session.Legal(near)) return near;
+                }
+            return exact;
+        }
         public static bool Exposed(GameSession session, int index)
         {
             var s = session.Stickers[index];

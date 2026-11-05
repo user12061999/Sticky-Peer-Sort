@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_food_cheese
   displayName: CHEESE
-  category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
+  category: {fileID: 11400000, guid: 3d267ae76d0aa9740a425e6c18ddaddc, type: 2}
   texture: {fileID: 2800000, guid: 7e8de67c428cf0f4c95367327b3dbca3, type: 3}
   sprite: {fileID: 21300000, guid: 7e8de67c428cf0f4c95367327b3dbca3, type: 3}
   targetSilhouette: {fileID: 21300000, guid: 7b08772ea34ba7746bfa61818b770d2e, type: 3}

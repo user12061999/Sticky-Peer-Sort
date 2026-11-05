@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_vehicle_rocket
   displayName: ROCKET
-  category: {fileID: 11400000, guid: 41418998f18eb1e4d8032af8bfad3d2f, type: 2}
+  category: {fileID: 11400000, guid: 152e08cf866a0f448ab79a3eda506d24, type: 2}
   texture: {fileID: 2800000, guid: f4fcd9acfd15d474daca3a57b56a689e, type: 3}
   sprite: {fileID: 21300000, guid: f4fcd9acfd15d474daca3a57b56a689e, type: 3}
   targetSilhouette: {fileID: 21300000, guid: b52244adf47b30449ac3fddf19ab45a8, type: 3}

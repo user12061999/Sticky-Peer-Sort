@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="9" result="Passed" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 03:41:08Z" end-time="2026-11-05 03:42:17Z" duration="68.3585752">
+  <test-suite type="TestSuite" id="1049" name="Sticky Peer Sort" fullname="Sticky Peer Sort" runstate="Runnable" testcasecount="38" result="Passed" start-time="2026-11-05 03:41:08Z" end-time="2026-11-05 03:42:17Z" duration="68.358575" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1043" name="StickyPeerSort.PlayTests.dll" fullname="D:/Project_Unity/Sticky Peer Sort/Library/ScriptAssemblies/StickyPeerSort.PlayTests.dll" runstate="Runnable" testcasecount="38" result="Passed" start-time="2026-11-05 03:41:08Z" end-time="2026-11-05 03:42:17Z" duration="68.349552" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="25732" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1044" name="StickyPeerSort" fullname="StickyPeerSort" runstate="Runnable" testcasecount="38" result="Passed" start-time="2026-11-05 03:41:08Z" end-time="2026-11-05 03:42:17Z" duration="68.315706" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1045" name="Tests" fullname="StickyPeerSort.Tests" runstate="Runnable" testcasecount="38" result="Passed" start-time="2026-11-05 03:41:08Z" end-time="2026-11-05 03:42:17Z" duration="68.311147" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1031" name="ProductionStickerInteractionPlayTests" fullname="StickyPeerSort.Tests.ProductionStickerInteractionPlayTests" classname="StickyPeerSort.Tests.ProductionStickerInteractionPlayTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 03:41:08Z" end-time="2026-11-05 03:41:25Z" duration="16.784128" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1032" name="All64HaveAlphaAccurateEdgeInputCancelAndExactArtworkLanding" fullname="StickyPeerSort.Tests.ProductionStickerInteractionPlayTests.All64HaveAlphaAccurateEdgeInputCancelAndExactArtworkLanding" methodname="All64HaveAlphaAccurateEdgeInputCancelAndExactArtworkLanding" classname="StickyPeerSort.Tests.ProductionStickerInteractionPlayTests" runstate="Runnable" seed="1540796257" result="Passed" start-time="2026-11-05 03:41:08Z" end-time="2026-11-05 03:41:21Z" duration="12.908897" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1034" name="CoveredMysteryCannotPeelAndRevealsOnlyAfterCoverLeaves" fullname="StickyPeerSort.Tests.ProductionStickerInteractionPlayTests.CoveredMysteryCannotPeelAndRevealsOnlyAfterCoverLeaves" methodname="CoveredMysteryCannotPeelAndRevealsOnlyAfterCoverLeaves" classname="StickyPeerSort.Tests.ProductionStickerInteractionPlayTests" runstate="Runnable" seed="1884310180" result="Passed" start-time="2026-11-05 03:41:21Z" end-time="2026-11-05 03:41:22Z" duration="0.902360" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1035" name="KeySheetUnlocksChainedArtworkAndDragStaysAboveMaskedBoard" fullname="StickyPeerSort.Tests.ProductionStickerInteractionPlayTests.KeySheetUnlocksChainedArtworkAndDragStaysAboveMaskedBoard" methodname="KeySheetUnlocksChainedArtworkAndDragStaysAboveMaskedBoard" classname="StickyPeerSort.Tests.ProductionStickerInteractionPlayTests" runstate="Runnable" seed="1999321797" result="Passed" start-time="2026-11-05 03:41:22Z" end-time="2026-11-05 03:41:24Z" duration="1.681365" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="SameCategoryWrongDesignGoesToBufferAndFiveOccupiedSlotsLose" fullname="StickyPeerSort.Tests.ProductionStickerInteractionPlayTests.SameCategoryWrongDesignGoesToBufferAndFiveOccupiedSlotsLose" methodname="SameCategoryWrongDesignGoesToBufferAndFiveOccupiedSlotsLose" classname="StickyPeerSort.Tests.ProductionStickerInteractionPlayTests" runstate="Runnable" seed="375033374" result="Passed" start-time="2026-11-05 03:41:24Z" end-time="2026-11-05 03:41:25Z" duration="1.275336" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1036" name="ReferenceStylePlayTests" fullname="StickyPeerSort.Tests.ReferenceStylePlayTests" classname="StickyPeerSort.Tests.ReferenceStylePlayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-05 03:41:25Z" end-time="2026-11-05 03:42:13Z" duration="47.991345" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1037" name="AllCampaignTracesWinThroughRealPresentation" fullname="StickyPeerSort.Tests.ReferenceStylePlayTests.AllCampaignTracesWinThroughRealPresentation" methodname="AllCampaignTracesWinThroughRealPresentation" classname="StickyPeerSort.Tests.ReferenceStylePlayTests" runstate="Runnable" seed="331004611" result="Passed" start-time="2026-11-05 03:41:25Z" end-time="2026-11-05 03:42:13Z" duration="47.337461" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1038" name="LandingReplacesTheSilhouetteWithMatchingArtwork" fullname="StickyPeerSort.Tests.ReferenceStylePlayTests.LandingReplacesTheSilhouetteWithMatchingArtwork" methodname="LandingReplacesTheSilhouetteWithMatchingArtwork" classname="StickyPeerSort.Tests.ReferenceStylePlayTests" runstate="Runnable" seed="245183855" result="Passed" start-time="2026-11-05 03:42:13Z" end-time="2026-11-05 03:42:13Z" duration="0.636712" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1039" name="TutorialGuidePlayTests" fullname="StickyPeerSort.Tests.TutorialGuidePlayTests" classname="StickyPeerSort.Tests.TutorialGuidePlayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-05 03:42:13Z" end-time="2026-11-05 03:42:17Z" duration="3.531420" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1040" name="PartialPeelDoesNotCompleteLessonAndDismissPersistsWithoutChangingPuzzle" fullname="StickyPeerSort.Tests.TutorialGuidePlayTests.PartialPeelDoesNotCompleteLessonAndDismissPersistsWithoutChangingPuzzle" methodname="PartialPeelDoesNotCompleteLessonAndDismissPersistsWithoutChangingPuzzle" classname="StickyPeerSort.Tests.TutorialGuidePlayTests" runstate="Runnable" seed="578943573" result="Passed" start-time="2026-11-05 03:42:13Z" end-time="2026-11-05 03:42:14Z" duration="0.716627" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1042" name="RealCollectionRevealAndUnlockCompleteTheirLessons" fullname="StickyPeerSort.Tests.TutorialGuidePlayTests.RealCollectionRevealAndUnlockCompleteTheirLessons" methodname="RealCollectionRevealAndUnlockCompleteTheirLessons" classname="StickyPeerSort.Tests.TutorialGuidePlayTests" runstate="Runnable" seed="1316073047" result="Passed" start-time="2026-11-05 03:42:14Z" end-time="2026-11-05 03:42:16Z" duration="1.878828" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1041" name="SpecialLessonsAppearOnFirstOccurrenceAndHideDuringPause" fullname="StickyPeerSort.Tests.TutorialGuidePlayTests.SpecialLessonsAppearOnFirstOccurrenceAndHideDuringPause" methodname="SpecialLessonsAppearOnFirstOccurrenceAndHideDuringPause" classname="StickyPeerSort.Tests.TutorialGuidePlayTests" runstate="Runnable" seed="184425094" result="Passed" start-time="2026-11-05 03:42:16Z" end-time="2026-11-05 03:42:17Z" duration="0.921237" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/Lecoo/AppData/LocalLow/DefaultCompany/Sticky Peer Sort\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_animal_deer
   displayName: DEER
-  category: {fileID: 11400000, guid: 9ef2c9fd403efa24aa48f168c2be209c, type: 2}
+  category: {fileID: 11400000, guid: 8b126cacf860c0246945db14c44527e6, type: 2}
   texture: {fileID: 2800000, guid: 9a0503d3f711f12409596658a3cde09e, type: 3}
   sprite: {fileID: 21300000, guid: 9a0503d3f711f12409596658a3cde09e, type: 3}
   targetSilhouette: {fileID: 21300000, guid: 63c58f6aac91a3a469768093635b4708, type: 3}

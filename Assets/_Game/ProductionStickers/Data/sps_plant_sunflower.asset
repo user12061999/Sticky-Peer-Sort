@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_plant_sunflower
   displayName: SUNFLOWER
-  category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
+  category: {fileID: 11400000, guid: 9d49ae98a8794fc4ab495b656cabfa2f, type: 2}
   texture: {fileID: 2800000, guid: e022d918a39c439408f91793308279f8, type: 3}
   sprite: {fileID: 21300000, guid: e022d918a39c439408f91793308279f8, type: 3}
   targetSilhouette: {fileID: 21300000, guid: 42e268bf5e735ad43be878b82ba8fe04, type: 3}

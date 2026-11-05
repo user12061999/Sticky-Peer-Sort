@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_food_grapes
   displayName: GRAPES
-  category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
+  category: {fileID: 11400000, guid: 3d267ae76d0aa9740a425e6c18ddaddc, type: 2}
   texture: {fileID: 2800000, guid: 6990bf27c8797df428f4a8d5de0d74c6, type: 3}
   sprite: {fileID: 21300000, guid: 6990bf27c8797df428f4a8d5de0d74c6, type: 3}
   targetSilhouette: {fileID: 21300000, guid: 04a388ebcee61104fa96839c2af8153a, type: 3}

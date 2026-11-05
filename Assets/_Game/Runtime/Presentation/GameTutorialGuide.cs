@@ -106,7 +106,7 @@ namespace StickyPeerSort
             var cardInner = UIFactory.Panel("Tutorial speech card", outerRim.transform, new Vector2(918, 244), Vector2.zero, new Color(0.08f, 0.12f, 0.23f, 0.98f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
 
             string title = lesson == TutorialLesson.Peel ? "PEEL & MATCH" : lesson == TutorialLesson.Mystery ? "MYSTERY STICKER" : "UNLOCK WITH A KEY";
-            string body = lesson == TutorialLesson.Peel ? "Hold and drag a bright sticker to peel it.\nMatch its picture to the glowing sheet.\nRelease early to stick it back."
+            string body = lesson == TutorialLesson.Peel ? "Hold and drag a bright sticker to peel it.\nIts category sheet glows to show where it goes.\nRelease early to stick it back."
                 : lesson == TutorialLesson.Mystery ? "Peel away the sticker covering the ?.\nIts hidden picture will be revealed."
                 : special.unlockCondition == UnlockCondition.CategoryCompleted ? "Complete the sheet with the key.\nIts key unlocks the chained stickers."
                 : "Remove the required sticker first\nto release these chains.";

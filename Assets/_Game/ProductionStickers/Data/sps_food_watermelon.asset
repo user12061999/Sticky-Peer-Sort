@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_food_watermelon
   displayName: WATERMELON
-  category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
+  category: {fileID: 11400000, guid: 3d267ae76d0aa9740a425e6c18ddaddc, type: 2}
   texture: {fileID: 2800000, guid: d2d1eaea41316bc438daca3647532fae, type: 3}
   sprite: {fileID: 21300000, guid: d2d1eaea41316bc438daca3647532fae, type: 3}
   targetSilhouette: {fileID: 21300000, guid: 3a45fd4bc26ec32499d1eb22561716ee, type: 3}

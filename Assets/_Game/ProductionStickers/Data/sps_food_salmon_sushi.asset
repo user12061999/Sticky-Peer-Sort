@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_food_salmon_sushi
   displayName: SALMON SUSHI
-  category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
+  category: {fileID: 11400000, guid: 4437f438c8448a94ebcf4408b1e6989e, type: 2}
   texture: {fileID: 2800000, guid: 493481711677970479ce2b64c0befcc4, type: 3}
   sprite: {fileID: 21300000, guid: 493481711677970479ce2b64c0befcc4, type: 3}
   targetSilhouette: {fileID: 21300000, guid: ce86ced37be0e914da3e49e38ee64944, type: 3}

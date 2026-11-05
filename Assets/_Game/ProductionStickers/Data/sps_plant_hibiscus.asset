@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_plant_hibiscus
   displayName: HIBISCUS
-  category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
+  category: {fileID: 11400000, guid: 9d49ae98a8794fc4ab495b656cabfa2f, type: 2}
   texture: {fileID: 2800000, guid: 976080157012db6419ea8edfa141dfc2, type: 3}
   sprite: {fileID: 21300000, guid: 976080157012db6419ea8edfa141dfc2, type: 3}
   targetSilhouette: {fileID: 21300000, guid: 6cc2d487dc9f45e44b841afd0dfab444, type: 3}

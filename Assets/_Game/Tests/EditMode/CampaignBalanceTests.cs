@@ -22,6 +22,11 @@ namespace StickyPeerSort.Tests
             Assert.Greater(report.initiallyClickable, 0);
             Assert.Less(report.peakTransientBuffer, level.bufferCapacity);
             Assert.AreEqual(level.stickers.Count, report.solution.Distinct().Count());
+            // Partner rule: each design once, one sheet per category, and sheets choose by category.
+            Assert.AreEqual(level.stickers.Count, level.stickers.Select(p => p.definition).Distinct().Count());
+            Assert.AreEqual(level.objectives.Count, level.objectives.Select(o => o.category).Distinct().Count());
+            Assert.IsTrue(level.objectives.All(o => o.exactTargets.Count == 0));
+            CollectionAssert.IsEmpty(LevelValidator.Validate(level));
             // Symbols must be exposed and mystery identity must really be covered.
             var session = new GameSession(level);
             for (int i = 0; i < level.stickers.Count; i++)

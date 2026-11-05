@@ -155,7 +155,7 @@ namespace StickyPeerSort.Tests
             Assert.AreEqual(1, view.GetComponent<CanvasGroup>().alpha); Assert.IsFalse(controller.Session.CanUndo);
             pointer = BeginPeel(0, out start); MovePeel(view, pointer, start, .55f);
             ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.pointerUpHandler);
-            Assert.IsTrue(view.DragPeel.IsReturning); Assert.IsFalse(controller.CanTap);
+            Assert.IsTrue(view.DragPeel.IsReturning); Assert.IsTrue(controller.CanTap, "Releasing frees input at once");
             float deadline = Time.realtimeSinceStartup + 2;
             while (view.DragPeel.IsReturning && Time.realtimeSinceStartup < deadline) yield return null;
             yield return null;

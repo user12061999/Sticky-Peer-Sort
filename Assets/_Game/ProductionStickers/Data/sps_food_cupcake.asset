@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_food_cupcake
   displayName: CUPCAKE
-  category: {fileID: 11400000, guid: 31eecf78045923644b1843cfdecd2d11, type: 2}
+  category: {fileID: 11400000, guid: 0bedc82a59f09e5498e2506a863cd27e, type: 2}
   texture: {fileID: 2800000, guid: 4288681838bb47a469097a1160c1e170, type: 3}
   sprite: {fileID: 21300000, guid: 4288681838bb47a469097a1160c1e170, type: 3}
   targetSilhouette: {fileID: 21300000, guid: 4b4dbcb423fd13b4fbc821a5da04929b, type: 3}

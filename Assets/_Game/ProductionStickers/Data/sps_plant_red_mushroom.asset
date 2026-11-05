@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_plant_red_mushroom
   displayName: RED MUSHROOM
-  category: {fileID: 11400000, guid: c42df1f637478df49b8e8588f39d3155, type: 2}
+  category: {fileID: 11400000, guid: 27e61f7bfe8b2fd4d923e8fcd8253d5f, type: 2}
   texture: {fileID: 2800000, guid: 9488d8cf7f3994044a18dd4f2b6b3ed9, type: 3}
   sprite: {fileID: 21300000, guid: 9488d8cf7f3994044a18dd4f2b6b3ed9, type: 3}
   targetSilhouette: {fileID: 21300000, guid: 2746b715460a67e48b79982952fc9df5, type: 3}

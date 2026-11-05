@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.StickerDefinition
   id: sps_vehicle_school_bus
   displayName: SCHOOL BUS
-  category: {fileID: 11400000, guid: 41418998f18eb1e4d8032af8bfad3d2f, type: 2}
+  category: {fileID: 11400000, guid: 7d619d981998dda4da248b1f2ee422e1, type: 2}
   texture: {fileID: 2800000, guid: 06d41a4d11276de4e823f7e48685053a, type: 3}
   sprite: {fileID: 21300000, guid: 06d41a4d11276de4e823f7e48685053a, type: 3}
   targetSilhouette: {fileID: 21300000, guid: 270a7e388d6510042a11ec908bbdfedb, type: 3}
