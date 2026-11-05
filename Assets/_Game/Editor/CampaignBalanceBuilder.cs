@@ -63,7 +63,7 @@ namespace StickyPeerSort.Editor
                 if (templates.Any(t => t == null)) throw new InvalidOperationException("Missing reference layout template.");
                 var pool = new List<StickerDefinition>();
                 foreach (string category in new[] { "food", "animal", "plant", "vehicle" })
-                    for (int t = 1; t <= 4; t++) pool.Add(AssetDatabase.LoadAssetAtPath<StickerDefinition>(ReferenceStyleBuilder.Root + "/Data/Stickers/" + category + "_" + t.ToString("00") + ".asset"));
+                    for (int t = 1; t <= 4; t++) pool.Add(AssetDatabase.LoadAssetAtPath<StickerDefinition>(ReferenceStyleBuilder.Root + "/Data/Stickers/ref_" + category + "_" + t.ToString("00") + ".asset"));
                 if (pool.Any(p => p == null)) throw new InvalidOperationException("Missing campaign artwork.");
                 for (int i = 0; i < Recipes.Length; i++)
                 {
@@ -77,7 +77,7 @@ namespace StickyPeerSort.Editor
                     level.coinReward = r.difficulty == LevelDifficulty.Easy ? 25 : r.difficulty == LevelDifficulty.Normal ? 35 : 50;
                     level.tutorial = r.tutorial;
                     level.generation = new LevelGenerationConfig { enabled = true, difficulty = r.difficulty, categoryCount = r.categories, typesPerCategory = r.types,
-                        mysteryPercent = 100f * r.mystery / r.count, lockedPercent = 100f * r.locked / r.count, plannedBufferPeak = r.bufferPeak, stickerPool = new List<StickerDefinition>(pool) };
+                        mysteryPercent = 100f * r.mystery / r.count, lockedPercent = 100f * r.locked / r.count, plannedBufferPeak = r.bufferPeak, stickerPool = ProductionStickerBuilder.PoolForLevel(i, pool) };
                     string message;
                     if (!ConfiguredLevelGenerator.Rebuild(level, out message)) throw new InvalidOperationException(level.name + ": " + message);
                     int targetWins = TuneSeed(level, i);

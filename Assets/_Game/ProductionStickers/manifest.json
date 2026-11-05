@@ -1,0 +1,970 @@
+{
+  "generator": "built-in image_gen; one request per sticker",
+  "width": 512,
+  "height": 512,
+  "format": "RGBA PNG",
+  "paddingMinPixels": 32,
+  "entries": [
+    {
+      "id": "sps_food_strawberry_ice_cream",
+      "category": "food",
+      "displayName": "STRAWBERRY ICE CREAM",
+      "filename": "sps_food_strawberry_ice_cream.png",
+      "sha256": "35431fa38261d007f609e196675c0f83c2a4661ddff66fcc5906d772c58d7988",
+      "bbox": [
+        119,
+        32,
+        393,
+        480
+      ],
+      "sourceSha256": "ce75f1fddbcc327d2fbaf5f4d9fce3f834a82c390c5082182dc4179b917d6e4f",
+      "prompt": "pink strawberry ice cream in a waffle cone"
+    },
+    {
+      "id": "sps_food_popcorn",
+      "category": "food",
+      "displayName": "POPCORN",
+      "filename": "sps_food_popcorn.png",
+      "sha256": "cd8fdf3d33c948a541d5de97b6a942f041c092520c392e283b17364afb3d0d8f",
+      "bbox": [
+        72,
+        32,
+        439,
+        480
+      ],
+      "sourceSha256": "49adcb230d37e3a72c6db57569c284944620df327f03aadc94a84b1627936244",
+      "prompt": "a red and white striped tub filled with golden buttery popcorn"
+    },
+    {
+      "id": "sps_food_strawberry_cake",
+      "category": "food",
+      "displayName": "STRAWBERRY CAKE",
+      "filename": "sps_food_strawberry_cake.png",
+      "sha256": "d210629f6e0dfb47a050ab5066488984ee2f0cbc33a7e6f6f766a8a1c20d8a06",
+      "bbox": [
+        76,
+        32,
+        436,
+        480
+      ],
+      "sourceSha256": "c6906a84bf7ae187de0739801357664efacd588e9d8a2ac5cecb26f45e27ca0b",
+      "prompt": "one slice of chocolate layer cake with pink cream and a strawberry on top"
+    },
+    {
+      "id": "sps_food_hot_dog",
+      "category": "food",
+      "displayName": "HOT DOG",
+      "filename": "sps_food_hot_dog.png",
+      "sha256": "ebda2dacab38b2b84b3c790643c2542185b46dae9f13818b5634a4d8b8304457",
+      "bbox": [
+        32,
+        82,
+        480,
+        429
+      ],
+      "sourceSha256": "de076e7c1c8a74a8550745d0795bdc65bbe7f70eff51404855e37624ac3320d8",
+      "prompt": "one golden hot dog bun with sausage and a yellow mustard zigzag"
+    },
+    {
+      "id": "sps_animal_lion",
+      "category": "animal",
+      "displayName": "LION",
+      "filename": "sps_animal_lion.png",
+      "sha256": "fe0e401509ce1dd8657bbef7c2fc3fba55dc65353f54bf59f3f3030efc8fe576",
+      "bbox": [
+        70,
+        32,
+        441,
+        480
+      ],
+      "sourceSha256": "a78b38eafc6c0baed8eb034403cc5e1a7f07e82ce473523fcafb74a66037f0d1",
+      "prompt": "a cute seated golden lion cub with a round orange mane and curled tail"
+    },
+    {
+      "id": "sps_animal_rabbit",
+      "category": "animal",
+      "displayName": "RABBIT",
+      "filename": "sps_animal_rabbit.png",
+      "sha256": "dc6b3be8b956ead0b7e8851b6f098aefdd3e4de09733712ce35b5c951539744a",
+      "bbox": [
+        128,
+        32,
+        383,
+        480
+      ],
+      "sourceSha256": "f6fe324dd858fcd255be72902085237c614b98fae0a64e06ad8558c672df68f3",
+      "prompt": "a cute cream colored seated rabbit with upright pink ears"
+    },
+    {
+      "id": "sps_animal_panda",
+      "category": "animal",
+      "displayName": "PANDA",
+      "filename": "sps_animal_panda.png",
+      "sha256": "f4e766f608d35228beede6e690856b3eb7ccd8749646d1d6b97c239a78e4d18e",
+      "bbox": [
+        69,
+        32,
+        442,
+        480
+      ],
+      "sourceSha256": "debafe63977294d380b580cc46402fe4c2adf6ced2f516fac2d73078b06af922",
+      "prompt": "a cute seated black and white panda holding a green bamboo sprig"
+    },
+    {
+      "id": "sps_animal_koala",
+      "category": "animal",
+      "displayName": "KOALA",
+      "filename": "sps_animal_koala.png",
+      "sha256": "1a3fd09d43b1cc3fe7540a786cfe2d6122b465122b849bbbcb95544e7698f8f0",
+      "bbox": [
+        32,
+        32,
+        480,
+        479
+      ],
+      "sourceSha256": "ddf87e3ccf799da6b929ee900a18ca4d00004f65da3163dd34142b7ba00e674b",
+      "prompt": "a cute blue gray koala hugging a short brown eucalyptus branch with green leaves"
+    },
+    {
+      "id": "sps_vehicle_school_bus",
+      "category": "vehicle",
+      "displayName": "SCHOOL BUS",
+      "filename": "sps_vehicle_school_bus.png",
+      "sha256": "a9d7d9b2e898578c6074b1aac4fa8a1bff29a2e96b33e69e8b633434df6e8161",
+      "bbox": [
+        32,
+        88,
+        480,
+        423
+      ],
+      "sourceSha256": "519c1491343bbeba5bc0e3b1b5657bf4cb7731e9d5cf51e89e0fa5fc787c8124",
+      "prompt": "a cute yellow school bus, three-quarter side view"
+    },
+    {
+      "id": "sps_vehicle_police_car",
+      "category": "vehicle",
+      "displayName": "POLICE CAR",
+      "filename": "sps_vehicle_police_car.png",
+      "sha256": "f1593df63d2d4198f3ff69c57bc7d55cb562c670017532643673dd144ccd0eca",
+      "bbox": [
+        32,
+        71,
+        480,
+        441
+      ],
+      "sourceSha256": "14a7b74949e90b7f7434624828101cfc27aa749079f650ab7eea9001f980883d",
+      "prompt": "a cute blue and white police car with red blue roof beacon, three quarter view"
+    },
+    {
+      "id": "sps_vehicle_fire_engine",
+      "category": "vehicle",
+      "displayName": "FIRE ENGINE",
+      "filename": "sps_vehicle_fire_engine.png",
+      "sha256": "5e33267f8b5ed7ade5c67642ba4a8a0eb421af743995eeee54d4c59ca6799938",
+      "bbox": [
+        32,
+        50,
+        480,
+        461
+      ],
+      "sourceSha256": "6255b4dd63dfc21611a2779e5ec6722f6b6d8bebe64d4ce1269e61f5fb7a2695",
+      "prompt": "a cute red fire engine with white ladder, three quarter side view"
+    },
+    {
+      "id": "sps_vehicle_excavator",
+      "category": "vehicle",
+      "displayName": "EXCAVATOR",
+      "filename": "sps_vehicle_excavator.png",
+      "sha256": "fead4d52fdca1d848cd9443aa58bac749a1ed999e66516170b86fd06776c458d",
+      "bbox": [
+        32,
+        43,
+        480,
+        469
+      ],
+      "sourceSha256": "4b7aea63811ef0f5cc91c69d5c94fcf64fe5e8d5af3f4da4b9309791b0ba17fc",
+      "prompt": "a cute compact yellow excavator on black tracks, raised articulated digging arm"
+    },
+    {
+      "id": "sps_plant_rose",
+      "category": "plant",
+      "displayName": "ROSE",
+      "filename": "sps_plant_rose.png",
+      "sha256": "7f73e2ad0f8a02cc09c6b3f9b2b3ce05fd714f19ad5c4b4bd1ea2d90e2e9e13e",
+      "bbox": [
+        79,
+        32,
+        433,
+        480
+      ],
+      "sourceSha256": "a679b9872f5242a7a41c70d8cf0ace826e4c56d359baa8fc051f9a6458f6214b",
+      "prompt": "one red rose blossom with short green stem and two green leaves"
+    },
+    {
+      "id": "sps_plant_clover",
+      "category": "plant",
+      "displayName": "CLOVER",
+      "filename": "sps_plant_clover.png",
+      "sha256": "716d6737dbbcb9eee2acfb543a6fcc1782c5671ddda3d5b7e86e8d4e40358c53",
+      "bbox": [
+        66,
+        32,
+        445,
+        480
+      ],
+      "sourceSha256": "67653065d1503d74b96dbf9513ae1a669c2c3334f6fed9abb58794a1d3a9b822",
+      "prompt": "one vivid green four leaf clover with short curved stem"
+    },
+    {
+      "id": "sps_plant_cherry_blossom",
+      "category": "plant",
+      "displayName": "CHERRY BLOSSOM",
+      "filename": "sps_plant_cherry_blossom.png",
+      "sha256": "6b9430dfbd920d8d9e5e9f23d8174e6e25e4a32dcb1397146b3ed0f071a2e6e9",
+      "bbox": [
+        32,
+        48,
+        480,
+        464
+      ],
+      "sourceSha256": "66244c390055d46611cae66e21f031f3e0f6d19b7792d1dec5af120b173234c0",
+      "prompt": "one soft pink five petal cherry blossom flower, front view"
+    },
+    {
+      "id": "sps_plant_red_mushroom",
+      "category": "plant",
+      "displayName": "RED MUSHROOM",
+      "filename": "sps_plant_red_mushroom.png",
+      "sha256": "c1d1444a295ddb70fc0fb2f9ea105927d3c0cae68a214ec2659995c4119b0f69",
+      "bbox": [
+        39,
+        32,
+        473,
+        480
+      ],
+      "sourceSha256": "627a4ef7b95a4abf1274411763559b4410a9db4506292b843b227bf426e6746f",
+      "prompt": "one cute red mushroom with white spots and stout cream stem"
+    },
+    {
+      "id": "sps_food_cheese",
+      "category": "food",
+      "displayName": "CHEESE",
+      "filename": "sps_food_cheese.png",
+      "sha256": "779fa222da0fa46862bb07c8885bab0e50c6eff81ce7a014f26b34f9e8e8d4cb",
+      "bbox": [
+        32,
+        43,
+        480,
+        469
+      ],
+      "sourceSha256": "260a417cd284a78b7538b10e5f26a84f4a8b665b733ff0f6cbd5607db24b94e2",
+      "prompt": "one golden Swiss cheese wedge with round holes"
+    },
+    {
+      "id": "sps_food_salmon_sushi",
+      "category": "food",
+      "displayName": "SALMON SUSHI",
+      "filename": "sps_food_salmon_sushi.png",
+      "sha256": "db78e18744a23514e121edd0d81ca9625f9f173ed77fdfd1442d1fe3748afda2",
+      "bbox": [
+        32,
+        96,
+        480,
+        416
+      ],
+      "sourceSha256": "cceca743263064546215563651917887293e4c63726057e1decae5a899238775",
+      "prompt": "one salmon nigiri sushi, orange salmon with white stripes on white rice"
+    },
+    {
+      "id": "sps_food_ramen",
+      "category": "food",
+      "displayName": "RAMEN",
+      "filename": "sps_food_ramen.png",
+      "sha256": "04b82f58a7c4e24dad9bdd5b80567f3fcc0576127ba693e4dcab9e2adfbaf40a",
+      "bbox": [
+        32,
+        56,
+        480,
+        455
+      ],
+      "sourceSha256": "4fb25f5003b96f93ae862cc0e7591c8da5978286609e88c914f7a823fe2c1194",
+      "prompt": "one dark ceramic bowl of ramen with noodles, half boiled egg and green vegetables"
+    },
+    {
+      "id": "sps_food_croissant",
+      "category": "food",
+      "displayName": "CROISSANT",
+      "filename": "sps_food_croissant.png",
+      "sha256": "9eddb0992228be72827717746436f6df375989e80b44f3cf2ef88bd24f08a179",
+      "bbox": [
+        32,
+        73,
+        480,
+        439
+      ],
+      "sourceSha256": "d70790a033da976e56ccdd71372bee87768117e0f19771504b46fd41f8a593a4",
+      "prompt": "one golden curved flaky croissant"
+    },
+    {
+      "id": "sps_animal_whale",
+      "category": "animal",
+      "displayName": "WHALE",
+      "filename": "sps_animal_whale.png",
+      "sha256": "d1b30b9ec8e8bd823b6cd7c8e137348ac80bb13fb786eff47d064e5cade99a95",
+      "bbox": [
+        32,
+        44,
+        480,
+        467
+      ],
+      "sourceSha256": "254a27267f1059eb7f97d17443d156d0a4d12fc30b53c1192432800fb7c0bee9",
+      "prompt": "one cute smiling blue whale with curled tail and small water spout"
+    },
+    {
+      "id": "sps_animal_dolphin",
+      "category": "animal",
+      "displayName": "DOLPHIN",
+      "filename": "sps_animal_dolphin.png",
+      "sha256": "73c6ad850b32948ea44ac9af233e45af0d11b284f90fe3397c24b4817fc63136",
+      "bbox": [
+        63,
+        32,
+        448,
+        480
+      ],
+      "sourceSha256": "07a7d9ff47119d1cf2e74265c5e8d012f3c83b1acef0049a632a8b9adf57bd7d",
+      "prompt": "one friendly blue dolphin jumping in a compact arc, no water"
+    },
+    {
+      "id": "sps_animal_owl",
+      "category": "animal",
+      "displayName": "OWL",
+      "filename": "sps_animal_owl.png",
+      "sha256": "8c62b530ad2039e31c0d0b0b59f730bdc61db220606763d431c5ff7f927bc56b",
+      "bbox": [
+        80,
+        32,
+        432,
+        480
+      ],
+      "sourceSha256": "4fbc1d3b0cd43ccec2d4b2896b48f0ffbb9d8a4f31d140cc737cc9198b314ffd",
+      "prompt": "one cute seated brown owl with large friendly golden eyes"
+    },
+    {
+      "id": "sps_animal_deer",
+      "category": "animal",
+      "displayName": "DEER",
+      "filename": "sps_animal_deer.png",
+      "sha256": "d8c359d901d39173567655a41027b38a3c882dd1d7893a86de390f8b048dd7e7",
+      "bbox": [
+        114,
+        32,
+        398,
+        480
+      ],
+      "sourceSha256": "f4a6d23eada62d7c8ee4023b8ad8f8dcb2aa93b7eb170b62e80043441311d39d",
+      "prompt": "one cute standing golden spotted fawn with small antlers"
+    },
+    {
+      "id": "sps_vehicle_train",
+      "category": "vehicle",
+      "displayName": "TRAIN",
+      "filename": "sps_vehicle_train.png",
+      "sha256": "974307c6eff72c5181a7d3fe69e04de2c3a117f1a893237c0cbf05b0fa0ba3f1",
+      "bbox": [
+        32,
+        58,
+        480,
+        454
+      ],
+      "sourceSha256": "46b1bb88d1d15f16544eb3e3433882a3c24a9121572731725a605d6423e801ce",
+      "prompt": "one cute red and orange compact passenger train engine, three-quarter view"
+    },
+    {
+      "id": "sps_vehicle_tractor",
+      "category": "vehicle",
+      "displayName": "TRACTOR",
+      "filename": "sps_vehicle_tractor.png",
+      "sha256": "45400dfbc3d0bb846cafb810f9ca2ffcbc8c20a30625a13e27ea235e94e6c950",
+      "bbox": [
+        32,
+        60,
+        480,
+        451
+      ],
+      "sourceSha256": "11d04d0b9245138a2ce3c1d4a682d8a42c7a81f8fd1f1736ed1cb1cebfe16af4",
+      "prompt": "one cute green farm tractor with large black rear tires, three-quarter view"
+    },
+    {
+      "id": "sps_vehicle_bicycle",
+      "category": "vehicle",
+      "displayName": "BICYCLE",
+      "filename": "sps_vehicle_bicycle.png",
+      "sha256": "c6f72d653698ef72c2fdcf229209e3337c754dcbde5cd0b327ff01464f091bca",
+      "bbox": [
+        32,
+        77,
+        480,
+        434
+      ],
+      "sourceSha256": "f5e801fd42661ad69c8ee1203d9dbd1131914e4ab7c0f42b4469cb0e645b4a84",
+      "prompt": "one cute red city bicycle with wicker basket containing small flowers"
+    },
+    {
+      "id": "sps_vehicle_hot_air_balloon",
+      "category": "vehicle",
+      "displayName": "HOT AIR BALLOON",
+      "filename": "sps_vehicle_hot_air_balloon.png",
+      "sha256": "e0d176e357c017227c979845d9183063816ac0f308642bd2eab32351c27d53c3",
+      "bbox": [
+        86,
+        32,
+        426,
+        480
+      ],
+      "sourceSha256": "a53fc2692f97d20deb17f8c184de4dd4e05d69ce9183e6e234f6d978d8eceb94",
+      "prompt": "one colorful rainbow striped hot air balloon and small wicker basket"
+    },
+    {
+      "id": "sps_plant_sunflower",
+      "category": "plant",
+      "displayName": "SUNFLOWER",
+      "filename": "sps_plant_sunflower.png",
+      "sha256": "f31430b088cb6bce80214f27a40cb91ba09680b4d3418aa1d424f2b0e72556db",
+      "bbox": [
+        67,
+        32,
+        444,
+        480
+      ],
+      "sourceSha256": "025ac2f4b0c871696865a249493d139cb32aded4ca9bc652311f0b32dc3b5a58",
+      "prompt": "one cheerful golden sunflower with brown seed center, short stem and green leaves"
+    },
+    {
+      "id": "sps_plant_flowering_cactus",
+      "category": "plant",
+      "displayName": "FLOWERING CACTUS",
+      "filename": "sps_plant_flowering_cactus.png",
+      "sha256": "15bc19effca9c0fedac65f1c1786ad77d643ed32177767efcc22630d90808edf",
+      "bbox": [
+        101,
+        32,
+        410,
+        480
+      ],
+      "sourceSha256": "8bf42cf7113022bc1b99527114a72748ac51e4c1b1add475c280921b35581417",
+      "prompt": "one plump green cactus with a pink flower in a terracotta pot"
+    },
+    {
+      "id": "sps_plant_bamboo",
+      "category": "plant",
+      "displayName": "BAMBOO",
+      "filename": "sps_plant_bamboo.png",
+      "sha256": "efeae66cdbb50d73f188526836802799e599daf3086e4b74ac31cb7cffa45295",
+      "bbox": [
+        68,
+        32,
+        444,
+        480
+      ],
+      "sourceSha256": "425a9fbad33509d87b7203e0d022aaa8aa5d1d9daf277bd8b9272977d0e361ee",
+      "prompt": "three short bright green bamboo stalks with graceful green leaves"
+    },
+    {
+      "id": "sps_plant_maple_leaf",
+      "category": "plant",
+      "displayName": "MAPLE LEAF",
+      "filename": "sps_plant_maple_leaf.png",
+      "sha256": "986753496e012e3c0663b2fd5ac36db182ed791f66decbc66444cf1e5f82c937",
+      "bbox": [
+        42,
+        32,
+        469,
+        480
+      ],
+      "sourceSha256": "ad2e4e4c5b3803f920d4616a73bc8327c1c5232af601bb8619aac14fdb75a0f5",
+      "prompt": "one bright orange and red maple leaf with short stem"
+    },
+    {
+      "id": "sps_food_milk_carton",
+      "category": "food",
+      "displayName": "MILK CARTON",
+      "filename": "sps_food_milk_carton.png",
+      "sha256": "387725c504301da84e4e468e6fe8c44cb170c332c82af4b1e840626989527bbb",
+      "bbox": [
+        57,
+        32,
+        454,
+        480
+      ],
+      "sourceSha256": "ba26fb8f3dddb81e1c393c5f2d3a4cc2805df72bc576192ce11566638648d990",
+      "prompt": "one cute small blue and white milk carton with cow face icon, no lettering"
+    },
+    {
+      "id": "sps_food_chocolate_cookie",
+      "category": "food",
+      "displayName": "CHOCOLATE COOKIE",
+      "filename": "sps_food_chocolate_cookie.png",
+      "sha256": "bff1022e141dcadd4e7d3421cb68013687a9655f460e7b2ed59330a23d55249d",
+      "bbox": [
+        32,
+        37,
+        480,
+        475
+      ],
+      "sourceSha256": "1a22aa3ad9f6166ee9fffc84ad8ad72a0173dc229c3fd343ae8e9a0400341345",
+      "prompt": "one round golden chocolate chip cookie"
+    },
+    {
+      "id": "sps_food_watermelon",
+      "category": "food",
+      "displayName": "WATERMELON",
+      "filename": "sps_food_watermelon.png",
+      "sha256": "c66262d0587b4463f45a16978e7c909a21821a119c7754c0aa29c4e08d6bac3c",
+      "bbox": [
+        34,
+        32,
+        478,
+        480
+      ],
+      "sourceSha256": "0a67cfc069e7664d4bbc02cd159e05eccd61fd7042809fe6a958815dafc3ca50",
+      "prompt": "one juicy triangular red watermelon slice with black seeds and green rind"
+    },
+    {
+      "id": "sps_food_grapes",
+      "category": "food",
+      "displayName": "GRAPES",
+      "filename": "sps_food_grapes.png",
+      "sha256": "191abcea8769ab796bb37bc53cad448700fd6691c3bc543c4a711345b6f6be3b",
+      "bbox": [
+        68,
+        32,
+        444,
+        480
+      ],
+      "sourceSha256": "4627b0a4633a870a240217619518bcfca969d237c62ff9c24954ba71ce3820e4",
+      "prompt": "one compact bunch of purple grapes with one fresh green leaf"
+    },
+    {
+      "id": "sps_animal_fox",
+      "category": "animal",
+      "displayName": "FOX",
+      "filename": "sps_animal_fox.png",
+      "sha256": "95c8b5e2b4ff8aa8547a1f3b50b95b8c718a847ca625f3b79972a2e32f5dcdf3",
+      "bbox": [
+        61,
+        32,
+        450,
+        480
+      ],
+      "sourceSha256": "d96f8fb41f67bd195e961ba28430d30c8a94bc8eead4638e8c70a194bd73fd4e",
+      "prompt": "one cute seated orange fox cub with fluffy white tipped tail"
+    },
+    {
+      "id": "sps_animal_husky",
+      "category": "animal",
+      "displayName": "HUSKY",
+      "filename": "sps_animal_husky.png",
+      "sha256": "1ac4df58305060e2d7be18066724de47d7ef89d6352a794cac0095e81bd61199",
+      "bbox": [
+        81,
+        32,
+        430,
+        480
+      ],
+      "sourceSha256": "7afac4dcf7dbea25e3836e14e875be6df8f15cf2183dd43faec37842f508dad4",
+      "prompt": "one cute seated gray and white husky puppy with blue eyes"
+    },
+    {
+      "id": "sps_animal_sheep",
+      "category": "animal",
+      "displayName": "SHEEP",
+      "filename": "sps_animal_sheep.png",
+      "sha256": "913807b0c144056357bb210b6901e56e00adb996dd6a65e7136556b89b6681ac",
+      "bbox": [
+        32,
+        34,
+        480,
+        478
+      ],
+      "sourceSha256": "761c8f4047ef0305f5d950f358d873c985d93a095ae2cb697540564f55534b24",
+      "prompt": "one cute standing fluffy cream wool sheep with peach face and tiny brown hooves"
+    },
+    {
+      "id": "sps_animal_chick",
+      "category": "animal",
+      "displayName": "CHICK",
+      "filename": "sps_animal_chick.png",
+      "sha256": "c495c59b4db6121ac953c61228b8cc1321ae892e13604199d37f7ae206b7328c",
+      "bbox": [
+        49,
+        32,
+        463,
+        480
+      ],
+      "sourceSha256": "580bde7f88bd263cee17cca0695a685a31f8219e1cb13bf114adf0b5e47c1769",
+      "prompt": "one cute fluffy yellow baby chick with tiny orange feet"
+    },
+    {
+      "id": "sps_vehicle_scooter",
+      "category": "vehicle",
+      "displayName": "SCOOTER",
+      "filename": "sps_vehicle_scooter.png",
+      "sha256": "21d75a4a301f8c9b4bd55996252eeb052ab4e43922d70d8cd249b7d651433d5e",
+      "bbox": [
+        45,
+        32,
+        467,
+        480
+      ],
+      "sourceSha256": "af4af012396f723aa59978cfa9e66be002f6f39d43b1de1b9e31181123717180",
+      "prompt": "one cute mint green retro motor scooter, side three-quarter view"
+    },
+    {
+      "id": "sps_vehicle_tugboat",
+      "category": "vehicle",
+      "displayName": "TUGBOAT",
+      "filename": "sps_vehicle_tugboat.png",
+      "sha256": "348446b22090df067de47f7dabf01c400c0be542912cfaa0571085c14d7ba648",
+      "bbox": [
+        34,
+        32,
+        478,
+        480
+      ],
+      "sourceSha256": "8d8454285ac0328f639bf12273d648202b9d7dadf924c6211ae4f8c5f106efac",
+      "prompt": "one cute blue white and red tugboat with round portholes, no water"
+    },
+    {
+      "id": "sps_vehicle_cement_truck",
+      "category": "vehicle",
+      "displayName": "CEMENT TRUCK",
+      "filename": "sps_vehicle_cement_truck.png",
+      "sha256": "2250b4a79cde64ecca88865d36e4b38afa839ab68bb2c7b048b1eb1e6e9cc24b",
+      "bbox": [
+        32,
+        70,
+        480,
+        441
+      ],
+      "sourceSha256": "d27316734d3d8c995ea460811d6f09c537d40e15c2d8511b29e5b60c7e10eb53",
+      "prompt": "one cute yellow cement mixer truck with blue mixing drum"
+    },
+    {
+      "id": "sps_vehicle_ambulance",
+      "category": "vehicle",
+      "displayName": "AMBULANCE",
+      "filename": "sps_vehicle_ambulance.png",
+      "sha256": "830c8f7c55573a4b8ce04f594f0695b33a2bf3d0a05dadb0e40c662686b4afe7",
+      "bbox": [
+        32,
+        68,
+        480,
+        443
+      ],
+      "sourceSha256": "8876f65e00cfd27d9c33a63a973751cbfdaf2fdd711e00f02623e0d618667b1d",
+      "prompt": "one cute white ambulance with orange stripe and red medical plus symbol, no text"
+    },
+    {
+      "id": "sps_plant_lavender",
+      "category": "plant",
+      "displayName": "LAVENDER",
+      "filename": "sps_plant_lavender.png",
+      "sha256": "9855add6d74d5bd2f4dd4f098fafedf1f263609a16a0496e867ab9d0a7d41aa6",
+      "bbox": [
+        89,
+        32,
+        423,
+        480
+      ],
+      "sourceSha256": "28565526a303a733f514e1328d3d87bf597200d83beff3cb51aff7b843988275",
+      "prompt": "one compact bunch of purple lavender sprigs with green stems"
+    },
+    {
+      "id": "sps_plant_monstera",
+      "category": "plant",
+      "displayName": "MONSTERA",
+      "filename": "sps_plant_monstera.png",
+      "sha256": "d699cb604914fe4dd12389fa4f97f30c689c8208f6d3cadb1370fa9abbfd2922",
+      "bbox": [
+        60,
+        32,
+        451,
+        480
+      ],
+      "sourceSha256": "0a27bde2eade828702d7a27a89a082f43ac84c4ff453930fdc355aa4fc18bbd3",
+      "prompt": "one vivid green split monstera leaf with short stem"
+    },
+    {
+      "id": "sps_plant_bonsai",
+      "category": "plant",
+      "displayName": "BONSAI",
+      "filename": "sps_plant_bonsai.png",
+      "sha256": "cd63aa207e7b245a39df333168593ad3b2722cf61e120ed1262b11d07798698f",
+      "bbox": [
+        55,
+        32,
+        457,
+        480
+      ],
+      "sourceSha256": "43634b4aedc982dcfa4130504d9eb549a1b17660f7295570231a3b80e5c7e6ff",
+      "prompt": "one miniature bonsai tree with rounded green foliage in a small brown pot"
+    },
+    {
+      "id": "sps_plant_lotus",
+      "category": "plant",
+      "displayName": "LOTUS",
+      "filename": "sps_plant_lotus.png",
+      "sha256": "b12f1bb9c876a1494e308d37ce07f360fc74c0318ebca3c00abadbee306ebc56",
+      "bbox": [
+        32,
+        57,
+        480,
+        454
+      ],
+      "sourceSha256": "a6bff67a524c3d68a2fbd0762345e783b493a00bc41ab4a41dab318d19552c7e",
+      "prompt": "one pink lotus flower resting on two green lily leaves"
+    },
+    {
+      "id": "sps_food_sandwich",
+      "category": "food",
+      "displayName": "SANDWICH",
+      "filename": "sps_food_sandwich.png",
+      "sha256": "b5ebb04525e5798a2411a6e56b723206d4c7d3f1c8422114efbe056a2f47e627",
+      "bbox": [
+        32,
+        47,
+        480,
+        465
+      ],
+      "sourceSha256": "6d7455d91cbd2888f9d65fba2cd76e04d18e80f0834492b15f4df67d008116f4",
+      "prompt": "one triangular toasted sandwich with lettuce tomato and cheese"
+    },
+    {
+      "id": "sps_food_pancakes",
+      "category": "food",
+      "displayName": "PANCAKES",
+      "filename": "sps_food_pancakes.png",
+      "sha256": "bf8757cede187a62ec0286a4aa3138d11da982dc00986d82a1d60e500155a2ed",
+      "bbox": [
+        32,
+        52,
+        480,
+        459
+      ],
+      "sourceSha256": "d074387e74397e2fd288610eb005f89572cc958ccd188acccf8d4b5e3dd3eabb",
+      "prompt": "one short stack of golden pancakes with golden syrup and square butter pat on small cream plate"
+    },
+    {
+      "id": "sps_food_pretzel",
+      "category": "food",
+      "displayName": "PRETZEL",
+      "filename": "sps_food_pretzel.png",
+      "sha256": "7a3cabd817d1e527a6014f0e6508e6aedb48d82ea5ed1631c7d53d88865910e3",
+      "bbox": [
+        32,
+        77,
+        480,
+        435
+      ],
+      "sourceSha256": "0ad134548cc42fe17aa1a84b2f31d8cc3856393da8ffa28a56fa1d154801142a",
+      "prompt": "one golden brown twisted pretzel with coarse white salt dots"
+    },
+    {
+      "id": "sps_food_cupcake",
+      "category": "food",
+      "displayName": "CUPCAKE",
+      "filename": "sps_food_cupcake.png",
+      "sha256": "d4a8e93e02e6d81028d139e9afc83133b2b1f9586adb3e1f2a22ef2bb92afdf6",
+      "bbox": [
+        96,
+        32,
+        415,
+        480
+      ],
+      "sourceSha256": "bd3d1085543ac3b0d297aa02a2c3fc2a29d934c9cd35de8f0d47aa27501a892b",
+      "prompt": "one pink paper cupcake with white frosting and red cherry on top"
+    },
+    {
+      "id": "sps_animal_squirrel",
+      "category": "animal",
+      "displayName": "SQUIRREL",
+      "filename": "sps_animal_squirrel.png",
+      "sha256": "8f4e94e8a9506687d39420d00d0d38c9fc06db0c286a3ba5e23a252c6bb117c6",
+      "bbox": [
+        55,
+        32,
+        457,
+        480
+      ],
+      "sourceSha256": "161845542c2afca2f87cd9e0a20fab2f56c451287e3faafae9f1fba7ceb3fde6",
+      "prompt": "one cute seated orange squirrel with large bushy curled tail holding an acorn"
+    },
+    {
+      "id": "sps_animal_raccoon",
+      "category": "animal",
+      "displayName": "RACCOON",
+      "filename": "sps_animal_raccoon.png",
+      "sha256": "c6ea91ddf4c40ea7887d7932e9e1aea6d815e278a2d83071d8fc1a4841a8f170",
+      "bbox": [
+        63,
+        32,
+        449,
+        480
+      ],
+      "sourceSha256": "e5f0892a7baa5ade9c7deadcd5a7e4cd891b6d9e38908d1336e580fbc4f8c38e",
+      "prompt": "one cute seated gray raccoon with black eye mask and striped tail"
+    },
+    {
+      "id": "sps_animal_hedgehog",
+      "category": "animal",
+      "displayName": "HEDGEHOG",
+      "filename": "sps_animal_hedgehog.png",
+      "sha256": "3a7be1fb62d0580536326ac88646ebf07fe37f61b394d1a593d6868eba1aa38d",
+      "bbox": [
+        32,
+        34,
+        480,
+        477
+      ],
+      "sourceSha256": "17ac808e700121fa09cc335d8ef258b8f24f29e29eddfeea9acd4ac0aa221e21",
+      "prompt": "one cute little brown hedgehog with cream face and rounded soft quills"
+    },
+    {
+      "id": "sps_animal_seal",
+      "category": "animal",
+      "displayName": "SEAL",
+      "filename": "sps_animal_seal.png",
+      "sha256": "b270ea8b69d53a82791a50c739b36250d4ea059fd514c54f3391c1c05778dc98",
+      "bbox": [
+        32,
+        93,
+        480,
+        419
+      ],
+      "sourceSha256": "288a288f680099ba819d497cf4d8c49739391b2b68f195b7ca88dbc5a7df8da2",
+      "prompt": "one cute pale gray baby seal with small flippers and friendly dark eyes"
+    },
+    {
+      "id": "sps_vehicle_taxi",
+      "category": "vehicle",
+      "displayName": "TAXI",
+      "filename": "sps_vehicle_taxi.png",
+      "sha256": "28058c71fc97e818e9ac897fa40b978ac69a82533fd8ec371c02b72886b71263",
+      "bbox": [
+        32,
+        77,
+        480,
+        435
+      ],
+      "sourceSha256": "b82388cd18312246567ff24ba3771212c263258f36038e21b2956beb00fccebd",
+      "prompt": "one cute yellow taxi car with small roof taxi sign but no letters"
+    },
+    {
+      "id": "sps_vehicle_rocket",
+      "category": "vehicle",
+      "displayName": "ROCKET",
+      "filename": "sps_vehicle_rocket.png",
+      "sha256": "f0d8ba305d50a2e260db55f3d3e14e1b7af2a52df15290a7b307faff5af31dbe",
+      "bbox": [
+        85,
+        32,
+        426,
+        480
+      ],
+      "sourceSha256": "fbd8c407e62c2c27bb4176f1d9d27f39d1374a2a3c45c00947becf293421ca98",
+      "prompt": "one cute white and red toy rocket with round blue window and small orange flame"
+    },
+    {
+      "id": "sps_vehicle_submarine",
+      "category": "vehicle",
+      "displayName": "SUBMARINE",
+      "filename": "sps_vehicle_submarine.png",
+      "sha256": "7091d2f1d73ef04bda3934ccb907dd812b6ed8ffe3c1c8cb47c8a32367a9434c",
+      "bbox": [
+        32,
+        55,
+        480,
+        456
+      ],
+      "sourceSha256": "a68abaf30239d5a3e2179d2bea002428fe362132323beeab797579d59b21afe8",
+      "prompt": "one cute yellow compact submarine with blue round portholes and tiny orange propeller"
+    },
+    {
+      "id": "sps_vehicle_sailboat",
+      "category": "vehicle",
+      "displayName": "SAILBOAT",
+      "filename": "sps_vehicle_sailboat.png",
+      "sha256": "6abecf28470aafffd81e553d4e132837248ffa0a6fb4913d2f76535a400a881f",
+      "bbox": [
+        71,
+        32,
+        441,
+        480
+      ],
+      "sourceSha256": "913e15c99185e27cae0be86a6070687420548a304da92d2f16a4d7c5d3918661",
+      "prompt": "one cute brown wooden sailboat with white blue and golden triangular sails, no water"
+    },
+    {
+      "id": "sps_plant_daisy",
+      "category": "plant",
+      "displayName": "DAISY",
+      "filename": "sps_plant_daisy.png",
+      "sha256": "48da3fe4b88d597ad1813fcfbb876d884896c2f9e3b6625bbf3f5dd42f72510e",
+      "bbox": [
+        77,
+        32,
+        434,
+        480
+      ],
+      "sourceSha256": "14554a299fa483572ec9a825ab907dcbcb8ac25df82e621f68e8fa45fcfec668",
+      "prompt": "one white daisy flower with golden center, short stem and green leaves"
+    },
+    {
+      "id": "sps_plant_snake_plant",
+      "category": "plant",
+      "displayName": "SNAKE PLANT",
+      "filename": "sps_plant_snake_plant.png",
+      "sha256": "c1d7441febf63d7712b0cbfa16143c036acd94515bca64806f0ffa302a57445c",
+      "bbox": [
+        117,
+        32,
+        394,
+        480
+      ],
+      "sourceSha256": "224193ebdd069a793c6233109afeae3668dc4abf1c2e5d76cf07f8cf15eb321b",
+      "prompt": "one compact snake plant with three green and yellow upright leaves in terracotta pot"
+    },
+    {
+      "id": "sps_plant_hibiscus",
+      "category": "plant",
+      "displayName": "HIBISCUS",
+      "filename": "sps_plant_hibiscus.png",
+      "sha256": "943063c5ed544918a3fe9d717170e28ca18b72202298e2bb7202dc5c51607471",
+      "bbox": [
+        32,
+        44,
+        480,
+        467
+      ],
+      "sourceSha256": "c6e588cc94e3d0eaf0f87c4539616ec0e838531c69b8518a61256bd042d9da13",
+      "prompt": "one bright red hibiscus flower with yellow stamen and two green leaves"
+    },
+    {
+      "id": "sps_plant_yellow_cactus",
+      "category": "plant",
+      "displayName": "YELLOW CACTUS",
+      "filename": "sps_plant_yellow_cactus.png",
+      "sha256": "6c0b9f0e9ebf95c797e4ad79bd99e76a72ec1a2c665e460ce7b22feefbb65668",
+      "bbox": [
+        110,
+        32,
+        401,
+        480
+      ],
+      "sourceSha256": "64a7a4f21b7251c3678a17ce861e2faa989bea05215d31dd0e9d00ad6f916511",
+      "prompt": "one small green cactus with yellow flower in terracotta pot"
+    }
+  ],
+  "promptTemplate": "Use case: stylized-concept. ONE individual production sticker for cute casual mobile sorting game. Generate from scratch, never crop reference sheet. Match supplied reference polished warm colorful cartoon illustration: rounded volumes, glossy soft internal shading, crisp colored internal contour, friendly appealing readable at 85px. Subject: {entry.prompt}. ONE complete centered isolated object. Square 512x512 RGBA PNG, genuine transparent background. Entire sticker fits comfortably inside canvas with 32px transparent padding all sides. Uniform approximately 12px white die cut border at final 512 resolution. No outer drop shadow, no cast shadow, no glow, no background, no text, no labels, no watermark, no grid, no other stickers. Keep silhouette compact, clean smooth antialiased alpha edges."
+}

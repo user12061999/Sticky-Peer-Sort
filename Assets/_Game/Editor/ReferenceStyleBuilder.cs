@@ -75,10 +75,10 @@ namespace StickyPeerSort.Editor
                 string id = categories[c] + "_" + (t + 1).ToString("00");
                 var source = AssetDatabase.LoadAssetAtPath<StickerDefinition>("Assets/_Game/Data/Stickers/" + id + ".asset");
                 if (source == null || !source.HasArtwork) throw new InvalidOperationException("Missing existing artwork: " + id);
-                string path = Root + "/Data/Stickers/" + id + ".asset";
+                string path = Root + "/Data/Stickers/ref_" + id + ".asset";
                 var copy = AssetDatabase.LoadAssetAtPath<StickerDefinition>(path);
                 if (copy == null) { copy = UnityEngine.Object.Instantiate(source); copy.name = id; AssetDatabase.CreateAsset(copy, path); }
-                copy.showLabel = false; copy.tint = Color.white; copy.preserveAspect = true;
+                copy.id = "ref_" + id; copy.name = copy.id; copy.showLabel = false; copy.tint = Color.white; copy.preserveAspect = true;
                 StickerArtworkBaker.Bake(copy);
                 copy.targetSilhouette = GenerateSilhouette(copy); EditorUtility.SetDirty(copy); result[c * 4 + t] = copy;
             }

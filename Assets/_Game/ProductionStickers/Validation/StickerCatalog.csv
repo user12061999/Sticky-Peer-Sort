@@ -1,0 +1,97 @@
+id,display_name,category,definition,texture
+animal_01,CAT,animals,Assets/_Game/Data/Stickers/animal_01.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/animal_01.png
+animal_02,PENGUIN,animals,Assets/_Game/Data/Stickers/animal_02.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/animal_02.png
+animal_03,ELEPHANT,animals,Assets/_Game/Data/Stickers/animal_03.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/animal_03.png
+animal_04,TURTLE,animals,Assets/_Game/Data/Stickers/animal_04.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/animal_04.png
+food_01,BURGER,food,Assets/_Game/Data/Stickers/food_01.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/food_01.png
+food_02,PIZZA,food,Assets/_Game/Data/Stickers/food_02.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/food_02.png
+food_03,FRIES,food,Assets/_Game/Data/Stickers/food_03.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/food_03.png
+food_04,DONUT,food,Assets/_Game/Data/Stickers/food_04.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/food_04.png
+plant_01,SUNFLOWER,plants,Assets/_Game/Data/Stickers/plant_01.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/plant_01.png
+plant_02,CACTUS,plants,Assets/_Game/Data/Stickers/plant_02.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/plant_02.png
+plant_03,TULIP,plants,Assets/_Game/Data/Stickers/plant_03.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/plant_03.png
+plant_04,TREE,plants,Assets/_Game/Data/Stickers/plant_04.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/plant_04.png
+ref_animal_01,CAT,animals,Assets/_Game/ReferenceStyle/Data/Stickers/ref_animal_01.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/animal_01.png
+ref_animal_02,PENGUIN,animals,Assets/_Game/ReferenceStyle/Data/Stickers/ref_animal_02.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/animal_02.png
+ref_animal_03,ELEPHANT,animals,Assets/_Game/ReferenceStyle/Data/Stickers/ref_animal_03.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/animal_03.png
+ref_animal_04,TURTLE,animals,Assets/_Game/ReferenceStyle/Data/Stickers/ref_animal_04.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/animal_04.png
+ref_food_01,BURGER,food,Assets/_Game/ReferenceStyle/Data/Stickers/ref_food_01.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/food_01.png
+ref_food_02,PIZZA,food,Assets/_Game/ReferenceStyle/Data/Stickers/ref_food_02.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/food_02.png
+ref_food_03,FRIES,food,Assets/_Game/ReferenceStyle/Data/Stickers/ref_food_03.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/food_03.png
+ref_food_04,DONUT,food,Assets/_Game/ReferenceStyle/Data/Stickers/ref_food_04.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/food_04.png
+ref_plant_01,SUNFLOWER,plants,Assets/_Game/ReferenceStyle/Data/Stickers/ref_plant_01.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/plant_01.png
+ref_plant_02,CACTUS,plants,Assets/_Game/ReferenceStyle/Data/Stickers/ref_plant_02.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/plant_02.png
+ref_plant_03,TULIP,plants,Assets/_Game/ReferenceStyle/Data/Stickers/ref_plant_03.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/plant_03.png
+ref_plant_04,TREE,plants,Assets/_Game/ReferenceStyle/Data/Stickers/ref_plant_04.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/plant_04.png
+ref_vehicle_01,CAR,vehicles,Assets/_Game/ReferenceStyle/Data/Stickers/ref_vehicle_01.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/vehicle_01.png
+ref_vehicle_02,AIRPLANE,vehicles,Assets/_Game/ReferenceStyle/Data/Stickers/ref_vehicle_02.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/vehicle_02.png
+ref_vehicle_03,BOAT,vehicles,Assets/_Game/ReferenceStyle/Data/Stickers/ref_vehicle_03.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/vehicle_03.png
+ref_vehicle_04,HELICOPTER,vehicles,Assets/_Game/ReferenceStyle/Data/Stickers/ref_vehicle_04.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/vehicle_04.png
+sps_animal_chick,CHICK,animals,Assets/_Game/ProductionStickers/Data/sps_animal_chick.asset,Assets/_Game/ProductionStickers/Art/sps_animal_chick.png
+sps_animal_deer,DEER,animals,Assets/_Game/ProductionStickers/Data/sps_animal_deer.asset,Assets/_Game/ProductionStickers/Art/sps_animal_deer.png
+sps_animal_dolphin,DOLPHIN,animals,Assets/_Game/ProductionStickers/Data/sps_animal_dolphin.asset,Assets/_Game/ProductionStickers/Art/sps_animal_dolphin.png
+sps_animal_fox,FOX,animals,Assets/_Game/ProductionStickers/Data/sps_animal_fox.asset,Assets/_Game/ProductionStickers/Art/sps_animal_fox.png
+sps_animal_hedgehog,HEDGEHOG,animals,Assets/_Game/ProductionStickers/Data/sps_animal_hedgehog.asset,Assets/_Game/ProductionStickers/Art/sps_animal_hedgehog.png
+sps_animal_husky,HUSKY,animals,Assets/_Game/ProductionStickers/Data/sps_animal_husky.asset,Assets/_Game/ProductionStickers/Art/sps_animal_husky.png
+sps_animal_koala,KOALA,animals,Assets/_Game/ProductionStickers/Data/sps_animal_koala.asset,Assets/_Game/ProductionStickers/Art/sps_animal_koala.png
+sps_animal_lion,LION,animals,Assets/_Game/ProductionStickers/Data/sps_animal_lion.asset,Assets/_Game/ProductionStickers/Art/sps_animal_lion.png
+sps_animal_owl,OWL,animals,Assets/_Game/ProductionStickers/Data/sps_animal_owl.asset,Assets/_Game/ProductionStickers/Art/sps_animal_owl.png
+sps_animal_panda,PANDA,animals,Assets/_Game/ProductionStickers/Data/sps_animal_panda.asset,Assets/_Game/ProductionStickers/Art/sps_animal_panda.png
+sps_animal_rabbit,RABBIT,animals,Assets/_Game/ProductionStickers/Data/sps_animal_rabbit.asset,Assets/_Game/ProductionStickers/Art/sps_animal_rabbit.png
+sps_animal_raccoon,RACCOON,animals,Assets/_Game/ProductionStickers/Data/sps_animal_raccoon.asset,Assets/_Game/ProductionStickers/Art/sps_animal_raccoon.png
+sps_animal_seal,SEAL,animals,Assets/_Game/ProductionStickers/Data/sps_animal_seal.asset,Assets/_Game/ProductionStickers/Art/sps_animal_seal.png
+sps_animal_sheep,SHEEP,animals,Assets/_Game/ProductionStickers/Data/sps_animal_sheep.asset,Assets/_Game/ProductionStickers/Art/sps_animal_sheep.png
+sps_animal_squirrel,SQUIRREL,animals,Assets/_Game/ProductionStickers/Data/sps_animal_squirrel.asset,Assets/_Game/ProductionStickers/Art/sps_animal_squirrel.png
+sps_animal_whale,WHALE,animals,Assets/_Game/ProductionStickers/Data/sps_animal_whale.asset,Assets/_Game/ProductionStickers/Art/sps_animal_whale.png
+sps_food_cheese,CHEESE,food,Assets/_Game/ProductionStickers/Data/sps_food_cheese.asset,Assets/_Game/ProductionStickers/Art/sps_food_cheese.png
+sps_food_chocolate_cookie,CHOCOLATE COOKIE,food,Assets/_Game/ProductionStickers/Data/sps_food_chocolate_cookie.asset,Assets/_Game/ProductionStickers/Art/sps_food_chocolate_cookie.png
+sps_food_croissant,CROISSANT,food,Assets/_Game/ProductionStickers/Data/sps_food_croissant.asset,Assets/_Game/ProductionStickers/Art/sps_food_croissant.png
+sps_food_cupcake,CUPCAKE,food,Assets/_Game/ProductionStickers/Data/sps_food_cupcake.asset,Assets/_Game/ProductionStickers/Art/sps_food_cupcake.png
+sps_food_grapes,GRAPES,food,Assets/_Game/ProductionStickers/Data/sps_food_grapes.asset,Assets/_Game/ProductionStickers/Art/sps_food_grapes.png
+sps_food_hot_dog,HOT DOG,food,Assets/_Game/ProductionStickers/Data/sps_food_hot_dog.asset,Assets/_Game/ProductionStickers/Art/sps_food_hot_dog.png
+sps_food_milk_carton,MILK CARTON,food,Assets/_Game/ProductionStickers/Data/sps_food_milk_carton.asset,Assets/_Game/ProductionStickers/Art/sps_food_milk_carton.png
+sps_food_pancakes,PANCAKES,food,Assets/_Game/ProductionStickers/Data/sps_food_pancakes.asset,Assets/_Game/ProductionStickers/Art/sps_food_pancakes.png
+sps_food_popcorn,POPCORN,food,Assets/_Game/ProductionStickers/Data/sps_food_popcorn.asset,Assets/_Game/ProductionStickers/Art/sps_food_popcorn.png
+sps_food_pretzel,PRETZEL,food,Assets/_Game/ProductionStickers/Data/sps_food_pretzel.asset,Assets/_Game/ProductionStickers/Art/sps_food_pretzel.png
+sps_food_ramen,RAMEN,food,Assets/_Game/ProductionStickers/Data/sps_food_ramen.asset,Assets/_Game/ProductionStickers/Art/sps_food_ramen.png
+sps_food_salmon_sushi,SALMON SUSHI,food,Assets/_Game/ProductionStickers/Data/sps_food_salmon_sushi.asset,Assets/_Game/ProductionStickers/Art/sps_food_salmon_sushi.png
+sps_food_sandwich,SANDWICH,food,Assets/_Game/ProductionStickers/Data/sps_food_sandwich.asset,Assets/_Game/ProductionStickers/Art/sps_food_sandwich.png
+sps_food_strawberry_cake,STRAWBERRY CAKE,food,Assets/_Game/ProductionStickers/Data/sps_food_strawberry_cake.asset,Assets/_Game/ProductionStickers/Art/sps_food_strawberry_cake.png
+sps_food_strawberry_ice_cream,STRAWBERRY ICE CREAM,food,Assets/_Game/ProductionStickers/Data/sps_food_strawberry_ice_cream.asset,Assets/_Game/ProductionStickers/Art/sps_food_strawberry_ice_cream.png
+sps_food_watermelon,WATERMELON,food,Assets/_Game/ProductionStickers/Data/sps_food_watermelon.asset,Assets/_Game/ProductionStickers/Art/sps_food_watermelon.png
+sps_plant_bamboo,BAMBOO,plants,Assets/_Game/ProductionStickers/Data/sps_plant_bamboo.asset,Assets/_Game/ProductionStickers/Art/sps_plant_bamboo.png
+sps_plant_bonsai,BONSAI,plants,Assets/_Game/ProductionStickers/Data/sps_plant_bonsai.asset,Assets/_Game/ProductionStickers/Art/sps_plant_bonsai.png
+sps_plant_cherry_blossom,CHERRY BLOSSOM,plants,Assets/_Game/ProductionStickers/Data/sps_plant_cherry_blossom.asset,Assets/_Game/ProductionStickers/Art/sps_plant_cherry_blossom.png
+sps_plant_clover,CLOVER,plants,Assets/_Game/ProductionStickers/Data/sps_plant_clover.asset,Assets/_Game/ProductionStickers/Art/sps_plant_clover.png
+sps_plant_daisy,DAISY,plants,Assets/_Game/ProductionStickers/Data/sps_plant_daisy.asset,Assets/_Game/ProductionStickers/Art/sps_plant_daisy.png
+sps_plant_flowering_cactus,FLOWERING CACTUS,plants,Assets/_Game/ProductionStickers/Data/sps_plant_flowering_cactus.asset,Assets/_Game/ProductionStickers/Art/sps_plant_flowering_cactus.png
+sps_plant_hibiscus,HIBISCUS,plants,Assets/_Game/ProductionStickers/Data/sps_plant_hibiscus.asset,Assets/_Game/ProductionStickers/Art/sps_plant_hibiscus.png
+sps_plant_lavender,LAVENDER,plants,Assets/_Game/ProductionStickers/Data/sps_plant_lavender.asset,Assets/_Game/ProductionStickers/Art/sps_plant_lavender.png
+sps_plant_lotus,LOTUS,plants,Assets/_Game/ProductionStickers/Data/sps_plant_lotus.asset,Assets/_Game/ProductionStickers/Art/sps_plant_lotus.png
+sps_plant_maple_leaf,MAPLE LEAF,plants,Assets/_Game/ProductionStickers/Data/sps_plant_maple_leaf.asset,Assets/_Game/ProductionStickers/Art/sps_plant_maple_leaf.png
+sps_plant_monstera,MONSTERA,plants,Assets/_Game/ProductionStickers/Data/sps_plant_monstera.asset,Assets/_Game/ProductionStickers/Art/sps_plant_monstera.png
+sps_plant_red_mushroom,RED MUSHROOM,plants,Assets/_Game/ProductionStickers/Data/sps_plant_red_mushroom.asset,Assets/_Game/ProductionStickers/Art/sps_plant_red_mushroom.png
+sps_plant_rose,ROSE,plants,Assets/_Game/ProductionStickers/Data/sps_plant_rose.asset,Assets/_Game/ProductionStickers/Art/sps_plant_rose.png
+sps_plant_snake_plant,SNAKE PLANT,plants,Assets/_Game/ProductionStickers/Data/sps_plant_snake_plant.asset,Assets/_Game/ProductionStickers/Art/sps_plant_snake_plant.png
+sps_plant_sunflower,SUNFLOWER,plants,Assets/_Game/ProductionStickers/Data/sps_plant_sunflower.asset,Assets/_Game/ProductionStickers/Art/sps_plant_sunflower.png
+sps_plant_yellow_cactus,YELLOW CACTUS,plants,Assets/_Game/ProductionStickers/Data/sps_plant_yellow_cactus.asset,Assets/_Game/ProductionStickers/Art/sps_plant_yellow_cactus.png
+sps_vehicle_ambulance,AMBULANCE,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_ambulance.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_ambulance.png
+sps_vehicle_bicycle,BICYCLE,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_bicycle.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_bicycle.png
+sps_vehicle_cement_truck,CEMENT TRUCK,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_cement_truck.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_cement_truck.png
+sps_vehicle_excavator,EXCAVATOR,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_excavator.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_excavator.png
+sps_vehicle_fire_engine,FIRE ENGINE,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_fire_engine.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_fire_engine.png
+sps_vehicle_hot_air_balloon,HOT AIR BALLOON,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_hot_air_balloon.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_hot_air_balloon.png
+sps_vehicle_police_car,POLICE CAR,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_police_car.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_police_car.png
+sps_vehicle_rocket,ROCKET,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_rocket.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_rocket.png
+sps_vehicle_sailboat,SAILBOAT,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_sailboat.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_sailboat.png
+sps_vehicle_school_bus,SCHOOL BUS,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_school_bus.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_school_bus.png
+sps_vehicle_scooter,SCOOTER,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_scooter.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_scooter.png
+sps_vehicle_submarine,SUBMARINE,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_submarine.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_submarine.png
+sps_vehicle_taxi,TAXI,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_taxi.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_taxi.png
+sps_vehicle_tractor,TRACTOR,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_tractor.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_tractor.png
+sps_vehicle_train,TRAIN,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_train.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_train.png
+sps_vehicle_tugboat,TUGBOAT,vehicles,Assets/_Game/ProductionStickers/Data/sps_vehicle_tugboat.asset,Assets/_Game/ProductionStickers/Art/sps_vehicle_tugboat.png
+vehicle_01,CAR,vehicles,Assets/_Game/Data/Stickers/vehicle_01.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/vehicle_01.png
+vehicle_02,AIRPLANE,vehicles,Assets/_Game/Data/Stickers/vehicle_02.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/vehicle_02.png
+vehicle_03,BOAT,vehicles,Assets/_Game/Data/Stickers/vehicle_03.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/vehicle_03.png
+vehicle_04,HELICOPTER,vehicles,Assets/_Game/Data/Stickers/vehicle_04.asset,Assets/_Game/Art/StickyPeerSort_Stickers16/stickers/vehicle_04.png

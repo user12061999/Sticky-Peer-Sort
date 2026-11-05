@@ -21,7 +21,7 @@ namespace StickyPeerSort.Editor
             var definitions = new List<StickerDefinition>();
             foreach (string category in new[] { "food", "animal", "plant", "vehicle" }) for (int t = 1; t <= 4; t++)
             {
-                var definition = AssetDatabase.LoadAssetAtPath<StickerDefinition>(ReferenceStyleBuilder.Root + "/Data/Stickers/" + category + "_" + t.ToString("00") + ".asset");
+                var definition = AssetDatabase.LoadAssetAtPath<StickerDefinition>(ReferenceStyleBuilder.Root + "/Data/Stickers/ref_" + category + "_" + t.ToString("00") + ".asset");
                 if (definition == null) throw new InvalidOperationException("Missing sample artwork definition."); definitions.Add(definition);
             }
             level.objectives.Clear(); level.stickers.Clear();

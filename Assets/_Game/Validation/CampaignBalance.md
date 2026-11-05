@@ -1,3 +1,5 @@
+> Artwork update: the diagnostics below describe the earlier artwork baseline. The active campaign now uses 64 individually generated stickers and rebuilt layouts. Current winning-route and buffer verification is recorded in [Production artwork integration](../ProductionStickers/Validation/Integration.md).
+
 # First chapter balance
 
 Five waiting slots; full means lose. Exact artwork targets. All winning traces are replayed without boosters. Random and target-first bots are diagnostics, not human win rates. Relief rounds: 8, 11 and 14.

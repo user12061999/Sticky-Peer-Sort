@@ -108,7 +108,7 @@ namespace StickyPeerSort.Editor
         int FindCat()
         {
             for (int i = 0; i < controller.Session.Stickers.Count; i++)
-                if (controller.Session.Stickers[i].placement.definition.id == "animal_01" && controller.Session.Legal(i) && controller.Session.HasTarget(i)) return i;
+                if (controller.Session.Stickers[i].placement.definition.category.id == "animals" && controller.Session.Legal(i) && controller.Session.HasTarget(i)) return i;
             return -1;
         }
         void Caption(string title, string detail) { controller.ui.SetInstruction(title + "\n" + detail); }

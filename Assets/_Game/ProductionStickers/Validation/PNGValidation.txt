@@ -1,0 +1,2 @@
+PASS: 64 individually generated, unique RGBA PNGs; all 512x512; at least 32px clear padding; transparent RGB zeroed; full alpha range; unique hashes.
+White die-cut borders and absence of shadows require visual review.
