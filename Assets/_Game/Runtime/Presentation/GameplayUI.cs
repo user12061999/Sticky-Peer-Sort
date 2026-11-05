@@ -319,7 +319,8 @@ namespace StickyPeerSort
             float width = Mathf.Min(theme != null && theme.referenceComposition ? 176 : theme != null ? 154 : 140, 920f / count);
             for (int i = 0; i < bufferSlots.Count; i++)
             {
-                bufferSlots[i].sizeDelta = new Vector2(width - 12, theme != null && theme.referenceComposition ? width - 12 : 124);
+                float gap = theme != null && theme.referenceComposition ? 24 : 12;
+                bufferSlots[i].sizeDelta = new Vector2(width - gap, theme != null && theme.referenceComposition ? width - gap : 124);
                 bufferSlots[i].anchoredPosition = new Vector2((i - (count - 1) * .5f) * width, 0);
                 if (theme != null)
                 {

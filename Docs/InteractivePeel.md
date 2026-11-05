@@ -2,7 +2,7 @@
 
 ## Picking a destination
 
-Campaign sheets accept any sticker of their category. Where a sheet lists exact targets, the sticker must match a free one. Among all eligible sheets, `GameSession` prefers the sheet with the **largest filled target count**. Equal counts keep objective list order. The first matching free slot inside the chosen sheet wins. A fuller sheet cannot accept an unmatched design or an already occupied target.
+The sticker must match a free design target on an active sheet. In the campaign each category has one sheet with one slot per design, so this is the same as sorting by category. Among all eligible sheets, `GameSession` prefers the sheet with the **largest filled target count**. Equal counts keep objective list order. The first matching free slot inside the chosen sheet wins. A fuller sheet cannot accept an unmatched design or an already occupied target.
 
 The same selector drives direct collection, transfers from the waiting area, destination preview and the solver. Filled counts include logically committed moves whose flight may still be landing, so rapid moves reserve destinations consistently. Legacy objectives with empty exactTargets retain their category-only fallback.
 

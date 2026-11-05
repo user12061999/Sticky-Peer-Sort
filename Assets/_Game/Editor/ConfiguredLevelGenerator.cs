@@ -85,8 +85,7 @@ namespace StickyPeerSort.Editor
                 var objective = new CategoryObjective { category = group[0].category, targetCount = 4 };
                 for (int t = 0; t < 4; t++)
                 {
-                    var definition = group[((set / groups.Length) * 4 + t) % group.Length];
-                    if (!settings.categorySheets) objective.exactTargets.Add(definition);
+                    var definition = group[((set / groups.Length) * 4 + t) % group.Length]; objective.exactTargets.Add(definition);
                     level.stickers.Add(new StickerPlacement { instanceId = level.name + "_" + (set * 4 + t).ToString("000"), definition = definition });
                 }
                 level.objectives.Add(objective);

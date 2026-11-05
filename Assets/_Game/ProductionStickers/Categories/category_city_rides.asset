@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.CategoryDefinition
   id: category_city_rides
   title: CITY RIDES
-  color: {r: 0.95686275, g: 0.56078434, b: 0.69411767, a: 1}
+  color: {r: 0.91, g: 0.25, b: 0.27, a: 1}

@@ -34,7 +34,6 @@ namespace StickyPeerSort
             {
                 foreach (var repeated in level.stickers.Where(p => p.definition != null).GroupBy(p => p.definition).Where(g => g.Count() > 1)) errors.Add("Design appears more than once: " + repeated.Key.id);
                 foreach (var repeated in level.objectives.Where(o => o.category != null).GroupBy(o => o.category).Where(g => g.Count() > 1)) errors.Add("Category has more than one sheet: " + repeated.Key.title);
-                if (level.objectives.Any(o => o.exactTargets.Count > 0)) errors.Add("Category sheets must not request specific designs.");
             }
             foreach (var p in level.stickers)
             {

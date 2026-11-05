@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.CategoryDefinition
   id: category_flowers
   title: FLOWERS
-  color: {r: 0.4862745, g: 0.8039216, b: 0.4862745, a: 1}
+  color: {r: 0.91, g: 0.25, b: 0.27, a: 1}

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.CategoryDefinition
   id: category_on_duty
   title: ON DUTY
-  color: {r: 0.95686275, g: 0.56078434, b: 0.69411767, a: 1}
+  color: {r: 0.58, g: 0.34, b: 0.9, a: 1}

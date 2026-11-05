@@ -181,8 +181,8 @@ namespace StickyPeerSort
         void Animate()
         {
             var point = root.InverseTransformPoint(Point()); float t = Time.unscaledTime - started;
-            float desiredY = point.y < -150 ? point.y + 265 : point.y - 265;
-            bubble.anchoredPosition = new Vector2(0, CardY(desiredY));
+                        // Below the board, over the idle boosters, so the card never hides the stickers.
+            bubble.anchoredPosition = new Vector2(0, CardY(-700));
 
             var guideRect = (actionView != null ? actionView.Rect : subjectView.Rect);
             if (spotlightVeil != null && guideRect != null)
@@ -206,7 +206,7 @@ namespace StickyPeerSort
             float best = 0, score = float.MaxValue;
             foreach (float candidate in new[] { preferred, waiting.center.y, (waiting.yMin + Bounds(ui.board).yMax) * .5f, 0, -320, -540, 560 })
             {
-                float y = Mathf.Clamp(candidate, -600, 620);
+                float y = Mathf.Clamp(candidate, -700, 620);
                 var rect = new Rect(-464, y - 127, 928, 254);
                 float value = Overlap(rect, subject) * 50 + Overlap(rect, action) * 50 + Overlap(rect, gallery) * 20
                     + Overlap(rect, waiting) * (session.Buffer.Count > 0 ? 10 : .1f) + Mathf.Abs(y - preferred) * .01f;

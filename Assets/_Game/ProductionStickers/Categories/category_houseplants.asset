@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.CategoryDefinition
   id: category_houseplants
   title: HOUSEPLANTS
-  color: {r: 0.4862745, g: 0.8039216, b: 0.4862745, a: 1}
+  color: {r: 0.3, g: 0.69, b: 0.25, a: 1}

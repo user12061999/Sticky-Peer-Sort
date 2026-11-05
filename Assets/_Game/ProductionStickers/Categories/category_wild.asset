@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.CategoryDefinition
   id: category_wild
   title: WILD
-  color: {r: 0.4862745, g: 0.7254902, b: 0.9098039, a: 1}
+  color: {r: 0.96, g: 0.72, b: 0.1, a: 1}

@@ -73,9 +73,12 @@ namespace StickyPeerSort.Editor
         [MenuItem("Tools/Sticker Category Game/Production Stickers/Apply 16 Categories")]
         public static void Apply()
         {
-            foreach (var group in Groups)
+            var sheetColors = new[] { new Color(.30f, .69f, .25f), new Color(.12f, .49f, .93f), new Color(.91f, .25f, .27f), new Color(.58f, .34f, .90f), new Color(.96f, .72f, .10f) };
+            for (int g = 0; g < Groups.Length; g++)
             {
+                var group = Groups[g];
                 var category = Asset(group);
+                category.color = sheetColors[g % sheetColors.Length]; EditorUtility.SetDirty(category);
                 foreach (string design in group.designs)
                 {
                     var sticker = AssetDatabase.LoadAssetAtPath<StickerDefinition>(ProductionStickerBuilder.Root + "/Data/" + StickerId(group, design) + ".asset");

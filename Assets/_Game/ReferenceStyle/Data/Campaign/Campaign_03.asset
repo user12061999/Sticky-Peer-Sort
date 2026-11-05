@@ -21,7 +21,7 @@ MonoBehaviour:
   tutorial: Remove the cover to discover the black ? sticker.
   generatedStickerCount: 20
   layoutSeed: 61202
-  boardStickerSizeMultiplier: 0.75
+  boardStickerSizeMultiplier: 0.95
   generation:
     enabled: 1
     difficulty: 0
@@ -99,26 +99,46 @@ MonoBehaviour:
   objectives:
   - category: {fileID: 11400000, guid: 6167ccf6e9fccee48bcbc8686e27fbe3, type: 2}
     targetCount: 4
-    exactTargets: []
+    exactTargets:
+    - {fileID: 11400000, guid: d11b9f7ee245b0b42bdea4b9c2c98612, type: 2}
+    - {fileID: 11400000, guid: a94fc31c15afa564493cacd54b387202, type: 2}
+    - {fileID: 11400000, guid: 3b1d12873ecaf7c42a54442705be2437, type: 2}
+    - {fileID: 11400000, guid: c7feeb28927580942bc0ddc40246b9dd, type: 2}
   - category: {fileID: 11400000, guid: a5b7fbcbd4c620d4499ab554375c57b4, type: 2}
     targetCount: 4
-    exactTargets: []
+    exactTargets:
+    - {fileID: 11400000, guid: 3ae197dcd148c154fa27f25596763cf5, type: 2}
+    - {fileID: 11400000, guid: b18706271a72eea4ebef2c9a84a4d1e2, type: 2}
+    - {fileID: 11400000, guid: 44ede150132a2904aa7d765c462e112c, type: 2}
+    - {fileID: 11400000, guid: 3319dde719640cd41b074783322b18f6, type: 2}
   - category: {fileID: 11400000, guid: 3d267ae76d0aa9740a425e6c18ddaddc, type: 2}
     targetCount: 4
-    exactTargets: []
+    exactTargets:
+    - {fileID: 11400000, guid: 3e5411f809b90254781cbca3c49e00a5, type: 2}
+    - {fileID: 11400000, guid: 49e0fd70c678bf843a167d87d848847d, type: 2}
+    - {fileID: 11400000, guid: 4386997b637323044acc70e4a8aa5969, type: 2}
+    - {fileID: 11400000, guid: 21244dc7e16773a48923a834206779a1, type: 2}
   - category: {fileID: 11400000, guid: 7911afecd7c02fd42830c501ec1ccae8, type: 2}
     targetCount: 4
-    exactTargets: []
+    exactTargets:
+    - {fileID: 11400000, guid: 387b5d4470588a844b9b87d0d1c78fc3, type: 2}
+    - {fileID: 11400000, guid: 275898cd8ecdc074cab9f1de5d582036, type: 2}
+    - {fileID: 11400000, guid: 9c108942b9f2acf4f9f60c5c6c4f58ac, type: 2}
+    - {fileID: 11400000, guid: 8a8faa836a62c9248ad0bf9644204ecf, type: 2}
   - category: {fileID: 11400000, guid: 27e61f7bfe8b2fd4d923e8fcd8253d5f, type: 2}
     targetCount: 4
-    exactTargets: []
+    exactTargets:
+    - {fileID: 11400000, guid: 0ff5d96b8e19258419ca2074afca90c6, type: 2}
+    - {fileID: 11400000, guid: feb6180ac1a1ed043b113b7ebc3d0705, type: 2}
+    - {fileID: 11400000, guid: fc9870c7db9d05b42bec823e02f64d1f, type: 2}
+    - {fileID: 11400000, guid: 6cc95eeec767f494b862546f517060cb, type: 2}
   stickers:
   - instanceId: Campaign_03_000
     definition: {fileID: 11400000, guid: d11b9f7ee245b0b42bdea4b9c2c98612, type: 2}
-    position: {x: 308.48798, y: -257.06677}
+    position: {x: -75.65112, y: -164.84381}
     size: {x: 291.71475, y: 291.71475}
-    rotation: 21.518213
-    scale: 0.75
+    rotation: -5.956311
+    scale: 0.95
     sortingOrder: 18
     pileId: tray_2
     special:
@@ -129,10 +149,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_001
     definition: {fileID: 11400000, guid: a94fc31c15afa564493cacd54b387202, type: 2}
-    position: {x: 127.178215, y: 162.34787}
+    position: {x: 150.10135, y: 246.46794}
     size: {x: 289.1609, y: 289.1609}
-    rotation: 5.2852745
-    scale: 0.75
+    rotation: 4.358904
+    scale: 0.95
     sortingOrder: 16
     pileId: tray_1
     special:
@@ -143,10 +163,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_002
     definition: {fileID: 11400000, guid: 3b1d12873ecaf7c42a54442705be2437, type: 2}
-    position: {x: 161.94064, y: 188.89336}
-    size: {x: 407.47385, y: 407.47385}
+    position: {x: 175.12402, y: 214.98198}
+    size: {x: 397.2841, y: 397.2841}
     rotation: -0.5248895
-    scale: 0.75
+    scale: 0.95
     sortingOrder: 15
     pileId: tray_1
     special:
@@ -157,10 +177,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_003
     definition: {fileID: 11400000, guid: c7feeb28927580942bc0ddc40246b9dd, type: 2}
-    position: {x: -346.57642, y: -225.80212}
+    position: {x: -325.66348, y: -215.36185}
     size: {x: 327.3469, y: 327.3469}
     rotation: -3.6287386
-    scale: 0.75
+    scale: 0.95
     sortingOrder: 14
     pileId: tray_2
     special:
@@ -171,10 +191,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_004
     definition: {fileID: 11400000, guid: 3ae197dcd148c154fa27f25596763cf5, type: 2}
-    position: {x: -325.85492, y: 301.66647}
+    position: {x: -167.53937, y: 142.0951}
     size: {x: 277.1939, y: 277.1939}
-    rotation: 4.808003
-    scale: 0.75
+    rotation: -0.53043073
+    scale: 0.95
     sortingOrder: 20
     pileId: tray_0
     special:
@@ -185,10 +205,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_005
     definition: {fileID: 11400000, guid: b18706271a72eea4ebef2c9a84a4d1e2, type: 2}
-    position: {x: -142.12126, y: 144.83936}
+    position: {x: -170.68692, y: 171.46318}
     size: {x: 314.95978, y: 314.95978}
     rotation: 0.77077603
-    scale: 0.75
+    scale: 0.95
     sortingOrder: 9
     pileId: tray_0
     special:
@@ -199,10 +219,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_006
     definition: {fileID: 11400000, guid: 44ede150132a2904aa7d765c462e112c, type: 2}
-    position: {x: -222.81302, y: -225.80212}
+    position: {x: -177.38097, y: -162.30626}
     size: {x: 311.35446, y: 311.35446}
-    rotation: -1.21753
-    scale: 0.75
+    rotation: 8.487133
+    scale: 0.95
     sortingOrder: 17
     pileId: tray_2
     special:
@@ -213,10 +233,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_007
     definition: {fileID: 11400000, guid: 3319dde719640cd41b074783322b18f6, type: 2}
-    position: {x: -314.46658, y: 186.0543}
+    position: {x: -160.18942, y: 232.15213}
     size: {x: 280.34586, y: 280.34586}
-    rotation: -13.174695
-    scale: 0.75
+    rotation: 4.440033
+    scale: 0.95
     sortingOrder: 19
     pileId: tray_0
     special:
@@ -227,10 +247,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_008
     definition: {fileID: 11400000, guid: 3e5411f809b90254781cbca3c49e00a5, type: 2}
-    position: {x: -134.12233, y: -287.4959}
+    position: {x: -284.11182, y: -250.96712}
     size: {x: 290.50317, y: 290.50317}
-    rotation: -1.0193819
-    scale: 0.75
+    rotation: -3.7955873
+    scale: 0.95
     sortingOrder: 13
     pileId: tray_2
     special:
@@ -241,10 +261,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_009
     definition: {fileID: 11400000, guid: 49e0fd70c678bf843a167d87d848847d, type: 2}
-    position: {x: -12.976368, y: -254.94286}
+    position: {x: 77.38417, y: -219.5742}
     size: {x: 358.98016, y: 358.98016}
-    rotation: 1.8483175
-    scale: 0.75
+    rotation: 0.7348479
+    scale: 0.95
     sortingOrder: 11
     pileId: tray_2
     special:
@@ -255,10 +275,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_010
     definition: {fileID: 11400000, guid: 4386997b637323044acc70e4a8aa5969, type: 2}
-    position: {x: 315.43723, y: -249.89072}
+    position: {x: 286.22046, y: -220.89781}
     size: {x: 367.4355, y: 367.4355}
     rotation: 0.2233603
-    scale: 0.75
+    scale: 0.95
     sortingOrder: 12
     pileId: tray_2
     special:
@@ -269,10 +289,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_011
     definition: {fileID: 11400000, guid: 21244dc7e16773a48923a834206779a1, type: 2}
-    position: {x: -181.75424, y: 294.95117}
+    position: {x: -304.56595, y: 158.17668}
     size: {x: 251.01857, y: 251.01857}
-    rotation: 4.137015
-    scale: 0.75
+    rotation: 2.400649
+    scale: 0.95
     sortingOrder: 10
     pileId: tray_0
     special:
@@ -283,10 +303,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_012
     definition: {fileID: 11400000, guid: 387b5d4470588a844b9b87d0d1c78fc3, type: 2}
-    position: {x: -133.54706, y: 159.35211}
+    position: {x: -284.99805, y: 222.80788}
     size: {x: 338.91092, y: 338.91092}
-    rotation: -0.29283553
-    scale: 0.75
+    rotation: -5.2488875
+    scale: 0.95
     sortingOrder: 1
     pileId: tray_0
     special:
@@ -297,10 +317,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_013
     definition: {fileID: 11400000, guid: 275898cd8ecdc074cab9f1de5d582036, type: 2}
-    position: {x: 299.69125, y: 248.34355}
-    size: {x: 365.12598, y: 365.12598}
-    rotation: 9.251553
-    scale: 0.75
+    position: {x: 278.22592, y: 215}
+    size: {x: 362.0015, y: 362.0015}
+    rotation: 8.295277
+    scale: 0.95
     sortingOrder: 4
     pileId: tray_1
     special:
@@ -311,10 +331,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_014
     definition: {fileID: 11400000, guid: 9c108942b9f2acf4f9f60c5c6c4f58ac, type: 2}
-    position: {x: 310.88992, y: -146.37595}
+    position: {x: 280.46057, y: -160.66263}
     size: {x: 333.97748, y: 333.97748}
     rotation: 1.3793244
-    scale: 0.75
+    scale: 0.95
     sortingOrder: 8
     pileId: tray_2
     special:
@@ -325,10 +345,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_015
     definition: {fileID: 11400000, guid: 8a8faa836a62c9248ad0bf9644204ecf, type: 2}
-    position: {x: 311.07156, y: 163.16109}
+    position: {x: 280.69064, y: 186.07344}
     size: {x: 338.12195, y: 338.12195}
     rotation: 0.18500757
-    scale: 0.75
+    scale: 0.95
     sortingOrder: 6
     pileId: tray_1
     special:
@@ -339,10 +359,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_016
     definition: {fileID: 11400000, guid: 0ff5d96b8e19258419ca2074afca90c6, type: 2}
-    position: {x: -178.71338, y: -152.28845}
+    position: {x: -143.38321, y: -248.6249}
     size: {x: 306.04535, y: 306.04535}
-    rotation: 3.231758
-    scale: 0.75
+    rotation: 0.60630834
+    scale: 0.95
     sortingOrder: 2
     pileId: tray_2
     special:
@@ -353,10 +373,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_017
     definition: {fileID: 11400000, guid: feb6180ac1a1ed043b113b7ebc3d0705, type: 2}
-    position: {x: -341.8755, y: -155.47334}
+    position: {x: -319.70895, y: -172.40695}
     size: {x: 286.01956, y: 286.01956}
     rotation: 1.6183498
-    scale: 0.75
+    scale: 0.95
     sortingOrder: 3
     pileId: tray_2
     special:
@@ -367,10 +387,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_018
     definition: {fileID: 11400000, guid: fc9870c7db9d05b42bec823e02f64d1f, type: 2}
-    position: {x: 185.96013, y: -229.56345}
+    position: {x: 310.5519, y: -234.20946}
     size: {x: 270.15094, y: 270.15094}
-    rotation: 11.503527
-    scale: 0.75
+    rotation: -3.8692248
+    scale: 0.95
     sortingOrder: 7
     pileId: tray_2
     special:
@@ -381,10 +401,10 @@ MonoBehaviour:
       linkId: 
   - instanceId: Campaign_03_019
     definition: {fileID: 11400000, guid: 6cc95eeec767f494b862546f517060cb, type: 2}
-    position: {x: 148.79868, y: 272.24026}
+    position: {x: 165.49617, y: 199.0959}
     size: {x: 320.0561, y: 320.0561}
-    rotation: 3.0135443
-    scale: 0.75
+    rotation: -0.26989156
+    scale: 0.95
     sortingOrder: 5
     pileId: tray_1
     special:

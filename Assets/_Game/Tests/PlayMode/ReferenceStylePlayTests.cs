@@ -46,7 +46,8 @@ namespace StickyPeerSort.Tests
                 controller.LoadLevel(n); var level = controller.Session.Level;
                 Assert.AreEqual(level.piles.Count, controller.ui.board.GetComponentsInChildren<StickerTrayView>().Length);
                 foreach (var card in controller.ui.categoryViews.Values)
-                    Assert.AreEqual(4, card.targets.Length);
+                    for (int slot = 0; slot < 4; slot++)
+                        Assert.AreSame(level.objectives[card.categoryIndex].exactTargets[slot].targetSilhouette, card.targets[slot].sprite);
                 foreach (string id in level.solutionTrace)
                 {
                     int index = level.stickers.FindIndex(p => p.instanceId == id);
@@ -58,14 +59,14 @@ namespace StickyPeerSort.Tests
             }
             Assert.AreEqual(mainBefore, PlayerPrefs.GetString("StickyPeerSort.Save.v1", ""));
         }
-        [UnityTest] public IEnumerator LandingReplacesTheEmptySlotWithMatchingArtwork()
+        [UnityTest] public IEnumerator LandingReplacesTheSilhouetteWithMatchingArtwork()
         {
             var level = controller.Session.Level; int index = level.stickers.FindIndex(p => p.instanceId == level.solutionTrace[0]);
             var definition = level.stickers[index].definition;
-            Assert.AreEqual(.75f, controller.ui.stickerViews[index].Rect.localScale.x, .001f);
+            Assert.AreEqual(level.boardStickerSizeMultiplier, controller.ui.stickerViews[index].Rect.localScale.x, .001f);
             int category = level.objectives.FindIndex(o => o.category == definition.category);
-            Assert.IsEmpty(level.objectives[category].exactTargets);
-            int slot = controller.ui.categoryViews[category].FilledCount;
+            int slot = level.objectives[category].exactTargets.IndexOf(definition);
+            Assert.AreSame(definition.targetSilhouette, controller.ui.categoryViews[category].targets[slot].sprite);
             controller.Tap(index); yield return Finish();
             var target = controller.ui.categoryViews[category].targets[slot];
             Assert.AreSame(definition.ArtworkSprite, target.sprite); Assert.AreEqual(definition.tint, target.color);

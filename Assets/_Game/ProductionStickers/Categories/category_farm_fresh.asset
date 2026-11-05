@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.CategoryDefinition
   id: category_farm_fresh
   title: FARM FRESH
-  color: {r: 1, g: 0.65882355, b: 0.34509805, a: 1}
+  color: {r: 0.91, g: 0.25, b: 0.27, a: 1}

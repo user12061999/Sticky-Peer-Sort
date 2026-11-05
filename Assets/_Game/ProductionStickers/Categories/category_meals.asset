@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.CategoryDefinition
   id: category_meals
   title: MEALS
-  color: {r: 1, g: 0.65882355, b: 0.34509805, a: 1}
+  color: {r: 0.96, g: 0.72, b: 0.1, a: 1}

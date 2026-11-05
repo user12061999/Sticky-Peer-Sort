@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.CategoryDefinition
   id: category_sweets
   title: SWEETS
-  color: {r: 1, g: 0.65882355, b: 0.34509805, a: 1}
+  color: {r: 0.3, g: 0.69, b: 0.25, a: 1}
