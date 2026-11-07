@@ -11,7 +11,8 @@ The same selector drives direct collection, transfers from the waiting area, des
 With **Drag To Peel** enabled on GameBalanceConfig (default):
 
 1. Press an exposed, legal sticker anywhere on it. A press within **Touch Slop** (28 board units) of a playable sticker also picks it, unless it lands on another playable sticker. A press made while input is busy (for example a sheet change) starts peeling with the same drag once input is free. Its destination highlights, and an isolated visual ghost appears. The logical sticker remains on the board.
-2. Drag in any direction. The first movement outside the dead zone establishes the peel direction. Progress is the projected distance along that direction, scaled to the sticker's visible size.
+2. The intended gesture is **drag from edge**: grab the sticker at its edge, even just outside it, and drag across it. The flap lifts at the grabbed point and peels towards the far side; the full peel needs about 70% of the distance across. A press near the centre still peels in the first drag direction. The tutorial hand and hints demonstrate the edge grab.
+3. Drag in any direction. The first movement outside the dead zone establishes the peel direction. Progress is the projected distance along that direction, scaled to the sticker's visible size.
 3. Drag back towards the starting point to reverse the peel. Perpendicular movement does not silently change direction or increase progress.
 4. Release before the complete peel to animate back to the board. No target, waiting slot, undo step, reward, mystery reveal or cover is committed by this cancellation.
 5. Reach the full distance to commit exactly once. The already folded ghost hands off to the existing flight and reverse-peel landing. It goes to the chosen sheet, or to the waiting area if there is no matching active target. The flight does not replay the initial peel.

@@ -106,7 +106,7 @@ namespace StickyPeerSort
             var cardInner = UIFactory.Panel("Tutorial speech card", outerRim.transform, new Vector2(918, 244), Vector2.zero, new Color(0.08f, 0.12f, 0.23f, 0.98f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
 
             string title = lesson == TutorialLesson.Peel ? "PEEL & MATCH" : lesson == TutorialLesson.Mystery ? "MYSTERY STICKER" : "UNLOCK WITH A KEY";
-            string body = lesson == TutorialLesson.Peel ? "Hold and drag a bright sticker to peel it.\nIts category sheet glows to show where it goes.\nRelease early to stick it back."
+            string body = lesson == TutorialLesson.Peel ? "Grab a bright sticker by its edge and drag across it to peel.\nIts category sheet glows to show where it goes.\nRelease early to stick it back."
                 : lesson == TutorialLesson.Mystery ? "Peel away the sticker covering the ?.\nIts hidden picture will be revealed."
                 : special.unlockCondition == UnlockCondition.CategoryCompleted ? "Complete the sheet with the key.\nIts key unlocks the chained stickers."
                 : "Remove the required sticker first\nto release these chains.";
@@ -156,8 +156,8 @@ namespace StickyPeerSort
         Vector3 Point()
         {
             if (keyTarget != null) return keyTarget.position;
-            // Spec: peeling starts at the sticker's edge, so the hand demonstrates from a grabbable rim point.
-            if (actionView != null && controller.balance.requireEdgeStart &&
+            // Partner gesture: the hand grabs the sticker's edge and drags across it.
+            if (actionView != null &&
                 BoardGeometry.TryEdgePoint(session, ActionStickerIndex, controller.balance.peelEdgeBand, out var edge, out var direction))
             {
                 outward = ((Vector2)root.InverseTransformVector(ui.board.TransformVector(direction))).normalized;
@@ -195,7 +195,7 @@ namespace StickyPeerSort
             bool drag = ActiveLesson == TutorialLesson.Peel || ActiveLesson == TutorialLesson.Mystery && actionView != null;
             float f = Mathf.Clamp01((t % 2.1f - .35f) / 1.1f);
             float travel = drag ? Mathf.SmoothStep(0, 1, f) * 160 : Mathf.Sin(t * 4) * 8;
-            hand.anchoredPosition = (Vector2)point + new Vector2(33, -38) + (drag ? outward * travel : new Vector2(0, travel));
+            hand.anchoredPosition = (Vector2)point + new Vector2(33, -38) + (drag ? -outward * travel : new Vector2(0, travel));
             hand.localScale = Vector3.one * (1 - Mathf.Sin(f * Mathf.PI) * .08f);
         }
         float CardY(float preferred)

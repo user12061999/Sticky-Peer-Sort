@@ -129,6 +129,20 @@ namespace StickyPeerSort.Tests
             Assert.AreEqual(controller.ui.stickerViews[index].gameObject,hits[0].gameObject,"Press selected the wrong object");
             ExecuteEvents.Execute(hits[0].gameObject,e,ExecuteEvents.pointerDownHandler); return e;
         }
+        [UnityTest] public IEnumerator GrabbingJustOutsideTheEdgeAndDraggingAcrossPeelsFromThatEdge()
+        {
+            LoadFixture(); yield return null;
+            var view=controller.ui.stickerViews[0]; var center=controller.Session.Stickers[0].position; var edge=center;
+            while(BoardGeometry.Contains(controller.Session.Stickers[0],edge+Vector2.left)) edge+=Vector2.left;
+            var grab=edge+Vector2.left*10;
+            Assert.AreEqual(-1,BoardGeometry.Hit(controller.Session,grab),"The grab starts outside the artwork");
+            var e=Press(0,grab); Assert.IsTrue(view.DragPeel.IsPeeling);
+            Drag(view,e,center); Assert.Greater(view.DragPeel.Amount,.3f,"Dragging to the middle is well into the peel");
+            Assert.Less(view.DragPeel.Amount,1);
+            Assert.AreEqual(180,Mathf.Abs(Mathf.DeltaAngle(0,view.DragPeel.DirectionDegrees)),1,"The flap lifts on the grabbed left edge");
+            Drag(view,e,center+(center-grab)); yield return Finish();
+            Assert.AreEqual(StickerLocation.Collected,controller.Session.Stickers[0].location);
+        }
         [UnityTest] public IEnumerator ADragFromTheMiddleOfAStickerPeelsIt()
         {
             LoadFixture(); yield return null;

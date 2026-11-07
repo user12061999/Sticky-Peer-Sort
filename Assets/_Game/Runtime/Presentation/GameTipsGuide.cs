@@ -109,7 +109,8 @@ namespace StickyPeerSort
             Vector2 edge, direction;
             BoardGeometry.TryEdgePoint(session, hintIndex, controller.balance.peelEdgeBand, out edge, out direction);
             Vector2 start = hintRoot.InverseTransformPoint(ui.board.TransformPoint(edge));
-            hintOutward = ((Vector2)hintRoot.InverseTransformVector(ui.board.TransformVector(direction))).normalized;
+            // The demonstration grabs the edge and drags across the sticker, towards its centre.
+            hintOutward = -((Vector2)hintRoot.InverseTransformVector(ui.board.TransformVector(direction))).normalized;
             float t = Time.unscaledTime - hintStarted;
             float f = Mathf.Clamp01((t % 1.6f - .25f) / .9f), travel = Mathf.SmoothStep(0, 1, f) * 170;
             hintHand.anchoredPosition = start + new Vector2(33, -38) + hintOutward * travel;
