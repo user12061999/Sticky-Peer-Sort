@@ -22,6 +22,7 @@ namespace StickyPeerSort
         public GameplayUITheme theme;
         public TextMeshProUGUI undoCount, hintCount, extraCount, shuffleCount;
         public Image albumFill, modalIcon;
+        public Image modalRibbon;   // GUI Pro title ribbon behind the popup title; swapped to the red ribbon for failures
         public Image trayPanel;
         public StickerView stickerPrefab;
         public GameObject cardPrefab, slotPrefab;
@@ -150,6 +151,11 @@ namespace StickyPeerSort
             {
                 modalIcon.sprite = title.Contains("COMPLETE") ? theme.starIcon : title.Contains("FULL") || title.Contains("OVERFLOW") || title.Contains("LEFT") ? theme.failIcon : theme.settingsIcon;
                 modalIcon.preserveAspect = true;
+            }
+            if (theme != null && modalRibbon != null && theme.titleRibbon != null)
+            {
+                bool failure = title.Contains("FULL") || title.Contains("OVERFLOW") || title.Contains("LEFT");
+                modalRibbon.sprite = failure && theme.failRibbon != null ? theme.failRibbon : theme.titleRibbon;
             }
             primary.onClick.RemoveAllListeners(); secondary.onClick.RemoveAllListeners();
             primary.GetComponentInChildren<TextMeshProUGUI>().text = a; secondary.GetComponentInChildren<TextMeshProUGUI>().text = b;
@@ -303,7 +309,26 @@ namespace StickyPeerSort
                     if (def.showLabel) UIFactory.Text("Target label", view.targets[t].transform, def.displayName, 17, targetSize * .95f, Vector2.zero, theme != null ? theme.muted : UIFactory.Ink);
                 }
             }
+            if (theme != null && theme.HasSkin) SkinCard(card, categoryColor);
             categoryViews.Add(index, view); return view;
+        }
+        // GUI Pro-SuperCasual look: black-outlined category frame, cream paper inset, outlined header tab and progress pill.
+        void SkinCard(RectTransform card, Color color)
+        {
+            UISkin.Apply(card.GetComponent<Image>(), theme.outlinePanel, color);
+            // The colored frame itself is the header band; the paper sits under it, its corners concentric with the frame.
+            const float inset = 11, header = 66;
+            var paper = card.Find("Card paper") as RectTransform;
+            if (paper != null)
+            {
+                paper.sizeDelta = new Vector2(card.sizeDelta.x - inset * 2, card.sizeDelta.y - header - inset);
+                paper.anchoredPosition = new Vector2(0, -(header - inset) * .5f);
+                var paperImage = UISkin.Apply(paper.GetComponent<Image>(), theme.innerPanel != null ? theme.innerPanel : theme.roundedPanel, theme.paper);
+                UISkin.Concentric(card.GetComponent<Image>(), paperImage, inset);
+            }
+            var ribbon = card.Find("Category ribbon"); if (ribbon != null) ribbon.GetComponent<Image>().enabled = false;
+            var badge = card.Find("Progress badge"); if (badge != null) UISkin.Apply(badge.GetComponent<Image>(), theme.outlinePanel, color);
+            var glare = card.Find("Header highlight"); if (glare != null) glare.gameObject.SetActive(false);
         }
         public void RemoveCategory(int index)
         {
@@ -322,7 +347,8 @@ namespace StickyPeerSort
             for (int i = 0; i < bufferSlots.Count; i++)
             {
                 float gap = theme != null && theme.referenceComposition ? 24 : 12;
-                bufferSlots[i].sizeDelta = new Vector2(width - gap, theme != null && theme.referenceComposition ? width - gap : 124);
+                float side = theme != null && theme.HasSkin ? Mathf.Min(width - gap, 132) : width - gap;   // GUI Pro skin: slots sit inside the 164 px tray with a margin
+                bufferSlots[i].sizeDelta = new Vector2(side, theme != null && theme.referenceComposition ? side : 124);
                 bufferSlots[i].anchoredPosition = new Vector2((i - (count - 1) * .5f) * width, 0);
                 if (theme != null)
                 {

@@ -34,6 +34,20 @@ MonoBehaviour:
   shuffleIcon: {fileID: 21300000, guid: ea91f02a0f42c4a999205804eaef008e, type: 3}
   keyIcon: {fileID: 21300000, guid: ba5483ff7f88c4c3ca881c0f56955f28, type: 3}
   lockIcon: {fileID: 21300000, guid: 1aeb9cf6ff7504198a4aed0e5932f5e2, type: 3}
+  outlinePanel: {fileID: 21300000, guid: 1278b9c3423f9478e872117807249e44, type: 3}
+  innerPanel: {fileID: 21300000, guid: 02d16dbf98f24414b9a2de2e2eb827c4, type: 3}
+  titleRibbon: {fileID: 21300000, guid: cb5f2999723b840f1899e5e01cbba819, type: 3}
+  failRibbon: {fileID: 21300000, guid: 2495840c8944f4f05b1d8aa2a409ad7c, type: 3}
+  badgeBurst: {fileID: 21300000, guid: 77ef9d3b0b12a4a4d954bfce8b142152, type: 3}
+  counterBadge: {fileID: 21300000, guid: fe62dbba2502e4766a8150113c51bef0, type: 3}
+  primaryButton: {fileID: 21300000, guid: 33800ea627b19439fa59fbd2667c8eda, type: 3}
+  secondaryButton: {fileID: 21300000, guid: 6cdadcc1a39954748abf7d3d4351e1e6, type: 3}
+  smallButton: {fileID: 21300000, guid: f696c5de5bea644b3ba78434e4939f8d, type: 3}
+  boosterButtons:
+  - {fileID: 21300000, guid: 769ff630d5d724abbafe6154aa0ef82f, type: 3}
+  - {fileID: 21300000, guid: f696c5de5bea644b3ba78434e4939f8d, type: 3}
+  - {fileID: 21300000, guid: 2d734a17e89824d30b1f014a9c1f5f60, type: 3}
+  - {fileID: 21300000, guid: 6ccda849190f74a499129a46716088b3, type: 3}
   blockedStickerTint: {r: 0.6, g: 0.6, b: 0.6, a: 1}
   mysteryQuestionSize: 0.78
   referenceComposition: 1

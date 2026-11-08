@@ -241,8 +241,6 @@ namespace StickyPeerSort.Editor
             var edge = Panel("Inset edge", rim.transform, Vector2.zero, Vector2.zero, Hex("8B4B11")); Stretch(edge.rectTransform, 7);
             var well = Panel("Recessed well", rim.transform, Vector2.zero, Vector2.zero, theme.trayWell); Stretch(well.rectTransform, 11);
             var shadow = rim.gameObject.AddComponent<Shadow>(); shadow.effectColor = new Color(.3f, .13f, .02f, .28f); shadow.effectDistance = new Vector2(0, -6);
-            var highlight = Panel("Top bevel", rim.transform, Vector2.zero, Vector2.zero, new Color(1, .96f, .77f, .6f));
-            highlight.rectTransform.anchorMin = new Vector2(.12f, .94f); highlight.rectTransform.anchorMax = new Vector2(.88f, .96f); highlight.rectTransform.offsetMin = highlight.rectTransform.offsetMax = Vector2.zero;
             SavePrefab(rim.gameObject, "BufferSlot"); UnityEngine.Object.DestroyImmediate(rim.gameObject);
             return AssetDatabase.LoadAssetAtPath<GameObject>(Root + "/Prefabs/BufferSlot.prefab");
         }

@@ -201,6 +201,7 @@ namespace StickyPeerSort
                 toastText = UIFactory.Text("Tip text", card.transform, "", 34, new Vector2(840, 130), Vector2.zero, Color.white);
                 toastText.alignment = TextAlignmentOptions.Center; toastText.fontStyle = FontStyles.Bold;
                 if (ui.theme != null) ui.theme.ApplyTextStyle(toastText);
+                if (ui.theme != null && ui.theme.HasSkin) { UISkin.Apply(rim, ui.theme.outlinePanel, new Color(.11f, .15f, .27f, .97f)); card.enabled = false; }
             }
             toastRoot.SetAsLastSibling();
             toastText.text = message; toastUntil = Time.unscaledTime + seconds;
