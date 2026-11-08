@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ReferenceTheme
   m_EditorClassIdentifier: StickyPeerSort.Runtime::StickyPeerSort.GameplayUITheme
   font: {fileID: 11400000, guid: d2d1aeb954629457095df6b4603312c4, type: 2}
+  tutorialHand: {fileID: 21300000, guid: 0ce91605645244f97a15a497292967af, type: 3}
   headingTextMaterial: {fileID: 2100000, guid: 50f15b0ffb4ed464599b5777512e7f7f, type: 2}
   lightTextMaterial: {fileID: 2100000, guid: b42c08e55e14f45439cfe830f70ff66f, type: 2}
   darkTextMaterial: {fileID: 2100000, guid: 2d9b0be76e49bcd4188616177cb38f20, type: 2}
@@ -33,6 +34,8 @@ MonoBehaviour:
   shuffleIcon: {fileID: 21300000, guid: ea91f02a0f42c4a999205804eaef008e, type: 3}
   keyIcon: {fileID: 21300000, guid: ba5483ff7f88c4c3ca881c0f56955f28, type: 3}
   lockIcon: {fileID: 21300000, guid: 1aeb9cf6ff7504198a4aed0e5932f5e2, type: 3}
+  blockedStickerTint: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  mysteryQuestionSize: 0.78
   referenceComposition: 1
   woodSurface: {fileID: 21300000, guid: 67068cbb7dd2b1e40972e66d0e1f4136, type: 3}
   coveredOpacity: 0.68
@@ -46,4 +49,3 @@ MonoBehaviour:
   trayRim: {r: 1, g: 0.8156863, b: 0.47843137, a: 1}
   trayWell: {r: 0.7764706, g: 0.5058824, b: 0.18039216, a: 1}
   emptySlot: {r: 0.9372549, g: 0.8, b: 0.5137255, a: 1}
-  tutorialHand: {fileID: 21300000, guid: 8afa2e7b2f8164e8ba506c859202879d, type: 3}

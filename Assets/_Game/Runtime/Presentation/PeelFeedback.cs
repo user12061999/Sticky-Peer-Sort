@@ -9,9 +9,13 @@ namespace StickyPeerSort
         public static event Action<int> StandaloneTap;   // tap (no peel progress) on an available sticker
         public static event Action<int> DragStarted;
         public static event Action<int> PeelCompleted;
+        public static event Action<int> Hinted;          // Hint booster chose this sticker
+        public static event Action<string> Message;      // short player-facing notice (booster failed, etc.)
         public static void Tap(int index) { StandaloneTap?.Invoke(index); }
         public static void Started(int index) { DragStarted?.Invoke(index); }
         public static void Completed(int index) { PeelCompleted?.Invoke(index); }
+        public static void Hint(int index) { Hinted?.Invoke(index); }
+        public static void Say(string message) { Message?.Invoke(message); }
     }
 
     // Spec "Peeling and feedback" 3–5: fine peel ticks + small haptic pulses that follow the finger's progress and speed,

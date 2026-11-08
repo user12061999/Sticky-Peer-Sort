@@ -109,7 +109,7 @@ namespace StickyPeerSort.Tests
         {
             public bool HasModal { get; private set; }
             public void Render() { } public void SynchronizeAfterMoves() { } public void HideModal() { HasModal = false; }
-            public void RejectSticker(int index) { } public void HighlightSticker(int index) { } public void SetInstruction(string message) { }
+            public void RejectSticker(int index) { } public void HighlightSticker(int index) { } public void SetInstruction(string message) { } public void Notify(string message) { }
             public void ShowModal(string title, string body, string primary, Action primaryAction, string secondary, Action secondaryAction) { HasModal = true; }
         }
     }

@@ -72,6 +72,7 @@ namespace StickyPeerSort
         public void Render() { RenderFrom(context); }
         public void HideModal() { modal.SetActive(false); }
         public void SetInstruction(string message) { if (instruction != null) instruction.text = message; }
+        public void Notify(string message) { SetInstruction(message); PeelSignals.Say(message); }
         public void SynchronizeAfterMoves() { CompactBuffer(context.Session); UpdateHud(context); UpdateTrayInstruction(); RefreshCoveredStickers(); }
         void UpdateTrayInstruction()
         {
@@ -139,6 +140,7 @@ namespace StickyPeerSort
             foreach (var entry in stickerViews) entry.Value.Bind(context, input, entry.Key);
             if (!stickerViews.TryGetValue(index, out var view)) return;
             view.image.color = Color.white; SetInstruction("Try the highlighted " + context.Session.Stickers[index].placement.definition.displayName + " sticker.");
+            PeelSignals.Hint(index);
         }
         public void ShowModal(string title, string body, string a, Action actionA, string b, Action actionB)
         {

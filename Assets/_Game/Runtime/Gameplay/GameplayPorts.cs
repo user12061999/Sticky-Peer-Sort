@@ -28,7 +28,7 @@ namespace StickyPeerSort
     {
         bool HasModal { get; }
         void Render(); void SynchronizeAfterMoves(); void HideModal();
-        void RejectSticker(int index); void HighlightSticker(int index); void SetInstruction(string message);
+        void RejectSticker(int index); void HighlightSticker(int index); void SetInstruction(string message); void Notify(string message);
         void ShowModal(string title, string body, string primary, Action primaryAction, string secondary, Action secondaryAction);
     }
     public sealed class MovePresentation

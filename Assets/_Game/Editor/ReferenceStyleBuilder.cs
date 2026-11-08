@@ -38,7 +38,7 @@ namespace StickyPeerSort.Editor
                 theme.name = "ReferenceTheme"; AssetDatabase.CreateAsset(theme, Root + "/ReferenceTheme.asset");
             }
             theme.referenceComposition = true; theme.background = Hex("E6A141"); theme.paper = Hex("FFF1CC");
-            if (theme.tutorialHand == null) theme.tutorialHand = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Layer Lab/GUI Pro-SuperCasual/ResourcesData/Sprites/Components/Icon_TutorialHand/256/tutorial_hand_1.png");
+            if (theme.tutorialHand == null) theme.tutorialHand = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Layer Lab/GUI Pro-SuperCasual/ResourcesData/Sprites/Components/Icon_TutorialHand/256/tutorial_hand_2.png");
             theme.trayRim = Hex("FFD07A"); theme.trayWell = Hex("C6812E"); theme.coveredOpacity = .68f; theme.coveredSoftness = .7f;
             theme.woodSurface = GenerateWood(); EditorUtility.SetDirty(theme);
             var definitions = LoadArtwork(); var levels = new LevelDefinition[4];

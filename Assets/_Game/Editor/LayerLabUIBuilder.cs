@@ -48,7 +48,7 @@ namespace StickyPeerSort.Editor
             }
             if (theme.keyIcon == null) theme.keyIcon = Sprite("Icon_ItemIcons/128/ItemIcon_Key_Gold.png");
             if (theme.lockIcon == null) theme.lockIcon = Sprite("IconMisc/Icon_Lock02.png");
-            if (theme.tutorialHand == null) theme.tutorialHand = Sprite("Icon_TutorialHand/256/tutorial_hand_1.png");
+            if (theme.tutorialHand == null) theme.tutorialHand = Sprite("Icon_TutorialHand/256/tutorial_hand_2.png");
             EditorUtility.SetDirty(theme); WarmTextMaterials.Ensure(theme);
             return theme;
         }

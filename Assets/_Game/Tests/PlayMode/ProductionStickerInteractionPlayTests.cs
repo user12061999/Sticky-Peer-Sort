@@ -249,5 +249,24 @@ namespace StickyPeerSort.Tests
             Assert.IsTrue(controller.Session.Legal(4)); Assert.AreSame(level.stickers[4].definition.ArtworkSprite,locked.image.sprite);
             yield return Collect(4); Assert.AreEqual(1,controller.ui.categoryViews[1].FilledCount);
         }
+        [UnityTest] public IEnumerator HintBoosterShowsAHandOnTheChosenStickerUntilADragStarts()
+        {
+            balance.boostersEnabled = true; var tips = controller.GetComponent<GameTipsGuide>(); tips.enabled = true;
+            LoadFixture(); yield return null;
+            controller.ui.Notify("No verified path found. Undo or restart to try another order.");
+            yield return new WaitForSecondsRealtime(.1f);
+            Assert.IsTrue(tips.ToastVisible, "Booster failure message must be visible without the legacy instruction label.");
+            StringAssert.Contains("No verified path", tips.ToastMessage);
+            controller.Save.Data.hint = 2; controller.Hint(); yield return null;
+            int index = tips.BoosterHintIndex;
+            Assert.GreaterOrEqual(index, 0, "Hint booster showed nothing.");
+            Assert.IsTrue(controller.Session.Legal(index)); Assert.AreEqual(1, controller.Save.Data.hint);
+            var pointer = GameObject.Find("Holding area pointer");
+            Assert.IsNotNull(pointer); Assert.IsNotNull(pointer.transform.Find("Hand"));
+            yield return new WaitForSecondsRealtime(4f);
+            Assert.AreEqual(index, tips.BoosterHintIndex, "Hint must stay until the player acts.");
+            PeelSignals.Started(index); yield return null;
+            Assert.AreEqual(-1, tips.BoosterHintIndex);
+        }
     }
 }

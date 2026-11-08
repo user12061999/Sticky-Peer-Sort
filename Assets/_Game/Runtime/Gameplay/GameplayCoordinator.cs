@@ -70,13 +70,13 @@ namespace StickyPeerSort
         {
             if (!Available) return; int index;
             if (boosters.Hint(Session, context.Balance, out index)) screen.HighlightSticker(index);
-            else screen.SetInstruction("No verified path found. Undo or restart to try another order.");
+            else screen.Notify("No verified path found. Undo or restart to try another order.");
         }
         public void Shuffle()
         {
             if (!Available) return; GameSession shuffled;
             if (boosters.Shuffle(Session, context.Balance, out shuffled)) { context.Session = shuffled; screen.Render(); }
-            else screen.SetInstruction("No safe shuffle found. Try a hint.");
+            else screen.Notify("No safe shuffle found. Try a hint.");
         }
         void OnPresentationDrained()
         {

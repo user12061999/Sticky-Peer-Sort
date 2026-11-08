@@ -147,7 +147,7 @@ namespace StickyPeerSort
 
             if (ui.theme != null && ui.theme.tutorialHand != null)
             {
-                var pointer = UIFactory.Panel("Tutorial drag hand", root, Vector2.one * 120, Vector2.zero, Color.white, ui.theme.tutorialHand);
+                var pointer = UIFactory.Panel("Tutorial drag hand", root, Vector2.one * 180, Vector2.zero, Color.white, ui.theme.tutorialHand);
                 pointer.preserveAspect = true; hand = pointer.rectTransform;
             }
             SetVisible(true); return true;
@@ -195,7 +195,7 @@ namespace StickyPeerSort
             bool drag = ActiveLesson == TutorialLesson.Peel || ActiveLesson == TutorialLesson.Mystery && actionView != null;
             float f = Mathf.Clamp01((t % 2.1f - .35f) / 1.1f);
             float travel = drag ? Mathf.SmoothStep(0, 1, f) * 160 : Mathf.Sin(t * 4) * 8;
-            hand.anchoredPosition = (Vector2)point + new Vector2(33, -38) + (drag ? -outward * travel : new Vector2(0, travel));
+            hand.anchoredPosition = (Vector2)point + new Vector2(50, -57) + (drag ? -outward * travel : new Vector2(0, travel));
             hand.localScale = Vector3.one * (1 - Mathf.Sin(f * Mathf.PI) * .08f);
         }
         float CardY(float preferred)

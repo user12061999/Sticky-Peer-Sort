@@ -27,6 +27,8 @@ namespace StickyPeerSort
         readonly HashSet<int> waited = new HashSet<int>();
         readonly Vector3[] corners = new Vector3[4];
         public bool DragGuideVisible => hintRoot != null && hintRoot.gameObject.activeSelf && !hintPersistent;
+        public int BoosterHintIndex => hintRoot != null && boosterHint ? hintIndex : -1;
+        bool boosterHint;
         public bool ToastVisible => toastRoot != null && toastGroup.alpha > .01f;
         public string ToastMessage => toastText != null ? toastText.text : "";
 
@@ -36,11 +38,13 @@ namespace StickyPeerSort
             controller = owner; save = progress; ui = owner.ui; tutorial = owner.GetComponent<GameTutorialGuide>();
             owner.PresentationEventFinished += OnEvent;
             PeelSignals.StandaloneTap += OnTap; PeelSignals.DragStarted += OnDragStarted; PeelSignals.PeelCompleted += OnPeelCompleted;
+            PeelSignals.Hinted += OnHintBooster; PeelSignals.Message += OnMessage;
         }
         void Unsubscribe()
         {
             if (controller != null) controller.PresentationEventFinished -= OnEvent;
             PeelSignals.StandaloneTap -= OnTap; PeelSignals.DragStarted -= OnDragStarted; PeelSignals.PeelCompleted -= OnPeelCompleted;
+            PeelSignals.Hinted -= OnHintBooster; PeelSignals.Message -= OnMessage;
         }
         void OnDestroy() { Unsubscribe(); }
 
@@ -85,12 +89,22 @@ namespace StickyPeerSort
         }
         void OnDragStarted(int index) { pendingTap = -1; if (hintRoot != null) HideHint(); }
         void OnPeelCompleted(int index) { firstPeelDone = true; pendingTap = -1; HideHint(); }
+        // Hint booster: the hand keeps demonstrating the drag-from-edge on the chosen sticker until the player starts a drag.
+        void OnHintBooster(int index)
+        {
+            if (controller == null) return;
+            session = controller.Session; pendingTap = -1;
+            ShowHint(index, true); boosterHint = hintRoot != null;
+            if (boosterHint) Toast("Peel this sticker next!", 2.2f);
+        }
+        void OnMessage(string message) { if (controller != null) Toast(message, 2.8f); }
 
         void ShowHint(int index, bool persistent)
         {
             HideHint();
             if (ui.theme == null || ui.theme.tutorialHand == null || !ui.stickerViews.ContainsKey(index)) return;
             hintIndex = index; hintPersistent = persistent; hintStarted = Time.unscaledTime;
+            boosterHint = false;
             hintRoot = UIFactory.Rect(persistent ? "Holding area pointer" : "Recurring drag guide", ui.effects.parent, new Vector2(1080, 1920), Vector2.zero);
             hintRoot.SetAsLastSibling();
             var group = hintRoot.gameObject.AddComponent<CanvasGroup>(); group.blocksRaycasts = false; group.interactable = false;
@@ -100,7 +114,7 @@ namespace StickyPeerSort
                 var dot = UIFactory.Panel("Trail " + i, hintRoot, Vector2.one * (26 - i * 3), Vector2.zero, new Color(1, 1, 1, .0f), ui.theme.roundedPanel != null ? ui.theme.roundedPanel : ui.panelSprite);
                 dot.raycastTarget = false; trail.Add(dot);
             }
-            var pointer = UIFactory.Panel("Hand", hintRoot, Vector2.one * 120, Vector2.zero, Color.white, ui.theme.tutorialHand);
+            var pointer = UIFactory.Panel("Hand", hintRoot, Vector2.one * 180, Vector2.zero, Color.white, ui.theme.tutorialHand);
             pointer.preserveAspect = true; pointer.raycastTarget = false; hintHand = pointer.rectTransform;
             AnimateHint();
         }
@@ -113,7 +127,7 @@ namespace StickyPeerSort
             hintOutward = -((Vector2)hintRoot.InverseTransformVector(ui.board.TransformVector(direction))).normalized;
             float t = Time.unscaledTime - hintStarted;
             float f = Mathf.Clamp01((t % 1.6f - .25f) / .9f), travel = Mathf.SmoothStep(0, 1, f) * 170;
-            hintHand.anchoredPosition = start + new Vector2(33, -38) + hintOutward * travel;
+            hintHand.anchoredPosition = start + new Vector2(50, -57) + hintOutward * travel;
             hintHand.localScale = Vector3.one * (1 - Mathf.Sin(f * Mathf.PI) * .08f);
             for (int i = 0; i < trail.Count; i++)
             {
@@ -125,7 +139,7 @@ namespace StickyPeerSort
         void HideHint()
         {
             if (hintRoot != null) { hintRoot.gameObject.SetActive(false); Destroy(hintRoot.gameObject); }
-            hintRoot = hintHand = null; trail.Clear(); hintIndex = -1; hintPersistent = false;
+            hintRoot = hintHand = null; trail.Clear(); hintIndex = -1; hintPersistent = false; boosterHint = false;
         }
 
         // Step 4: point at a peelable sticker whose sheet is not on screen, so its trip to the holding area can be shown.
