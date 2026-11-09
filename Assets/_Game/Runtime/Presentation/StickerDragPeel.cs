@@ -16,7 +16,10 @@ namespace StickyPeerSort
         IStickerPeelInput input;
         GameSession startedSession;
         int index, pointer;
-        bool held, pressPending;
+        bool held, pressPending, straining, destinationPending;
+        float rawAmount, strainTime;
+        // While a collection sheet is replaced the flap stops here, just short of detaching, until the new card is in.
+        const float SheetChangeHold = .82f;
         PeelDragProgress progress;
         Image ghost, destination;
         DestinationPreviewGlow destinationGlow;
@@ -57,7 +60,7 @@ namespace StickyPeerSort
             progress = balance.peelFromGrabSide && TryGrabEdge(sticker, start, size, out var inward, out var across)
                 ? new PeelDragProgress(start, Mathf.Clamp(across, Mathf.Min(size.x, size.y) * .5f, Mathf.Max(size.x, size.y)) * balance.grabPeelDistanceRatio, balance.grabPeelDeadZone, inward)
                 : new PeelDragProgress(start, Mathf.Min(size.x, size.y) * balance.dragPeelDistanceRatio, balance.dragPeelDeadZone);
-            CompletedAmount = Amount = 0; DirectionDegrees = 0;
+            CompletedAmount = Amount = rawAmount = 0; DirectionDegrees = 0; straining = false;
             ghost = UIFactory.Panel("Interactive peel " + index, screen.effects, StickerPeelLayer.SizeInOverlay(view.Rect, screen.effects), Vector2.zero, view.image.color, view.image.sprite);
             ghost.preserveAspect = view.image.preserveAspect;
             StickerPeelLayer.Prepare(ghost, screen);
@@ -71,7 +74,7 @@ namespace StickyPeerSort
             sourceGroup = view.GetComponent<CanvasGroup>();
             if (sourceGroup == null) sourceGroup = view.gameObject.AddComponent<CanvasGroup>();
             sourceAlpha = sourceGroup.alpha; sourceGroup.alpha = 0;
-            HighlightDestination();
+            HighlightDestination(); destinationPending = destination == null;
             screen.PeelFeel?.Begin(); PeelSignals.Started(index);
         }
         void UpdateDirection()
@@ -107,22 +110,39 @@ namespace StickyPeerSort
             if (!held) return;
             if (context.Session != startedSession || startedSession.State != GameplayState.Playing) { CancelImmediately(); return; }
             Vector2 point; if (!Point(e, out point)) return;
+            rawAmount = progress.Update(point);
+            UpdateDirection(); Apply();
+        }
+        // During a sheet change the commit must wait for the new card, so the flap holds at SheetChangeHold and strains
+        // (wobble + one light pulse). Once the sheet is in, a flap still held far enough detaches on its own.
+        void Apply()
+        {
             float before = Amount;
-            Amount = progress.Update(point);
+            bool waiting = input.CommitBlocked;
+            Amount = waiting ? Mathf.Min(rawAmount, SheetChangeHold) : rawAmount;
+            SetStraining(waiting && rawAmount >= SheetChangeHold);
             screen.PeelFeel?.Progress(before, Amount);
-            UpdateDirection(); page.Set(Amount);
+            page.Set(Amount);
             if (backing != null) backing.SetPeel(Amount);
             if (Amount < 1) return;
-            held = false; CompletedAmount = 1; RestoreDestination();
+            held = false; SetStraining(false); CompletedAmount = 1; RestoreDestination();
             if (!input.CommitPeel(index)) { CompletedAmount = 0; Reattach(); }
             else { screen.PeelFeel?.Completed(); PeelSignals.Completed(index); }
         }
+        void SetStraining(bool on)
+        {
+            if (on == straining) return;
+            straining = on; strainTime = 0;
+            if (on && context.Balance.haptics) GameHaptics.Pulse(12, 70, true);
+            if (!on && ghost != null) ghost.transform.rotation = view.Rect.rotation;
+        }
+        public bool IsHeldBySheetChange => straining;
         public void OnPointerUp(PointerEventData e) { pressPending = false; if (held && e.pointerId == pointer) Reattach(); }
         public void OnEndDrag(PointerEventData e) { pressPending = false; if (held && e.pointerId == pointer) Reattach(); }
         public void OnCancel(BaseEventData e) { if (held) Reattach(); }
         void Reattach()
         {
-            held = false; RestoreDestination();
+            held = false; SetStraining(false); RestoreDestination();
             // The board is free the moment the finger lifts; the flap only finishes settling visually.
             input?.CancelPeel(index);
             screen.PeelFeel?.Reattached(Amount);
@@ -158,7 +178,7 @@ namespace StickyPeerSort
         public void CancelImmediately()
         {
             if (returning != null) { StopCoroutine(returning); returning = null; }
-            held = pressPending = false; input?.CancelPeel(index); RestoreDestination();
+            held = pressPending = straining = destinationPending = false; rawAmount = 0; input?.CancelPeel(index); RestoreDestination();
             if (backing != null) { backing.Discard(); backing = null; }
             if (sourceGroup != null) sourceGroup.alpha = sourceAlpha;
             if (ghost != null) { ghost.gameObject.SetActive(false); Destroy(ghost.gameObject); }
@@ -166,7 +186,17 @@ namespace StickyPeerSort
         }
         void Update()
         {
-            if ((held || returning != null) && (context.Session != startedSession || startedSession.State != GameplayState.Playing)) CancelImmediately();
+            if ((held || returning != null) && (context.Session != startedSession || startedSession.State != GameplayState.Playing)) { CancelImmediately(); return; }
+            if (!held) return;
+            if (straining)
+            {
+                strainTime += Time.unscaledDeltaTime;
+                if (ghost != null) ghost.transform.rotation = view.Rect.rotation * Quaternion.Euler(0, 0, Mathf.Sin(strainTime * 38) * 2.2f);
+            }
+            if (input.CommitBlocked) return;
+            // The new sheet is in: show where the sticker will land, then release a flap that was holding at the stop.
+            if (destinationPending) { destinationPending = false; HighlightDestination(); }
+            if (Amount < rawAmount) Apply();
         }
         void OnApplicationPause(bool paused) { if (paused) CancelImmediately(); }
         void OnApplicationFocus(bool focused) { if (!focused) CancelImmediately(); }

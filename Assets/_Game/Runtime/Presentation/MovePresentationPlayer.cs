@@ -12,6 +12,8 @@ namespace StickyPeerSort
         readonly ICoroutineRunner runner;
         int activePresentations, issuedMove, nextCommit;
         bool transitionPending;
+        readonly HashSet<int> heldStickers = new HashSet<int>();
+        public bool HoldsSticker(int index) { return heldStickers.Contains(index); }
         public bool IsBusy { get; private set; }
         public bool BlocksInput => transitionPending;
         public PuzzleEventKind? Phase { get; private set; }
@@ -23,12 +25,13 @@ namespace StickyPeerSort
         public void Reset()
         {
             runner.CancelAll(); activePresentations = issuedMove = nextCommit = 0;
-            IsBusy = transitionPending = false; Phase = null; if (ui != null && ui.effects != null) UIFactory.Clear(ui.effects);
+            IsBusy = transitionPending = false; Phase = null; heldStickers.Clear(); if (ui != null && ui.effects != null) UIFactory.Clear(ui.effects);
             if (ui != null) ui.Celebration?.ResetEffects();
         }
         public void Enqueue(MovePresentation move)
         {
             transitionPending |= move.BlocksInput; int ticket = issuedMove++;
+            foreach (var e in move.Events) if (e.kind == PuzzleEventKind.Unlocked || e.kind == PuzzleEventKind.Revealed) heldStickers.Add(e.sticker);
             activePresentations++; IsBusy = true; runner.Run(Present(move.Events, move.Snapshot, ticket));
         }
         IEnumerator Present(IReadOnlyList<PuzzleEvent> events, GameSession resolved, int ticket)
@@ -166,12 +169,13 @@ namespace StickyPeerSort
                     if (context.Balance.celebrations) ui.Celebration?.Land(ui.buffer, false);
                     yield return new WaitForSecondsRealtime(.24f); // Let the final occupied slot show before the lose modal.
                 }
+                if (e.kind == PuzzleEventKind.Unlocked || e.kind == PuzzleEventKind.Revealed) heldStickers.Remove(e.sticker);
                 EventFinished?.Invoke(e);
             }
             while (ticket != nextCommit) yield return null;
             nextCommit++; activePresentations--;
             if (activePresentations > 0) yield break;
-            Phase = null; IsBusy = false; transitionPending = false;
+            Phase = null; IsBusy = false; transitionPending = false; heldStickers.Clear();
             Drained?.Invoke();
         }
         IEnumerator TransitionCard(CategoryCardPresentation card, bool entering)

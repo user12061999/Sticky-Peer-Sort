@@ -10,6 +10,8 @@ namespace StickyPeerSort
         bool TryBeginPeel(int index);
         bool CommitPeel(int index);
         void CancelPeel(int index);
+        // True while a move cannot be committed yet (a collection sheet is being replaced); peeling may continue meanwhile.
+        bool CommitBlocked { get; }
     }
     public interface IGameplayReadModel
     {
@@ -48,6 +50,8 @@ namespace StickyPeerSort
         event Action<PuzzleEvent> EventFinished;
         event Action Drained;
         void Enqueue(MovePresentation move); void Reset();
+        // A sticker whose unlock/reveal is still animating keeps its old look, so it cannot be grabbed yet.
+        bool HoldsSticker(int index);
     }
     public interface ICoroutineRunner { void Run(IEnumerator routine); void CancelAll(); }
     public sealed class GameplayContext : IGameplayReadModel

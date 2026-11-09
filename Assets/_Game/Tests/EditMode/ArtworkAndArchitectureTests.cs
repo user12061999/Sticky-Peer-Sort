@@ -103,6 +103,7 @@ namespace StickyPeerSort.Tests
             public event Action Drained;
             public void Enqueue(MovePresentation move) { moves.Add(move); IsBusy = true; BlocksInput |= move.BlocksInput; }
             public void Reset() { IsBusy = BlocksInput = false; moves.Clear(); }
+            public bool HoldsSticker(int index) { return false; }
             public void Drain() { IsBusy = BlocksInput = false; if (moves.Count > 0) foreach (var e in moves[moves.Count - 1].Events) EventFinished?.Invoke(e); Drained?.Invoke(); }
         }
         sealed class RecordingScreen : IGameplayScreen

@@ -670,6 +670,40 @@ namespace StickyPeerSort.Tests
             controller.PresentationEventFinished += observe; yield return WaitForAnimation(); controller.PresentationEventFinished -= observe;
             CollectionAssert.AreEqual(new[] { 0, 1, 2, 3 }, committed); Assert.IsTrue(controller.ui.categoryViews.ContainsKey(1)); Assert.IsTrue(controller.CanTap);
         }
+        [UnityTest] public IEnumerator PeelingStaysResponsiveDuringSheetChangeAndDetachesOnceTheNewCardIsIn()
+        {
+            LoadFlatLevel(0); fast.categoryFilledHold = .25f; fast.categoryExitDuration = fast.categoryEnterDuration = .25f;
+            foreach (int index in new[] { 0, 1, 2 }) { controller.Tap(index); yield return WaitForAnimation(); }
+            controller.Tap(3); Assert.IsFalse(controller.CanTap, "Commits still wait for the sheet change.");
+            int next = -1;
+            for (int i = 4; i < controller.Session.Stickers.Count && next < 0; i++) if (controller.Session.Legal(i) && controller.ui.stickerViews.ContainsKey(i)) next = i;
+            Assert.GreaterOrEqual(next, 0);
+            var view = controller.ui.stickerViews[next]; var peel = view.DragPeel; Vector2 start;
+            var pointer = BeginPeel(next, out start); Assert.IsTrue(peel.IsPeeling, "Peeling starts while the sheet is replaced.");
+            MovePeel(view, pointer, start, 1.4f);
+            Assert.IsTrue(peel.IsPeeling, "The flap holds short of detaching."); Assert.IsTrue(peel.IsHeldBySheetChange);
+            Assert.Less(peel.Amount, 1); Assert.Greater(peel.Amount, .5f);
+            Assert.IsTrue(controller.Session.Legal(next), "Nothing is committed while the sheet changes.");
+            float deadline = Time.realtimeSinceStartup + 5;
+            while (controller.Session.Legal(next) && Time.realtimeSinceStartup < deadline) yield return null;
+            Assert.IsFalse(controller.Session.Legal(next), "Once the new card is in, the held flap detaches by itself.");
+            Assert.IsTrue(controller.ui.categoryViews.ContainsKey(1));
+            yield return WaitForAnimation(); Assert.IsTrue(controller.CanTap);
+        }
+        [UnityTest] public IEnumerator ReleasingAHeldFlapDuringSheetChangeReattaches()
+        {
+            LoadFlatLevel(0); fast.categoryFilledHold = .4f; fast.categoryExitDuration = fast.categoryEnterDuration = .3f;
+            foreach (int index in new[] { 0, 1, 2 }) { controller.Tap(index); yield return WaitForAnimation(); }
+            controller.Tap(3);
+            int next = -1;
+            for (int i = 4; i < controller.Session.Stickers.Count && next < 0; i++) if (controller.Session.Legal(i) && controller.ui.stickerViews.ContainsKey(i)) next = i;
+            var view = controller.ui.stickerViews[next]; Vector2 start;
+            var pointer = BeginPeel(next, out start); MovePeel(view, pointer, start, 1.4f);
+            ExecuteEvents.Execute(view.gameObject, pointer, ExecuteEvents.pointerUpHandler);
+            Assert.IsTrue(view.DragPeel.IsReturning); Assert.IsFalse(view.DragPeel.IsHeldBySheetChange);
+            yield return WaitForAnimation(); yield return null;
+            Assert.IsTrue(controller.Session.Legal(next)); Assert.IsTrue(controller.ui.stickerViews.ContainsKey(next)); Assert.IsTrue(controller.CanTap);
+        }
         [UnityTest] public IEnumerator LegacyInputModuleIsActiveAndOldInputApiWorks()
         {
             yield return null;

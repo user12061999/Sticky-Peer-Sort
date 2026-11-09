@@ -17,6 +17,7 @@ namespace StickyPeerSort
         GameSession Session => context.Session;
         public bool CanTap => peeling < 0 && Session != null && !presenter.BlocksInput && !screen.HasModal && Session.State == GameplayState.Playing;
         bool Available => CanTap && !presenter.IsBusy;
+        public bool CommitBlocked => presenter.BlocksInput;
         public GameplayCoordinator(GameplayContext context, ILevelRepository levels, IGameSessionFactory sessions,
             IProgressStore progress, IGameplayBoosters boosters, IMovePresenter presenter, IGameplayScreen screen)
         {
@@ -51,9 +52,11 @@ namespace StickyPeerSort
             presenter.Enqueue(new MovePresentation(Session));
         }
         public void TapAt(Vector2 point) { if (CanTap) Tap(BoardGeometry.Hit(Session, point)); }
+        // A sheet change only delays the commit (CommitBlocked): the peel itself starts at once and holds short of detaching.
         public bool TryBeginPeel(int index)
         {
-            if (!CanTap || !Session.Legal(index)) return false;
+            if (peeling >= 0 || Session == null || screen.HasModal || Session.State != GameplayState.Playing) return false;
+            if (!Session.Legal(index) || presenter.HoldsSticker(index)) return false;
             peeling = index; return true;
         }
         public bool CommitPeel(int index)
