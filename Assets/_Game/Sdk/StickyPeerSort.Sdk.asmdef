@@ -1,0 +1,17 @@
+{
+    "name": "StickyPeerSort.Sdk",
+    "rootNamespace": "StickyPeerSort.Sdk",
+    "references": [
+        "MaxSdk.Scripts",
+        "AdjustSdk.Scripts"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
