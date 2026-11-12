@@ -72,7 +72,7 @@ namespace StickyPeerSort.Editor
                     var level = UnityEngine.Object.Instantiate(templates[r.layout]); staged.Add(level);
                     level.name = "Campaign_" + (i + 1).ToString("00"); level.levelNumber = i + 1;
                     level.generatedStickerCount = r.count; level.layoutSeed = 61000 + i * 101;
-                    level.activeCategoryCount = r.active; level.bufferCapacity = 5; level.failOnOverflow = true;
+                    level.activeCategoryCount = r.active; level.bufferCapacity = 4; level.failOnOverflow = true;   // GUI v01 mockup: 4 holding slots (owner 11/11)
                     // Fewer stickers can be shown larger, as in the benchmark.
                     level.boardStickerSizeMultiplier = r.count <= 16 ? 1.1f : r.count <= 24 ? .95f : r.count <= 32 ? .85f : .75f;
                     level.coinReward = r.difficulty == LevelDifficulty.Easy ? 25 : r.difficulty == LevelDifficulty.Normal ? 35 : 50;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: StickyPeerSort.Data::StickyPeerSort.LevelDefinition
   levelNumber: 12
   activeCategoryCount: 2
-  bufferCapacity: 5
+  bufferCapacity: 4
   failOnOverflow: 1
   coinReward: 50
   difficulty: Hard

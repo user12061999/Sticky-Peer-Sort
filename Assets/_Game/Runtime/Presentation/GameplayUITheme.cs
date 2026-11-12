@@ -47,6 +47,29 @@ namespace StickyPeerSort
         public Color trayRim = new Color(1, .8f, .38f);
         public Color trayWell = new Color(.74f, .41f, .12f);
         public Color emptySlot = new Color(.94f, .75f, .43f);
+        [Header("Scrapbook GUI v01 (partner mockup). On = new layout; off = previous skin")]
+        public bool scrapbook;
+        public Sprite sheetBase, headerBase, pillBase, holdingSlot, stickerSurface;
+        public Sprite popupCoinIcon, popupSettingsIcon, popupUndoIcon, popupSlotIcon;   // GUI v01 icons reused on popups
+        public Material silhouetteMaterial;   // solid fill from sticker alpha: empty collection slots
+        public Color scrapbookInk = new Color32(0x16, 0x22, 0x41, 255);
+        public Color silhouetteColor = new Color32(197, 199, 188, 255);
+        public Color scrapbookRim = new Color32(0xE6, 0xD1, 0xAB, 255);    // card outer rim, sampled from the mockup
+        public Color scrapbookPill = new Color32(0xFB, 0xEB, 0xCB, 255);   // cream count pill
+        public bool Scrapbook => scrapbook && sheetBase != null;
+        // Header tint: the four colors given by the GUI handoff, otherwise the project color softened to the same pastel band.
+        public Color HeaderTint(string title, Color source)
+        {
+            switch ((title ?? "").Trim().ToUpperInvariant())
+            {
+                case "FOOD": return new Color32(0xFB, 0x7C, 0x69, 255);
+                case "ANIMALS": return new Color32(0x46, 0xB0, 0xB8, 255);
+                case "VEHICLES": return new Color32(0xEA, 0xC4, 0x6C, 255);
+                case "PLANTS": return new Color32(0x9D, 0xC2, 0x8F, 255);
+            }
+            Color.RGBToHSV(source, out var h, out var s, out var v);
+            return Color.HSVToRGB(h, Mathf.Clamp(s, .45f, .65f), Mathf.Clamp(v, .72f, .9f));
+        }
         public Color CategoryColor(Color source)
         {
             Color.RGBToHSV(source, out var h, out var s, out var v);

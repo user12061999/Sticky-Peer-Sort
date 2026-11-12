@@ -18,7 +18,7 @@ namespace StickyPeerSort
         public void Fill(int slot, int sticker, StickerDefinition definition)
         {
             stickers[slot] = sticker;
-            var target = targets[slot]; UIFactory.Clear(target.transform);
+            var target = targets[slot]; UIFactory.Clear(target.transform); target.material = null;   // drop the scrapbook silhouette fill
             StickerVisuals.Apply(target, definition);
             if (definition.showLabel) UIFactory.Text("Sticker label", target.transform, definition.displayName, 17, target.rectTransform.sizeDelta * .95f, Vector2.zero);
             counter.text = FilledCount + " / " + stickers.Length;

@@ -38,10 +38,14 @@ namespace StickyPeerSort
         IStickerInput input;
         IGameplayCommands commands;
         public bool HasModal => modal.activeSelf;
+        bool Scrap => theme != null && theme.Scrapbook;
+        Color SlotColor => Scrap ? Color.white : theme != null ? theme.trayRim : Color.white;
+        Color OverflowColor => Scrap ? new Color(1, .55f, .5f) : new Color(1, .23f, .12f);
         public void Initialize(IGameplayReadModel context, IStickerInput input) { this.context = context; this.input = input; ApplyReadability(); }
         // Game feel: the 24 px booster captions and 17 px RESTART were unreadable on phones; enlarge them in place.
         void ApplyReadability()
         {
+            if (Scrap) return;   // the scrapbook layout sets mockup text sizes in the scene
             foreach (var button in new[] { undo, hint, extra, shuffle })
             {
                 if (button == null) continue;
@@ -115,12 +119,12 @@ namespace StickyPeerSort
             {
                 t += Time.unscaledDeltaTime; int free = context.Session.Buffer.Count;
                 if (free < bufferSlots.Count && bufferSlots[free] != null && bufferSlots[free].TryGetComponent<Image>(out var slot))
-                    slot.color = Color.Lerp(theme != null ? theme.trayRim : Color.white, new Color(1, .25f, .15f), .5f + .5f * Mathf.Sin(t * 9));
+                    slot.color = Color.Lerp(SlotColor, new Color(1, .25f, .15f), .5f + .5f * Mathf.Sin(t * 9));
                 yield return null;
             }
             for (int i = 0; i < bufferSlots.Count; i++)
                 if (bufferSlots[i] != null && bufferSlots[i].TryGetComponent<Image>(out var slot) && context != null && context.Session != null)
-                    slot.color = i >= context.Session.Capacity ? new Color(1, .23f, .12f) : theme != null ? theme.trayRim : slot.color;
+                    slot.color = i >= context.Session.Capacity ? OverflowColor : theme != null ? SlotColor : slot.color;
             warning = null;
         }
         public void RefreshSticker(int index) { if (stickerViews.TryGetValue(index, out var view)) view.Bind(context, input, index); }
@@ -143,10 +147,22 @@ namespace StickyPeerSort
             view.image.color = Color.white; SetInstruction("Try the highlighted " + context.Session.Stickers[index].placement.definition.displayName + " sticker.");
             PeelSignals.Hint(index);
         }
+        // The dim layer lives inside the 1080-wide portrait layout; stretch it over the whole canvas (tall screens, notches) so no band stays undimmed.
+        static void CoverWholeScreen(RectTransform rect)
+        {
+            var canvas = rect.GetComponentInParent<Canvas>(); var parent = rect.parent as RectTransform;
+            if (canvas == null || parent == null) return;
+            var root = (RectTransform)canvas.rootCanvas.transform; var corners = new Vector3[4]; root.GetWorldCorners(corners);
+            Vector2 min = parent.InverseTransformPoint(corners[0]), max = parent.InverseTransformPoint(corners[2]);
+            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(.5f, .5f);
+            var centre = (min + max) * .5f - parent.rect.center;
+            rect.sizeDelta = new Vector2(Mathf.Abs(max.x - min.x), Mathf.Abs(max.y - min.y)) + Vector2.one * 4;
+            rect.anchoredPosition = centre;
+        }
         public void ShowModal(string title, string body, string a, Action actionA, string b, Action actionB)
         {
             StickerBackingPaper.Clear(effects);
-            modal.SetActive(true); modalTitle.text = title; modalBody.text = body;
+            modal.SetActive(true); CoverWholeScreen((RectTransform)modal.transform); modalTitle.text = title; modalBody.text = body;
             if (theme != null && modalIcon != null)
             {
                 modalIcon.sprite = title.Contains("COMPLETE") ? theme.starIcon : title.Contains("FULL") || title.Contains("OVERFLOW") || title.Contains("LEFT") ? theme.failIcon : theme.settingsIcon;
@@ -160,6 +176,77 @@ namespace StickyPeerSort
             primary.onClick.RemoveAllListeners(); secondary.onClick.RemoveAllListeners();
             primary.GetComponentInChildren<TextMeshProUGUI>().text = a; secondary.GetComponentInChildren<TextMeshProUGUI>().text = b;
             primary.onClick.AddListener(() => actionA()); secondary.onClick.AddListener(() => actionB());
+            if (Scrap) SkinScrapbookModal(title, a, b);
+        }
+        // Scrapbook GUI v01 has no popup art, so popups are built from the same parts as the board: a cream collection sheet
+        // with the tan rim, a tinted header band (mint = win, coral = fail, blue = pause/restart), ink text and pill buttons.
+        // TRAY FULL shows the actual full waiting row in mini holding slots.
+        void SkinScrapbookModal(string title, string a, string b)
+        {
+            bool win = title.Contains("COMPLETE"), fail = title.Contains("FULL") || title.Contains("OVERFLOW") || title.Contains("LEFT");
+            Color mint = new Color32(0x4F, 0xC7, 0x9A, 255), coral = new Color32(0xF9, 0x7F, 0x6B, 255), blue = new Color32(0x5B, 0x9B, 0xE6, 255);
+            var dim = modal.GetComponent<Image>(); if (dim != null) dim.color = new Color(.08f, .12f, .24f, .66f);
+            var frame = modalTitle.transform.parent as RectTransform; const float W = 840, H = 820;
+            var frameImage = frame.GetComponent<Image>(); frame.sizeDelta = new Vector2(W, H);
+            if (frameImage != null) { Sliced(frameImage, theme.sheetBase, theme.scrapbookRim, 1f); SoftShadow(frameImage, 16, .22f); }
+            var paper = frame.Find("Modal paper") as RectTransform;
+            if (paper != null) { paper.sizeDelta = new Vector2(W - 28, H - 28); paper.anchoredPosition = Vector2.zero; var sheet = paper.GetComponent<Image>(); sheet.enabled = true; Sliced(sheet, theme.sheetBase, Color.white, 1.05f); }
+            var halo = frame.Find("Badge halo"); if (halo != null) halo.gameObject.SetActive(false);
+            if (modalRibbon != null)
+            {
+                Sliced(modalRibbon, theme.headerBase, win ? mint : fail ? coral : blue, 1.05f);
+                modalRibbon.rectTransform.sizeDelta = new Vector2(680, 128); modalRibbon.rectTransform.anchoredPosition = new Vector2(0, H * .5f - 6);
+                SoftShadow(modalRibbon, 8, .24f);
+            }
+            ScrapText(modalTitle, Color.white, 60, new Vector2(620, 104), new Vector2(0, H * .5f - 6)); modalTitle.enableWordWrapping = false;
+            ScrapText(modalBody, theme.scrapbookInk, 40, new Vector2(720, 150), new Vector2(0, 40));
+            var row = frame.Find("Scrapbook full tray") as RectTransform;
+            if (row == null) { row = new GameObject("Scrapbook full tray", typeof(RectTransform)).GetComponent<RectTransform>(); row.SetParent(frame, false); }
+            UIFactory.Clear(row); row.anchoredPosition = new Vector2(0, 222); row.sizeDelta = new Vector2(W - 80, 170);
+            var s = context != null ? context.Session : null;
+            bool showRow = title.Contains("FULL") && s != null && s.Buffer.Count > 0;
+            row.gameObject.SetActive(showRow);
+            if (showRow)
+            {
+                int count = Mathf.Max(s.Capacity, s.Buffer.Count); float pitch = Mathf.Min(170, (W - 80) / count), side = pitch - 14;
+                for (int i = 0; i < count; i++)
+                {
+                    var slot = UIFactory.Panel("Mini slot " + i, row, new Vector2(side, side * 205f / 211f), new Vector2((i - (count - 1) * .5f) * pitch, 0), Color.white, theme.holdingSlot);
+                    Sliced(slot, theme.holdingSlot, Color.white, 1.82f * 211f / side); SoftShadow(slot, 5, .14f);
+                    if (i >= s.Buffer.Count) continue;
+                    var def = s.Stickers[s.Buffer[i]].placement.definition;
+                    var art = UIFactory.Panel("Sticker", slot.transform, slot.rectTransform.sizeDelta * .82f, Vector2.zero, def.tint, def.ArtworkSprite);
+                    StickerVisuals.Apply(art, def);
+                }
+            }
+            if (modalIcon != null)
+            {
+                modalIcon.gameObject.SetActive(!showRow);
+                modalIcon.sprite = win ? theme.popupCoinIcon : title.Contains("UNDO") ? theme.popupUndoIcon : title.Contains("SLOT") ? theme.popupSlotIcon : theme.popupSettingsIcon;
+                if (modalIcon.sprite == null) modalIcon.sprite = theme.settingsIcon;
+                modalIcon.color = Color.white; modalIcon.preserveAspect = true;
+                modalIcon.rectTransform.sizeDelta = Vector2.one * 190; modalIcon.rectTransform.anchoredPosition = new Vector2(0, 222);
+            }
+            ScrapPill(primary, a == "UNDO" ? blue : a == "RESTART" ? coral : mint, Color.white, new Vector2(560, 124), new Vector2(0, -158), 48);
+            bool boosterB = b == "UNDO" || b == "+ SLOT";
+            ScrapPill(secondary, b == "UNDO" ? blue : b == "+ SLOT" ? mint : theme.scrapbookPill, boosterB ? Color.white : theme.scrapbookInk, new Vector2(500, 106), new Vector2(0, -296), 42);
+            if (sound != null) sound.gameObject.SetActive(title == "PAUSED");   // sound switch belongs to the pause menu only
+            if (sound != null && title == "PAUSED") ScrapPill(sound, theme.scrapbookPill, theme.scrapbookInk, new Vector2(210, 74), new Vector2(W * .5f - 145, H * .5f - 120), 30);
+        }
+        void ScrapText(TMP_Text text, Color color, float size, Vector2 box, Vector2 position)
+        {
+            if (text == null) return;
+            if (theme.font != null) { text.font = theme.font; text.fontSharedMaterial = theme.font.material; }
+            text.color = color; text.fontStyle = FontStyles.Bold; text.enableAutoSizing = true; text.fontSizeMax = size; text.fontSizeMin = size * .55f;
+            text.alignment = TextAlignmentOptions.Center; text.rectTransform.sizeDelta = box; text.rectTransform.anchoredPosition = position;
+        }
+        void ScrapPill(Button button, Color fill, Color ink, Vector2 size, Vector2 position, float fontSize)
+        {
+            var rect = (RectTransform)button.transform; rect.sizeDelta = size; rect.anchoredPosition = position;
+            var image = button.GetComponent<Image>();
+            if (image != null) { Sliced(image, theme.pillBase, fill, 2.6f * 66f / size.y); SoftShadow(image, 7, .2f); }
+            var text = button.GetComponentInChildren<TextMeshProUGUI>();
+            if (text != null) ScrapText(text, ink, fontSize, size - new Vector2(40, 16), Vector2.zero);
         }
         public void ApplySafeArea()
         {
@@ -167,6 +254,10 @@ namespace StickyPeerSort
             var area = Screen.safeArea; safeArea.anchorMin = area.min / new Vector2(Screen.width, Screen.height); safeArea.anchorMax = area.max / new Vector2(Screen.width, Screen.height);
             safeArea.offsetMin = safeArea.offsetMax = Vector2.zero; Canvas.ForceUpdateCanvases();
             if (safeArea.childCount > 0) safeArea.GetChild(0).localScale = Vector3.one * Mathf.Max(.01f, Mathf.Min(safeArea.rect.width / 1080f, safeArea.rect.height / 1920f));
+            // Scrapbook layout: on screens taller than 9:16 the layout grows to the full height, so the top-anchored HUD/cards/slots
+            // hug the top and the bottom-anchored boosters hug the bottom (as in the mockup) instead of floating with empty bands.
+            if (Scrap && safeArea.childCount > 0 && safeArea.GetChild(0) is RectTransform layout)
+                layout.sizeDelta = new Vector2(1080, Mathf.Max(1920, safeArea.rect.height / Mathf.Max(.01f, layout.localScale.y)));
         }
         public void UpdateHud(IGameplayReadModel owner)
         {
@@ -197,7 +288,7 @@ namespace StickyPeerSort
             UIFactory.Clear(categories); UIFactory.Clear(buffer); UIFactory.Clear(board);
             stickerViews.Clear(); categoryViews.Clear(); waitingViews.Clear(); bufferSlots.Clear(); vacantLanes.Clear();
             laneCount = Mathf.Min(s.Level.activeCategoryCount, s.Categories.Count);
-            cardWidth = theme != null && laneCount == 1 ? 620 : Mathf.Min(theme != null ? 310 : 300, 940f / Mathf.Max(1, laneCount));
+            cardWidth = Scrap ? Mathf.Min(434, 1040f / Mathf.Max(1, laneCount)) : theme != null && laneCount == 1 ? 620 : Mathf.Min(theme != null ? 310 : 300, 940f / Mathf.Max(1, laneCount));
             int lane = 0;
             for (int c = 0; c < s.Categories.Count; c++) if (s.Categories[c].active)
             {
@@ -217,13 +308,15 @@ namespace StickyPeerSort
         }
         void DrawPiles(LevelDefinition level)
         {
-            int number = 0;
+            if (Scrap) FitScrapbookBoard(level);
+            int number = 0, pileIndex = -1;
             foreach (var pile in level.piles)
             {
+                pileIndex++;
                 if (trayPrefab != null)
                 {
                     var compartment = Instantiate(trayPrefab, board);
-                    compartment.Bind(pile); continue;
+                    compartment.Bind(pile); if (Scrap) SkinScrapbookTray(compartment, level, pileIndex); continue;
                 }
                 number++;
                 var tray = UIFactory.Panel("Pile tray " + pile.id, board, pile.size, pile.position, theme != null ? theme.ink : pile.color, theme != null ? theme.trayFrame : panelSprite);
@@ -240,8 +333,118 @@ namespace StickyPeerSort
                 UIFactory.Text("Pile label TMP", tray.transform, theme != null ? "PILE " + number.ToString("00") : "STICKER PILE", 16, new Vector2(250, 24), new Vector2(0, -pile.size.y * .5f + 23), theme != null ? theme.muted : new Color(.4f, .34f, .29f, .7f));
             }
         }
+        // Scrapbook GUI v01: the paper strip replaces the wooden tray layers (children hidden, prefab untouched).
+        // Scrapbook GUI v01 (owner 11/11: keep the authored arrangement, spread over the board, big stickers): the whole board is
+        // scaled uniformly to fill the space between the holding slots and the boosters, so overlaps (and the cover rule) stay exact.
+        float scrapbookBoardScale = .8f;
+        void FitScrapbookBoard(LevelDefinition level)
+        {
+            var layout = safeArea != null && safeArea.childCount > 0 ? safeArea.GetChild(0) as RectTransform : null;
+            float half = layout != null ? Mathf.Max(960, layout.sizeDelta.y * .5f) : 960;
+            float top = half - (960 - 148) - 105 - 12, bottom = -half + (960 - 786) + 94 + 12;   // slot row bottom, booster top
+            var min = new Vector2(float.MaxValue, float.MaxValue); var max = -min;
+            foreach (var pile in level.piles) { min = Vector2.Min(min, pile.position - pile.size * .5f); max = Vector2.Max(max, pile.position + pile.size * .5f); }
+            foreach (var p in level.stickers)
+            {
+                var extent = p.size * Mathf.Max(p.scale, level.boardStickerSizeMultiplier) * .45f;   // art sits inside a padded rect
+                min = Vector2.Min(min, p.position - extent); max = Vector2.Max(max, p.position + extent);
+            }
+            var size = max - min; if (size.x <= 0 || size.y <= 0) return;
+            float s = Mathf.Min((top - bottom) / size.y, 1060f / size.x, 1.3f);
+            scrapbookBoardScale = s; board.localScale = Vector3.one * s;
+            var centre = (min + max) * .5f;
+            board.anchoredPosition = new Vector2(-centre.x * s, (top + bottom) * .5f - centre.y * s);
+        }
+        // Papers reach the board width (1060 px on screen) on each side with no neighbouring pile; only the paper grows.
+        float ScrapbookPaperEdge => 530f / Mathf.Max(.01f, scrapbookBoardScale);
+        void SkinScrapbookTray(StickerTrayView tray, LevelDefinition level, int index)
+        {
+            if (tray.TryGetComponent<Image>(out var paper))
+            { paper.sprite = theme.stickerSurface; paper.color = Color.white; paper.type = Image.Type.Sliced; paper.fillCenter = true; paper.pixelsPerUnitMultiplier = 1; SoftShadow(paper, 9, .14f); }
+            foreach (Transform layer in tray.transform) layer.gameObject.SetActive(false);
+            var pile = level.piles[index]; if (Mathf.Abs(pile.rotation) > .01f) return;
+            bool freeLeft = true, freeRight = true;
+            for (int i = 0; i < level.piles.Count; i++)
+            {
+                var other = level.piles[i];
+                if (i == index || Mathf.Abs(other.position.y - pile.position.y) >= (other.size.y + pile.size.y) * .5f) continue;
+                if (other.position.x < pile.position.x) freeLeft = false; else if (other.position.x > pile.position.x) freeRight = false;
+            }
+            float left = pile.position.x - pile.size.x * .5f, right = pile.position.x + pile.size.x * .5f;
+            if (freeLeft) left = Mathf.Min(left, -ScrapbookPaperEdge);
+            if (freeRight) right = Mathf.Max(right, ScrapbookPaperEdge);
+            var rect = (RectTransform)tray.transform;
+            rect.sizeDelta = new Vector2(right - left, pile.size.y); rect.anchoredPosition = new Vector2((left + right) * .5f, pile.position.y);
+        }
+        // Two stacked uGUI shadows read as one soft drop shadow (no blur shader needed). Idempotent.
+        static void SoftShadow(Graphic graphic, float distance, float alpha)
+        {
+            foreach (var old in graphic.GetComponents<Shadow>()) if (old.GetType() == typeof(Shadow)) DestroyImmediate(old);
+            var near = graphic.gameObject.AddComponent<Shadow>(); near.effectColor = new Color(.24f, .32f, .42f, alpha); near.effectDistance = new Vector2(0, -distance * .45f);
+            var far = graphic.gameObject.AddComponent<Shadow>(); far.effectColor = new Color(.24f, .32f, .42f, alpha * .55f); far.effectDistance = new Vector2(0, -distance);
+        }
+        static Image Sliced(Image image, Sprite sprite, Color color, float multiplier)
+        {
+            image.sprite = sprite; image.color = color; image.type = Image.Type.Sliced; image.fillCenter = true;
+            image.pixelsPerUnitMultiplier = multiplier; return image;
+        }
+        // Scrapbook GUI v01 collection sheet, laid out at the mockup's 415x497 and scaled down when 3+ cards share the row:
+        // sheet base, tinted header, grey alpha silhouettes, count pill with dark text.
+        CategoryCardPresentation CreateScrapbookCategory(int index, int lane, GameSession s)
+        {
+            var cat = s.Categories[index]; var category = cat.objective.category;
+            float k = Mathf.Min(1, (cardWidth - 19) / 415f);
+            var tint = theme.HeaderTint(category.title, category.color);
+            var card = Instantiate(cardPrefab, categories).GetComponent<RectTransform>();
+            card.name = "Category " + category.title; card.sizeDelta = new Vector2(415, 497) * k;
+            card.anchoredPosition = new Vector2((lane - (laneCount - 1) * .5f) * cardWidth, 0);
+            // Mockup look: tan outer rim, cream sheet inset 6 px, soft drop shadow; header and count pill cast a shadow on the sheet.
+            var rim = Sliced(card.GetComponent<Image>(), theme.sheetBase, theme.scrapbookRim, 1.234f / k);
+            SoftShadow(rim, 10 * k, .16f);
+            Sliced(UIFactory.Panel("Card sheet", card, (new Vector2(415, 497) - new Vector2(12, 12)) * k, Vector2.zero, Color.white, theme.sheetBase), theme.sheetBase, Color.white, 1.3f / k).raycastTarget = false;
+            var header = Sliced(UIFactory.Panel("Category header", card, new Vector2(385, 95) * k, new Vector2(0, 186) * k, tint, theme.headerBase), theme.headerBase, tint, 1.33f / k);
+            header.raycastTarget = false; SoftShadow(header, 6 * k, .22f);
+            var view = new CategoryCardPresentation { categoryIndex = index, lane = lane, rect = card, group = card.gameObject.AddComponent<CanvasGroup>(),
+                targets = new Image[cat.targets.Length], stickers = new int[cat.targets.Length], progressDots = null, completedColor = tint };
+            var title = UIFactory.Text("Title", card, category.title, 56 * k, new Vector2(350, 80) * k, new Vector2(0, 188) * k, Color.white);
+            title.enableAutoSizing = true; title.fontSizeMin = 24 * k; title.fontSizeMax = 56 * k; title.fontStyle = TMPro.FontStyles.Bold;
+            if (title.font != null) title.fontSharedMaterial = title.font.material;   // flat white like the mockup, no outline preset
+            if (s.Stickers.Exists(x => x.placement.special.kind == SpecialKind.Locked && x.placement.special.unlockCondition == UnlockCondition.CategoryCompleted && x.placement.special.dependencyId == category.id))
+            {
+                var key = UIFactory.Panel("Unlock key", card, new Vector2(52, 52) * k, new Vector2(415 * .5f - 30, 230) * k, Color.white, theme.keyIcon);
+                key.type = Image.Type.Simple; key.preserveAspect = true;
+            }
+            var pill = Sliced(UIFactory.Panel("Count pill", card, new Vector2(215, 66) * k, new Vector2(0, -175) * k, theme.scrapbookPill, theme.pillBase), theme.pillBase, theme.scrapbookPill, 2.6f / k);
+            pill.raycastTarget = false; SoftShadow(pill, 5 * k, .2f);
+            view.counter = UIFactory.Text("Count", card, "0 / " + cat.targets.Length, 48 * k, new Vector2(200, 62) * k, new Vector2(0, -175) * k, theme.scrapbookInk);
+            view.counter.fontStyle = TMPro.FontStyles.Bold; if (view.counter.font != null) view.counter.fontSharedMaterial = view.counter.font.material;
+            int n = cat.targets.Length, columns = n <= 1 ? 1 : 2, rows = Mathf.CeilToInt((float)n / columns);
+            float rowPitch = Mathf.Min(123, 270f / rows), side = Mathf.Min(137, rowPitch + 14);
+            for (int t = 0; t < n; t++)
+            {
+                view.stickers[t] = -1;
+                int row = t / columns, inRow = Mathf.Min(columns, n - row * columns);
+                var pos = new Vector2((t % columns - (inRow - 1) * .5f) * 178, -12.5f + ((rows - 1) * .5f - row) * rowPitch) * k;
+                var size = new Vector2(side, side) * k;
+                var def = cat.objective.exactTargets.Count > t ? cat.objective.exactTargets[t] : null;
+                var target = UIFactory.Panel("Target " + t, card, size, pos, theme.silhouetteColor, def != null ? def.ArtworkSprite : theme.collectionIcon);
+                view.targets[t] = target;
+                if (def == null)
+                {
+                    target.color = Color.clear;
+                    UIFactory.Text("Empty slot mark", target.transform, "+", 48 * k, size, Vector2.zero, theme.silhouetteColor);
+                    continue;
+                }
+                StickerVisuals.Apply(target, def);
+                if (def.targetSilhouette != null) target.sprite = def.targetSilhouette;
+                target.material = theme.silhouetteMaterial; target.color = theme.silhouetteColor;
+                if (def.showLabel) UIFactory.Text("Target label", target.transform, def.displayName, 17 * k, size * .95f, Vector2.zero, theme.scrapbookInk);
+            }
+            categoryViews.Add(index, view); return view;
+        }
         public CategoryCardPresentation CreateCategory(int index, int lane, GameSession s)
         {
+            if (Scrap) return CreateScrapbookCategory(index, lane, s);
             var cat = s.Categories[index];
             var categoryColor = theme != null ? theme.CategoryColor(cat.objective.category.color) : cat.objective.category.color;
             var card = Instantiate(cardPrefab, categories).GetComponent<RectTransform>();
@@ -343,6 +546,7 @@ namespace StickyPeerSort
         void EnsureBufferSlots(int count)
         {
             while (bufferSlots.Count < count) bufferSlots.Add(Instantiate(slotPrefab, buffer).GetComponent<RectTransform>());
+            if (Scrap) { LayoutScrapbookSlots(count); return; }
             float width = Mathf.Min(theme != null && theme.referenceComposition ? 176 : theme != null ? 154 : 140, 920f / count);
             for (int i = 0; i < bufferSlots.Count; i++)
             {
@@ -357,6 +561,20 @@ namespace StickyPeerSort
                     var well = bufferSlots[i].Find("Recessed well");
                     if (well != null) well.GetComponent<Image>().color = overflow ? new Color(.62f, .13f, .05f) : theme.trayWell;
                 }
+            }
+        }
+        // Scrapbook GUI v01: shallow paper slots, 211x205 at a 238 px pitch in the mockup; narrower when 5+ slots must fit 1040 px.
+        void LayoutScrapbookSlots(int count)
+        {
+            float pitch = Mathf.Min(238, 1040f / Mathf.Max(1, count)), w = Mathf.Min(211, pitch - 16), h = w * 205f / 211f;
+            for (int i = 0; i < bufferSlots.Count; i++)
+            {
+                var slot = bufferSlots[i];
+                slot.sizeDelta = new Vector2(w, h); slot.anchoredPosition = new Vector2((i - (count - 1) * .5f) * pitch, 0);
+                var well = Sliced(slot.GetComponent<Image>(), theme.holdingSlot, i >= context.Session.Capacity ? OverflowColor : Color.white, 1.82f * 211f / w);
+                if (well.GetComponents<Shadow>().Length == 0) SoftShadow(well, 7, .12f);
+                foreach (var layer in new[] { "Inset edge", "Recessed well", "Top bevel" })
+                { var child = slot.Find(layer); if (child != null) child.gameObject.SetActive(false); }
             }
         }
         void FillBuffer(int index, int slot, GameSession s)
