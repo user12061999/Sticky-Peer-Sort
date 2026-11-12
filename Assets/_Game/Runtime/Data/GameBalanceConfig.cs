@@ -44,8 +44,8 @@ namespace StickyPeerSort
         [Range(.01f, .3f)] public float peelTickSpacingSlow = .09f, peelTickSpacingFast = .045f;
         [Range(.02f, .5f)] public float reattachTickSpacing = .15f;
         [Tooltip("Peeling must start in this outer band of the sticker (fraction of its size). The core counts as a tap.")]
-        public bool requireEdgeStart = false;
-        [Range(.05f, .45f)] public float peelEdgeBand = .3f;
+        public bool requireEdgeStart = true;   // owner 10/11: only a drag that starts on the rim peels
+        [Range(.05f, .45f)] public float peelEdgeBand = .2f;
         [Tooltip("The flap lifts where the sticker's edge is grabbed and peels across towards the far side; curved paths still peel.")]
         public bool peelFromGrabSide = true;
         [Range(.35f, 1.5f)] public float grabPeelDistanceRatio = .7f;

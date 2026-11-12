@@ -143,13 +143,17 @@ namespace StickyPeerSort.Tests
             Drag(view,e,center+(center-grab)); yield return Finish();
             Assert.AreEqual(StickerLocation.Collected,controller.Session.Stickers[0].location);
         }
-        [UnityTest] public IEnumerator ADragFromTheMiddleOfAStickerPeelsIt()
+        [UnityTest] public IEnumerator ADragFromTheMiddleOfAStickerDoesNotPeelIt()
         {
+            // Owner 10/11: only a drag that starts on the rim peels; the middle only shows the guide.
             LoadFixture(); yield return null;
-            var view=controller.ui.stickerViews[0]; var center=controller.Session.Stickers[0].position;
-            var e=Press(0,center); Assert.IsTrue(view.DragPeel.IsPeeling);
-            Drag(view,e,center+Vector2.left*1000); yield return Finish();
-            Assert.AreEqual(StickerLocation.Collected,controller.Session.Stickers[0].location);
+            var view=controller.ui.stickerViews[0]; var center=controller.Session.Stickers[0].position; string before=controller.Session.Key();
+            Assert.IsFalse(BoardGeometry.NearEdge(controller.Session.Stickers[0],center,balance.peelEdgeBand));
+            var e=Press(0,center); Assert.IsFalse(view.DragPeel.IsPeeling,"A press in the middle must not grab the sticker");
+            Drag(view,e,center+Vector2.left*1000); Assert.IsFalse(view.DragPeel.IsPeeling,"Dragging from the middle must not start a peel");
+            ExecuteEvents.Execute(view.gameObject,e,ExecuteEvents.pointerUpHandler); yield return null;
+            Assert.AreNotEqual(StickerLocation.Collected,controller.Session.Stickers[0].location);
+            Assert.AreEqual(before,controller.Session.Key()); Assert.IsTrue(controller.CanTap);
         }
         [UnityTest] public IEnumerator APressJustOutsideTheArtworkStillPicksTheStickerButAFarOneDoesNot()
         {
@@ -179,7 +183,7 @@ namespace StickyPeerSort.Tests
             var first=controller.ui.stickerViews[0]; var second=controller.ui.stickerViews[1];
             Vector2 start; var held=Begin(0,out start);
             Drag(first,held,start+Vector2.left*30);
-            var center=controller.Session.Stickers[1].position;
+            Vector2 center, outward; Assert.IsTrue(BoardGeometry.TryEdgePoint(controller.Session,1,balance.peelEdgeBand,out center,out outward));
             var blocked=Press(1,center); Assert.IsFalse(second.DragPeel.IsPeeling,"Only one peel owns input");
             ExecuteEvents.Execute(first.gameObject,held,ExecuteEvents.pointerUpHandler);
             Assert.IsTrue(first.DragPeel.IsReturning); Assert.IsTrue(controller.CanTap,"Releasing must free input at once");

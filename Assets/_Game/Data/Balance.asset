@@ -71,11 +71,11 @@ MonoBehaviour:
   peelTickSpacingSlow: 0.09
   peelTickSpacingFast: 0.045
   reattachTickSpacing: 0.15
-  requireEdgeStart: 0
-  peelEdgeBand: 0.3
+  requireEdgeStart: 1
+  peelEdgeBand: 0.2
   peelFromGrabSide: 1
   grabPeelDistanceRatio: 0.7
   grabPeelDeadZone: 0.1
-  peelCornerThreshold: 0.45
+  touchSlop: 48
   dragGuideDelay: 0.45
   dragGuideDuration: 2.6
