@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Facebook.Unity.Settings.dll::Facebook.Unity.Settings.FacebookSettings
   selectedAppIndex: 0
   clientTokens:
-  - 3bb909f8bef28e9452e1d2c25a5da6aa
+  - d160cf9b53efc8e14bc5ac5d47ce9474
   appIds:
-  - 1085469154328589
+  - 1110215641599207
   appLabels:
   - App Name
   cookie: 1

@@ -17,8 +17,8 @@ MonoBehaviour:
   maxBannerAdUnitId: a52e0bd99e8c9ee5
   maxInterstitialAdUnitId: 4011ff5582ed92e7
   maxRewardedAdUnitId: dee5e8c536dfce1e
-  facebookAppId: 1085469154328589
-  facebookClientToken: 3bb909f8bef28e9452e1d2c25a5da6aa
+  facebookAppId: 1110215641599207
+  facebookClientToken: d160cf9b53efc8e14bc5ac5d47ce9474
   adjustAppToken: i5wrb7motuyo
   adjustEnvironment: 0
   adjustVerboseLogging: 1
