@@ -88,7 +88,8 @@ namespace StickyPeerSort
                     spotlightMat.SetVector("_Center2", new Vector4(center2.x, center2.y, 0, 0));
                     spotlightMat.SetFloat("_Radius2", radius2);
                     spotlightMat.SetFloat("_Softness", softness);
-                    spotlightMat.SetColor("_Color", color);
+                    // The vertex colour already carries the graphic colour; a white tint keeps its alpha from being applied twice.
+                    spotlightMat.SetColor("_Color", Color.white);
                     return spotlightMat;
                 }
                 return base.materialForRendering;

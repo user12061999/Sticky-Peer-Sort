@@ -91,28 +91,29 @@ namespace StickyPeerSort
             // 1. Fullscreen dark overlay with circular spotlight cutouts
             var veilGo = UIFactory.Rect("Dark Spotlight Veil", root, new Vector2(4000, 4000), Vector2.zero);
             spotlightVeil = veilGo.gameObject.AddComponent<TutorialSpotlightGraphic>();
-            spotlightVeil.color = new Color(0f, 0f, 0f, 0.78f);
+            // The project blends in linear space: alpha .93 darkens the rest of the screen to about 30% (alpha .78 only reached ~65%).
+            spotlightVeil.color = new Color(0f, 0f, 0f, 0.93f);
             spotlightVeil.SetTarget(guideRect, spotlightVeil.rectTransform, 26f);
             if (destinationTarget != null) spotlightVeil.SetSecondaryTarget(destinationTarget, spotlightVeil.rectTransform, 18f);
             else spotlightVeil.ClearCircle2();
 
             // 2. Prominent, high-contrast tutorial card dialog
-            var outerRim = UIFactory.Panel("Tutorial gold rim", root, new Vector2(926, 252), Vector2.zero, new Color(0.96f, 0.74f, 0.28f, 1f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
+            var outerRim = UIFactory.Panel("Tutorial gold rim", root, new Vector2(926, 300), Vector2.zero, new Color(0.96f, 0.74f, 0.28f, 1f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
             bubble = outerRim.rectTransform;
             var shadow = outerRim.gameObject.AddComponent<Shadow>();
             shadow.effectColor = new Color(0, 0, 0, 0.55f);
             shadow.effectDistance = new Vector2(0, -8);
 
-            var cardInner = UIFactory.Panel("Tutorial speech card", outerRim.transform, new Vector2(918, 244), Vector2.zero, new Color(0.08f, 0.12f, 0.23f, 0.98f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
+            var cardInner = UIFactory.Panel("Tutorial speech card", outerRim.transform, new Vector2(918, 292), Vector2.zero, new Color(0.08f, 0.12f, 0.23f, 0.98f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
 
             string title = lesson == TutorialLesson.Peel ? "PEEL & MATCH" : lesson == TutorialLesson.Mystery ? "MYSTERY STICKER" : "UNLOCK WITH A KEY";
-            string body = lesson == TutorialLesson.Peel ? "Grab a bright sticker by its edge and drag across it to peel.\nIts category sheet glows to show where it goes.\nRelease early to stick it back."
+            string body = lesson == TutorialLesson.Peel ? "Drag a bright sticker from its edge to peel it.\nIts sheet glows to show where it goes.\nLet go early to stick it back."
                 : lesson == TutorialLesson.Mystery ? "Peel away the sticker covering the ?.\nIts hidden picture will be revealed."
                 : special.unlockCondition == UnlockCondition.CategoryCompleted ? "Complete the sheet with the key.\nIts key unlocks the chained stickers."
                 : "Remove the required sticker first\nto release these chains.";
 
             // Lesson icon badge
-            var badge = UIFactory.Panel("Lesson badge", cardInner.transform, new Vector2(60, 60), new Vector2(-395, 68), new Color(0.96f, 0.74f, 0.28f, 0.22f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
+            var badge = UIFactory.Panel("Lesson badge", cardInner.transform, new Vector2(60, 60), new Vector2(-395, 98), new Color(0.96f, 0.74f, 0.28f, 0.22f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
             Sprite badgeSprite = lesson == TutorialLesson.Lock ? (ui.theme != null ? ui.theme.keyIcon : null) : (ui.theme != null ? ui.theme.tutorialHand : null);
             if (badgeSprite != null)
             {
@@ -125,15 +126,18 @@ namespace StickyPeerSort
                 q.fontStyle = FontStyles.Bold;
             }
 
-            var heading = UIFactory.Text("Tutorial title TMP", cardInner.transform, title, 36, new Vector2(650, 50), new Vector2(-25, 68), new Color(1f, 0.88f, 0.35f, 1f));
+            var heading = UIFactory.Text("Tutorial title TMP", cardInner.transform, title, 36, new Vector2(650, 50), new Vector2(-25, 98), new Color(1f, 0.88f, 0.35f, 1f));
             heading.alignment = TextAlignmentOptions.Left;
             heading.fontStyle = FontStyles.Bold;
 
-            var text = UIFactory.Text("Tutorial explanation TMP", cardInner.transform, body, 29, new Vector2(680, 114), new Vector2(-60, -20), Color.white);
-            text.alignment = TextAlignmentOptions.Left;
+            var text = UIFactory.Text("Tutorial explanation TMP", cardInner.transform, body, 29, new Vector2(680, 172), new Vector2(-60, -38), Color.white);
+            // Top-aligned under the title and shrunk to fit, so a long line never wraps up into the heading.
+            text.alignment = TextAlignmentOptions.TopLeft;
+            text.enableAutoSizing = true; text.fontSizeMin = 20; text.fontSizeMax = 29;
+            text.overflowMode = TextOverflowModes.Truncate;
             text.fontStyle = FontStyles.Normal;
 
-            var button = UIFactory.Button("Dismiss tutorial", cardInner.transform, lesson == TutorialLesson.Peel ? "SKIP" : "GOT IT", new Vector2(165, 58), new Vector2(345, -60), new Color(0.28f, 0.74f, 0.16f, 1f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
+            var button = UIFactory.Button("Dismiss tutorial", cardInner.transform, lesson == TutorialLesson.Peel ? "SKIP" : "GOT IT", new Vector2(165, 58), new Vector2(345, -88), new Color(0.28f, 0.74f, 0.16f, 1f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
             var label = button.GetComponentInChildren<TextMeshProUGUI>();
             label.fontSize = 25;
             label.fontStyle = FontStyles.Bold;
@@ -207,7 +211,7 @@ namespace StickyPeerSort
             foreach (float candidate in new[] { preferred, waiting.center.y, (waiting.yMin + Bounds(ui.board).yMax) * .5f, 0, -320, -540, 560 })
             {
                 float y = Mathf.Clamp(candidate, -700, 620);
-                var rect = new Rect(-464, y - 127, 928, 254);
+                var rect = new Rect(-464, y - 150, 928, 300);
                 float value = Overlap(rect, subject) * 50 + Overlap(rect, action) * 50 + Overlap(rect, gallery) * 20
                     + Overlap(rect, waiting) * (session.Buffer.Count > 0 ? 10 : .1f) + Mathf.Abs(y - preferred) * .01f;
                 if (value < score) { best = y; score = value; }
