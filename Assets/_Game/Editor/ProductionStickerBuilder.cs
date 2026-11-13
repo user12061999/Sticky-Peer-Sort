@@ -71,6 +71,24 @@ namespace StickyPeerSort.Editor
             }
             finally { foreach (var copy in staged) UnityEngine.Object.DestroyImmediate(copy); }
         }
+        /// <summary>13/11 library expansion: imports the 56 new stickers (14 categories x 4) whose PNGs are already in Art/
+        /// as sps_&lt;domain&gt;_&lt;design&gt;.png (512x512 RGBA), same pipeline as the first 64 (sprite, alpha mask, silhouette),
+        /// then assigns categories. Levels are rebuilt separately with Build Balanced Campaign.</summary>
+        [MenuItem("Tools/Sticker Category Game/Production Stickers/Import 56 Expansion Stickers")]
+        public static void ImportExpansion()
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode) throw new InvalidOperationException("Exit Play Mode first.");
+            var entries = ProductionCategories.ExpansionStickers().Select(kv => new Entry { id = kv.Key, displayName = kv.Value, filename = kv.Key + ".png" }).ToList();
+            if (entries.Count != 56 || entries.Select(e => e.id).Distinct().Count() != 56) throw new InvalidDataException("Expected 56 unique expansion stickers.");
+            var missing = entries.Where(e => !File.Exists(Root + "/Art/" + e.filename)).Select(e => e.filename).ToList();
+            if (missing.Count > 0) throw new FileNotFoundException("Missing art: " + string.Join(", ", missing));
+            AssetDatabase.Refresh();
+            foreach (var entry in entries) Import(entry);
+            AssetDatabase.SaveAssets();
+            ProductionCategories.Apply();
+            ValidateCatalog();
+            Debug.Log("56 expansion stickers imported (30 categories, 120 stickers).");
+        }
         static void Import(Entry e)
         {
             string path=Root+"/Art/"+e.filename;
@@ -123,3 +141,4 @@ namespace StickyPeerSort.Editor
         }
     }
 }
+

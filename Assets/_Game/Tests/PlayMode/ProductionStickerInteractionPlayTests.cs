@@ -24,7 +24,7 @@ namespace StickyPeerSort.Tests
             yield return GameplayTestScene.LoadReference(); yield return null;
             controller = Object.FindFirstObjectByType<GameController>(); Assert.IsNotNull(controller);
             catalog = controller.levels.SelectMany(l => l.generation.stickerPool).Where(d => d.id.StartsWith("sps_")).Distinct().OrderBy(d => d.id).ToArray();
-            Assert.AreEqual(64, catalog.Length);
+            Assert.AreEqual(120, catalog.Length); // 13/11: 64 original + 56 expansion stickers (30 categories)
             balance = Object.Instantiate(controller.balance); controller.balance = balance;
             balance.tutorialsEnabled = false;
             balance.pressDuration = balance.peelDuration = balance.travelDuration = balance.stickDuration = .02f;
