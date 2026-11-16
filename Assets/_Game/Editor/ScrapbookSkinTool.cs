@@ -122,10 +122,12 @@ namespace StickyPeerSort.Editor
             else { image.type = Image.Type.Simple; image.preserveAspect = true; }
             return image;
         }
-        static void Words(TMP_Text text, float size, Color color, Vector2 dimensions, Vector2 position)
+        static GameplayUITheme T;   // theme of the scene being skinned (Typography v01 when it has the Nunito faces)
+        static void Words(TMP_Text text, float size, Color color, Vector2 dimensions, Vector2 position, bool black = true, float min = 0, float margin = 0)
         {
             if (text == null) return;
             text.rectTransform.sizeDelta = dimensions; text.rectTransform.anchoredPosition = position;
+            if (T != null && T.Nunito) { T.Type(text, black, size, color, min, margin: margin); return; }
             text.color = color; text.fontStyle = FontStyles.Bold; text.alignment = TextAlignmentOptions.Center;
             text.enableAutoSizing = true; text.fontSizeMax = size; text.fontSizeMin = Mathf.Round(size * .55f); text.fontSize = size;
             if (text.font != null) text.fontSharedMaterial = text.font.material;   // flat ink as in the mockup, no outline preset
@@ -133,7 +135,7 @@ namespace StickyPeerSort.Editor
 
         static void SkinScene(GameplayUI ui)
         {
-            var root = ui.transform;
+            var root = ui.transform; T = ui.theme;
 
             // Studio backdrop fills the screen at any aspect (cropped, not stretched); the procedural wood grain goes.
             var backdrop = Find(root, "Amber table background") as RectTransform;
@@ -149,11 +151,11 @@ namespace StickyPeerSort.Editor
             // HUD: level pill, coin pill, settings tile.
             Picture(Place(root, "Level capsule rim", new Vector2(424, 114), new Vector2(-260, 881), Top), S("ui_pill_base"), 1.5f);
             Place(root, "Level capsule", new Vector2(424, 114), Vector2.zero); Hide(root, "Level capsule");
-            Words(ui.levelLabel, 84, Ink, new Vector2(390, 104), new Vector2(0, 2));
+            Words(ui.levelLabel, 76, Ink, new Vector2(390, 104), new Vector2(0, 2));   // Typography v01: Black 76, no Auto Size
             Picture(Place(root, "Coin capsule rim", new Vector2(270, 112), new Vector2(195, 880), Top), S("ui_pill_base"), 1.5f);
             Place(root, "Coin capsule", new Vector2(270, 112), Vector2.zero); Hide(root, "Coin capsule");
             Picture(Place(root, "Coin icon", new Vector2(104, 104), new Vector2(-73, 0)), S("coin_icon"));
-            Words(ui.coins, 72, Ink, new Vector2(140, 104), new Vector2(62, 0));
+            Words(ui.coins, 66, Ink, new Vector2(102, 104), new Vector2(62, 0), true, 36, 4);   // Black 66 (min 36), 102 px frame, margin 4
             if (ui.settings != null)
             {
                 Picture(Place(root, ui.settings.name, new Vector2(119, 114), new Vector2(414, 881), Top), S("collection_sheet_base"), 2.4f);
@@ -185,9 +187,9 @@ namespace StickyPeerSort.Editor
                 Picture(Place(button.transform, "Booster icon", new Vector2(128, 128), Vector2.zero), S(icons[i]));
                 Picture(Place(button.transform, "Inventory badge", new Vector2(78, 60), new Vector2(66, 82)), S("ui_pill_base"), 2.8f);
                 var badge = Find(button.transform, "Inventory badge");
-                if (badge != null) Words(badge.GetComponentInChildren<TextMeshProUGUI>(true), 38, Ink, new Vector2(70, 56), Vector2.zero);
+                if (badge != null) Words(badge.GetComponentInChildren<TextMeshProUGUI>(true), 36, Ink, new Vector2(78, 60), Vector2.zero, true, 28, 8);
                 var label = Find(button.transform, "Label");
-                if (label != null) Words(label.GetComponent<TextMeshProUGUI>(), 42, Ink, new Vector2(218, 55), new Vector2(0, -132));
+                if (label != null) Words(label.GetComponent<TextMeshProUGUI>(), 44, Ink, new Vector2(218, 64), new Vector2(0, -132), false);
             }
             // RESTART is not in the mockup and there is no free spot for it; hidden until the owner decides (one line to restore).
             if (ui.restart != null) ui.restart.gameObject.SetActive(false);

@@ -199,7 +199,7 @@ namespace StickyPeerSort
                 SoftShadow(modalRibbon, 8, .24f);
             }
             ScrapText(modalTitle, Color.white, 60, new Vector2(620, 104), new Vector2(0, H * .5f - 6)); modalTitle.enableWordWrapping = false;
-            ScrapText(modalBody, theme.scrapbookInk, 40, new Vector2(720, 150), new Vector2(0, 40));
+            ScrapText(modalBody, theme.scrapbookInk, 40, new Vector2(720, 150), new Vector2(0, 40), true);
             var row = frame.Find("Scrapbook full tray") as RectTransform;
             if (row == null) { row = new GameObject("Scrapbook full tray", typeof(RectTransform)).GetComponent<RectTransform>(); row.SetParent(frame, false); }
             UIFactory.Clear(row); row.anchoredPosition = new Vector2(0, 222); row.sizeDelta = new Vector2(W - 80, 170);
@@ -233,9 +233,16 @@ namespace StickyPeerSort
             if (sound != null) sound.gameObject.SetActive(title == "PAUSED");   // sound switch belongs to the pause menu only
             if (sound != null && title == "PAUSED") ScrapPill(sound, theme.scrapbookPill, theme.scrapbookInk, new Vector2(210, 74), new Vector2(W * .5f - 145, H * .5f - 120), 30);
         }
-        void ScrapText(TMP_Text text, Color color, float size, Vector2 box, Vector2 position)
+        void ScrapText(TMP_Text text, Color color, float size, Vector2 box, Vector2 position, bool wrap = false)
         {
             if (text == null) return;
+            if (theme.Nunito)
+            {
+                // Popup text on Nunito ExtraBold; white text on a coloured band or pill gets the same Underlay as category names.
+                theme.Type(text, false, size, color, size * .55f, underlay: color.grayscale > .9f, wrap: wrap);
+                text.rectTransform.sizeDelta = box; text.rectTransform.anchoredPosition = position;
+                return;
+            }
             if (theme.font != null) { text.font = theme.font; text.fontSharedMaterial = theme.font.material; }
             text.color = color; text.fontStyle = FontStyles.Bold; text.enableAutoSizing = true; text.fontSizeMax = size; text.fontSizeMin = size * .55f;
             text.alignment = TextAlignmentOptions.Center; text.rectTransform.sizeDelta = box; text.rectTransform.anchoredPosition = position;
@@ -394,7 +401,7 @@ namespace StickyPeerSort
         {
             var cat = s.Categories[index]; var category = cat.objective.category;
             float k = Mathf.Min(1, (cardWidth - 19) / 415f);
-            var tint = theme.HeaderTint(category.title, category.color);
+            var tint = theme.HasHeaderPalette ? theme.HeaderTintAt(index) : theme.HeaderTint(category.title, category.color);
             var card = Instantiate(cardPrefab, categories).GetComponent<RectTransform>();
             card.name = "Category " + category.title; card.sizeDelta = new Vector2(415, 497) * k;
             card.anchoredPosition = new Vector2((lane - (laneCount - 1) * .5f) * cardWidth, 0);
@@ -406,9 +413,20 @@ namespace StickyPeerSort
             header.raycastTarget = false; SoftShadow(header, 6 * k, .22f);
             var view = new CategoryCardPresentation { categoryIndex = index, lane = lane, rect = card, group = card.gameObject.AddComponent<CanvasGroup>(),
                 targets = new Image[cat.targets.Length], stickers = new int[cat.targets.Length], progressDots = null, completedColor = tint };
-            var title = UIFactory.Text("Title", card, category.title, 56 * k, new Vector2(350, 80) * k, new Vector2(0, 188) * k, Color.white);
-            title.enableAutoSizing = true; title.fontSizeMin = 24 * k; title.fontSizeMax = 56 * k; title.fontStyle = TMPro.FontStyles.Bold;
-            if (title.font != null) title.fontSharedMaterial = title.font.material;   // flat white like the mockup, no outline preset
+            TextMeshProUGUI title;
+            if (theme.Nunito)
+            {
+                // Typography v01: ExtraBold white + Underlay; 2 cards 60 (min 48) in 385x95, 3 cards 46 (min 40) in 288x72, side margin 20.
+                bool three = laneCount >= 3;
+                title = UIFactory.Text("Title", card, category.title, 60, three ? new Vector2(288, 72) : new Vector2(385, 95), new Vector2(0, 186) * k, Color.white);
+                theme.Type(title, false, three ? 46 : 60, Color.white, three ? 40 : 48, underlay: true, margin: 20);
+            }
+            else
+            {
+                title = UIFactory.Text("Title", card, category.title, 56 * k, new Vector2(350, 80) * k, new Vector2(0, 188) * k, Color.white);
+                title.enableAutoSizing = true; title.fontSizeMin = 24 * k; title.fontSizeMax = 56 * k; title.fontStyle = TMPro.FontStyles.Bold;
+                if (title.font != null) title.fontSharedMaterial = title.font.material;   // flat white like the mockup, no outline preset
+            }
             if (s.Stickers.Exists(x => x.placement.special.kind == SpecialKind.Locked && x.placement.special.unlockCondition == UnlockCondition.CategoryCompleted && x.placement.special.dependencyId == category.id))
             {
                 var key = UIFactory.Panel("Unlock key", card, new Vector2(52, 52) * k, new Vector2(415 * .5f - 30, 230) * k, Color.white, theme.keyIcon);
@@ -417,7 +435,8 @@ namespace StickyPeerSort
             var pill = Sliced(UIFactory.Panel("Count pill", card, new Vector2(215, 66) * k, new Vector2(0, -175) * k, theme.scrapbookPill, theme.pillBase), theme.pillBase, theme.scrapbookPill, 2.6f / k);
             pill.raycastTarget = false; SoftShadow(pill, 5 * k, .2f);
             view.counter = UIFactory.Text("Count", card, "0 / " + cat.targets.Length, 48 * k, new Vector2(200, 62) * k, new Vector2(0, -175) * k, theme.scrapbookInk);
-            view.counter.fontStyle = TMPro.FontStyles.Bold; if (view.counter.font != null) view.counter.fontSharedMaterial = view.counter.font.material;
+            if (theme.Nunito) { view.counter.rectTransform.sizeDelta = new Vector2(215, 66); theme.Type(view.counter, true, 48, theme.scrapbookInk); }
+            else { view.counter.fontStyle = TMPro.FontStyles.Bold; if (view.counter.font != null) view.counter.fontSharedMaterial = view.counter.font.material; }
             int n = cat.targets.Length, columns = n <= 1 ? 1 : 2, rows = Mathf.CeilToInt((float)n / columns);
             float rowPitch = Mathf.Min(123, 270f / rows), side = Mathf.Min(137, rowPitch + 14);
             for (int t = 0; t < n; t++)

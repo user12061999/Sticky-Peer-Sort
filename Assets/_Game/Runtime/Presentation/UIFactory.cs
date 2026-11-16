@@ -25,6 +25,7 @@ namespace StickyPeerSort
             t.fontSize = size; t.color = color ?? (theme != null ? theme.ink : Ink);
             t.alignment = TextAlignmentOptions.Center; t.raycastTarget = false; t.textWrappingMode = TextWrappingModes.Normal;
             if (theme != null) theme.ApplyTextStyle(t);
+            if (theme != null) theme.Face(t, true);
             return t;
         }
         public static Button Button(string name, Transform parent, string title, Vector2 size, Vector2 position, Color color, Sprite sprite = null)

@@ -12,7 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719744e839afef947851e4da9135697c, type: 3}
   m_Name: LayerLabTheme
   m_EditorClassIdentifier: StickyPeerSort.Runtime::StickyPeerSort.GameplayUITheme
-  font: {fileID: 11400000, guid: d2d1aeb954629457095df6b4603312c4, type: 2}
+  font: {fileID: 11400000, guid: 06973ce7578f3ac4d8145354e622c652, type: 2}
+  fontBlack: {fileID: 11400000, guid: 06973ce7578f3ac4d8145354e622c652, type: 2}
+  fontExtraBold: {fileID: 11400000, guid: 56d87b48434d0154db0ff15b7608da0b, type: 2}
+  underlayMaterial: {fileID: 2100000, guid: e8fc0fd0d6af2e048a941d33c1bd120d, type: 2}
+  headerPalette:
+  - {r: 0.78039217, g: 0.38431373, b: 0.34901962, a: 1}
+  - {r: 0.22352941, g: 0.54901963, b: 0.57254905, a: 1}
+  - {r: 0.4509804, g: 0.49019608, b: 0.72156864, a: 1}
+  - {r: 0.68235296, g: 0.39215687, b: 0.53333336, a: 1}
+  - {r: 0.30588236, g: 0.49019608, b: 0.6313726, a: 1}
+  - {r: 0.3882353, g: 0.5137255, b: 0.42745098, a: 1}
+  - {r: 0.654902, g: 0.43529412, b: 0.28627452, a: 1}
+  - {r: 0.5372549, g: 0.4392157, b: 0.61960787, a: 1}
+  - {r: 0.5058824, g: 0.5058824, b: 0.29803923, a: 1}
+  - {r: 0.5686275, g: 0.43137255, b: 0.39215687, a: 1}
   tutorialHand: {fileID: 21300000, guid: 0ce91605645244f97a15a497292967af, type: 3}
   headingTextMaterial: {fileID: 2100000, guid: 50f15b0ffb4ed464599b5777512e7f7f, type: 2}
   lightTextMaterial: {fileID: 2100000, guid: b42c08e55e14f45439cfe830f70ff66f, type: 2}
@@ -34,6 +48,16 @@ MonoBehaviour:
   shuffleIcon: {fileID: 21300000, guid: ea91f02a0f42c4a999205804eaef008e, type: 3}
   keyIcon: {fileID: 21300000, guid: ba5483ff7f88c4c3ca881c0f56955f28, type: 3}
   lockIcon: {fileID: 21300000, guid: 1aeb9cf6ff7504198a4aed0e5932f5e2, type: 3}
+  outlinePanel: {fileID: 0}
+  innerPanel: {fileID: 0}
+  titleRibbon: {fileID: 0}
+  failRibbon: {fileID: 0}
+  badgeBurst: {fileID: 0}
+  counterBadge: {fileID: 0}
+  primaryButton: {fileID: 0}
+  secondaryButton: {fileID: 0}
+  smallButton: {fileID: 0}
+  boosterButtons: []
   blockedStickerTint: {r: 0.6, g: 0.6, b: 0.6, a: 1}
   mysteryQuestionSize: 0.78
   referenceComposition: 0
@@ -49,3 +73,18 @@ MonoBehaviour:
   trayRim: {r: 1, g: 0.83137256, b: 0.46666667, a: 1}
   trayWell: {r: 0.7490196, g: 0.49411765, b: 0.16862746, a: 1}
   emptySlot: {r: 0.9372549, g: 0.8, b: 0.5137255, a: 1}
+  scrapbook: 0
+  sheetBase: {fileID: 0}
+  headerBase: {fileID: 0}
+  pillBase: {fileID: 0}
+  holdingSlot: {fileID: 0}
+  stickerSurface: {fileID: 0}
+  popupCoinIcon: {fileID: 0}
+  popupSettingsIcon: {fileID: 0}
+  popupUndoIcon: {fileID: 0}
+  popupSlotIcon: {fileID: 0}
+  silhouetteMaterial: {fileID: 0}
+  scrapbookInk: {r: 0.08627451, g: 0.13333334, b: 0.25490198, a: 1}
+  silhouetteColor: {r: 0.77254903, g: 0.78039217, b: 0.7372549, a: 1}
+  scrapbookRim: {r: 0.9019608, g: 0.81960785, b: 0.67058825, a: 1}
+  scrapbookPill: {r: 0.9843137, g: 0.92156863, b: 0.79607844, a: 1}

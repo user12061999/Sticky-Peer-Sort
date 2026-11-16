@@ -124,11 +124,13 @@ namespace StickyPeerSort
             {
                 var q = UIFactory.Text("Badge question mark", badge.transform, "?", 36, new Vector2(44, 44), Vector2.zero, new Color(1f, 0.88f, 0.35f, 1f));
                 q.fontStyle = FontStyles.Bold;
+                if (ui.theme != null) ui.theme.Face(q, true);
             }
 
             var heading = UIFactory.Text("Tutorial title TMP", cardInner.transform, title, 36, new Vector2(650, 50), new Vector2(-25, 98), new Color(1f, 0.88f, 0.35f, 1f));
             heading.alignment = TextAlignmentOptions.Left;
             heading.fontStyle = FontStyles.Bold;
+            if (ui.theme != null) ui.theme.Face(heading, true);
 
             var text = UIFactory.Text("Tutorial explanation TMP", cardInner.transform, body, 29, new Vector2(680, 172), new Vector2(-60, -38), Color.white);
             // Top-aligned under the title and shrunk to fit, so a long line never wraps up into the heading.
@@ -136,6 +138,7 @@ namespace StickyPeerSort
             text.enableAutoSizing = true; text.fontSizeMin = 20; text.fontSizeMax = 29;
             text.overflowMode = TextOverflowModes.Truncate;
             text.fontStyle = FontStyles.Normal;
+            if (ui.theme != null) ui.theme.Face(text, false);
 
             var button = UIFactory.Button("Dismiss tutorial", cardInner.transform, lesson == TutorialLesson.Peel ? "SKIP" : "GOT IT", new Vector2(165, 58), new Vector2(345, -88), new Color(0.28f, 0.74f, 0.16f, 1f), ui.theme != null ? ui.theme.roundedPanel : ui.panelSprite);
             var label = button.GetComponentInChildren<TextMeshProUGUI>();
@@ -143,6 +146,7 @@ namespace StickyPeerSort
             label.fontStyle = FontStyles.Bold;
             label.color = Color.white;
             if (ui.theme != null) ui.theme.ApplyTextStyle(label);
+            if (ui.theme != null) ui.theme.Face(label, false);
             button.onClick.AddListener(Dismiss);
 
             subjectGlow = DestinationPreviewGlow.Show(subjectView.image, subjectView.Definition, false);

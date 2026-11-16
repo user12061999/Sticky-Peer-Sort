@@ -91,6 +91,7 @@ namespace StickyPeerSort
             var screen = GetComponentInParent<GameplayUI>();
             theme = screen != null ? screen.theme : null;
             if (screen != null && screen.theme != null && screen.theme.font != null) title.font = badge.font = screen.theme.font;
+            if (screen != null && screen.theme != null) { screen.theme.Face(title, true); screen.theme.Face(badge, true); }
             Rect.anchoredPosition = s.position; Rect.sizeDelta = s.placement.size; Rect.localScale = Vector3.one * s.placement.scale;
             Rect.localRotation = Quaternion.Euler(0, 0, s.rotation);
             StickerVisuals.Apply(image, d);

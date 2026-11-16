@@ -12,7 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719744e839afef947851e4da9135697c, type: 3}
   m_Name: ReferenceTheme
   m_EditorClassIdentifier: StickyPeerSort.Runtime::StickyPeerSort.GameplayUITheme
-  font: {fileID: 11400000, guid: d2d1aeb954629457095df6b4603312c4, type: 2}
+  font: {fileID: 11400000, guid: 06973ce7578f3ac4d8145354e622c652, type: 2}
+  fontBlack: {fileID: 11400000, guid: 06973ce7578f3ac4d8145354e622c652, type: 2}
+  fontExtraBold: {fileID: 11400000, guid: 56d87b48434d0154db0ff15b7608da0b, type: 2}
+  underlayMaterial: {fileID: 2100000, guid: e8fc0fd0d6af2e048a941d33c1bd120d, type: 2}
+  headerPalette:
+  - {r: 0.78039217, g: 0.38431373, b: 0.34901962, a: 1}
+  - {r: 0.22352941, g: 0.54901963, b: 0.57254905, a: 1}
+  - {r: 0.4509804, g: 0.49019608, b: 0.72156864, a: 1}
+  - {r: 0.68235296, g: 0.39215687, b: 0.53333336, a: 1}
+  - {r: 0.30588236, g: 0.49019608, b: 0.6313726, a: 1}
+  - {r: 0.3882353, g: 0.5137255, b: 0.42745098, a: 1}
+  - {r: 0.654902, g: 0.43529412, b: 0.28627452, a: 1}
+  - {r: 0.5372549, g: 0.4392157, b: 0.61960787, a: 1}
+  - {r: 0.5058824, g: 0.5058824, b: 0.29803923, a: 1}
+  - {r: 0.5686275, g: 0.43137255, b: 0.39215687, a: 1}
   tutorialHand: {fileID: 21300000, guid: 7e2aa4798cdc54742ae1de91c072a0af, type: 3}
   headingTextMaterial: {fileID: 2100000, guid: 50f15b0ffb4ed464599b5777512e7f7f, type: 2}
   lightTextMaterial: {fileID: 2100000, guid: b42c08e55e14f45439cfe830f70ff66f, type: 2}

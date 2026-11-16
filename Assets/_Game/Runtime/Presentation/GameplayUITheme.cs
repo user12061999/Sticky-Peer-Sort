@@ -7,12 +7,66 @@ namespace StickyPeerSort
     public sealed class GameplayUITheme : ScriptableObject
     {
         public TMP_FontAsset font;
+        [Header("Typography v01 (partner spec): Nunito static 900/800, TMP weight Regular, no synthetic Bold")]
+        public TMP_FontAsset fontBlack, fontExtraBold;
+        public Material underlayMaterial;   // ExtraBold + Normal Underlay: white text on tinted headers and pills
+        public bool Nunito => fontBlack != null && fontExtraBold != null;
+        public FontStyles Strong => Nunito ? FontStyles.Normal : FontStyles.Bold;
+        // Puts a text on one of the two Nunito faces with that face's own material (never shared across atlases).
+        public void Face(TMP_Text t, bool black)
+        {
+            if (t == null || !Nunito) return;
+            var face = black ? fontBlack : fontExtraBold;
+            t.font = face; t.fontSharedMaterial = face.material;
+            t.fontStyle &= ~(FontStyles.Bold | FontStyles.Italic); t.fontWeight = FontWeight.Regular;
+            t.extraPadding = true;
+        }
+        // Spec text block: one line, centred, kerning on, all spacing 0, Ellipsis; Auto Size only when min > 0.
+        public void Type(TMP_Text t, bool black, float size, Color color, float min = 0, bool underlay = false, bool wrap = false, float margin = 0)
+        {
+            if (t == null || !Nunito) return;
+            Face(t, black);
+            if (underlay && !black && underlayMaterial != null) t.fontSharedMaterial = underlayMaterial;
+            t.color = color; t.fontSize = size; t.enableVertexGradient = false;
+            t.enableAutoSizing = min > 0 && min < size;
+            if (t.enableAutoSizing) { t.fontSizeMin = min; t.fontSizeMax = size; }
+            t.textWrappingMode = wrap ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
+            t.overflowMode = TextOverflowModes.Ellipsis;
+            t.characterSpacing = 0; t.wordSpacing = 0; t.lineSpacing = 0; t.paragraphSpacing = 0;
+            t.characterWidthAdjustment = 0; t.lineSpacingAdjustment = 0;
+            var features = t.fontFeatures; if (features != null && !features.Contains(UnityEngine.TextCore.OTL_FeatureTag.kern)) { features.Add(UnityEngine.TextCore.OTL_FeatureTag.kern); t.fontFeatures = features; }
+            t.alignment = TextAlignmentOptions.Center; t.margin = new Vector4(margin, 0, margin, 0);
+            t.rectTransform.localScale = Vector3.one;
+            t.UpdateMeshPadding();
+        }
+        // Category header Tint, usage priority order (not a fixed category mapping). Applied once through Image.color.
+        public Color[] headerPalette =
+        {
+            new Color32(0xC7, 0x62, 0x59, 255), new Color32(0x39, 0x8C, 0x92, 255), new Color32(0x73, 0x7D, 0xB8, 255),
+            new Color32(0xAE, 0x64, 0x88, 255), new Color32(0x4E, 0x7D, 0xA1, 255), new Color32(0x63, 0x83, 0x6D, 255),
+            new Color32(0xA7, 0x6F, 0x49, 255), new Color32(0x89, 0x70, 0x9E, 255), new Color32(0x81, 0x81, 0x4C, 255),
+            new Color32(0x91, 0x6E, 0x64, 255),
+        };
+        public bool HasHeaderPalette => headerPalette != null && headerPalette.Length > 0;
+        public Color HeaderTintAt(int priority)
+        {
+            int n = headerPalette.Length; return headerPalette[((priority % n) + n) % n];
+        }
         public Sprite tutorialHand;
         [Header("TextMeshPro SDF presets")]
         public Material headingTextMaterial, lightTextMaterial, darkTextMaterial;
         public void ApplyTextStyle(TMP_Text text)
         {
-            if (text == null || text.font != font) return;
+            if (text == null) return;
+            if (Nunito && (text.font == fontBlack || text.font == fontExtraBold))
+            {
+                // The old Sen presets belong to another atlas; Nunito text keeps its own face material (or the underlay preset).
+                var m = text.fontSharedMaterial;
+                if (m == null || (m != underlayMaterial && m.GetTexture(ShaderUtilities.ID_MainTex) != text.font.atlasTexture)) text.fontSharedMaterial = text.font.material;
+                text.fontStyle &= ~FontStyles.Bold; text.extraPadding = true; text.UpdateMeshPadding();
+                return;
+            }
+            if (text.font != font) return;
             bool light = text.color.grayscale > .75f;
             var preset = light ? text.fontSize >= 38 ? headingTextMaterial : lightTextMaterial : darkTextMaterial;
             if (preset == null) return;
