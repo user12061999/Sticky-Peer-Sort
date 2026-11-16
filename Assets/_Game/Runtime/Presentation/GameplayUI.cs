@@ -265,7 +265,43 @@ namespace StickyPeerSort
             // hug the top and the bottom-anchored boosters hug the bottom (as in the mockup) instead of floating with empty bands.
             if (Scrap && safeArea.childCount > 0 && safeArea.GetChild(0) is RectTransform layout)
                 layout.sizeDelta = new Vector2(1080, Mathf.Max(1920, safeArea.rect.height / Mathf.Max(.01f, layout.localScale.y)));
+            if (Scrap && safeArea.childCount > 0 && safeArea.GetChild(0) is RectTransform tall) CompactScrapbookLayout(tall.sizeDelta.y);
         }
+        // Scrapbook layout on short screens (16:9 = 1920 layout px): the board only gets the height left between the holding slots
+        // and the boosters, so it shrank to ~0.87 and stickers bunched in the middle of papers that still reach the screen edges.
+        // Below 2144 px (18:9 already fits) the cards, slots and boosters shrink a little and close up, so the board keeps ~1.1.
+        float compactCards = 1, compactSlots = 1, compactBoosters = 1, compactSlotShift, compactBoosterShift;
+        bool compactBaseKnown; float baseCardsY, baseTrayY; Vector2[] baseBoosters;
+        RectTransform ScrapbookTrayPanel => buffer != null && buffer.parent != null && buffer.parent.parent is RectTransform panel && categories != null && panel.parent == categories.parent ? panel : null;
+        void CompactScrapbookLayout(float layoutHeight)
+        {
+            var trayPanel = ScrapbookTrayPanel; var boosters = new[] { undo, hint, extra, shuffle };
+            if (categories == null || trayPanel == null) return;
+            if (!compactBaseKnown)
+            {   // scene positions (cards top-anchored, boosters bottom-anchored); everything below moves relative to these
+                compactBaseKnown = true; baseCardsY = categories.anchoredPosition.y; baseTrayY = trayPanel.anchoredPosition.y; baseBoosters = new Vector2[boosters.Length];
+                for (int i = 0; i < boosters.Length; i++) if (boosters[i] != null) baseBoosters[i] = ((RectTransform)boosters[i].transform).anchoredPosition;
+            }
+            float t = Mathf.Clamp01((2144f - layoutHeight) / (2144f - 1920f));
+            compactCards = Mathf.Lerp(1, .8f, t); compactSlots = Mathf.Lerp(1, .84f, t); compactBoosters = Mathf.Lerp(1, .86f, t);
+            float trim = Mathf.Lerp(0, 14, t), cardsHalf = categories.sizeDelta.y * .5f, trayHalf = trayPanel.sizeDelta.y * .5f;
+            // cards: top edge moves up by `trim`; slots: top edge follows the cards' bottom edge, with the gap closed by 40 %
+            categories.localScale = Vector3.one * compactCards;
+            categories.anchoredPosition = new Vector2(categories.anchoredPosition.x, baseCardsY + trim + cardsHalf * (1 - compactCards));
+            float cardsRise = trim + 2 * cardsHalf * (1 - compactCards);
+            trayPanel.localScale = Vector3.one * compactSlots;
+            trayPanel.anchoredPosition = new Vector2(trayPanel.anchoredPosition.x, baseTrayY + cardsRise + 9.4f * t + trayHalf * (1 - compactSlots));
+            compactSlotShift = trayPanel.anchoredPosition.y - baseTrayY + 105 * (1 - compactSlots);   // rise of the slot row's lower edge
+            // boosters: the label's lower edge (164 px below the button centre) stays where it was
+            for (int i = 0; i < boosters.Length; i++)
+            {
+                if (boosters[i] == null) continue;
+                var rect = (RectTransform)boosters[i].transform;
+                rect.localScale = Vector3.one * compactBoosters; rect.anchoredPosition = baseBoosters[i] - new Vector2(0, 164 * (1 - compactBoosters));
+            }
+            compactBoosterShift = -258 * (1 - compactBoosters);   // drop of the boosters' upper edge
+        }
+
         public void UpdateHud(IGameplayReadModel owner)
         {
             var s = owner.Session;
@@ -348,7 +384,7 @@ namespace StickyPeerSort
         {
             var layout = safeArea != null && safeArea.childCount > 0 ? safeArea.GetChild(0) as RectTransform : null;
             float half = layout != null ? Mathf.Max(960, layout.sizeDelta.y * .5f) : 960;
-            float top = half - (960 - 148) - 105 - 12, bottom = -half + (960 - 786) + 94 + 12;   // slot row bottom, booster top
+            float top = half - (960 - 148) - 105 - 12 + compactSlotShift, bottom = -half + (960 - 786) + 94 + 12 + compactBoosterShift;   // slot row bottom, booster top
             var min = new Vector2(float.MaxValue, float.MaxValue); var max = -min;
             foreach (var pile in level.piles) { min = Vector2.Min(min, pile.position - pile.size * .5f); max = Vector2.Max(max, pile.position + pile.size * .5f); }
             foreach (var p in level.stickers)
