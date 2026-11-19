@@ -348,6 +348,7 @@ namespace StickyPeerSort
             var order = new List<int>(); for (int i = 0; i < s.Stickers.Count; i++) if (s.Stickers[i].location == StickerLocation.Board) order.Add(i);
             order.Sort((a, b) => { int v = s.Stickers[a].order.CompareTo(s.Stickers[b].order); return v != 0 ? v : a.CompareTo(b); });
             foreach (int i in order) { var view = Instantiate(stickerPrefab, board); view.name = "Sticker " + s.Stickers[i].placement.instanceId; view.Bind(owner, input, i); stickerViews[i] = view; }
+            BoardDragIn.Ensure(this, owner);   // drag from the tray paper into a sticker
         }
         void DrawPiles(LevelDefinition level)
         {
@@ -426,6 +427,25 @@ namespace StickyPeerSort
             var near = graphic.gameObject.AddComponent<Shadow>(); near.effectColor = new Color(.24f, .32f, .42f, alpha); near.effectDistance = new Vector2(0, -distance * .45f);
             var far = graphic.gameObject.AddComponent<Shadow>(); far.effectColor = new Color(.24f, .32f, .42f, alpha * .55f); far.effectDistance = new Vector2(0, -distance);
         }
+        // Size of the unlock-key badge on a category card, in mockup units (the header is 95 tall).
+        const float KeyBadge = 112;
+        static Sprite roundSprite;
+        // Smooth white disc made once at runtime (128 px, antialiased edge), tinted per use.
+        static Sprite RoundSprite()
+        {
+            if (roundSprite != null) return roundSprite;
+            const int size = 128; var tex = new Texture2D(size, size, TextureFormat.RGBA32, false) { name = "Round badge", wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Bilinear };
+            var pixels = new Color32[size * size]; float r = size * .5f - 1;
+            for (int y = 0; y < size; y++) for (int x = 0; x < size; x++)
+            {
+                float d = Mathf.Sqrt((x + .5f - size * .5f) * (x + .5f - size * .5f) + (y + .5f - size * .5f) * (y + .5f - size * .5f));
+                pixels[y * size + x] = new Color32(255, 255, 255, (byte)(Mathf.Clamp01(r - d + .5f) * 255));
+            }
+            tex.SetPixels32(pixels); tex.Apply(false, true);
+            roundSprite = Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(.5f, .5f), 100);
+            roundSprite.name = "Round badge"; roundSprite.hideFlags = HideFlags.HideAndDontSave; tex.hideFlags = HideFlags.HideAndDontSave;
+            return roundSprite;
+        }
         static Image Sliced(Image image, Sprite sprite, Color color, float multiplier)
         {
             image.sprite = sprite; image.color = color; image.type = Image.Type.Sliced; image.fillCenter = true;
@@ -465,8 +485,15 @@ namespace StickyPeerSort
             }
             if (s.Stickers.Exists(x => x.placement.special.kind == SpecialKind.Locked && x.placement.special.unlockCondition == UnlockCondition.CategoryCompleted && x.placement.special.dependencyId == category.id))
             {
-                var key = UIFactory.Panel("Unlock key", card, new Vector2(52, 52) * k, new Vector2(415 * .5f - 30, 230) * k, Color.white, theme.keyIcon);
-                key.type = Image.Type.Simple; key.preserveAspect = true;
+                // Partner 19/11: the key read as a dot. It is now a badge pinned on the card's top-right corner: a header-tinted
+                // ring, a cream plate and a large key, about the header's height, so the title stays clear and readable.
+                // The whole badge is the "Unlock key" object, so the unlock flight hides all of it when the key leaves.
+                var badge = UIFactory.Panel("Unlock key", card, new Vector2(KeyBadge, KeyBadge) * k, new Vector2(415 * .5f - 8, 497 * .5f) * k, tint, RoundSprite());
+                badge.type = Image.Type.Simple; badge.raycastTarget = false; SoftShadow(badge, 5 * k, .28f);
+                var plate = UIFactory.Panel("Key plate", badge.transform, new Vector2(KeyBadge - 12, KeyBadge - 12) * k, Vector2.zero, new Color(1f, .97f, .89f, 1f), RoundSprite());
+                plate.type = Image.Type.Simple; plate.raycastTarget = false;
+                var key = UIFactory.Panel("Key icon", badge.transform, new Vector2(KeyBadge - 14, KeyBadge - 14) * k, new Vector2(0, 2) * k, Color.white, theme.keyIcon);
+                key.type = Image.Type.Simple; key.preserveAspect = true; key.raycastTarget = false;
             }
             var pill = Sliced(UIFactory.Panel("Count pill", card, new Vector2(215, 66) * k, new Vector2(0, -175) * k, theme.scrapbookPill, theme.pillBase), theme.pillBase, theme.scrapbookPill, 2.6f / k);
             pill.raycastTarget = false; SoftShadow(pill, 5 * k, .2f);

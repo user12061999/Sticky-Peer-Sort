@@ -189,7 +189,7 @@ namespace StickyPeerSort
             if (resolvedFrame != Time.frameCount || resolvedPoint != p || resolvedSession != context.Session)
             {
                 resolvedFrame = Time.frameCount; resolvedPoint = p; resolvedSession = context.Session;
-                resolvedSticker = BoardGeometry.ResolveTouch(context.Session, p, context.Balance.touchSlop);
+                resolvedSticker = BoardGeometry.ResolveTouch(context.Session, p, context.Balance.touchSlop, context.Balance.dragToPeel ? context.Balance.peelEdgeBand : 0);
             }
             return resolvedSticker;
         }

@@ -25,6 +25,22 @@ namespace StickyPeerSort
         [SerializeField, HideInInspector] byte[] alphaMask;
         [System.NonSerialized] Sprite generatedSprite;
         [System.NonSerialized] Texture2D generatedTexture;
+        [System.NonSerialized] Rect artRect; [System.NonSerialized] Texture2D artRectTexture; [System.NonSerialized] byte[] artRectMask;
+        // The part of the artwork rect (uv 0..1) the drawing really fills; the transparent margin around it is left out.
+        public Rect ArtUVRect
+        {
+            get
+            {
+                if (artRect.width > 0 && artRectTexture == SourceTexture && artRectMask == alphaMask) return artRect;
+                const int Grid = 64; int minX = Grid, minY = Grid, maxX = -1, maxY = -1;
+                for (int y = 0; y < Grid; y++) for (int x = 0; x < Grid; x++)
+                    if (ContainsUV(new Vector2((x + .5f) / Grid, (y + .5f) / Grid)))
+                    { minX = Mathf.Min(minX, x); maxX = Mathf.Max(maxX, x); minY = Mathf.Min(minY, y); maxY = Mathf.Max(maxY, y); }
+                artRect = maxX < 0 ? new Rect(0, 0, 1, 1) : Rect.MinMaxRect((float)minX / Grid, (float)minY / Grid, (maxX + 1f) / Grid, (maxY + 1f) / Grid);
+                artRectTexture = SourceTexture; artRectMask = alphaMask;
+                return artRect;
+            }
+        }
         public Texture2D SourceTexture => texture != null ? texture : sprite != null ? sprite.texture : null;
         public Rect SourceRect => texture != null ? new Rect(0, 0, texture.width, texture.height) : sprite != null ? sprite.rect : Rect.zero;
         public bool HasArtwork => SourceTexture != null;

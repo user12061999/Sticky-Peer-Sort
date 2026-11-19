@@ -43,16 +43,25 @@ namespace StickyPeerSort
         }
         public void Begin(PointerEventData e)
         {
+            if (held) return;   // a second finger on a sticker that is already peeling must not take the peel over
             pressPending = true; pointer = e.pointerId;
             TryStart(e);
         }
+        // Drag-in from the tray paper (BoardDragIn): the flap lifts where the finger crossed the outline.
+        public void BeginAt(PointerEventData e, Vector2 boardPoint)
+        {
+            if (held) return;
+            pressPending = true; pointer = e.pointerId;
+            TryStart(e, boardPoint);
+        }
         // A press during a sheet change is remembered, so the same drag starts peeling once input is free.
-        void TryStart(PointerEventData e)
+        void TryStart(PointerEventData e, Vector2? at = null)
         {
             if (held || input == null || screen == null || screen.HasModal || !Application.isPlaying) return;
             if (returning != null) CancelImmediately();
             Vector2 start;
-            if (!Point(e, out start) || !input.TryBeginPeel(index)) return;
+            if (at.HasValue) start = at.Value; else if (!Point(e, out start)) return;
+            if (!input.TryBeginPeel(index)) return;
             startedSession = context.Session; pointer = e.pointerId; held = true; pressPending = false;
             var sticker = startedSession.Stickers[index];
             Vector2 size = sticker.placement.definition.FitSize(sticker.placement.size) * sticker.placement.scale;
@@ -137,8 +146,23 @@ namespace StickyPeerSort
             if (!on && ghost != null) ghost.transform.rotation = view.Rect.rotation;
         }
         public bool IsHeldBySheetChange => straining;
-        public void OnPointerUp(PointerEventData e) { pressPending = false; if (held && e.pointerId == pointer) Reattach(); }
-        public void OnEndDrag(PointerEventData e) { pressPending = false; if (held && e.pointerId == pointer) Reattach(); }
+        public void OnPointerUp(PointerEventData e) { Release(e); }
+        public void OnEndDrag(PointerEventData e) { Release(e); }
+        void Release(PointerEventData e)
+        {
+            if (e.pointerId != pointer) return;
+            if (pressPending) Refused();
+            pressPending = false;
+            if (held) Reattach();
+        }
+        // The press never became a peel (another sticker was peeling, or the board was busy): answer it with a light shake
+        // so it is not lost silently. A sticker that is still playing its unlock/reveal animation is left alone.
+        void Refused()
+        {
+            if (input == null || screen == null || view == null || context?.Session == null) return;
+            if (screen.HasModal || context.Session.State != GameplayState.Playing || input.StickerAnimating(index)) return;
+            view.ClickFail(context.Balance); screen.AudioFeedback?.Reject();
+        }
         public void OnCancel(BaseEventData e) { if (held) Reattach(); }
         void Reattach()
         {

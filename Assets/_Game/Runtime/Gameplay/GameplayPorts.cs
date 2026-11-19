@@ -10,6 +10,8 @@ namespace StickyPeerSort
         bool TryBeginPeel(int index);
         bool CommitPeel(int index);
         void CancelPeel(int index);
+        // True while the presenter still animates this sticker (unlock/reveal); a press then waits without feedback.
+        bool StickerAnimating(int index);
         // True while a move cannot be committed yet (a collection sheet is being replaced); peeling may continue meanwhile.
         bool CommitBlocked { get; }
     }

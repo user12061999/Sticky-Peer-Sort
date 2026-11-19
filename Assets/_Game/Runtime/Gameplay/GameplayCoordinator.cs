@@ -67,6 +67,7 @@ namespace StickyPeerSort
             Tap(index); return true;
         }
         public void CancelPeel(int index) { if (peeling == index) peeling = -1; }
+        public bool StickerAnimating(int index) { return presenter.HoldsSticker(index); }
         public void Undo() { if (peeling < 0 && !presenter.IsBusy && boosters.Undo(Session, context.Balance)) { screen.HideModal(); screen.Render(); } }
         public void Extra() { if (peeling < 0 && !presenter.IsBusy && boosters.Extra(Session, context.Balance)) screen.Render(); }
         public void Hint()
